@@ -1,4 +1,4 @@
-module Routes.Home exposing (..)
+module Routes.HomePage exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

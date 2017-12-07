@@ -23,14 +23,29 @@ getRoute hash =
         "#home" ->
             HomeRoute
 
-        "#pageone" ->
-            PageOneRoute
+        "#before-you-begin" ->
+            BeforeYouBeginRoute
 
-        "#pagetwo" ->
-            PageTwoRoute
+        "#pet-info" ->
+            PetInfoRoute
+
+        "#location" ->
+            LocationRoute
+
+        "#personality" ->
+            PersonalityRoute
+
+        "#likes" ->
+            LikesRoute
+
+        "#owner-info" ->
+            OwnerInfoRoute
+
+        "#thank-you" ->
+            ThankYouRoute
 
         _ ->
-            HomeRoute
+            NotFoundRoute
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

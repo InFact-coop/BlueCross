@@ -6,10 +6,16 @@ import Html exposing (..)
 -- My Elm Files
 
 import Types exposing (..)
-import Routes.Home exposing (..)
-import Routes.PageOne exposing (..)
-import Routes.PageTwo exposing (..)
-import Routes.Navbar exposing (..)
+import Components.Navbar exposing (..)
+import Routes.HomePage exposing (..)
+import Routes.BeforeYouBeginPage exposing (..)
+import Routes.LikesPage exposing (..)
+import Routes.LocationPage exposing (..)
+import Routes.OwnerInfoPage exposing (..)
+import Routes.PersonalityPage exposing (..)
+import Routes.PetInfoPage exposing (..)
+import Routes.ThankYouPage exposing (..)
+import Routes.NotFoundPage exposing (..)
 
 
 view : Model -> Html Msg
@@ -20,11 +26,31 @@ view model =
                 HomeRoute ->
                     home model
 
-                PageOneRoute ->
-                    pageOne model
+                BeforeYouBeginRoute ->
+                    beforeYouBeginPage model
 
-                PageTwoRoute ->
-                    pageTwo model
+                PetInfoRoute ->
+                    petInfoPage model
+                    
+                LocationRoute ->
+                    locationPage model
+                    
+                PersonalityRoute ->
+                    personalityPage model
+                    
+                LikesRoute ->
+                    likesPage model
+                    
+                OwnerInfoRoute ->
+                    ownerInfoPage model
+                    
+                ThankYouRoute ->
+                    thankYouPage model         
+                    
+                NotFoundRoute ->
+                    notFoundPage model
+                    
+
     in
         div []
             [ navbar model
