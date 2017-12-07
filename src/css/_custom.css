@@ -16,6 +16,12 @@ button {
 }
 
 
+
 .m0-auto{
   margin: 0 auto;
+}
+
+.headerTitle {
+border-bottom-left-radius: 100%5rem;
+border-bottom-right-radius: 100%5rem;
 }

@@ -7,6 +7,7 @@ import Html exposing (..)
 
 import Types exposing (..)
 import Components.Navbar exposing (..)
+import Components.Title exposing (..)
 import Routes.HomePage exposing (..)
 import Routes.BeforeYouBeginPage exposing (..)
 import Routes.LikesPage exposing (..)
@@ -31,28 +32,27 @@ view model =
 
                 PetInfoRoute ->
                     petInfoPage model
-                    
+
                 LocationRoute ->
                     locationPage model
-                    
+
                 PersonalityRoute ->
                     personalityPage model
-                    
+
                 LikesRoute ->
                     likesPage model
-                    
+
                 OwnerInfoRoute ->
                     ownerInfoPage model
-                    
+
                 ThankYouRoute ->
-                    thankYouPage model         
-                    
+                    thankYouPage model
+
                 NotFoundRoute ->
                     notFoundPage model
-                    
-
     in
         div []
             [ navbar model
+            , viewTitle model
             , page
             ]
