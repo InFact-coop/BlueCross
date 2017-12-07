@@ -17,3 +17,10 @@ button {
 border-bottom-left-radius: 100%5rem;
 border-bottom-right-radius: 100%5rem;
 }
+
+.burger {
+  background: url('./assets/burger.svg');
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
