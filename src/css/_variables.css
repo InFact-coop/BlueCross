@@ -89,12 +89,19 @@
   --box-shadow-4: 2px 2px 8px 0px rgba( 0, 0, 0, 0.2 );
   --box-shadow-5: 4px 4px 8px 0px rgba( 0, 0, 0, 0.2 );
 
+  /* Blue X Colours */
+
+  --navy:  #003388;
+  --dark-blue:  #0066BB;
+  --blue:  #069FDD;
+  --light-blue:  #E1F4FB;
+  --gray: #666666;
+  --silver: #F6F6F6;
+
   --black: #000;
   --near-black: #111;
   --dark-gray:#333;
   --mid-gray:#555;
-  --gray: #777;
-  --silver: #999;
   --light-silver: #aaa;
   --moon-gray: #ccc;
   --light-gray: #eee;
@@ -145,11 +152,7 @@
   --dark-green:  #007459;
   --green:  #19a974;
   --light-green:  #C7FFDF;
-  --navy:  #001b44;
-  --dark-blue:  #2D6B8E;
-  --blue:  #357edd;
-  --light-blue:  #96ccff;
-  --lightest-blue:  #cdecff;
+  --lightest-blue:  #E1F4FB;
   --washed-blue:  #f6fffe;
   --washed-green:  #E1F8EA;
   --washed-yellow:  #fffceb;

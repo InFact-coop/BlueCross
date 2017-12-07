@@ -12,3 +12,8 @@ body {
 button {
   font-family: var(--sans-serif);
 }
+
+.headerTitle {
+border-bottom-left-radius: 100%5rem;
+border-bottom-right-radius: 100%5rem;
+}
