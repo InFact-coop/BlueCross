@@ -28,11 +28,11 @@ getRoute hash =
 
         "#pet-info" ->
             PetInfoRoute
-            
+
         "#location" ->
             LocationRoute
 
-        "#personaity" ->
+        "#personality" ->
             PersonalityRoute
 
         "#likes" ->
@@ -46,6 +46,7 @@ getRoute hash =
 
         _ ->
             NotFoundRoute
+
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
