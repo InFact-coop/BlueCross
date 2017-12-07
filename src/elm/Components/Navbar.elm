@@ -7,11 +7,8 @@ import Types exposing (..)
 
 navbar : Model -> Html Msg
 navbar model =
-    devNavbarContent
-
-
-
--- navbarContent
+    -- devNavbarContent
+    navbarContent
 
 
 devNavbarLink : ( String, String ) -> Html Msg
