@@ -7,7 +7,15 @@ import Types exposing (..)
 
 viewTitle : Model -> Html Msg
 viewTitle model =
-    header [ class "headerTitle bg-blue flex justify-center items-center white h4" ] [ p [] [ text <| getTitle model.route ] ]
+    header [ class <| getClasses model.route ] [ h1 [] [ text <| getTitle model.route ] ]
+
+
+getClasses : Route -> String
+getClasses route =
+    if route == ThankYouRoute then
+        "dn"
+    else
+        "headerTitle bg-blue flex justify-center items-center white h4"
 
 
 getTitle : Route -> String
