@@ -8,7 +8,7 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = LocationRoute
+    { route = HomeRoute
     , userInput = ""
     }
 
