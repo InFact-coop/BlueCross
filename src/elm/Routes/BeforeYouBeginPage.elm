@@ -1,13 +1,56 @@
 module Routes.BeforeYouBeginPage exposing (..)
 
+import Components.Title exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Components.Title exposing (..)
 
 
 beforeYouBeginPage : Model -> Html Msg
 beforeYouBeginPage model =
-    div [ class "w-60-ns center" ]
-        [ p [ class "f3 w60 mh1 tc" ] [ text "Before You Begin" ]
+    div [ class "ma3" ]
+        [ div [ class "blue b mb2" ] [ text "Is your dog.." ]
+        , div [ class "mb2" ]
+            [ input [ type_ "checkbox", id "vaccinated" ] []
+            , label [ for "vaccinated", class "gray ml2" ] [ text "Vaccinated?" ]
+            ]
+        , div [ class "mb2" ]
+            [ input [ type_ "checkbox", id "neutered" ] []
+            , label [ for "neutered", class "gray ml2" ] [ text "Neutered?" ]
+            ]
+        , div [ class "mb2" ]
+            [ input [ type_ "checkbox", id "microchipped" ] []
+            , label [ for "microchipped", class "gray ml2" ] [ text "Microchipped?" ]
+            ]
+        , div []
+            [ img [ src "./assets/hearts.svg", class "w-100" ] []
+            ]
+        , div [ class "blue b mb2" ] [ text "When was your dog's last visit to the vets?" ]
+        , div [ class "m0-aut0 tc" ]
+            [ div [ class "fl w-50" ]
+                [ button [ class "bg-blue w-80 white pa3 fw1 br2 mb3" ] [ text "Last 4 weeks" ]
+                ]
+            , div [ class "fl w-50" ]
+                [ button [ class "bg-blue w-80 white pa3 fw1 br2 mb3" ] [ text "3 months" ]
+                ]
+            ]
+        , div [ class "m0-aut0 tc" ]
+            [ div [ class "fl w-50" ]
+                [ button [ class "bg-blue w-80 white pa3 fw1 br2 mb3" ] [ text "6 months" ]
+                ]
+            , div [ class "fl w-50" ]
+                [ button [ class "bg-blue w-80 white pa3 fw1 br2 mb3" ] [ text "12 months" ]
+                ]
+            ]
+        , div [ class "tc" ]
+            [ div [ class "fl w-50" ]
+                [ button [ class "bg-blue w-80 white pa3 fw1 br2 mb3 tc" ] [ text "18 months" ]
+                ]
+            , div [ class "fl w-50" ]
+                [ button [ class "bg-blue w-80 white pa3 fw1 br2 mb3" ] [ text "18+ months" ]
+                ]
+            ]
+        , div [ class "mt3 tc" ]
+            [ button [ class "w-90 bg-navy br2 white pa3 br2 f4" ] [ text "Next" ]
+            ]
         ]
