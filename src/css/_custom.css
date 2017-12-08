@@ -33,7 +33,6 @@ border-bottom-right-radius: 100%5rem;
   background-position: center;
 }
 
-
 .slider::-webkit-slider-thumb{
   -webkit-appearance: none;
   background-color: white;
@@ -47,6 +46,23 @@ border-bottom-right-radius: 100%5rem;
 
 .h-custom{
   height: 0.5rem;
+
+input:checked +  .personality {
+  background-color: #003388;
+  color: white;
+
+.camera {
+  background: url('./assets/camera.svg');
+  background-repeat: no-repeat;
+  width: 8rem;
+  height: 8rem;
+  background-position: center;
+  background-size: 100%;
+}
+
+.videoButton {
+  width: 15rem;
+  height: 15rem;
 }
 
 .grid-4 {
@@ -62,3 +78,4 @@ border-bottom-right-radius: 100%5rem;
   background-repeat: no-repeat;
   background-position: center;
 }
+
