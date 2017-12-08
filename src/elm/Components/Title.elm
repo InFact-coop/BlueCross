@@ -45,5 +45,8 @@ getTitle route =
         ThankYouRoute ->
             ""
 
+        VideoRoute ->
+            "Photos & Videos"
+
         NotFoundRoute ->
             "Sorry"

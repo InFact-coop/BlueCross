@@ -8,7 +8,7 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = BeforeYouBeginRoute
+    { route = VideoRoute
     , userInput = ""
     }
 
@@ -43,6 +43,9 @@ getRoute hash =
 
         "#thank-you" ->
             ThankYouRoute
+
+        "#upload-video" ->
+            VideoRoute
 
         _ ->
             NotFoundRoute
