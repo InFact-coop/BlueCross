@@ -22,6 +22,7 @@ type Route
 type alias Model =
     { route : Route
     , userInput : String
+    , nextClickable : Bool
     }
 
 
@@ -32,3 +33,4 @@ type alias Model =
 type Msg
     = Change String
     | UrlChange Navigation.Location
+    | MakeNextClickable
