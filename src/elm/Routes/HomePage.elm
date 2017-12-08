@@ -15,7 +15,25 @@ home model =
             , p [ class "gray tc" ] [ text "Giving up a pet is never easy. We want to help you find the best home for your pet. Please follow the questions and we’ll be able to find a solution for you." ]
             ]
         , div [ class "w-90 center" ] [ h2 [ class "blue f5" ] [ text "When do you need to give up your pet?" ], div [ class "grid-4 center" ] mapButtons ]
+        , div [ class "banner w-100 h2 mv3" ] []
+        , a [ class <| "tc center db w-90 br2 white pa3 br2 link f4 " ++ toggleNextClasses model, createNextLink model ] [ text "Next" ]
         ]
+
+
+createNextLink : Model -> Attribute msg
+createNextLink model =
+    if model.nextClickable == True then
+        attribute "href" "#before-you-begin"
+    else
+        attribute "id" "next"
+
+
+toggleNextClasses : Model -> String
+toggleNextClasses model =
+    if model.nextClickable == True then
+        "bg-navy white"
+    else
+        "bg-gray white"
 
 
 mapButtons : List (Html Msg)

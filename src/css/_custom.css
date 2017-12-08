@@ -39,3 +39,10 @@ border-bottom-right-radius: 100%5rem;
   grid-template-rows: 3rem 3rem;
   grid-gap: 10px;
 }
+
+.banner {
+  background: url('./assets/hearts.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
