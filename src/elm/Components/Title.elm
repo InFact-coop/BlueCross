@@ -25,10 +25,10 @@ getTitle route =
             "Giving a pet"
 
         BeforeYouBeginRoute ->
-            "Before You Begin"
+            "Health"
 
         PetInfoRoute ->
-            "Pet Info"
+            "About your pet"
 
         LocationRoute ->
             "Location"
