@@ -32,3 +32,8 @@ border-bottom-right-radius: 100%5rem;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+input:checked +  .personality {
+  background-color: #003388;
+  color: white;
+}
