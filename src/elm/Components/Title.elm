@@ -15,14 +15,14 @@ getClasses route =
     if route == ThankYouRoute then
         "dn"
     else
-        "headerTitle bg-blue flex justify-center items-center white h4"
+        "headerTitle bg-blue flex justify-center items-center white h4 mb4"
 
 
 getTitle : Route -> String
 getTitle route =
     case route of
         HomeRoute ->
-            "Welcome"
+            "Giving a pet"
 
         BeforeYouBeginRoute ->
             "Health"

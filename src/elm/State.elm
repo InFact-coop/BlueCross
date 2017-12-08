@@ -10,6 +10,7 @@ initModel : Model
 initModel =
     { route = HomeRoute
     , userInput = ""
+    , nextClickable = False
     }
 
 
@@ -55,4 +56,7 @@ update msg model =
             ( { model | userInput = newInput }, Cmd.none )
 
         UrlChange location ->
-            ( { model | route = getRoute location.hash }, Cmd.none )
+            ( { model | route = getRoute location.hash, nextClickable = False }, Cmd.none )
+
+        MakeNextClickable ->
+            ( { model | nextClickable = True }, Cmd.none )
