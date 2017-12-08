@@ -10,11 +10,13 @@ import Components.Navbar exposing (..)
 import Components.Title exposing (..)
 import Routes.HomePage exposing (..)
 import Routes.BeforeYouBeginPage exposing (..)
+import Routes.VideoPage exposing (..)
 import Routes.LikesPage exposing (..)
 import Routes.LocationPage exposing (..)
 import Routes.OwnerInfoPage exposing (..)
 import Routes.PersonalityPage exposing (..)
 import Routes.PetInfoPage exposing (..)
+import Routes.ThankYouPage exposing (..)
 import Routes.ThankYouPage exposing (..)
 import Routes.NotFoundPage exposing (..)
 
@@ -47,6 +49,9 @@ view model =
 
                 ThankYouRoute ->
                     thankYouPage model
+
+                VideoRoute ->
+                    videoPage model
 
                 NotFoundRoute ->
                     notFoundPage model

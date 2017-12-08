@@ -16,6 +16,7 @@ type Route
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
+    | VideoRoute
 
 
 type alias Model =

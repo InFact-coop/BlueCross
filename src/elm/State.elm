@@ -45,6 +45,9 @@ getRoute hash =
         "#thank-you" ->
             ThankYouRoute
 
+        "#upload-video" ->
+            VideoRoute
+
         _ ->
             NotFoundRoute
 
