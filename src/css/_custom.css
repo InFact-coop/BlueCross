@@ -33,6 +33,20 @@ border-bottom-right-radius: 100%5rem;
   background-position: center;
 }
 
+.camera {
+  background: url('./assets/camera.svg');
+  background-repeat: no-repeat;
+  width: 8rem;
+  height: 8rem;
+  background-position: center;
+  background-size: 100%;
+}
+
+.videoButton {
+  width: 15rem;
+  height: 15rem;
+}
+
 .grid-4 {
   display: grid;
   grid-template-columns: 49% 49%;
