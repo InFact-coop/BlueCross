@@ -25,7 +25,7 @@ getTitle route =
             "Welcome"
 
         BeforeYouBeginRoute ->
-            "Before You Begin"
+            "Health"
 
         PetInfoRoute ->
             "About your pet"
