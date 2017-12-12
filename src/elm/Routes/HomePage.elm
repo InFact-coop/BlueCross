@@ -23,7 +23,7 @@ home model =
 createNextLink : Model -> Attribute msg
 createNextLink model =
     if model.nextClickable == True then
-        attribute "href" "#before-you-begin"
+        attribute "href" "#pet-info"
     else
         attribute "id" "next"
 
