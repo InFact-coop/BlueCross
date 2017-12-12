@@ -21,7 +21,7 @@ petInfoPage model =
         , div []
             [ div [ class "blue b mb2 mt4" ] [ text "What Breed is your dog?" ]
             , div []
-                [ select [ class "bg-blue bn w-80 white tc pa3 mb3 f5 fw1" ]
+                [ select [ class "bg-light-blue bn w-80 gray tc pa3 mb3 f5 fw1" ]
                     [ option [ value "Please choose" ]
                         [ text "Please Choose" ]
                     , option [ value "Labrador" ]
