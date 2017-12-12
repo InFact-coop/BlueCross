@@ -77,7 +77,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | cats = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdateChildrenSlider value ->
             let
@@ -87,7 +87,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | children = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdatePeopleSlider value ->
             let
@@ -97,4 +97,4 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | people = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )

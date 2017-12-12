@@ -53,6 +53,13 @@ input:checked +  .personality {
   color: white;
 }
 
+
+input:checked + .health {
+  background-color: #003388;
+  color: white;
+}
+
+
 .camera {
   background: url('./assets/camera.svg');
   background-repeat: no-repeat;
@@ -60,7 +67,7 @@ input:checked +  .personality {
   height: 8rem;
   background-position: center;
   background-size: 100%;
-}
+ }
 
 .videoButton {
   width: 15rem;
@@ -79,4 +86,11 @@ input:checked +  .personality {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.light-border{
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: #6666;
+  
 }
