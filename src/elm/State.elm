@@ -11,6 +11,11 @@ initModel =
     { route = HomeRoute
     , userInput = ""
     , nextClickable = False
+    , sliderValues =
+        { cats = "50"
+        , children = "50"
+        , people = "50"
+        }
     }
 
 
@@ -36,9 +41,6 @@ getRoute hash =
         "#personality" ->
             PersonalityRoute
 
-        "#likes" ->
-            LikesRoute
-
         "#owner-info" ->
             OwnerInfoRoute
 
@@ -47,6 +49,9 @@ getRoute hash =
 
         "#upload-video" ->
             VideoRoute
+
+        "#new-home" ->
+            NewHomeRoute
 
         _ ->
             NotFoundRoute
@@ -63,3 +68,33 @@ update msg model =
 
         MakeNextClickable ->
             ( { model | nextClickable = True }, Cmd.none )
+
+        UpdateCatsSlider value ->
+            let
+                oldSliderValues =
+                    model.sliderValues
+
+                newSliderValues =
+                    { oldSliderValues | cats = value }
+            in
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
+
+        UpdateChildrenSlider value ->
+            let
+                oldSliderValues =
+                    model.sliderValues
+
+                newSliderValues =
+                    { oldSliderValues | children = value }
+            in
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
+
+        UpdatePeopleSlider value ->
+            let
+                oldSliderValues =
+                    model.sliderValues
+
+                newSliderValues =
+                    { oldSliderValues | people = value }
+            in
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
