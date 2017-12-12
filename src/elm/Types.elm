@@ -23,7 +23,14 @@ type alias Model =
     { route : Route
     , userInput : String
     , nextClickable : Bool
-    , rangeNumber : String
+    , sliderValues : SliderValues
+    }
+
+
+type alias SliderValues =
+    { cats : String
+    , children : String
+    , people : String
     }
 
 

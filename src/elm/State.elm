@@ -11,7 +11,11 @@ initModel =
     { route = HomeRoute
     , userInput = ""
     , nextClickable = False
-    , rangeNumber = "50"
+    , sliderValues =
+        { cats = "50"
+        , children = "50"
+        , people = "50"
+        }
     }
 
 
