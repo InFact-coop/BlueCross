@@ -82,7 +82,21 @@ input:checked +  .personality {
 }
 
 .video {
-  width: 20rem;
-  height: 20rem;
-  border-radius: 100%;
+  height: 13rem;
+}
+
+.record {
+  background: url('./assets/record.svg');
+  background-size: 100%;
+  width: 8rem;
+  height: 8rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: tick 2s infinite;
+}
+
+@keyframes tick {
+    0%   {opacity: 1;}
+    50%   {opacity: 0;}
+    100%   {opacity: 1;}
 }

@@ -42,7 +42,7 @@ videoButton model =
             div [ class "videoButton bg-light-blue pa3 pointer mb2 db br1 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "camera" ] [], span [ class "tc f4" ] [ text "Click here to take a video of Rex" ] ]
 
         Stage1 ->
-            div [ class "videoButton bg-light-blue pa3 pointer mb2 db br1 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "camera" ] [], span [ class "tc f4" ] [ text "In Progress" ] ]
+            div [ class "videoButton bg-light-blue pa3 pointer mb2 db br1 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "record" ] [], span [ class "tc f4" ] [ text "Click to finish video" ] ]
 
         Stage2 ->
             video [ autoplay True, src model.videoMessage, preload "auto", class "video db center" ] []

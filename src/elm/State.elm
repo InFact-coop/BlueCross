@@ -96,7 +96,7 @@ update msg model =
             ( { model | userInput = newInput }, Cmd.none )
 
         UrlChange location ->
-            ( { model | route = getRoute location.hash, nextClickable = False }, Cmd.none )
+            ( { model | route = getRoute location.hash, nextClickable = False, videoStage = Stage0, videoMessage = "" }, Cmd.none )
 
         MakeNextClickable ->
             ( { model | nextClickable = True }, Cmd.none )
