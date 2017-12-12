@@ -36,7 +36,7 @@ getTitle route =
         PersonalityRoute ->
             "Personality"
 
-        LikesRoute ->
+        NewHomeRoute ->
             "The Ideal Home"
 
         OwnerInfoRoute ->

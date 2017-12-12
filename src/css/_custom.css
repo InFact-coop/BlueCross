@@ -33,9 +33,25 @@ border-bottom-right-radius: 100%5rem;
   background-position: center;
 }
 
+.slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  background-color: white;
+  border-width: 0.75px;
+  border-style: solid;
+  border-color: #aaa;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.h-custom {
+  height: 0.5rem;
+}
+
 input:checked +  .personality {
   background-color: #003388;
   color: white;
+}
 
 .camera {
   background: url('./assets/camera.svg');
@@ -64,4 +80,3 @@ input:checked +  .personality {
   background-repeat: no-repeat;
   background-position: center;
 }
-
