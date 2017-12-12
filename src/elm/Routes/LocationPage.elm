@@ -20,6 +20,6 @@ locationPage model =
             ]
         , img [ src "./assets/map.svg" ] []
         , div [ class "mt4 tc w-100" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib", href "#owner-info-page" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib", href "#owner-info" ] [ text "Next" ]
             ]
         ]
