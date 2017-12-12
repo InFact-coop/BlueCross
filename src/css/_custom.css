@@ -36,6 +36,12 @@ border-bottom-right-radius: 100%5rem;
 input:checked +  .personality {
   background-color: #003388;
   color: white;
+}
+
+input:checked + .health {
+  background-color: #003388;
+  color: white;
+}
 
 .camera {
   background: url('./assets/camera.svg');
@@ -64,4 +70,3 @@ input:checked +  .personality {
   background-repeat: no-repeat;
   background-position: center;
 }
-
