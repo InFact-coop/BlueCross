@@ -69,5 +69,32 @@ update msg model =
         MakeNextClickable ->
             ( { model | nextClickable = True }, Cmd.none )
 
-        UpdateValue value ->
-            ( { model | rangeNumber = value }, Cmd.none )
+        UpdateCatsSlider value ->
+            let
+                oldSliderValues =
+                    model.sliderValues
+
+                newSliderValues =
+                    { oldSliderValues | cats = value }
+            in
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
+
+        UpdateChildrenSlider value ->
+            let
+                oldSliderValues =
+                    model.sliderValues
+
+                newSliderValues =
+                    { oldSliderValues | children = value }
+            in
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
+
+        UpdatePeopleSlider value ->
+            let
+                oldSliderValues =
+                    model.sliderValues
+
+                newSliderValues =
+                    { oldSliderValues | people = value }
+            in
+                ( { model | sliderValues = newSliderValues }, Cmd.none )

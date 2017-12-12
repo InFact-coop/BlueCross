@@ -42,4 +42,6 @@ type Msg
     = Change String
     | UrlChange Navigation.Location
     | MakeNextClickable
-    | UpdateValue String
+    | UpdateCatsSlider String
+    | UpdateChildrenSlider String
+    | UpdatePeopleSlider String
