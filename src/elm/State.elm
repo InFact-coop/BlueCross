@@ -11,6 +11,7 @@ initModel =
     { route = HomeRoute
     , userInput = ""
     , nextClickable = False
+    , rangeNumber = "50"
     }
 
 
@@ -63,3 +64,6 @@ update msg model =
 
         MakeNextClickable ->
             ( { model | nextClickable = True }, Cmd.none )
+
+        UpdateValue value ->
+            ( { model | rangeNumber = value }, Cmd.none )
