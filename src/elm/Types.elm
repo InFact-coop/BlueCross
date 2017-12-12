@@ -24,6 +24,10 @@ type alias Model =
     , userInput : String
     , nextClickable : Bool
     , sliderValues : SliderValues
+    , videoMessage : String
+    , messageLength : Int
+    , videoStage : Stage
+    , paused : Bool
     }
 
 
@@ -32,6 +36,12 @@ type alias SliderValues =
     , children : String
     , people : String
     }
+
+
+type Stage
+    = Stage0
+    | Stage1
+    | Stage2
 
 
 
@@ -45,3 +55,8 @@ type Msg
     | UpdateCatsSlider String
     | UpdateChildrenSlider String
     | UpdatePeopleSlider String
+    | RecordStart String
+    | RecordStop String
+    | RecieveVideo String
+    | ToggleVideo Stage
+    | Increment

@@ -88,9 +88,28 @@ input:checked + .health {
   background-position: center;
 }
 
-.light-border{
+.video {
+  height: 13rem;
+}
+
+.record {
+  background: url('./assets/record.svg');
+  background-size: 100%;
+  width: 8rem;
+  height: 8rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: tick 2s infinite;
+}
+
+@keyframes tick {
+    0%   {opacity: 1;}
+    50%   {opacity: 0;}
+    100%   {opacity: 1;}
+}
+
+.light-border {
   border-width: 0.5px;
   border-style: solid;
   border-color: #6666;
-  
 }
