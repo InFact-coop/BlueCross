@@ -92,4 +92,5 @@ input:checked + .health {
   border-width: 0.5px;
   border-style: solid;
   border-color: #6666;
+  
 }
