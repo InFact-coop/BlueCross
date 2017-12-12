@@ -8,7 +8,7 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = NewHomeRoute
+    { route = HomeRoute
     , userInput = ""
     , nextClickable = False
     , sliderValues =
