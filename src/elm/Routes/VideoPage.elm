@@ -9,9 +9,9 @@ import Types exposing (..)
 videoPage : Model -> Html Msg
 videoPage model =
     div [ class "ma3" ]
-        [ div [ class "blue b mb4" ] [ text "So new owners can see your dog in all his glory, please take a short video of them!" ]
+        [ div [ class "gray fw1 mb4" ] [ text "So new owners can see your dog in all his glory, please take a short video of them!" ]
         , videoButton model
-        , div [ class "mt3 tc w-100 mb4" ]
+        , div [ class "mt4 tc w-100" ]
             [ a
                 [ class <| "tc center db w-100 br2 white pa3 br2 link f4 " ++ toggleNextClasses model, createNextLink model ]
                 [ text "Next" ]

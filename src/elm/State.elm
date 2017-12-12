@@ -9,7 +9,7 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = VideoRoute
+    { route = HomeRoute
     , userInput = ""
     , nextClickable = False
     , sliderValues =
