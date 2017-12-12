@@ -91,6 +91,7 @@ personalityPage model =
             ]
         , div [ class "banner w-100 h3 mv3" ] []
         , div [ class "mt4 tc w-100" ]
+
             [ a [ class "link w-100 bg-navy br2 white pa3 br2 f4 dib", href "#new-home" ] [ text "Next" ]
             ]
         ]
