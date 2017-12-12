@@ -22,3 +22,4 @@ locationPage model =
         , div [ class "mt4 tc w-100" ]
             [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link", href "#owner-info" ] [ text "Next" ]
             ]
+        ]
