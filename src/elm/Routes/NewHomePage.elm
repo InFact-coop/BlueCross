@@ -71,6 +71,6 @@ newHomePage model =
             , div [ class "gray fw1 ml4" ] [ text "Loves!" ]
             ]
         , div [ class "tc w-100" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link", href "#owner-info" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link", href "#video" ] [ text "Next" ]
             ]
         ]
