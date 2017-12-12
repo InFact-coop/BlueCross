@@ -31,7 +31,7 @@ getTitle route =
             "About your pet"
 
         LocationRoute ->
-            "Location"
+            "Who's looking?"
 
         PersonalityRoute ->
             "Personality"
