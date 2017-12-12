@@ -40,7 +40,7 @@ getTitle route =
             "The Ideal Home"
 
         OwnerInfoRoute ->
-            "Owner Info"
+            "Your details"
 
         ThankYouRoute ->
             ""
