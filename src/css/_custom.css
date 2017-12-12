@@ -33,9 +33,10 @@ border-bottom-right-radius: 100%5rem;
   background-position: center;
 }
 
-input:checked +  .personality {
+input:checked + .personality {
   background-color: #003388;
   color: white;
+}
 
 .camera {
   background: url('./assets/camera.svg');
@@ -64,4 +65,3 @@ input:checked +  .personality {
   background-repeat: no-repeat;
   background-position: center;
 }
-
