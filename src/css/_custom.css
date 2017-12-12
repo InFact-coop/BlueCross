@@ -87,3 +87,9 @@ input:checked + .health {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.light-border{
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: #6666;
+}
