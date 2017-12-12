@@ -31,12 +31,12 @@ getTitle route =
             "About your pet"
 
         LocationRoute ->
-            "Location"
+            "Who's looking?"
 
         PersonalityRoute ->
             "Personality"
 
-        LikesRoute ->
+        NewHomeRoute ->
             "The Ideal Home"
 
         OwnerInfoRoute ->
