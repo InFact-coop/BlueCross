@@ -80,3 +80,9 @@ input:checked +  .personality {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.video {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 100%;
+}
