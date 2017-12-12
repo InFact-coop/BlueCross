@@ -36,9 +36,6 @@ getRoute hash =
         "#personality" ->
             PersonalityRoute
 
-        "#likes" ->
-            LikesRoute
-
         "#owner-info" ->
             OwnerInfoRoute
 
@@ -47,6 +44,9 @@ getRoute hash =
 
         "#upload-video" ->
             VideoRoute
+
+        "#new-home" ->
+            NewHomeRoute
 
         _ ->
             NotFoundRoute

@@ -12,11 +12,11 @@ type Route
     | PetInfoRoute
     | LocationRoute
     | PersonalityRoute
-    | LikesRoute
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
     | VideoRoute
+    | NewHomeRoute
 
 
 type alias Model =

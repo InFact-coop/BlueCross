@@ -11,7 +11,7 @@ import Components.Title exposing (..)
 import Routes.HomePage exposing (..)
 import Routes.BeforeYouBeginPage exposing (..)
 import Routes.VideoPage exposing (..)
-import Routes.LikesPage exposing (..)
+import Routes.NewHomePage exposing (..)
 import Routes.LocationPage exposing (..)
 import Routes.OwnerInfoPage exposing (..)
 import Routes.PersonalityPage exposing (..)
@@ -35,14 +35,11 @@ view model =
                 PetInfoRoute ->
                     petInfoPage model
 
-                LocationRoute ->
-                    locationPage model
-
                 PersonalityRoute ->
                     personalityPage model
 
-                LikesRoute ->
-                    likesPage model
+                LocationRoute ->
+                    locationPage model
 
                 OwnerInfoRoute ->
                     ownerInfoPage model
@@ -55,6 +52,9 @@ view model =
 
                 NotFoundRoute ->
                     notFoundPage model
+
+                NewHomeRoute ->
+                    newHomePage model
     in
         div []
             [ navbar model
