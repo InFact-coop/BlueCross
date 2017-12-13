@@ -1,7 +1,7 @@
 port module State exposing (..)
 
-import Types exposing (..)
 import Time exposing (Time, second)
+import Types exposing (..)
 
 
 -- MODEL
@@ -129,7 +129,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | people = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )
 
 
 port recordStart : String -> Cmd msg
@@ -150,4 +150,3 @@ subscriptions model =
           else
             Sub.none
         ]
-

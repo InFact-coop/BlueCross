@@ -59,6 +59,10 @@ input:checked + .health {
   color: white;
 }
 
+input:checked + .age {
+  background-color: #003388;
+  color: white;
+}
 
 .camera {
   background: url('./assets/camera.svg');
