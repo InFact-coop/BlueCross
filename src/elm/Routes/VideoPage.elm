@@ -12,9 +12,7 @@ videoPage model =
         [ div [ class "gray fw1 mb4" ] [ text "So new owners can see your dog in all his glory, please take a short video of them!" ]
         , videoButton model
         , div [ class "mt4 tc w-100" ]
-            [ a
-                [ class <| "tc center db w-100 br2 white pa3 br2 link f4 " ++ toggleNextClasses model, createNextLink model ]
-                [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#location" ] [ text "Next" ]
             ]
         ]
 

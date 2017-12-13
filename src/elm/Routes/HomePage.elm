@@ -38,4 +38,4 @@ toggleNextClasses model =
 
 mapButtons : List (Html Msg)
 mapButtons =
-    List.map blueButton [ "Urgently", "2-3 weeks", "In under a month", "No rush" ]
+    List.map blueButton [ "Urgently", "2-3 weeks", "A couple of month", "No rush" ]
