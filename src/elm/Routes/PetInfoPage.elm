@@ -1,5 +1,6 @@
 module Routes.PetInfoPage exposing (..)
 
+import Helpers.GetPetName exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
@@ -70,7 +71,7 @@ petInfoPage model =
                     []
                 ]
             ]
-        , div [ class "blue b mb2 mt4" ] [ text "What sex is doggo?" ]
+        , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
         , div []
             [ div [ class "fl w-50 tc mb2" ]
                 [ input [ class "dn", id "male", name "age", type_ "radio", value "male" ]
