@@ -4,6 +4,14 @@ import Helpers.GetPetName exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
+import Html.Events exposing (on, targetValue)
+import Json.Decode as Json
+import Helpers.GetPetName exposing (..)
+
+
+onBlurValue : (String -> msg) -> Attribute msg
+onBlurValue tagger =
+    on "blur" (Json.map tagger targetValue)
 
 
 petInfoPage : Model -> Html Msg
@@ -11,7 +19,7 @@ petInfoPage model =
     div [ class "ma3" ]
         [ div [ class " blue b mb2" ] [ text "What is your pets name?" ]
         , div []
-            [ input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn" ]
+            [ input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn", onBlurValue UpdatePetName ]
                 [ text "" ]
             ]
         , div [ class "gray f6 fw1" ] [ text "Please enter your pets name" ]
@@ -20,7 +28,7 @@ petInfoPage model =
             [ img [ src "./assets/circle-images.svg" ] []
             ]
         , div []
-            [ div [ class "blue b mb2 mt4" ] [ text "What Breed is your dog?" ]
+            [ div [ class "blue b mb2 mt4" ] [ text <| "What Breed is " ++ getPetName model ++ "?" ]
             , div []
                 [ select [ class "bg-light-blue bn w-80 gray tc pa3 mb3 f5 fw1" ]
                     [ option [ value "Please choose" ]
@@ -71,6 +79,7 @@ petInfoPage model =
                     []
                 ]
             ]
+
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
         , div []
             [ div [ class "fl w-50 tc mb2" ]
@@ -89,6 +98,8 @@ petInfoPage model =
                 ]
             ]
         , div [ class "blue b mb2 mt4" ] [ text "How old is Rex?" ]
+
+, div [ class "blue b mb2 mt4" ] [ text <| "How old is " ++ getPetName model ++ "?" ]
         , div []
             [ div [ class "fl w-50 tc mb2" ]
                 [ input [ class "dn", id "year", name "age", type_ "radio", value "year" ]
@@ -121,7 +132,7 @@ petInfoPage model =
                     [ text "6+ years" ]
                 ]
             , div [ class "mt4 tc w-100" ]
-                [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib", href "#before-you-begin" ] [ text "Next" ]
+                [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link", href "#before-you-begin" ] [ text "Next" ]
                 ]
             ]
         ]

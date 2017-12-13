@@ -3,11 +3,12 @@ module Components.Title exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
+import Helpers.GetPetName exposing (..)
 
 
 viewTitle : Model -> Html Msg
 viewTitle model =
-    header [ class <| getClasses model.route ] [ h1 [] [ text <| getTitle model.route ] ]
+    header [ class <| getClasses model.route ] [ h1 [] [ text <| getTitle model ] ]
 
 
 getClasses : Route -> String
@@ -18,9 +19,9 @@ getClasses route =
         "headerTitle bg-blue flex justify-center items-center white h4 mb4"
 
 
-getTitle : Route -> String
-getTitle route =
-    case route of
+getTitle : Model -> String
+getTitle model =
+    case model.route of
         HomeRoute ->
             "Giving a pet"
 
@@ -28,16 +29,16 @@ getTitle route =
             "Health"
 
         PetInfoRoute ->
-            "About your pet"
+            "About " ++ getPetName model
 
         LocationRoute ->
             "Who's looking?"
 
         PersonalityRoute ->
-            "Personality"
+            getPetName model ++ "'s Personality"
 
         NewHomeRoute ->
-            "The Ideal Home"
+            getPetName model ++ "'s Ideal Home"
 
         OwnerInfoRoute ->
             "Your details"

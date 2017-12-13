@@ -3,6 +3,7 @@ module Routes.OwnerInfoPage exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
+import Helpers.GetPetName exposing (..)
 
 
 ownerInfoPage : Model -> Html Msg
@@ -28,15 +29,15 @@ ownerInfoPage model =
         , div [ class "blue b mb3 mt4" ] [ text "Please let us know what types of support you would like?" ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "talk" ] []
-            , label [ for "talk", class "gray ml2" ] [ text "Talk to potential owners directly and rehome from your home?" ]
+            , label [ for "talk", class "gray ml2" ] [ text <| "Talk to potential owners directly and rehome " ++ getPetName model ++ " from your home?" ]
             ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "bxHelp" ] []
-            , label [ for "bxHelp", class "gray ml2" ] [ text "Rehome from home but Blue Cross will help you find owners?" ]
+            , label [ for "bxHelp", class "gray ml2" ] [ text <| "Rehome " ++ getPetName model ++ " from home but Blue Cross will help you find owners?" ]
             ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "bxCentre" ] []
-            , label [ for "bxCentre", class "gray ml2" ] [ text "Blue Cross to look after your dog at our centre and rehome them for you?" ]
+            , label [ for "bxCentre", class "gray ml2" ] [ text <| "Blue Cross to look after " ++ getPetName model ++ " at our centre and rehome them for you?" ]
             ]
         , div [ class "mb2" ]
             [ input [ type_ "checkbox", id "none" ] []
