@@ -102,10 +102,10 @@ Here are some __useful resources__ to look at when completing your user testing 
 
 
 
-### Next Sprint :runner:
+### Next Sprints :runner:
 If this design is move forward for a build sprint it is important to concentrate on key features that both __*solves the initital problem and implements feedback from user testing*__.
 
-Our current recommendations for an initial sprint would be:
+Our current recommendations for an initial sprints would be:
 * Implement feedback from user testing
 * To make the product useable on larger screen sizes
 * Improve accessibility - Product is currently not useable for people with hearing or visual impairments
@@ -118,6 +118,22 @@ Our current recommendations for an initial sprint would be:
 
 
 > This would be formally decided following the user testing and during a sprint planning meeting :+1:
+
+### MVP :bulb:
+Following the presentation it seems that the most appropriate form of _*"MVP"*_ would be an app specifically people who want ot __rehome their dogs using the Blue Cross service__. 
+Therefore leaving the communication with potential new owners to a later stage in the development. 
+In order to get the MVP functional we would need to: 
+* Have a backend! To collect the data and pass this on the BX in a useful and readable way 
+* Make the product able to function on all screen sizes and types 
+* Incorporate accessibility protocols 
+* Introduce error handling for when things go wrong or users don't input the correct data 
+* Live video stream and ability to re-take the video/photos
+* A page for the current owner to review their profile and recieve confirmation of their application
+* Any feedback that comes up in user testing!
+
+_*This is a non-exhaustive list*_
+
+:sparkles:
 
 ### Product Feedback ... :arrows_counterclockwise:
 ...
