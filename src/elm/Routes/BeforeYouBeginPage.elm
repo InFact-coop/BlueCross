@@ -9,7 +9,7 @@ import Helpers.GetPetName exposing (..)
 beforeYouBeginPage : Model -> Html Msg
 beforeYouBeginPage model =
     div [ class "ma3" ]
-        [ div [ class "blue b mb2" ] [ text "Is your dog.." ]
+        [ div [ class "blue b mb2" ] [ text <| "Is " ++ getPetName model ++ "..." ]
         , div [ class "mb2" ]
             [ input [ type_ "checkbox", id "vaccinated" ] []
             , label [ for "vaccinated", class "gray ml2" ] [ text "Vaccinated?" ]
