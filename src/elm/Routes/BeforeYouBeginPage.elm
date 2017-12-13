@@ -1,9 +1,9 @@
 module Routes.BeforeYouBeginPage exposing (..)
 
-import Components.Title exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
+import Helpers.GetPetName exposing (..)
 
 
 beforeYouBeginPage : Model -> Html Msg
@@ -25,7 +25,7 @@ beforeYouBeginPage model =
         , div []
             [ img [ src "./assets/hearts.svg", class "w-100" ] []
             ]
-        , div [ class "blue b mb3" ] [ text "When was your dog's last visit to the vets?" ]
+        , div [ class "blue b mb3" ] [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?" ]
         , div [ class "fl w-50 tc mb2" ]
             [ input [ class "dn", id "onemonth", name "heatlh", type_ "radio", value "onemonth" ]
                 []

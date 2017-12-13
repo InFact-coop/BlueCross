@@ -28,6 +28,7 @@ type alias Model =
     , messageLength : Int
     , videoStage : Stage
     , paused : Bool
+    , petName : String
     }
 
 
@@ -60,3 +61,4 @@ type Msg
     | RecieveVideo String
     | ToggleVideo Stage
     | Increment
+    | UpdatePetName String

@@ -3,6 +3,7 @@ module Routes.LocationPage exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
+import Helpers.GetPetName exposing (..)
 
 
 locationPage : Model -> Html Msg
@@ -16,7 +17,7 @@ locationPage model =
             [ text "There are currently "
             , span [ class "blue b" ]
                 [ text "31" ]
-            , text " people looking for dogs similar to yours in your area!"
+            , text <| " people looking for dogs similar to " ++ getPetName model ++ " in your area!"
             ]
         , img [ src "./assets/map.svg" ] []
         , div [ class "mt4 tc w-100" ]

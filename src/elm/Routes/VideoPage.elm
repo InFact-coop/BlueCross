@@ -4,12 +4,13 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Types exposing (..)
+import Helpers.GetPetName exposing (..)
 
 
 videoPage : Model -> Html Msg
 videoPage model =
     div [ class "ma3" ]
-        [ div [ class "gray fw1 mb4" ] [ text "So new owners can see your dog in all his glory, please take a short video of them!" ]
+        [ div [ class "gray fw1 mb4" ] [ text <| "So new owners can see " ++ getPetName model ++ " in all his glory, please take a short video of them!" ]
         , videoButton model
         , div [ class "mt4 tc w-100" ]
             [ a
@@ -39,7 +40,7 @@ videoButton : Model -> Html Msg
 videoButton model =
     case model.videoStage of
         Stage0 ->
-            div [ class "videoButton bg-light-blue pa3 pointer mb2 db br2 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "camera" ] [], span [ class "tc f4" ] [ text "Click here to take a video of Rex" ] ]
+            div [ class "videoButton bg-light-blue pa3 pointer mb2 db br2 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "camera" ] [], span [ class "tc f4" ] [ text <| "Click here to take a video of " ++ getPetName model ] ]
 
         Stage1 ->
             div [ class "videoButton bg-light-blue pa3 pointer mb2 db br2 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "record" ] [], span [ class "tc f4" ] [ text "Click to finish video" ] ]

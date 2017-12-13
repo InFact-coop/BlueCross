@@ -21,6 +21,7 @@ initModel =
     , messageLength = 0
     , videoStage = Stage0
     , paused = True
+    , petName = ""
     }
 
 
@@ -109,7 +110,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | cats = value }
             in
-            ( { model | sliderValues = newSliderValues }, Cmd.none )
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdateChildrenSlider value ->
             let
@@ -119,7 +120,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | children = value }
             in
-            ( { model | sliderValues = newSliderValues }, Cmd.none )
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdatePeopleSlider value ->
             let
@@ -129,7 +130,10 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | people = value }
             in
-            ( { model | sliderValues = newSliderValues }, Cmd.none )
+                ( { model | sliderValues = newSliderValues }, Cmd.none )
+
+        UpdatePetName name ->
+            ( { model | petName = name }, Cmd.none )
 
 
 port recordStart : String -> Cmd msg
