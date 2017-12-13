@@ -8,7 +8,8 @@ import Types exposing (..)
 locationPage : Model -> Html Msg
 locationPage model =
     div [ class "ma3" ]
-        [ div [ class "blue b mb2" ] [ text "Where do you live?" ]
+        [ div [ class "gray fw1 mb3" ] [ text "Enter your postcode below to see how many people in your area are interesting in dogs like yours!" ]
+        , div [ class "blue b mb2" ] [ text "Where do you live?" ]
         , input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn" ]
             [ text "" ]
         , div [ class "gray f6 fw1 mb3" ] [ text "Please enter your postcode" ]
@@ -16,7 +17,7 @@ locationPage model =
             [ text "There are currently "
             , span [ class "blue b" ]
                 [ text "31" ]
-            , text " people looking for dogs similar to yours in your area!"
+            , text " people looking for dogs similar to yours!"
             ]
         , img [ src "./assets/map.svg" ] []
         , div [ class "mt4 tc w-100" ]
