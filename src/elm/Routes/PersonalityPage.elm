@@ -1,15 +1,15 @@
 module Routes.PersonalityPage exposing (..)
 
+import Helpers.GetPetName exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
 
 
 personalityPage : Model -> Html Msg
 personalityPage model =
     div [ class "ma3" ]
-        [ div [ class "blue b mb4 mt4" ] [ text <| "To help us find the right home for " ++ getPetName model ++ ", which words best describe him?" ]
+        [ div [ class "blue b mb4 mt4" ] [ text <| "To help us find the right home for " ++ getPetName model ++ ", which words best describe them?" ]
         , div []
             [ div [ class "fl w-third tc mb2" ]
                 [ input [ class "dn", id "playful", name "personality", type_ "checkbox", value "playful" ]
