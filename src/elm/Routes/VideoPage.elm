@@ -45,3 +45,6 @@ videoButton model =
 
         Stage2 ->
             video [ autoplay True, src model.videoMessage, preload "auto", class "video db center" ] []
+
+        StageErr ->
+            a [ class "black link db videoButton bg-light-blue pa3 pointer mb2 db br2 flex flex-column justify-around items-center center", href "#location" ] [ div [ class "stop" ] [], span [ class "tc f4" ] [ text <| "Sorry, we couldn't film " ++ getPetName model ++ "! Please click here to continue." ] ]

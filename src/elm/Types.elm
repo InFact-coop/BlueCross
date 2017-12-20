@@ -43,6 +43,7 @@ type Stage
     = Stage0
     | Stage1
     | Stage2
+    | StageErr
 
 
 
@@ -58,6 +59,7 @@ type Msg
     | UpdatePeopleSlider String
     | RecordStart String
     | RecordStop String
+    | RecordError String
     | RecieveVideo String
     | ToggleVideo Stage
     | Increment

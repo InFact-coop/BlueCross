@@ -107,13 +107,22 @@ input:checked + .age {
   height: 8rem;
   background-repeat: no-repeat;
   background-position: center;
-  animation: tick 2s infinite;
+  animation: tick 3s infinite;
+}
+
+.stop {
+  background: url('./assets/stop.svg');
+  background-size: 90%;
+  width: 8rem;
+  height: 8rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @keyframes tick {
-    0%   {opacity: 1;}
-    50%   {opacity: 0;}
-    100%   {opacity: 1;}
+    0%   {opacity: 0;}
+    50%   {opacity: 1;}
+    100%   {opacity: 0;}
 }
 
 .light-border {

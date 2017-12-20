@@ -82,8 +82,14 @@ update msg model =
         RecieveVideo string ->
             ( { model | videoMessage = string }, Cmd.none )
 
+        RecordError err ->
+            ( { model | videoStage = StageErr }, Cmd.none )
+
         ToggleVideo stage ->
             case stage of
+                StageErr ->
+                    ( { model | videoStage = StageErr }, Cmd.none )
+
                 Stage2 ->
                     ( { model | videoStage = Stage0 }, Cmd.none )
 
@@ -142,6 +148,9 @@ port recordStart : String -> Cmd msg
 port recordStop : String -> Cmd msg
 
 
+port recordError : (String -> msg) -> Sub msg
+
+
 port videoUrl : (String -> msg) -> Sub msg
 
 
@@ -149,6 +158,7 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ videoUrl RecieveVideo
+        , recordError RecordError
         , if not model.paused then
             Time.every second (always Increment)
           else

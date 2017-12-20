@@ -22,7 +22,7 @@ if (navigator.mediaDevices) {
 
         var blob = new Blob(chunks, {'type': 'video/webm'});
         chunks = [];
-        // jstoelm
+        // js to elm
         var videoURL = window.URL.createObjectURL(blob);
         console.log("blob", blob)
         app.ports.videoUrl.send(videoURL);
@@ -33,7 +33,11 @@ if (navigator.mediaDevices) {
       mediaRecorder.ondataavailable = function(e) {
         chunks.push(e.data);
       };
-    })
+    }).catch(function(err) {
+      // js to elm
+      console.log("Can't start video!");
+        app.ports.recordError.send("Can't start video!");
+    });
   });
 
   app.ports.recordStop.subscribe(function() {
