@@ -113,8 +113,8 @@ input:checked + .age {
 .stop {
   background: url('./assets/stop.svg');
   background-size: 90%;
-  width: 8rem;
-  height: 8rem;
+  width: 7rem;
+  height: 7rem;
   background-repeat: no-repeat;
   background-position: center;
 }
