@@ -1,23 +1,21 @@
 module Router exposing (..)
 
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Views.Home exposing (..)
-import Types exposing (..)
 import Components.Navbar exposing (..)
 import Components.Title exposing (..)
+import Html exposing (..)
+import Html.Attributes exposing (..)
 import Navigation exposing (..)
-import Views.Home exposing (..)
+import Types exposing (..)
 import Views.BeforeYouBegin exposing (..)
-import Views.Video as VideoView
-import Views.NewHome exposing (..)
+import Views.Home exposing (..)
 import Views.Location exposing (..)
+import Views.NewHome exposing (..)
+import Views.NotFound exposing (..)
 import Views.OwnerInfo exposing (..)
 import Views.Personality exposing (..)
 import Views.PetInfo exposing (..)
 import Views.ThankYou exposing (..)
-import Views.ThankYou exposing (..)
-import Views.NotFound exposing (..)
+import Views.Video as VideoView
 
 
 view : Model -> Html Msg
@@ -26,11 +24,11 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 bg-light-blue m0-auto cover", id "container" ]
-            [ navbar model
-            , viewTitle model
-            , view
-            ]
+    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
+        [ navbar model
+        , viewTitle model
+        , view
+        ]
 
 
 getCurrentView : Model -> Html Msg
@@ -110,4 +108,4 @@ viewFromUrl location model =
         view =
             getRoute location.hash
     in
-        { model | route = view }
+    { model | route = view }
