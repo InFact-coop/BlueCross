@@ -10,34 +10,37 @@ if (navigator.mediaDevices) {
   var mediaRecorder;
 
   app.ports.recordStart.subscribe(function() {
-    console.log("HELLO");
-    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start();
-      console.log(mediaRecorder.state);
-      console.log("recorder started");
+    console.log('HELLO');
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(function(stream) {
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.start();
+        console.log(mediaRecorder.state);
+        console.log('recorder started');
 
-      mediaRecorder.onstop = function(e) {
-        console.log("data available after MediaRecorder.stop() called.");
+        mediaRecorder.onstop = function(e) {
+          console.log('data available after MediaRecorder.stop() called.');
 
-        var blob = new Blob(chunks, {'type': 'video/webm'});
-        chunks = [];
+          var blob = new Blob(chunks, { type: 'video/webm' });
+          chunks = [];
+          // js to elm
+          var videoURL = window.URL.createObjectURL(blob);
+          console.log('blob', blob);
+          app.ports.videoUrl.send(videoURL);
+          console.log('VideoURL: ', videoURL);
+          console.log('recorder stopped');
+        };
+
+        mediaRecorder.ondataavailable = function(e) {
+          chunks.push(e.data);
+        };
+      })
+      .catch(function(err) {
         // js to elm
-        var videoURL = window.URL.createObjectURL(blob);
-        console.log("blob", blob)
-        app.ports.videoUrl.send(videoURL);
-        console.log('VideoURL: ', videoURL);
-        console.log("recorder stopped");
-      };
-
-      mediaRecorder.ondataavailable = function(e) {
-        chunks.push(e.data);
-      };
-    }).catch(function(err) {
-      // js to elm
-      console.log("Can't start video!");
+        console.log("Can't start video!");
         app.ports.recordError.send("Can't start video!");
-    });
+      });
   });
 
   app.ports.recordStop.subscribe(function() {
@@ -45,7 +48,6 @@ if (navigator.mediaDevices) {
       mediaRecorder.stop();
     }
     console.log(mediaRecorder.state);
-    console.log("recorder stopped");
+    console.log('recorder stopped');
   });
-
-};
+}

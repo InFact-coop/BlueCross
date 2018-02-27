@@ -3,25 +3,8 @@ module Types exposing (..)
 import Navigation
 
 
--- Model
-
-
-type Route
-    = HomeRoute
-    | BeforeYouBeginRoute
-    | PetInfoRoute
-    | LocationRoute
-    | PersonalityRoute
-    | OwnerInfoRoute
-    | ThankYouRoute
-    | NotFoundRoute
-    | VideoRoute
-    | NewHomeRoute
-
-
 type alias Model =
     { route : Route
-    , userInput : String
     , nextClickable : Bool
     , sliderValues : SliderValues
     , videoMessage : String
@@ -46,12 +29,28 @@ type Stage
     | StageErr
 
 
+type RemoteData
+    = NotAsked
+    | Loading
+    | ResponseFailure
+    | ResponseSuccess
 
--- Update
+
+type Route
+    = HomeRoute
+    | BeforeYouBeginRoute
+    | PetInfoRoute
+    | LocationRoute
+    | PersonalityRoute
+    | OwnerInfoRoute
+    | ThankYouRoute
+    | NotFoundRoute
+    | VideoRoute
+    | NewHomeRoute
 
 
 type Msg
-    = Change String
+    = NoOp
     | UrlChange Navigation.Location
     | MakeNextClickable
     | UpdateCatsSlider String

@@ -1,13 +1,13 @@
-module Routes.BeforeYouBeginPage exposing (..)
+module Views.BeforeYouBegin exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
-beforeYouBeginPage : Model -> Html Msg
-beforeYouBeginPage model =
+beforeYouBegin : Model -> Html Msg
+beforeYouBegin model =
     div [ class "ma3" ]
         [ div [ class "blue b mb2" ] [ text <| "Is " ++ getPetName model ++ "..." ]
         , div [ class "mb2" ]

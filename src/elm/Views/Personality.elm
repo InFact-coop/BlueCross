@@ -1,13 +1,13 @@
-module Routes.PersonalityPage exposing (..)
+module Views.Personality exposing (..)
 
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
 
 
-personalityPage : Model -> Html Msg
-personalityPage model =
+personality : Model -> Html Msg
+personality model =
     div [ class "ma3" ]
         [ div [ class "blue b mb4 mt4" ] [ text <| "To help us find the right home for " ++ getPetName model ++ ", which words best describe them?" ]
         , div []

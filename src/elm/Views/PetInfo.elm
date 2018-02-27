@@ -1,12 +1,12 @@
-module Routes.PetInfoPage exposing (..)
+module Views.PetInfo exposing (..)
 
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
 import Html.Events exposing (on, targetValue)
 import Json.Decode as Json
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
 onBlurValue : (String -> msg) -> Attribute msg
@@ -14,8 +14,8 @@ onBlurValue tagger =
     on "blur" (Json.map tagger targetValue)
 
 
-petInfoPage : Model -> Html Msg
-petInfoPage model =
+petInfo : Model -> Html Msg
+petInfo model =
     div [ class "ma3" ]
         [ div [ class " blue b mb2" ] [ text "What is your pet's name?" ]
         , div []

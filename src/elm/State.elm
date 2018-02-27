@@ -1,16 +1,16 @@
 port module State exposing (..)
 
-import Time exposing (Time, second)
+import Dom.Scroll exposing (..)
+import Router exposing (getRoute, viewFromUrl)
+import Task
 import Types exposing (..)
-
-
--- MODEL
+import Time exposing (Time, second)
+import Navigation exposing (..)
 
 
 initModel : Model
 initModel =
     { route = HomeRoute
-    , userInput = ""
     , nextClickable = False
     , sliderValues =
         { cats = "50"
@@ -25,47 +25,21 @@ initModel =
     }
 
 
-
---UPDATE
-
-
-getRoute : String -> Route
-getRoute hash =
-    case hash of
-        "#home" ->
-            HomeRoute
-
-        "#before-you-begin" ->
-            BeforeYouBeginRoute
-
-        "#pet-info" ->
-            PetInfoRoute
-
-        "#location" ->
-            LocationRoute
-
-        "#personality" ->
-            PersonalityRoute
-
-        "#owner-info" ->
-            OwnerInfoRoute
-
-        "#thank-you" ->
-            ThankYouRoute
-
-        "#upload-video" ->
-            VideoRoute
-
-        "#new-home" ->
-            NewHomeRoute
-
-        _ ->
-            NotFoundRoute
+init : Navigation.Location -> ( Model, Cmd Msg )
+init location =
+    let
+        model =
+            viewFromUrl location initModel
+    in
+        model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        NoOp ->
+            model ! []
+
         Increment ->
             if model.messageLength >= 30 then
                 model
@@ -99,11 +73,8 @@ update msg model =
                 Stage0 ->
                     ( { model | videoStage = Stage1 }, recordStart "yes" )
 
-        Change newInput ->
-            ( { model | userInput = newInput }, Cmd.none )
-
         UrlChange location ->
-            ( { model | route = getRoute location.hash, nextClickable = False, videoStage = Stage0, videoMessage = "" }, Cmd.none )
+            { model | route = getRoute location.hash, nextClickable = False, videoStage = Stage0, videoMessage = "" } ! [ Task.attempt (always NoOp) (toTop "container") ]
 
         MakeNextClickable ->
             ( { model | nextClickable = True }, Cmd.none )

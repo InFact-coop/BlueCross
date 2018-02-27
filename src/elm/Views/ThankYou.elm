@@ -1,13 +1,13 @@
-module Routes.ThankYouPage exposing (..)
+module Views.ThankYou exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
-thankYouPage : Model -> Html Msg
-thankYouPage model =
+thankYou : Model -> Html Msg
+thankYou model =
     div [ class "" ]
         [ div [ class "" ]
             [ img [ src "./assets/doggo.png", class " w-100 db" ]
