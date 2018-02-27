@@ -6,6 +6,7 @@ import Task
 import Types exposing (..)
 import Time exposing (Time, second)
 import Navigation exposing (..)
+import Requests.PostForm exposing (postForm)
 
 
 initModel : Model
@@ -20,6 +21,7 @@ initModel =
     , videoStage = Stage0
     , paused = True
     , petName = ""
+    , formStatus = NotAsked
     }
 
 
@@ -88,6 +90,15 @@ update msg model =
 
         UpdatePetName name ->
             { model | petName = name } ! []
+
+        ReceiveFormStatus (Ok bool) ->
+            { model | formStatus = ResponseSuccess } ! []
+
+        ReceiveFormStatus (Err string) ->
+            { model | formStatus = ResponseFailure } ! []
+
+        SubmitForm ->
+            { model | formStatus = Loading } ! [ postForm model ]
 
 
 port recordStart : String -> Cmd msg

@@ -1,6 +1,7 @@
 module Types exposing (..)
 
 import Navigation
+import Http exposing (..)
 
 
 type alias Model =
@@ -14,6 +15,7 @@ type alias Model =
     , videoStage : Stage
     , paused : Bool
     , petName : String
+    , formStatus : RemoteData
     }
 
 
@@ -58,3 +60,5 @@ type Msg
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String
+    | SubmitForm
+    | ReceiveFormStatus (Result Http.Error Bool)
