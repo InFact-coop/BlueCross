@@ -22,6 +22,8 @@ initModel =
     , videoStage = Stage0
     , paused = True
     , petName = ""
+    , image = Nothing
+    , imageId = "imageUpload"
     }
 
 
@@ -112,6 +114,21 @@ update msg model =
         UpdatePetName name ->
             ( { model | petName = name }, Cmd.none )
 
+        ImageSelected ->
+            ( model
+            , fileSelected model.imageId
+            )
+
+        ImageRead data ->
+            let
+                newImage =
+                    { contents = data.contents
+                    , filename = data.filename
+                    }
+            in
+                { model | image = Just newImage }
+                    ! []
+
 
 port recordStart : String -> Cmd msg
 
@@ -125,11 +142,18 @@ port recordError : (String -> msg) -> Sub msg
 port videoUrl : (String -> msg) -> Sub msg
 
 
+port fileSelected : String -> Cmd msg
+
+
+port fileContentRead : (ImagePortData -> msg) -> Sub msg
+
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ videoUrl RecieveVideo
         , recordError RecordError
+        , fileContentRead ImageRead
         , if not model.paused then
             Time.every second (always Increment)
           else

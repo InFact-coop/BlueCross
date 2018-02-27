@@ -18,9 +18,7 @@ location model =
             [ text "There are currently "
             , span [ class "blue b" ]
                 [ text "31" ]
-
             , text <| " people looking for dogs similar to " ++ getPetName model ++ " in your area!"
-
             ]
         , img [ src "./assets/map.svg" ] []
         , div [ class "mt4 tc w-100" ]

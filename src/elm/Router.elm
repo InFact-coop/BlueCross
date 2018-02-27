@@ -14,6 +14,7 @@ import Views.NotFound exposing (..)
 import Views.OwnerInfo exposing (..)
 import Views.Personality exposing (..)
 import Views.PetInfo exposing (..)
+import Views.Photos exposing (..)
 import Views.ThankYou exposing (..)
 import Views.Video as VideoView
 
@@ -24,11 +25,11 @@ view model =
         view =
             getCurrentView model
     in
-    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
-        [ navbar model
-        , viewTitle model
-        , view
-        ]
+        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
+            [ navbar model
+            , viewTitle model
+            , view
+            ]
 
 
 getCurrentView : Model -> Html Msg
@@ -64,6 +65,9 @@ getCurrentView model =
         NewHomeRoute ->
             newHome model
 
+        PhotosRoute ->
+            photos model
+
 
 getRoute : String -> Route
 getRoute hash =
@@ -98,6 +102,9 @@ getRoute hash =
         "#new-home" ->
             NewHomeRoute
 
+        "#photos" ->
+            PhotosRoute
+
         _ ->
             NotFoundRoute
 
@@ -108,4 +115,4 @@ viewFromUrl location model =
         view =
             getRoute location.hash
     in
-    { model | route = view }
+        { model | route = view }

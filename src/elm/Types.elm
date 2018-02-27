@@ -12,6 +12,8 @@ type alias Model =
     , videoStage : Stage
     , paused : Bool
     , petName : String
+    , image : Maybe Image
+    , imageId : String
     }
 
 
@@ -41,12 +43,25 @@ type Route
     | BeforeYouBeginRoute
     | PetInfoRoute
     | LocationRoute
+    | PhotosRoute
     | PersonalityRoute
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
     | VideoRoute
     | NewHomeRoute
+
+
+type alias ImagePortData =
+    { contents : String
+    , filename : String
+    }
+
+
+type alias Image =
+    { contents : String
+    , filename : String
+    }
 
 
 type Msg
@@ -63,3 +78,5 @@ type Msg
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String
+    | ImageSelected
+    | ImageRead ImagePortData
