@@ -1,14 +1,14 @@
-module Routes.VideoPage exposing (..)
+module Views.Video exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
-videoPage : Model -> Html Msg
-videoPage model =
+video : Model -> Html Msg
+video model =
     div [ class "ma3" ]
         [ div [ class "gray fw1 mb4" ] [ text <| "So new owners can see " ++ getPetName model ++ " in all his glory, please take a short video of them!" ]
         , videoButton model
@@ -44,7 +44,7 @@ videoButton model =
             div [ class "videoButton bg-light-blue pa3 pointer mb2 db br2 flex flex-column justify-around items-center center", onClick (ToggleVideo model.videoStage) ] [ div [ class "record" ] [], span [ class "tc f4" ] [ text "Click to finish video" ] ]
 
         Stage2 ->
-            video [ autoplay True, src model.videoMessage, preload "auto", class "video db center" ] []
+            Html.video [ autoplay True, src model.videoMessage, preload "auto", class "video db center" ] []
 
         StageErr ->
             a [ class "black link db videoButton bg-light-blue pa3 pointer mb2 db br2 flex flex-column justify-around items-center center", href "#location" ] [ div [ class "stop" ] [], span [ class "tc f4" ] [ text <| "Sorry, we couldn't film " ++ getPetName model ++ "! Please click here to continue." ] ]

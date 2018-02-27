@@ -3,7 +3,7 @@ module Components.Title exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
 viewTitle : Model -> Html Msg

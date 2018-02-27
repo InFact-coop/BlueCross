@@ -1,13 +1,13 @@
-module Routes.OwnerInfoPage exposing (..)
+module Views.OwnerInfo exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
-ownerInfoPage : Model -> Html Msg
-ownerInfoPage model =
+ownerInfo : Model -> Html Msg
+ownerInfo model =
     div [ class "ma3" ]
         [ div [ class "gray fw1 mb4 mt4" ] [ text "We just need to collect a few details from you so we can get in touch" ]
         , div [ class "blue b mb2 mt4" ] [ text "Name" ]

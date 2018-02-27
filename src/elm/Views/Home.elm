@@ -1,4 +1,4 @@
-module Routes.HomePage exposing (..)
+module Views.Home exposing (..)
 
 import Components.BlueButton exposing (..)
 import Html exposing (..)

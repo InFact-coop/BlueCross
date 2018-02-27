@@ -1,6 +1,6 @@
-module Routes.NewHomePage exposing (..)
+module Views.NewHome exposing (..)
 
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
@@ -23,8 +23,8 @@ rangeNumberToCss range =
         [ ( "backgroundImage", gradient ) ]
 
 
-newHomePage : Model -> Html Msg
-newHomePage model =
+newHome : Model -> Html Msg
+newHome model =
     let
         catValue =
             model.sliderValues.cats

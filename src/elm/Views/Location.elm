@@ -1,13 +1,13 @@
-module Routes.LocationPage exposing (..)
+module Views.Location exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers.GetPetName exposing (..)
+import Helpers exposing (getPetName)
 
 
-locationPage : Model -> Html Msg
-locationPage model =
+location : Model -> Html Msg
+location model =
     div [ class "ma3" ]
         [ div [ class "gray fw1 mb3" ] [ text "Enter your postcode below to see how many people in your area are interesting in dogs like yours!" ]
         , div [ class "blue b mb2" ] [ text "Where do you live?" ]
