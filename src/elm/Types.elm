@@ -6,19 +6,14 @@ import Navigation
 type alias Model =
     { route : Route
     , nextClickable : Bool
-    , sliderValues : SliderValues
+    , cats : String
+    , children : String
+    , people : String
     , videoMessage : String
     , messageLength : Int
     , videoStage : Stage
     , paused : Bool
     , petName : String
-    }
-
-
-type alias SliderValues =
-    { cats : String
-    , children : String
-    , people : String
     }
 
 

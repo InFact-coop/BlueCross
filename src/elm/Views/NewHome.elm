@@ -19,29 +19,19 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-    style
-        [ ( "backgroundImage", gradient ) ]
+        style
+            [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
 newHome model =
-    let
-        catValue =
-            model.sliderValues.cats
-
-        childrenValue =
-            model.sliderValues.children
-
-        peopleValue =
-            model.sliderValues.people
-    in
     div [ class "ma3" ]
         [ div [ class "gray mb3" ] [ text <| "So that we find " ++ getPetName model ++ " a new home they love, where would he put his paws?" ]
         , div [ class "blue b mb2" ] [ text "Cats?" ]
         , div [ class "flex items-center" ]
             [ img [ src "./assets/cat.svg", class "mr3" ]
                 []
-            , input [ id "myRange", type_ "range", value catValue, class "w-75 h-custom bg-blue input-reset br4 slider light-border", rangeNumberToCss catValue, onInputValue UpdateCatsSlider ]
+            , input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
                 []
             ]
         , div
@@ -52,7 +42,7 @@ newHome model =
         , div [ class "blue b mb2" ] [ text "Children?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/baby.svg", class "mr3" ] []
-            , input [ id "myRange", type_ "range", rangeNumberToCss childrenValue, value childrenValue, class "w-75 h-custom bg-blue input-reset br4 slider light-border", onInputValue UpdateChildrenSlider ]
+            , input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border", onInputValue UpdateChildrenSlider ]
                 []
             ]
         , div
@@ -63,7 +53,7 @@ newHome model =
         , div [ class "blue b mb2" ] [ text "Unfamilar People?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/people.svg", class "mr3" ] []
-            , input [ id "myRange", type_ "range", value peopleValue, class "w-75 h-custom bg-blue input-reset br4 slider light-border", rangeNumberToCss peopleValue, onInputValue UpdatePeopleSlider ]
+            , input [ id "myRange", type_ "range", value model.people, class "w-75 h-custom bg-blue input-reset br4 slider light-border", rangeNumberToCss model.people, onInputValue UpdatePeopleSlider ]
                 []
             ]
         , div
