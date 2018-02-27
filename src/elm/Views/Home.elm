@@ -9,14 +9,14 @@ import Types exposing (..)
 
 home : Model -> Html Msg
 home model =
-    div [ class "w-60-ns center" ]
-        [ section [ class "greeting bg-light-blue pv3 ph4" ]
+    div [ class "w-60-ns w-90 center" ]
+        [ section [ class "greeting bg-light-blue pv3 ph4 br2" ]
             [ h2 [ class "blue tc f5" ] [ text "Thank you for choosing Blue Cross" ]
-            , p [ class "gray tc" ] [ text "Giving up a pet is never easy. We want to help you find the best home for your pet. Please follow the questions and we’ll help to find a solution that's right for you." ]
+            , p [ class "gray tc ph4-l" ] [ text "Finding the right home for your pet is never easy, Blue Cross is here to help.  Please answer the following questions about your pet, we will then be in touch within 2 days to get started." ]
             ]
-        , div [ class "w-90 center" ] [ h2 [ class "blue f5" ] [ text "When do you need to give up your pet?" ], div [ class "grid-4 center" ] mapButtons ]
-        , div [ class "banner w-100 h2 mv3" ] []
-        , a [ class <| "tc center db w-90 br2 white pa3 br2 link f4 " ++ toggleNextClasses model, createNextLink model ] [ text "Next" ]
+        , div [ class "w-100 center" ] [ h2 [ class "blue f5 pt4-ns" ] [ text "When do you need to rehome your pet?" ], div [ class "center" ] mapButtons ]
+        , br [] []
+        , a [ class <| "tc center flex justify-center w-100 w-25-l w-50-m br2 white ph3 pv2 br2 link f4 " ++ toggleNextClasses model, createNextLink model ] [ text "Next" ]
         ]
 
 
@@ -38,4 +38,4 @@ toggleNextClasses model =
 
 mapButtons : List (Html Msg)
 mapButtons =
-    List.map blueButton [ "Urgently", "2-3 weeks", "A couple of month", "No rush" ]
+    List.map blueButton [ "Urgently", "2-3 weeks", "A couple of months", "No rush" ]
