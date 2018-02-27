@@ -1,16 +1,16 @@
 port module State exposing (..)
 
 import Dom.Scroll exposing (..)
+import Navigation exposing (..)
 import Router exposing (getRoute, viewFromUrl)
 import Task
-import Types exposing (..)
 import Time exposing (Time, second)
-import Navigation exposing (..)
+import Types exposing (..)
 
 
 initModel : Model
 initModel =
-    { route = HomeRoute
+    { route = PersonalityRoute
     , nextClickable = False
     , sliderValues =
         { cats = "50"
@@ -31,7 +31,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+    model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -87,7 +87,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | cats = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdateChildrenSlider value ->
             let
@@ -97,7 +97,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | children = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdatePeopleSlider value ->
             let
@@ -107,7 +107,7 @@ update msg model =
                 newSliderValues =
                     { oldSliderValues | people = value }
             in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            ( { model | sliderValues = newSliderValues }, Cmd.none )
 
         UpdatePetName name ->
             ( { model | petName = name }, Cmd.none )
