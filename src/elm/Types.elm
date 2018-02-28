@@ -17,6 +17,7 @@ type alias Model =
     , petName : String
     , image : Maybe (List Image)
     , imageId : String
+    , formStatus : RemoteData
     , people : String
     }
 
@@ -49,12 +50,6 @@ type Route
     | NewHomeRoute
 
 
-type alias ImagePortData =
-    { contents : String
-    , filename : String
-    }
-
-
 type alias Image =
     { contents : String
     , filename : String
@@ -76,6 +71,6 @@ type Msg
     | Increment
     | UpdatePetName String
     | ImageSelected
-    | ImageRead (Result String (List ImagePortData))
+    | ImageRead (Result String (List Image))
     | SubmitForm
     | ReceiveFormStatus (Result Http.Error Bool)

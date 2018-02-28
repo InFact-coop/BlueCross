@@ -4,13 +4,13 @@ import Json.Decode exposing (..)
 import Types exposing (..)
 
 
-imageDecoder : Decoder ImagePortData
+imageDecoder : Decoder Image
 imageDecoder =
-    map2 ImagePortData
+    map2 Image
         (field "contents" string)
         (field "filename" string)
 
 
-decodeImageList : Value -> Result String (List ImagePortData)
+decodeImageList : Value -> Result String (List Image)
 decodeImageList =
     decodeValue (list imageDecoder)

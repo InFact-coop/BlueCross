@@ -1,6 +1,6 @@
 port module State exposing (..)
 
-import Data.Photos exposing (decodeImageList, imageListDecoder)
+import Data.Photos exposing (decodeImageList, imageDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
 import Navigation exposing (..)
@@ -25,6 +25,7 @@ initModel =
     , paused = True
     , petName = ""
     , image = Nothing
+    , formStatus = NotAsked
     , imageId = "imageUpload"
     }
 
@@ -117,9 +118,13 @@ update msg model =
                 { model | image = Just listImages }
                     ! []
 
-        ImageRead (Err _) ->
-            { model | image = Nothing }
-                ! []
+        ImageRead (Err error) ->
+            let
+                debugit =
+                    Debug.log "err" error
+            in
+                { model | image = Nothing }
+                    ! []
 
 
 port recordStart : String -> Cmd msg
@@ -137,7 +142,7 @@ port videoUrl : (String -> msg) -> Sub msg
 port fileSelected : String -> Cmd msg
 
 
-port fileContentRead : (String -> msg) -> Sub msg
+port fileContentRead : (Json.Decode.Value -> msg) -> Sub msg
 
 
 subscriptions : Model -> Sub Msg
