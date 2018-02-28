@@ -1,17 +1,17 @@
 port module State exposing (..)
 
 import Dom.Scroll exposing (..)
-import Router exposing (getRoute, viewFromUrl)
-import Task
-import Types exposing (..)
-import Time exposing (Time, second)
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
+import Router exposing (getRoute, viewFromUrl)
+import Task
+import Time exposing (Time, second)
+import Types exposing (..)
 
 
 initModel : Model
 initModel =
-    { route = HomeRoute
+    { route = PersonalityRoute
     , nextClickable = False
     , cats = "50"
     , children = "50"
@@ -31,7 +31,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+    model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
