@@ -1,10 +1,10 @@
 module Views.OwnerInfo exposing (..)
 
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Types exposing (..)
-import Helpers exposing (getPetName)
 
 
 ownerInfo : Model -> Html Msg
@@ -26,23 +26,6 @@ ownerInfo model =
         , div []
             [ input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn" ]
                 []
-            ]
-        , div [ class "blue b mb3 mt4" ] [ text "Please let us know what types of support you would like?" ]
-        , div [ class "mb3" ]
-            [ input [ type_ "checkbox", id "talk" ] []
-            , label [ for "talk", class "gray ml2" ] [ text <| "Talk to potential owners directly and rehome " ++ getPetName model ++ " from your home?" ]
-            ]
-        , div [ class "mb3" ]
-            [ input [ type_ "checkbox", id "bxHelp" ] []
-            , label [ for "bxHelp", class "gray ml2" ] [ text <| "Rehome " ++ getPetName model ++ " from home but Blue Cross will help you find owners?" ]
-            ]
-        , div [ class "mb3" ]
-            [ input [ type_ "checkbox", id "bxCentre" ] []
-            , label [ for "bxCentre", class "gray ml2" ] [ text <| "Blue Cross to look after " ++ getPetName model ++ " at our centre and rehome them for you?" ]
-            ]
-        , div [ class "mb2" ]
-            [ input [ type_ "checkbox", id "none" ] []
-            , label [ for "none", class "gray ml2" ] [ text "Not sure" ]
             ]
         , div [ class "mt4 tc w-100" ]
             [ a [ class "link w-100 bg-navy br2 white pa3 br2 f4 dib", href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
