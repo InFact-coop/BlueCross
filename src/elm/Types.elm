@@ -69,6 +69,7 @@ type Msg
     | RecordStop String
     | RecordError String
     | ReceiveLiveVideo String
+    | ReceivePhotoUrl (Result String Image)
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String

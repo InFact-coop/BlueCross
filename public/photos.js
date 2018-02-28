@@ -38,9 +38,16 @@ app.ports.preparePhoto.subscribe(function() {
       var mediaStreamTrack = mediaStream.getVideoTracks()[0];
       var imageCapture = new ImageCapture(mediaStreamTrack);
 
-      var url = window.URL.createObjectURL(mediaStream);
-      app.ports.liveVideoUrl.send(url);
+      var liveUrl = window.URL.createObjectURL(mediaStream);
+      app.ports.liveVideoUrl.send(liveUrl);
       console.log(imageCapture);
+      imageCapture.takePhoto().then(function(blob) {
+        var portData = {
+          contents: window.URL.createObjectURL(blob),
+          filename: ''
+        };
+        app.ports.receivePhotoUrl.send(portData);
+      });
     })
     .catch(function(error) {
       console.error('getUserMedia() error:', error);

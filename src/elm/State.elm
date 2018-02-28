@@ -1,9 +1,8 @@
 port module State exposing (..)
 
-import Data.Photos exposing (decodeImageList, imageDecoder)
+import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
-import Navigation exposing (..)
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
 import Router exposing (getRoute, viewFromUrl)
@@ -61,6 +60,12 @@ update msg model =
 
         ReceiveLiveVideo string ->
             { model | liveVideoUrl = string } ! []
+
+        ReceivePhotoUrl (Ok photo) ->
+            { model | image = addToGallery model photo } ! []
+
+        ReceivePhotoUrl (Err string) ->
+            model ! []
 
         RecordError err ->
             { model | videoStage = StageErr } ! []
@@ -146,6 +151,9 @@ port recordError : (String -> msg) -> Sub msg
 port liveVideoUrl : (String -> msg) -> Sub msg
 
 
+port receivePhotoUrl : (Json.Decode.Value -> msg) -> Sub msg
+
+
 port fileSelected : String -> Cmd msg
 
 
@@ -156,6 +164,7 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ liveVideoUrl ReceiveLiveVideo
+        , receivePhotoUrl (decodeSingleImage >> ReceivePhotoUrl)
         , recordError RecordError
         , fileContentRead (decodeImageList >> ImageRead)
         , if not model.paused then
@@ -163,3 +172,13 @@ subscriptions model =
           else
             Sub.none
         ]
+
+
+addToGallery : Model -> Image -> Maybe (List Image)
+addToGallery model newImage =
+    case model.image of
+        Just imageList ->
+            Just <| imageList ++ [ newImage ]
+
+        Nothing ->
+            Just [ newImage ]

@@ -14,3 +14,8 @@ imageDecoder =
 decodeImageList : Value -> Result String (List Image)
 decodeImageList =
     decodeValue (list imageDecoder)
+
+
+decodeSingleImage : Value -> Result String Image
+decodeSingleImage =
+    decodeValue imageDecoder
