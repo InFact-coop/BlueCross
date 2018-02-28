@@ -1,7 +1,7 @@
 module Types exposing (..)
 
-import Navigation
 import Http exposing (..)
+import Navigation
 
 
 type alias Model =
@@ -37,13 +37,13 @@ type Route
     = HomeRoute
     | BeforeYouBeginRoute
     | PetInfoRoute
-    | LocationRoute
     | PersonalityRoute
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
     | VideoRoute
     | NewHomeRoute
+    | FindingAHomeRoute
 
 
 type Msg

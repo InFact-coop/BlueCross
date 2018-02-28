@@ -11,7 +11,7 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = PersonalityRoute
+    { route = HomeRoute
     , nextClickable = False
     , cats = "50"
     , children = "50"

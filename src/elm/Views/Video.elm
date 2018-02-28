@@ -1,10 +1,10 @@
 module Views.Video exposing (..)
 
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Types exposing (..)
-import Helpers exposing (getPetName)
 
 
 video : Model -> Html Msg
@@ -13,7 +13,7 @@ video model =
         [ div [ class "gray fw1 mb4" ] [ text <| "So new owners can see " ++ getPetName model ++ " in all his glory, please take a short video of them!" ]
         , videoButton model
         , div [ class "mt4 tc w-100" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#location" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#finding-home" ] [ text "Next" ]
             ]
         ]
 
