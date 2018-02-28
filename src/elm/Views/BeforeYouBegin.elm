@@ -1,68 +1,43 @@
 module Views.BeforeYouBegin exposing (..)
 
+-- import Components.TextBox exposing (..)
+
+import Components.BlueButton exposing (..)
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers exposing (getPetName)
 
 
 beforeYouBegin : Model -> Html Msg
 beforeYouBegin model =
-    div [ class "ma3" ]
-        [ div [ class "blue b mb2" ] [ text <| "Is " ++ getPetName model ++ "..." ]
-        , div [ class "mb2" ]
+    div [ class "w-60-ns w-90 center" ]
+        [ div [ class "blue b mb3" ] [ text <| "Is " ++ getPetName model ++ "..." ]
+        , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "vaccinated" ] []
             , label [ for "vaccinated", class "gray ml2" ] [ text "Vaccinated?" ]
             ]
-        , div [ class "mb2" ]
+        , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "neutered" ] []
             , label [ for "neutered", class "gray ml2" ] [ text "Neutered?" ]
             ]
-        , div [ class "mb2" ]
+        , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "microchipped" ] []
             , label [ for "microchipped", class "gray ml2" ] [ text "Microchipped?" ]
             ]
-        , div []
-            [ img [ src "./assets/hearts.svg", class "w-100" ] []
+        , div [ class "mb3" ]
+            [ input [ type_ "checkbox", id "Unknown" ] []
+            , label [ for "Unknown", class "gray ml2" ] [ text "Unknown" ]
             ]
-        , div [ class "blue b mb3" ] [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?" ]
-        , div [ class "fl w-50 tc mb2" ]
-            [ input [ class "dn", id "onemonth", name "heatlh", type_ "radio", value "onemonth" ]
-                []
-            , label [ class "health bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "onemonth" ]
-                [ text "Within month" ]
-            ]
-        , div [ class "fl w-50 tc mb2" ]
-            [ input [ class "dn", id "threemonth", name "heatlh", type_ "radio", value "threemonth" ]
-                []
-            , label [ class "health bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "threemonth" ]
-                [ text "3 months" ]
-            ]
-        , div [ class "fl w-50 tc mb2" ]
-            [ input [ class "dn", id "sixmonth", name "heatlh", type_ "radio", value "sixmonth" ]
-                []
-            , label [ class "health bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "sixmonth" ]
-                [ text "6 months" ]
-            ]
-        , div [ class "fl w-50 tc mb2" ]
-            [ input [ class "dn", id "12month", name "heatlh", type_ "radio", value "12month" ]
-                []
-            , label [ class "health bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "12month" ]
-                [ text "12 months" ]
-            ]
-        , div [ class "fl w-50 tc mb4" ]
-            [ input [ class "dn", id "18month", name "heatlh", type_ "radio", value "18month" ]
-                []
-            , label [ class "health bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "18month" ]
-                [ text "18 months" ]
-            ]
-        , div [ class "fl w-50 tc mb4" ]
-            [ input [ class "dn", id "morethan18", name "heatlh", type_ "radio", value "morethan18" ]
-                []
-            , label [ class "health bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "morethan18" ]
-                [ text "18+ months" ]
-            ]
+        , div [ class "blue b mt4 pb3" ] [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?" ]
+        , fourBlueButtons "Up to 3 months"
+        , fourBlueButtons "3 to 12 months"
+        , fourBlueButtons "Over a year"
+        , fourBlueButtons "Unknown/never"
+        , div [ class "blue b mb3 mt4" ] [ text <| "Anything else to note about" ++ getPetName model ++ "'s health?" ]
+
+        -- , textBox ( "Please tell us here", "Health" )
         , div [ class "mt4 tc w-100" ]
-            [ a [ class "link w-100 bg-navy br2 white pa3 br2 f4 dib cursor", href "#personality" ] [ text "Next" ]
+            [ a [ class "link w-100 bg-navy br2 white ph3 pv2 br2 f4 dib cursor  w-100 w-25-l w-50-m", href "#personality" ] [ text "Next" ]
             ]
         ]
