@@ -16,6 +16,8 @@ initModel =
     , cats = "50"
     , children = "50"
     , people = "50"
+    , dogs = "50"
+    , babies = "50"
     , videoMessage = ""
     , messageLength = 0
     , videoStage = Stage0
@@ -87,6 +89,12 @@ update msg model =
 
         UpdatePeopleSlider value ->
             { model | people = value } ! []
+
+        UpdateDogsSlider value ->
+            { model | dogs = value } ! []
+
+        UpdateBabiesSlider value ->
+            { model | babies = value } ! []
 
         UpdatePetName name ->
             { model | petName = name } ! []
