@@ -55,6 +55,9 @@ update msg model =
         RecordStart string ->
             ( model, recordStart string )
 
+        StopPhoto ->
+            model ! [ stopPhoto () ]
+
         RecordStop string ->
             ( model, recordStop string )
 
@@ -69,6 +72,9 @@ update msg model =
 
         RecordError err ->
             { model | videoStage = StageErr } ! []
+
+        TakePhoto ->
+            model ! [ takePhoto () ]
 
         ToggleVideo stage ->
             case stage of
@@ -117,20 +123,10 @@ update msg model =
             )
 
         ImageRead (Ok listImages) ->
-            let
-                debugit =
-                    Debug.log "List Images" listImages
-            in
-                { model | image = Just listImages }
-                    ! []
+            { model | image = addListToGallery model listImages } ! []
 
         ImageRead (Err error) ->
-            let
-                debugit =
-                    Debug.log "err" error
-            in
-                { model | image = Nothing }
-                    ! []
+            model ! []
 
         PreparePhoto ->
             model ! [ preparePhoto () ]
@@ -140,6 +136,12 @@ port recordStart : String -> Cmd msg
 
 
 port preparePhoto : () -> Cmd msg
+
+
+port takePhoto : () -> Cmd msg
+
+
+port stopPhoto : () -> Cmd msg
 
 
 port recordStop : String -> Cmd msg
@@ -182,3 +184,13 @@ addToGallery model newImage =
 
         Nothing ->
             Just [ newImage ]
+
+
+addListToGallery : Model -> List Image -> Maybe (List Image)
+addListToGallery model listImages =
+    case model.image of
+        Just imageList ->
+            Just <| imageList ++ listImages
+
+        Nothing ->
+            Just listImages

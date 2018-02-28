@@ -62,6 +62,8 @@ type Msg
     | UrlChange Navigation.Location
     | MakeNextClickable
     | PreparePhoto
+    | TakePhoto
+    | StopPhoto
     | UpdateCatsSlider String
     | UpdateChildrenSlider String
     | UpdatePeopleSlider String

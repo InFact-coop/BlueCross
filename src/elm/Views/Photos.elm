@@ -23,6 +23,8 @@ photos model =
                 ]
                 []
              , button [ onClick PreparePhoto ] [ text "Take a photo" ]
+             , button [ onClick TakePhoto ] [ text "Ready!" ]
+             , button [ onClick StopPhoto ] [ text "Stop Photo!" ]
              , Html.video [ autoplay True, src model.liveVideoUrl ] []
              ]
                 ++ imageList

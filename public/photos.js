@@ -41,12 +41,23 @@ app.ports.preparePhoto.subscribe(function() {
       var liveUrl = window.URL.createObjectURL(mediaStream);
       app.ports.liveVideoUrl.send(liveUrl);
       console.log(imageCapture);
-      imageCapture.takePhoto().then(function(blob) {
-        var portData = {
-          contents: window.URL.createObjectURL(blob),
-          filename: ''
-        };
-        app.ports.receivePhotoUrl.send(portData);
+      app.ports.takePhoto.subscribe(function() {
+        imageCapture.takePhoto().then(function(blob) {
+          var portData = {
+            contents: window.URL.createObjectURL(blob),
+            filename: ''
+          };
+          app.ports.receivePhotoUrl.send(portData);
+        });
+      });
+      app.ports.stopPhoto.subscribe(function() {
+        if (recorder.state !== 'inactive') {
+          recorder.stop();
+        }
+        mediaStream.getTracks().map(function(track) {
+          track.stop();
+          mediaStream.removeTrack(track);
+        });
       });
     })
     .catch(function(error) {
