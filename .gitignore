@@ -5,6 +5,7 @@ repl-temp-*
 
 elm.js
 
+.env
 
 # generated css
 style.min.css
