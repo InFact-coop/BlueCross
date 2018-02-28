@@ -7,34 +7,28 @@ import Types exposing (..)
 import Json.Decode as Decode
 
 
--- import Helpers exposing (getPetName)
-
-
 photos : Model -> Html Msg
 photos model =
     let
-        imagePreview =
-            case model.image of
-                Just i ->
-                    viewImagePreview i
-
-                Nothing ->
-                    text ""
+        imageList =
+            List.map renderImage <| Maybe.withDefault [] model.image
     in
         div [ class "ma3" ]
-            [ input
+            ([ input
                 [ type_ "file"
                 , id model.imageId
+                , multiple True
                 , on "change"
                     (Decode.succeed ImageSelected)
                 ]
                 []
-            , imagePreview
-            ]
+             ]
+                ++ imageList
+            )
 
 
-viewImagePreview : Image -> Html Msg
-viewImagePreview image =
+renderImage : Image -> Html Msg
+renderImage image =
     img
         [ src image.contents
         , title image.filename

@@ -12,7 +12,7 @@ type alias Model =
     , videoStage : Stage
     , paused : Bool
     , petName : String
-    , image : Maybe Image
+    , image : Maybe (List Image)
     , imageId : String
     }
 
@@ -79,4 +79,4 @@ type Msg
     | Increment
     | UpdatePetName String
     | ImageSelected
-    | ImageRead ImagePortData
+    | ImageRead (List ImagePortData)

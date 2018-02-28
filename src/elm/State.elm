@@ -119,15 +119,16 @@ update msg model =
             , fileSelected model.imageId
             )
 
-        ImageRead data ->
-            let
-                newImage =
-                    { contents = data.contents
-                    , filename = data.filename
-                    }
-            in
-                { model | image = Just newImage }
-                    ! []
+        ImageRead listImages ->
+            { model | image = Just (List.map imagePortDataToImage listImages) }
+                ! []
+
+
+imagePortDataToImage : ImagePortData -> Image
+imagePortDataToImage data =
+    { contents = data.contents
+    , filename = data.filename
+    }
 
 
 port recordStart : String -> Cmd msg
@@ -145,7 +146,7 @@ port videoUrl : (String -> msg) -> Sub msg
 port fileSelected : String -> Cmd msg
 
 
-port fileContentRead : (ImagePortData -> msg) -> Sub msg
+port fileContentRead : (List ImagePortData -> msg) -> Sub msg
 
 
 subscriptions : Model -> Sub Msg
