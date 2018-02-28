@@ -14,17 +14,22 @@ photos model =
             List.map renderImage <| Maybe.withDefault [] model.image
     in
         div [ class "ma3" ]
-            ([ input
+            ([ label [ for model.imageId ] [ text "Upload your Own Photos" ]
+             , input
                 [ type_ "file"
                 , id model.imageId
                 , multiple True
+                , accept "image/*"
                 , on "change"
                     (Decode.succeed ImageSelected)
                 ]
                 []
-             , button [ onClick PreparePhoto ] [ text "Take a photo" ]
-             , button [ onClick TakePhoto ] [ text "Ready!" ]
-             , button [ onClick StopPhoto ] [ text "Stop Photo!" ]
+             , div []
+                [ button [ class "mh2", onClick PreparePhoto ] [ text "1. Want to take a Photo?" ]
+                , button [ class "mh2", onClick TakePhoto ] [ text "2. Lights, Camera, Action!" ]
+                , button [ class "mh2", onClick StopPhoto ] [ text "3. I'm Done Taking Photos!" ]
+                , button [ class "mh2", onClick UploadPhotos ] [ text "4. Upload My Photos To The Cloud!" ]
+                ]
              , Html.video [ autoplay True, src model.liveVideoUrl ] []
              ]
                 ++ imageList

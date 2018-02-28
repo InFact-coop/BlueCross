@@ -10,14 +10,33 @@ cloudinary.config({
 });
 
 router.route('/upload-photos').post((req, res, next) => {
-  cloudinary.v2.uploader.upload(`filepath`, (result, err) => {
-    if (err) {
-      console.log('err', err);
+  const images = req.body;
+
+  const imageToPromise = image => {
+    return new Promise((resolve, reject) => {
+      cloudinary.v2.uploader.upload(image.contents, (err, result) => {
+        if (err) {
+          reject({ success: false });
+          console.log('File Error', err);
+        } else {
+          resolve({ success: true });
+          console.log('File Success: ', result);
+        }
+      });
+    });
+  };
+
+  const cloudinaryPromises = images.map(imageToPromise);
+
+  Promise.all(cloudinaryPromises)
+    .then(values => {
+      console.log('Final Values: ', values);
+      return res.json({ success: true });
+    })
+    .catch(err => {
+      console.log('Final Error: ', err);
       return res.json({ success: false });
-    }
-    console.log('result', result);
-    return res.json({ success: true });
-  });
+    });
 });
 
 router.route('/send-form').post((req, res, next) => {

@@ -5,6 +5,7 @@ import Dom.Scroll exposing (..)
 import Json.Decode
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
+import Requests.UploadPhotos exposing (uploadPhotos)
 import Router exposing (getRoute, viewFromUrl)
 import Task
 import Time exposing (Time, second)
@@ -26,6 +27,7 @@ initModel =
     , petName = ""
     , image = Nothing
     , formStatus = NotAsked
+    , photoStatus = NotAsked
     , imageId = "imageUpload"
     }
 
@@ -114,8 +116,17 @@ update msg model =
         ReceiveFormStatus (Err string) ->
             { model | formStatus = ResponseFailure } ! []
 
+        ReceivePhotoUploadStatus (Ok bool) ->
+            { model | photoStatus = ResponseSuccess } ! []
+
+        ReceivePhotoUploadStatus (Err string) ->
+            { model | photoStatus = ResponseFailure } ! []
+
         SubmitForm ->
             { model | formStatus = Loading } ! [ postForm model ]
+
+        UploadPhotos ->
+            { model | photoStatus = Loading } ! [ uploadPhotos model ]
 
         ImageSelected ->
             ( model

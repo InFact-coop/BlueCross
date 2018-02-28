@@ -39,17 +39,30 @@ app.ports.preparePhoto.subscribe(function() {
       var imageCapture = new ImageCapture(mediaStreamTrack);
 
       var liveUrl = window.URL.createObjectURL(mediaStream);
+
       app.ports.liveVideoUrl.send(liveUrl);
-      console.log(imageCapture);
+
       app.ports.takePhoto.subscribe(function() {
-        imageCapture.takePhoto().then(function(blob) {
-          var portData = {
-            contents: window.URL.createObjectURL(blob),
-            filename: ''
-          };
-          app.ports.receivePhotoUrl.send(portData);
-        });
+        imageCapture
+          .takePhoto()
+          .then(function(blob) {
+            var reader = new FileReader();
+
+            reader.onloadend = function(event) {
+              var base64encoded = event.target.result;
+              var portData = {
+                contents: base64encoded,
+                filename: 'blob.name'
+              };
+              app.ports.receivePhotoUrl.send(portData);
+            };
+            reader.readAsDataURL(blob);
+          })
+          .catch(function(error) {
+            console.log('Error on takePhoto()', error);
+          });
       });
+
       app.ports.stopPhoto.subscribe(function() {
         if (recorder.state !== 'inactive') {
           recorder.stop();

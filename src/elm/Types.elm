@@ -19,6 +19,7 @@ type alias Model =
     , image : Maybe (List Image)
     , imageId : String
     , formStatus : RemoteData
+    , photoStatus : RemoteData
     , people : String
     }
 
@@ -72,9 +73,11 @@ type Msg
     | RecordError String
     | ReceiveLiveVideo String
     | ReceivePhotoUrl (Result String Image)
+    | ReceivePhotoUploadStatus (Result Http.Error Bool)
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String
+    | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))
     | SubmitForm
