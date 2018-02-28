@@ -1,8 +1,7 @@
 module Views.BeforeYouBegin exposing (..)
 
--- import Components.TextBox exposing (..)
-
 import Components.BlueButton exposing (..)
+import Components.TextBox exposing (..)
 import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -34,10 +33,9 @@ beforeYouBegin model =
         , fourBlueButtons "3 to 12 months"
         , fourBlueButtons "Over a year"
         , fourBlueButtons "Unknown/never"
-        , div [ class "blue b mb3 mt4" ] [ text <| "Anything else to note about" ++ getPetName model ++ "'s health?" ]
-
-        -- , textBox ( "Please tell us here", "Health" )
-        , div [ class "mt4 tc w-100" ]
+        , div [ class "blue b mb3 mt4" ] [ text <| "Anything else to note about " ++ getPetName model ++ "'s health?" ]
+        , textBox ( "Please tell us here", "Health" )
+        , div [ class "mv4 tc w-100" ]
             [ a [ class "link w-100 bg-navy br2 white ph3 pv2 br2 f4 dib cursor  w-100 w-25-l w-50-m", href "#personality" ] [ text "Next" ]
             ]
         ]
