@@ -1,5 +1,6 @@
 module Views.Personality exposing (..)
 
+import Components.TextBox exposing (..)
 import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -111,10 +112,7 @@ personality model =
         , div
             [ class "pt4 pb3 dib blue b" ]
             [ text <| "Are there any other personality traits you would like to tell " ++ getPetName model ++ "'s new owner about?" ]
-        , div [ class "w-100" ]
-            [ textarea [ class "w-100 h5 bn bg-light-blue br2 pa2 overflow-auto", id "traits", name "personality", placeholder "Please tell us here", attribute "rows" "6", attribute "cols" "4", attribute "maxlength" "200" ]
-                []
-            ]
+        , textBox ( "Please tell us here", "personality" )
         , div
             [ class "mt4 tc w-100" ]
             [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", href "#new-home" ] [ text "Next" ]
