@@ -22,6 +22,8 @@ photos model =
                     (Decode.succeed ImageSelected)
                 ]
                 []
+             , button [ onClick PreparePhoto ] [ text "Take a photo" ]
+             , Html.video [ autoplay True, src model.liveVideoUrl ] []
              ]
                 ++ imageList
             )

@@ -1,3 +1,5 @@
+// Upload Photos Port
+
 app.ports.fileSelected.subscribe(function(id) {
   var node = document.getElementById(id);
   var fileList = [];
@@ -25,4 +27,22 @@ app.ports.fileSelected.subscribe(function(id) {
   reader.onloadend = function(event) {
     app.ports.fileContentRead.send(fileList);
   };
+});
+
+// Take a Photo Port
+app.ports.preparePhoto.subscribe(function() {
+  navigator.mediaDevices
+    .getUserMedia({ video: true })
+    .then(function(mediaStream) {
+      var recorder = new MediaRecorder(mediaStream);
+      var mediaStreamTrack = mediaStream.getVideoTracks()[0];
+      var imageCapture = new ImageCapture(mediaStreamTrack);
+
+      var url = window.URL.createObjectURL(mediaStream);
+      app.ports.liveVideoUrl.send(url);
+      console.log(imageCapture);
+    })
+    .catch(function(error) {
+      console.error('getUserMedia() error:', error);
+    });
 });

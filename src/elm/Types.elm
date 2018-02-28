@@ -11,6 +11,7 @@ type alias Model =
     , children : String
     , people : String
     , videoMessage : String
+    , liveVideoUrl : String
     , messageLength : Int
     , videoStage : Stage
     , paused : Bool
@@ -60,13 +61,14 @@ type Msg
     = NoOp
     | UrlChange Navigation.Location
     | MakeNextClickable
+    | PreparePhoto
     | UpdateCatsSlider String
     | UpdateChildrenSlider String
     | UpdatePeopleSlider String
     | RecordStart String
     | RecordStop String
     | RecordError String
-    | RecieveVideo String
+    | ReceiveLiveVideo String
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String

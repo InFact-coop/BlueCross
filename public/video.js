@@ -1,53 +1,61 @@
-if (navigator.mediaDevices) {
-  console.log('getUserMedia supported.');
-  console.log('App: ', app);
-
-  var constraints = {
-    audio: true,
-    video: true
-  };
-  var chunks = [];
-  var mediaRecorder;
-
-  app.ports.recordStart.subscribe(function() {
-    console.log('HELLO');
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then(function(stream) {
-        mediaRecorder = new MediaRecorder(stream);
-        mediaRecorder.start();
-        console.log(mediaRecorder.state);
-        console.log('recorder started');
-
-        mediaRecorder.onstop = function(e) {
-          console.log('data available after MediaRecorder.stop() called.');
-
-          var blob = new Blob(chunks, { type: 'video/webm' });
-          chunks = [];
-          // js to elm
-          var videoURL = window.URL.createObjectURL(blob);
-          console.log('blob', blob);
-          app.ports.videoUrl.send(videoURL);
-          console.log('VideoURL: ', videoURL);
-          console.log('recorder stopped');
-        };
-
-        mediaRecorder.ondataavailable = function(e) {
-          chunks.push(e.data);
-        };
-      })
-      .catch(function(err) {
-        // js to elm
-        console.log("Can't start video!");
-        app.ports.recordError.send("Can't start video!");
-      });
-  });
-
-  app.ports.recordStop.subscribe(function() {
-    if (mediaRecorder) {
-      mediaRecorder.stop();
-    }
-    console.log(mediaRecorder.state);
-    console.log('recorder stopped');
-  });
-}
+// if (!navigator.mediaDevices) {
+//   alert('getUserMedia support required to use this page');
+// }
+// let recorder;
+// let url;
+// let bigVideoBlob;
+//
+// app.ports.recordStart.subscribe(function() {
+//   if (recorder.state !== 'recording') {
+//     recorder.start();
+//   }
+//   console.log(recorder.state);
+//   console.log('recorder started');
+// });
+//
+// app.ports.prepareVideo.subscribe(function() {
+//   const videoChunks = [];
+//   let onDataAvailable = function(e) {
+//     videoChunks.push(e.data);
+//   };
+//
+//   navigator.mediaDevices
+//     .getUserMedia({
+//       audio: true,
+//       video: {
+//         width: { ideal: 640 },
+//         height: { ideal: 360 }
+//       }
+//     })
+//     .then(mediaStream => {
+//       recorder = new MediaRecorder(mediaStream);
+//       recorder.ondataavailable = onDataAvailable;
+//       url = window.URL.createObjectURL(mediaStream);
+//       app.ports.liveVideoUrl.send(url);
+//
+//       app.ports.recordStop.subscribe(function() {
+//         if (recorder.state !== 'inactive') {
+//           console.log('recorder', recorder);
+//           recorder.stop();
+//         }
+//         mediaStream.getTracks().map(function(track) {
+//           track.stop();
+//           mediaStream.removeTrack(track);
+//         });
+//         console.log(recorder.state);
+//         console.log('recorder stopped');
+//       });
+//
+//       recorder.onstop = e => {
+//         bigVideoBlob = new Blob(videoChunks, { type: 'video/mp4' });
+//         console.log('e: ', e);
+//         console.log('videoChunks: ', videoChunks);
+//         var videoURL = window.URL.createObjectURL(bigVideoBlob);
+//         app.ports.recordedVideoUrl.send(videoURL);
+//       };
+//     })
+//     .catch(function(err) {
+//       console.log('error', err);
+//       app.ports.recordError.send("Can't start video!");
+//     });
+// });

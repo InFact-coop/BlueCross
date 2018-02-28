@@ -20,6 +20,7 @@ initModel =
     , children = "50"
     , people = "50"
     , videoMessage = ""
+    , liveVideoUrl = ""
     , messageLength = 0
     , videoStage = Stage0
     , paused = True
@@ -58,8 +59,8 @@ update msg model =
         RecordStop string ->
             ( model, recordStop string )
 
-        RecieveVideo string ->
-            { model | videoMessage = string } ! []
+        ReceiveLiveVideo string ->
+            { model | liveVideoUrl = string } ! []
 
         RecordError err ->
             { model | videoStage = StageErr } ! []
@@ -126,8 +127,14 @@ update msg model =
                 { model | image = Nothing }
                     ! []
 
+        PreparePhoto ->
+            model ! [ preparePhoto () ]
+
 
 port recordStart : String -> Cmd msg
+
+
+port preparePhoto : () -> Cmd msg
 
 
 port recordStop : String -> Cmd msg
@@ -136,7 +143,7 @@ port recordStop : String -> Cmd msg
 port recordError : (String -> msg) -> Sub msg
 
 
-port videoUrl : (String -> msg) -> Sub msg
+port liveVideoUrl : (String -> msg) -> Sub msg
 
 
 port fileSelected : String -> Cmd msg
@@ -148,7 +155,7 @@ port fileContentRead : (Json.Decode.Value -> msg) -> Sub msg
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ videoUrl RecieveVideo
+        [ liveVideoUrl ReceiveLiveVideo
         , recordError RecordError
         , fileContentRead (decodeImageList >> ImageRead)
         , if not model.paused then
