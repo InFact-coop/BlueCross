@@ -1,24 +1,21 @@
 module Types exposing (..)
 
 import Navigation
+import Http exposing (..)
 
 
 type alias Model =
     { route : Route
     , nextClickable : Bool
-    , sliderValues : SliderValues
+    , cats : String
+    , children : String
+    , people : String
     , videoMessage : String
     , messageLength : Int
     , videoStage : Stage
     , paused : Bool
     , petName : String
-    }
-
-
-type alias SliderValues =
-    { cats : String
-    , children : String
-    , people : String
+    , formStatus : RemoteData
     }
 
 
@@ -63,3 +60,5 @@ type Msg
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String
+    | SubmitForm
+    | ReceiveFormStatus (Result Http.Error Bool)

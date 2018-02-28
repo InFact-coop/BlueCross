@@ -46,3 +46,8 @@ getPetName model =
         "your dog"
     else
         model.petName
+
+
+stringToInt : String -> Int
+stringToInt stringifiedNumber =
+    Result.withDefault 0 <| String.toInt stringifiedNumber
