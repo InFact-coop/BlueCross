@@ -10,4 +10,8 @@ elm.js
 # generated css
 style.min.css
 
+# node generated files
 node_modules
+
+# Environment Variables
+.env

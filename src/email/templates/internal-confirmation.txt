@@ -1,0 +1,7 @@
+Hi, {{name}}!]
+Someone has requested for Blue Cross to re-home their dog.
+The dog, {{petName}}, has the following characteristics:
+
+Likes People: {{people}}/100
+Likes Children: {{children}}/100
+Likes Cats: {{cats}}/100

@@ -2,6 +2,7 @@ module Views.OwnerInfo exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Types exposing (..)
 import Helpers exposing (getPetName)
 
@@ -44,6 +45,6 @@ ownerInfo model =
             , label [ for "none", class "gray ml2" ] [ text "Not sure" ]
             ]
         , div [ class "mt4 tc w-100" ]
-            [ a [ class "link w-100 bg-navy br2 white pa3 br2 f4 dib", href "#thank-you" ] [ text "Next" ]
+            [ a [ class "link w-100 bg-navy br2 white pa3 br2 f4 dib", href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
             ]
         ]

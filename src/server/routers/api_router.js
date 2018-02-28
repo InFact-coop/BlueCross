@@ -1,21 +1,23 @@
-const router = require("express").Router();
-const Airtable = require("airtable");
-const base = Airtable.base(process.env.AIRTABLE_BASE);
-const fs = require("fs");
+const router = require('express').Router();
+const path = require('path');
+const sendemail = require('sendemail');
 
-Airtable.configure({
-  endpointUrl: "https://api.airtable.com",
-  apiKey: process.env.AIRTABLE_API_KEY
-});
+router.route('/send-form').post((req, res, next) => {
+  const dir = path.join(__dirname, '..', '..', 'email', 'templates');
+  const email = sendemail.email;
+  sendemail.set_template_directory(dir);
+  const internalEmailData = req.body;
+  console.log('Internal Email Data: ', req.body);
+  internalEmailData.name = 'Kelly';
+  internalEmailData.email = 'mgerber94@gmail.com';
+  internalEmailData.subject = 'Someone is ready to rehome their dog!';
 
-router.route("/upload-form").post((req, res, next) => {
-  let newForm = req.body;
-  base(process.env.AIRTABLE_TABLE).create(newForm, (err, record) => {
-    if (err) {
-      console.log("ERR", err);
+  email('internal-confirmation', internalEmailData, (error, result) => {
+    if (error) {
+      console.log('Error: ', error);
       return res.json({ success: false });
     }
-    console.log("SUCCESS", record);
+    console.log('Email Sent: ', result);
     return res.json({ success: true });
   });
 });

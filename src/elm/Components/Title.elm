@@ -16,14 +16,14 @@ getClasses route =
     if route == ThankYouRoute then
         "dn"
     else
-        "headerTitle bg-blue flex justify-center items-center white h4 mb4"
+        "flex justify-center items-center dark-blue h4 mb2 tc"
 
 
 getTitle : Model -> String
 getTitle model =
     case model.route of
         HomeRoute ->
-            "Giving a pet"
+            "Find a new home for your pet"
 
         BeforeYouBeginRoute ->
             "Health"
