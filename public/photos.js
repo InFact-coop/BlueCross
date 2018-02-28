@@ -70,6 +70,7 @@ app.ports.preparePhoto.subscribe(function() {
         mediaStream.getTracks().map(function(track) {
           track.stop();
           mediaStream.removeTrack(track);
+          app.ports.liveVideoUrl.send('');
         });
       });
     })

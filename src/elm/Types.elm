@@ -48,7 +48,6 @@ type Route
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
-    | VideoRoute
     | NewHomeRoute
 
 

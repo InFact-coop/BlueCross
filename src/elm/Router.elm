@@ -16,7 +16,6 @@ import Views.Personality exposing (..)
 import Views.PetInfo exposing (..)
 import Views.Photos exposing (..)
 import Views.ThankYou exposing (..)
-import Views.Video as VideoView
 
 
 view : Model -> Html Msg
@@ -56,9 +55,6 @@ getCurrentView model =
         ThankYouRoute ->
             thankYou model
 
-        VideoRoute ->
-            VideoView.video model
-
         NotFoundRoute ->
             notFound model
 
@@ -95,9 +91,6 @@ getRoute hash =
 
         "#thank-you" ->
             ThankYouRoute
-
-        "#upload-video" ->
-            VideoRoute
 
         "#new-home" ->
             NewHomeRoute

@@ -1,10 +1,11 @@
 module Views.Photos exposing (..)
 
+import Components.StyleHelpers exposing (classes, displayElement)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Types exposing (..)
 import Json.Decode as Decode
+import Types exposing (..)
 
 
 photos : Model -> Html Msg
@@ -30,7 +31,10 @@ photos model =
                 , button [ class "mh2", onClick StopPhoto ] [ text "3. I'm Done Taking Photos!" ]
                 , button [ class "mh2", onClick UploadPhotos ] [ text "4. Upload My Photos To The Cloud!" ]
                 ]
-             , Html.video [ autoplay True, src model.liveVideoUrl ] []
+             , Html.video [ classes [ displayElement <| model.liveVideoUrl /= "" ], autoplay True, src model.liveVideoUrl ] []
+             , div [ class "mt4 tc w-100" ]
+                [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#location" ] [ text "Next" ]
+                ]
              ]
                 ++ imageList
             )

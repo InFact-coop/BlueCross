@@ -49,8 +49,5 @@ getTitle model =
         ThankYouRoute ->
             ""
 
-        VideoRoute ->
-            "Photos & Videos"
-
         NotFoundRoute ->
             "Sorry"
