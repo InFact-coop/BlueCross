@@ -1,11 +1,13 @@
 port module State exposing (..)
 
+import Data.Photos exposing (decodeImageList, imageListDecoder)
 import Dom.Scroll exposing (..)
+import Json.Decode
+import Navigation exposing (..)
 import Router exposing (getRoute, viewFromUrl)
 import Task
-import Types exposing (..)
 import Time exposing (Time, second)
-import Navigation exposing (..)
+import Types exposing (..)
 
 
 initModel : Model
@@ -119,16 +121,17 @@ update msg model =
             , fileSelected model.imageId
             )
 
-        ImageRead listImages ->
-            { model | image = Just (List.map imagePortDataToImage listImages) }
+        ImageRead (Ok listImages) ->
+            let
+                debugit =
+                    Debug.log "List Images" listImages
+            in
+                { model | image = Just listImages }
+                    ! []
+
+        ImageRead (Err _) ->
+            { model | image = Nothing }
                 ! []
-
-
-imagePortDataToImage : ImagePortData -> Image
-imagePortDataToImage data =
-    { contents = data.contents
-    , filename = data.filename
-    }
 
 
 port recordStart : String -> Cmd msg
@@ -146,7 +149,7 @@ port videoUrl : (String -> msg) -> Sub msg
 port fileSelected : String -> Cmd msg
 
 
-port fileContentRead : (List ImagePortData -> msg) -> Sub msg
+port fileContentRead : (String -> msg) -> Sub msg
 
 
 subscriptions : Model -> Sub Msg
@@ -154,7 +157,7 @@ subscriptions model =
     Sub.batch
         [ videoUrl RecieveVideo
         , recordError RecordError
-        , fileContentRead ImageRead
+        , fileContentRead (decodeImageList >> ImageRead)
         , if not model.paused then
             Time.every second (always Increment)
           else

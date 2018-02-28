@@ -4,7 +4,6 @@ app.ports.fileSelected.subscribe(function(id) {
   if (node === null) {
     return;
   }
-  console.log('fileSelected');
   // If your file upload field allows multiple files, you might
   // want to consider turning this into a `for` loop.
   for (var i = 0; i < node.files.length; i++) {
@@ -22,16 +21,16 @@ app.ports.fileSelected.subscribe(function(id) {
         contents: base64encoded,
         filename: file.name
       };
-      console.log('Port data', portData);
       fileList.push(portData);
     };
-    // Connect our FileReader with the file that was selected in our `input` node.
     reader.readAsDataURL(file);
+    // Connect our FileReader with the file that was selected in our `input` node.
     // We call the `fileContentRead` port with the file data
     // which will be sent to our Elm runtime via Subscriptions.
   }
-  console.log('file list', fileList);
-  app.ports.fileContentRead.send(fileList);
+  console.log('Stringified File List: ', JSON.stringify(fileList));
+  console.log('File List: ', fileList);
+  app.ports.fileContentRead.send(JSON.stringify(fileList));
 });
 
-// Array.prototype.forEach.call(field.photo.files, function(file) { ... });
+// Array.prototype.map.call(field.photo.files, function(file) { ... });

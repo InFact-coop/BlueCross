@@ -79,4 +79,4 @@ type Msg
     | Increment
     | UpdatePetName String
     | ImageSelected
-    | ImageRead (List ImagePortData)
+    | ImageRead (Result String (List ImagePortData))
