@@ -4,6 +4,8 @@ import Data.Photos exposing (decodeImageList, imageListDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
 import Navigation exposing (..)
+import Navigation exposing (..)
+import Requests.PostForm exposing (postForm)
 import Router exposing (getRoute, viewFromUrl)
 import Task
 import Time exposing (Time, second)
@@ -12,13 +14,11 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = HomeRoute
+    { route = PersonalityRoute
     , nextClickable = False
-    , sliderValues =
-        { cats = "50"
-        , children = "50"
-        , people = "50"
-        }
+    , cats = "50"
+    , children = "50"
+    , people = "50"
     , videoMessage = ""
     , messageLength = 0
     , videoStage = Stage0
@@ -49,7 +49,7 @@ update msg model =
                 model
                     |> update (ToggleVideo Stage1)
             else
-                ( { model | messageLength = model.messageLength + 1 }, Cmd.none )
+                { model | messageLength = model.messageLength + 1 } ! []
 
         RecordStart string ->
             ( model, recordStart string )
@@ -58,63 +58,51 @@ update msg model =
             ( model, recordStop string )
 
         RecieveVideo string ->
-            ( { model | videoMessage = string }, Cmd.none )
+            { model | videoMessage = string } ! []
 
         RecordError err ->
-            ( { model | videoStage = StageErr }, Cmd.none )
+            { model | videoStage = StageErr } ! []
 
         ToggleVideo stage ->
             case stage of
                 StageErr ->
-                    ( { model | videoStage = StageErr }, Cmd.none )
+                    { model | videoStage = StageErr } ! []
 
                 Stage2 ->
-                    ( { model | videoStage = Stage0 }, Cmd.none )
+                    { model | videoStage = Stage0 } ! []
 
                 Stage1 ->
-                    ( { model | videoStage = Stage2, nextClickable = True }, recordStop "yes" )
+                    { model | videoStage = Stage2, nextClickable = True } ! [ recordStop "yes" ]
 
                 Stage0 ->
-                    ( { model | videoStage = Stage1 }, recordStart "yes" )
+                    { model | videoStage = Stage1 } ! [ recordStart "yes" ]
 
         UrlChange location ->
             { model | route = getRoute location.hash, nextClickable = False, videoStage = Stage0, videoMessage = "" } ! [ Task.attempt (always NoOp) (toTop "container") ]
 
         MakeNextClickable ->
-            ( { model | nextClickable = True }, Cmd.none )
+            { model | nextClickable = True } ! []
 
         UpdateCatsSlider value ->
-            let
-                oldSliderValues =
-                    model.sliderValues
-
-                newSliderValues =
-                    { oldSliderValues | cats = value }
-            in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            { model | cats = value } ! []
 
         UpdateChildrenSlider value ->
-            let
-                oldSliderValues =
-                    model.sliderValues
-
-                newSliderValues =
-                    { oldSliderValues | children = value }
-            in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            { model | children = value } ! []
 
         UpdatePeopleSlider value ->
-            let
-                oldSliderValues =
-                    model.sliderValues
-
-                newSliderValues =
-                    { oldSliderValues | people = value }
-            in
-                ( { model | sliderValues = newSliderValues }, Cmd.none )
+            { model | people = value } ! []
 
         UpdatePetName name ->
-            ( { model | petName = name }, Cmd.none )
+            { model | petName = name } ! []
+
+        ReceiveFormStatus (Ok bool) ->
+            { model | formStatus = ResponseSuccess } ! []
+
+        ReceiveFormStatus (Err string) ->
+            { model | formStatus = ResponseFailure } ! []
+
+        SubmitForm ->
+            { model | formStatus = Loading } ! [ postForm model ]
 
         ImageSelected ->
             ( model

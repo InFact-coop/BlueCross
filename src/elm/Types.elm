@@ -1,12 +1,15 @@
 module Types exposing (..)
 
 import Navigation
+import Http exposing (..)
 
 
 type alias Model =
     { route : Route
     , nextClickable : Bool
-    , sliderValues : SliderValues
+    , cats : String
+    , children : String
+    , people : String
     , videoMessage : String
     , messageLength : Int
     , videoStage : Stage
@@ -14,12 +17,6 @@ type alias Model =
     , petName : String
     , image : Maybe (List Image)
     , imageId : String
-    }
-
-
-type alias SliderValues =
-    { cats : String
-    , children : String
     , people : String
     }
 
@@ -80,3 +77,5 @@ type Msg
     | UpdatePetName String
     | ImageSelected
     | ImageRead (Result String (List ImagePortData))
+    | SubmitForm
+    | ReceiveFormStatus (Result Http.Error Bool)

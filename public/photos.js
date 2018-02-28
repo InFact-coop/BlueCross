@@ -23,14 +23,14 @@ app.ports.fileSelected.subscribe(function(id) {
       };
       fileList.push(portData);
     };
-    reader.readAsDataURL(file);
     // Connect our FileReader with the file that was selected in our `input` node.
+    reader.readAsDataURL(file);
     // We call the `fileContentRead` port with the file data
     // which will be sent to our Elm runtime via Subscriptions.
   }
   console.log('Stringified File List: ', JSON.stringify(fileList));
   console.log('File List: ', fileList);
-  app.ports.fileContentRead.send(JSON.stringify(fileList));
+  app.ports.fileContentRead.send(fileList);
 });
 
 // Array.prototype.map.call(field.photo.files, function(file) { ... });

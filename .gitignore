@@ -5,10 +5,13 @@ repl-temp-*
 
 elm.js
 
+.env
 
 # generated css
 style.min.css
 
+# node generated files
 node_modules
 
+# Environment Variables
 .env

@@ -23,7 +23,7 @@ devNavbarContent =
 
 navbarContent : Html Msg
 navbarContent =
-    ul [ class "flex ma0 bg-white w-100 pa2 justify-between items-center bb b--black-10 " ]
+    ul [ class "z-999 flex ma0 bg-white w-100 pa2 justify-between items-center bb b--black-10" ]
         [ li [ class "dib" ]
             [ img [ src "./assets/bx-logo.jpg", class "h3 w3 v-mid" ] [] ]
         ]
