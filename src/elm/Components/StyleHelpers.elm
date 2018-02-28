@@ -1,7 +1,7 @@
 module Components.StyleHelpers exposing (..)
 
-import Html.Attributes exposing (..)
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 
 headlineFont : String

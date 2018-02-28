@@ -1,5 +1,7 @@
 module Views.Personality exposing (..)
 
+import Components.PersonalityButtons exposing (..)
+import Components.TextBox exposing (..)
 import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -11,96 +13,21 @@ personality model =
     div [ class "w-60-ns center ma3 ma0-ns" ]
         [ div [ class "blue b mb4 mt4" ] [ text <| "To help us find a great home for " ++ getPetName model ++ ", please click on the words that best descirbe them" ]
         , div []
-            [ div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "noisy", name "personality", type_ "checkbox", value "noisy" ]
-                    []
-                , label [ class "personality bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "noisy" ]
-                    [ text "Noisy" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "sleepy", name "personality", type_ "checkbox", value "sleepy" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "sleepy" ]
-                    [ text "Sleepy" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "friendly", name "personality", type_ "checkbox", value "friendly" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "friendly" ]
-                    [ text "Friendly" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "shy", name "personality", type_ "checkbox", value "shy" ]
-                    []
-                , label [ class "personality bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "shy" ]
-                    [ text "Shy" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "playful", name "personality", type_ "checkbox", value "playful" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "playful" ]
-                    [ text "Playful" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "cuddly", name "personality", type_ "checkbox", value "cuddly" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "cuddly" ]
-                    [ text "Cuddly" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "nervous", name "personality", type_ "checkbox", value "nervous" ]
-                    []
-                , label [ class "personality bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "nervous" ]
-                    [ text "Nervous" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "laid-back", name "personality", type_ "checkbox", value "laid-back" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "laid-back" ]
-                    [ text "Laid back" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "obedient", name "personality", type_ "checkbox", value "obedient" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "obedient" ]
-                    [ text "Obedient" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "loving", name "personality", type_ "checkbox", value "loving" ]
-                    []
-                , label [ class "personality bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "loving" ]
-                    [ text "Loving" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "energetic", name "personality", type_ "checkbox", value "energetic" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "energetic" ]
-                    [ text "Energetic" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "grumpy", name "personality", type_ "checkbox", value "grumpy" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "grumpy" ]
-                    [ text "Grumpy" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "hungry", name "personality", type_ "checkbox", value "hungry" ]
-                    []
-                , label [ class "personality bg-white flex items-center justify-center bg-blue  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "hungry" ]
-                    [ text "Hungry" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "calm", name "personality", type_ "checkbox", value "calm" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "calm" ]
-                    [ text "Calm" ]
-                ]
-            , div [ class "fl w-33 w-25-ns tc mb2" ]
-                [ input [ class "dn", id "exciteable", name "personality", type_ "checkbox", value "exciteable" ]
-                    []
-                , label [ class "personality bg-blue flex items-center justify-center bg-white  pointer mw4 br1 mr2 h1 br2 white tc pa3", for "exciteable" ]
-                    [ text "Exciteable" ]
-                ]
+            [ personalityButton "Noisy"
+            , personalityButton "Sleepy"
+            , personalityButton "Friendly"
+            , personalityButton "Shy"
+            , personalityButton "Playful"
+            , personalityButton "Cuddly"
+            , personalityButton "Nervous"
+            , personalityButton "Laid-Back"
+            , personalityButton "Obedient"
+            , personalityButton "Loving"
+            , personalityButton "Energetic"
+            , personalityButton "Grumpy"
+            , personalityButton "Hungry"
+            , personalityButton "Calm"
+            , personalityButton "Exciteable"
             , div [ class "fl w-33 w-25-ns tc mb2 dn dib-ns" ]
                 [ input [ class "dn", id "growler", name "personality", type_ "checkbox", value "growler" ]
                     []
@@ -111,10 +38,7 @@ personality model =
         , div
             [ class "pt4 pb3 dib blue b" ]
             [ text <| "Are there any other personality traits you would like to tell " ++ getPetName model ++ "'s new owner about?" ]
-        , div [ class "w-100" ]
-            [ textarea [ class "w-100 h5 bn bg-light-blue br2 pa2 overflow-auto", id "traits", name "personality", placeholder "Please tell us here", attribute "rows" "6", attribute "cols" "4", attribute "maxlength" "200" ]
-                []
-            ]
+        , textBox ( "Please tell us here", "personality" )
         , div
             [ class "mt4 tc w-100" ]
             [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", href "#new-home" ] [ text "Next" ]
