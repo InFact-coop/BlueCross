@@ -35,7 +35,7 @@ getTitle model =
             getPetName model ++ "'s Personality"
 
         NewHomeRoute ->
-            getPetName model ++ "'s Ideal Home"
+            getPetName model ++ "'s New Home"
 
         OwnerInfoRoute ->
             "Your details"

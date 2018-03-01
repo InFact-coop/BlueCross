@@ -1,5 +1,7 @@
 module Views.NewHome exposing (..)
 
+import Components.LovesHates exposing (..)
+import Components.TextBox exposing (..)
 import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -19,49 +21,54 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-        style
-            [ ( "backgroundImage", gradient ) ]
+    style
+        [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
 newHome model =
-    div [ class "ma3" ]
-        [ div [ class "gray mb3" ] [ text <| "So that we find " ++ getPetName model ++ " a new home they love, where would he put his paws?" ]
+    div [ class "w-60-ns w-90 center" ]
+        [ div [ class "blue b mb3" ] [ text <| "Help us find " ++ getPetName model ++ " a new home they will be happy in. How does " ++ getPetName model ++ " feel about..." ]
         , div [ class "blue b mb2" ] [ text "Cats?" ]
         , div [ class "flex items-center" ]
-            [ img [ src "./assets/cat.svg", class "mr3" ]
+            [ img [ src "./assets/cat.png", class "mr3" ]
                 []
-            , input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
+            , input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
                 []
             ]
-        , div
-            [ class "flex justify-around mb5" ]
-            [ div [ class "gray fw1 mr4" ] [ text "No thanks!" ]
-            , div [ class "gray fw1 ml4" ] [ text "Loves!" ]
+        , loveHate model
+        , div [ class "blue b mb2" ] [ text "Other dogs?" ]
+        , div [ class "flex items-center" ]
+            [ img [ src "./assets/dog.png", class "mr3" ]
+                []
+            , input [ id "myRange", type_ "range", value model.dogs, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.dogs, onInputValue UpdateDogsSlider ]
+                []
             ]
+        , loveHate model
+        , div [ class "blue b mb2" ] [ text "Babies?" ]
+        , div [ class " flex items-center" ]
+            [ img [ src "./assets/baby.png", class "mr3" ] []
+            , input [ id "myRange", type_ "range", rangeNumberToCss model.babies, value model.babies, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.babies, onInputValue UpdateBabiesSlider ]
+                []
+            ]
+        , loveHate model
         , div [ class "blue b mb2" ] [ text "Children?" ]
         , div [ class " flex items-center" ]
-            [ img [ src "./assets/baby.svg", class "mr3" ] []
-            , input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border", onInputValue UpdateChildrenSlider ]
+            [ img [ src "./assets/child.png", class "mr3" ] []
+            , input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.children, onInputValue UpdateChildrenSlider ]
                 []
             ]
-        , div
-            [ class "flex justify-around mb5" ]
-            [ div [ class "gray fw1 mr4" ] [ text "No thanks!" ]
-            , div [ class "gray fw1 ml4" ] [ text "Loves!" ]
-            ]
-        , div [ class "blue b mb2" ] [ text "Unfamilar People?" ]
+        , loveHate model
+        , div [ class "blue b mb2" ] [ text "New People?" ]
         , div [ class " flex items-center" ]
-            [ img [ src "./assets/people.svg", class "mr3" ] []
-            , input [ id "myRange", type_ "range", value model.people, class "w-75 h-custom bg-blue input-reset br4 slider light-border", rangeNumberToCss model.people, onInputValue UpdatePeopleSlider ]
+            [ img [ src "./assets/group.png", class "mr3" ] []
+            , input [ id "myRange", type_ "range", value model.people, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.people, onInputValue UpdatePeopleSlider ]
                 []
             ]
-        , div
-            [ class "flex justify-around mb5" ]
-            [ div [ class "gray fw1 mr4" ] [ text "No thanks!" ]
-            , div [ class "gray fw1 ml4" ] [ text "Loves!" ]
-            ]
-        , div [ class "tc w-100" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link", href "#upload-video" ] [ text "Next" ]
+        , loveHate model
+        , div [ class "blue b mb2" ] [ text <| "Is there anything else we should know about " ++ getPetName model ++ "?" ]
+        , textBox ( "Please tell us here", "newhome" )
+        , div [ class "tc w-100 mt4" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#upload-video" ] [ text "Next" ]
             ]
         ]

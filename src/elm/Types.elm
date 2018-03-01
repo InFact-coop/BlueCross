@@ -10,6 +10,8 @@ type alias Model =
     , cats : String
     , children : String
     , people : String
+    , dogs : String
+    , babies : String
     , videoMessage : String
     , messageLength : Int
     , videoStage : Stage
@@ -53,6 +55,8 @@ type Msg
     | UpdateCatsSlider String
     | UpdateChildrenSlider String
     | UpdatePeopleSlider String
+    | UpdateDogsSlider String
+    | UpdateBabiesSlider String
     | RecordStart String
     | RecordStop String
     | RecordError String
