@@ -1,7 +1,7 @@
 module Types exposing (..)
 
-import Navigation
 import Http exposing (..)
+import Navigation
 
 
 type alias Model =
@@ -10,6 +10,8 @@ type alias Model =
     , cats : String
     , children : String
     , people : String
+    , dogs : String
+    , babies : String
     , videoMessage : String
     , liveVideoUrl : String
     , messageLength : Int
@@ -42,13 +44,13 @@ type Route
     = HomeRoute
     | BeforeYouBeginRoute
     | PetInfoRoute
-    | LocationRoute
     | PhotosRoute
     | PersonalityRoute
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
     | NewHomeRoute
+    | FindingAHomeRoute
 
 
 type alias Image =
@@ -67,6 +69,8 @@ type Msg
     | UpdateCatsSlider String
     | UpdateChildrenSlider String
     | UpdatePeopleSlider String
+    | UpdateDogsSlider String
+    | UpdateBabiesSlider String
     | RecordStart String
     | RecordStop String
     | RecordError String

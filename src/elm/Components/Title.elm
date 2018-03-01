@@ -26,13 +26,10 @@ getTitle model =
             "Find a new home for your pet"
 
         BeforeYouBeginRoute ->
-            "Health"
+            getPetName model ++ "'s Health"
 
         PetInfoRoute ->
             "About " ++ getPetName model
-
-        LocationRoute ->
-            "Who's looking?"
 
         PersonalityRoute ->
             getPetName model ++ "'s Personality"
@@ -41,13 +38,16 @@ getTitle model =
             getPetName model ++ "'s Photos"
 
         NewHomeRoute ->
-            getPetName model ++ "'s Ideal Home"
+            getPetName model ++ "'s New Home"
 
         OwnerInfoRoute ->
             "Your details"
 
         ThankYouRoute ->
             ""
+
+        FindingAHomeRoute ->
+            "Finding a new home for " ++ getPetName model
 
         NotFoundRoute ->
             "Sorry"

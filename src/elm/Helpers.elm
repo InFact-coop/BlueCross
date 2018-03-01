@@ -34,10 +34,10 @@ prettifyNumber number =
         numberString =
             toString number
     in
-        if String.length numberString > 3 then
-            String.dropRight 3 numberString ++ "," ++ String.right 3 numberString
-        else
-            numberString
+    if String.length numberString > 3 then
+        String.dropRight 3 numberString ++ "," ++ String.right 3 numberString
+    else
+        numberString
 
 
 getPetName : Model -> String

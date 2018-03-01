@@ -14,11 +14,13 @@ import Types exposing (..)
 
 initModel : Model
 initModel =
-    { route = PersonalityRoute
+    { route = HomeRoute
     , nextClickable = False
     , cats = "50"
     , children = "50"
     , people = "50"
+    , dogs = "50"
+    , babies = "50"
     , videoMessage = ""
     , liveVideoUrl = ""
     , messageLength = 0
@@ -106,6 +108,12 @@ update msg model =
 
         UpdatePeopleSlider value ->
             { model | people = value } ! []
+
+        UpdateDogsSlider value ->
+            { model | dogs = value } ! []
+
+        UpdateBabiesSlider value ->
+            { model | babies = value } ! []
 
         UpdatePetName name ->
             { model | petName = name } ! []

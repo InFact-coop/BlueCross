@@ -7,8 +7,8 @@ import Html.Attributes exposing (..)
 import Navigation exposing (..)
 import Types exposing (..)
 import Views.BeforeYouBegin exposing (..)
+import Views.FindingAHome exposing (..)
 import Views.Home exposing (..)
-import Views.Location exposing (..)
 import Views.NewHome exposing (..)
 import Views.NotFound exposing (..)
 import Views.OwnerInfo exposing (..)
@@ -46,14 +46,14 @@ getCurrentView model =
         PersonalityRoute ->
             personality model
 
-        LocationRoute ->
-            location model
-
         OwnerInfoRoute ->
             ownerInfo model
 
         ThankYouRoute ->
             thankYou model
+
+        FindingAHomeRoute ->
+            findingAHome model
 
         NotFoundRoute ->
             notFound model
@@ -80,9 +80,6 @@ getRoute hash =
         "#pet-info" ->
             PetInfoRoute
 
-        "#location" ->
-            LocationRoute
-
         "#personality" ->
             PersonalityRoute
 
@@ -97,6 +94,9 @@ getRoute hash =
 
         "#photos" ->
             PhotosRoute
+
+        "#finding-home" ->
+            FindingAHomeRoute
 
         _ ->
             NotFoundRoute
