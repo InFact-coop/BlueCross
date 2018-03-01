@@ -19,7 +19,7 @@ onBlurValue tagger =
 
 petInfo : Model -> Html Msg
 petInfo model =
-    div [ class "w-60-ns center ma3 ma0-ns" ]
+    div [ class "w-60-ns w-90 center ma3 ma0-ns" ]
         [ div
             [ class " blue b mb2" ]
             [ text "What is your pet's name?" ]
@@ -43,7 +43,7 @@ petInfo model =
                 , p
                     [ class "mt0 blue" ]
                     [ text "&" ]
-                , select [ class "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", id "dogBreed" ]
+                , select [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", id "dogBreed" ]
                     (List.map
                         dogBreedDropDown
                         dogBreedsList

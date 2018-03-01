@@ -151,3 +151,14 @@ input:checked + .age {
   height: 90vh;
   width:100%;
 }
+
+.upload-background {
+  background-image : url("./assets/upload.png");
+background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.margin-minus{
+  margin-top: -4rem;
+}
