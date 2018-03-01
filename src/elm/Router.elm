@@ -2,6 +2,7 @@ module Router exposing (..)
 
 import Components.Navbar exposing (..)
 import Components.Title exposing (..)
+import Data.DogBreeds exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Navigation exposing (..)
@@ -24,11 +25,11 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
-            [ navbar model
-            , viewTitle model
-            , view
-            ]
+    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
+        [ navbar model
+        , viewTitle model
+        , view
+        ]
 
 
 getCurrentView : Model -> Html Msg
@@ -108,4 +109,4 @@ viewFromUrl location model =
         view =
             getRoute location.hash
     in
-        { model | route = view }
+    { model | route = view }

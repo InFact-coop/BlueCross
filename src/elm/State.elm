@@ -1,5 +1,6 @@
 port module State exposing (..)
 
+import Data.DogBreeds exposing (..)
 import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
@@ -55,7 +56,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+    model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
