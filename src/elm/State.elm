@@ -16,21 +16,36 @@ initModel : Model
 initModel =
     { route = HomeRoute
     , nextClickable = False
+    , formStatus = NotAsked
+    , photoStatus = NotAsked
+    , liveVideoUrl = ""
+    , imageId = "imageUpload"
+    , urgency = UpTo1Week
+    , petName = ""
+    , crossBreed = Neutral
+    , primaryBreedType = Nothing
+    , secondaryBreedType = Nothing
+    , reasonForRehoming = ""
+    , otherReasonsForRehoming = ""
+    , dogGender = Male
+    , dogAge = Between0To1Year
+    , medicalDetails = []
+    , lastVetVisit = UpTo3Months
+    , otherHealthNotes = ""
+    , personalityTraits = []
+    , otherPersonalityNotes = ""
     , cats = "50"
     , children = "50"
     , people = "50"
     , dogs = "50"
     , babies = "50"
-    , videoMessage = ""
-    , liveVideoUrl = ""
-    , messageLength = 0
-    , videoStage = Stage0
-    , paused = True
-    , petName = ""
+    , otherNotes = ""
     , image = Nothing
-    , formStatus = NotAsked
-    , photoStatus = NotAsked
-    , imageId = "imageUpload"
+    , supportType = []
+    , ownerName = ""
+    , ownerPhone = ""
+    , bestTimeToCall = AM
+    , email = ""
     }
 
 
@@ -49,21 +64,8 @@ update msg model =
         NoOp ->
             model ! []
 
-        Increment ->
-            if model.messageLength >= 30 then
-                model
-                    |> update (ToggleVideo Stage1)
-            else
-                { model | messageLength = model.messageLength + 1 } ! []
-
-        RecordStart string ->
-            ( model, recordStart string )
-
         StopPhoto ->
             model ! [ stopPhoto () ]
-
-        RecordStop string ->
-            ( model, recordStop string )
 
         ReceiveLiveVideo string ->
             { model | liveVideoUrl = string } ! []
@@ -74,28 +76,11 @@ update msg model =
         ReceivePhotoUrl (Err string) ->
             model ! []
 
-        RecordError err ->
-            { model | videoStage = StageErr } ! []
-
         TakePhoto ->
             model ! [ takePhoto () ]
 
-        ToggleVideo stage ->
-            case stage of
-                StageErr ->
-                    { model | videoStage = StageErr } ! []
-
-                Stage2 ->
-                    { model | videoStage = Stage0 } ! []
-
-                Stage1 ->
-                    { model | videoStage = Stage2, nextClickable = True } ! [ recordStop "yes" ]
-
-                Stage0 ->
-                    { model | videoStage = Stage1 } ! [ recordStart "yes" ]
-
         UrlChange location ->
-            { model | route = getRoute location.hash, nextClickable = False, videoStage = Stage0, videoMessage = "" } ! [ Task.attempt (always NoOp) (toTop "container") ]
+            { model | route = getRoute location.hash, nextClickable = False } ! [ Task.attempt (always NoOp) (toTop "container") ]
 
         MakeNextClickable ->
             { model | nextClickable = True } ! []
@@ -181,20 +166,6 @@ port fileSelected : String -> Cmd msg
 port fileContentRead : (Json.Decode.Value -> msg) -> Sub msg
 
 
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.batch
-        [ liveVideoUrl ReceiveLiveVideo
-        , receivePhotoUrl (decodeSingleImage >> ReceivePhotoUrl)
-        , recordError RecordError
-        , fileContentRead (decodeImageList >> ImageRead)
-        , if not model.paused then
-            Time.every second (always Increment)
-          else
-            Sub.none
-        ]
-
-
 addToGallery : Model -> Image -> Maybe (List Image)
 addToGallery model newImage =
     case model.image of
@@ -213,3 +184,12 @@ addListToGallery model listImages =
 
         Nothing ->
             Just listImages
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch
+        [ liveVideoUrl ReceiveLiveVideo
+        , receivePhotoUrl (decodeSingleImage >> ReceivePhotoUrl)
+        , fileContentRead (decodeImageList >> ImageRead)
+        ]
