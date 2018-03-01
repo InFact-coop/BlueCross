@@ -3,7 +3,7 @@ module Data.DogBreeds exposing (..)
 import Types exposing (..)
 
 
-dogBreedsList : List DogBreeds
+dogBreedsList : List DogBreed
 dogBreedsList =
     [ Akita
     , AlaskanMalamute
@@ -77,7 +77,6 @@ dogBreedsList =
     , MongrelSmall
     , NorfolkTerrier
     , NovaScotiaDuckTollingRetriever
-    , NULL
     , OldEnglishSheepdog
     , Papillon
     , ParsonsJackRussellTerrier
