@@ -159,6 +159,13 @@ background-position: center;
 
 }
 
+.take-photo-background {
+  background-image : url("./assets/camera.png");
+background-position: center;
+  background-repeat: no-repeat;
+
+}
+
 .margin-minus{
   margin-top: -3rem;
 }
