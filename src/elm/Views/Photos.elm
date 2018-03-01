@@ -34,7 +34,7 @@ photos model =
          , label [ for model.imageId, class "b blue" ] [ text <| ("Please take or upload a photo of " ++ getPetName model) ]
          , br [ class "pa3" ] []
          , div [ class "flex flex-wrap justify-center" ]
-            [ div [ class "ba w-40-ns w-80 vh-25 vh-50-ns br2 b--blue ma3 " ]
+            [ div [ class "ba w-40-ns w-80 vh-40-ns br2 b--blue ma3 " ]
                 [ div [ class "h-100" ]
                     [ div [ class " white f4 fw1  v-mid tc center h-100 w-100 upload-background " ]
                         [ input
@@ -53,7 +53,7 @@ photos model =
                     ]
                 , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
                 ]
-            , div [ class "ba w-40-ns w-80 vh-25 vh-50-ns br2 b--blue ma3" ]
+            , div [ class "ba w-40-ns w-80 vh-25 vh-40-ns br2 b--blue ma3" ]
                 [ button [ class "mh2", onClick PreparePhoto ] [ text "1. Want to take a Photo?" ]
                 , button [ class "mh2", onClick TakePhoto ] [ text "2. Lights, Camera, Action!" ]
                 , button [ class "mh2", onClick StopPhoto ] [ text "3. I'm Done Taking Photos!" ]
