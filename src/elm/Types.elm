@@ -13,11 +13,16 @@ type alias Model =
     , dogs : String
     , babies : String
     , videoMessage : String
+    , liveVideoUrl : String
     , messageLength : Int
     , videoStage : Stage
     , paused : Bool
     , petName : String
+    , image : Maybe (List Image)
+    , imageId : String
     , formStatus : RemoteData
+    , photoStatus : RemoteData
+    , people : String
     }
 
 
@@ -39,19 +44,28 @@ type Route
     = HomeRoute
     | BeforeYouBeginRoute
     | PetInfoRoute
+    | PhotosRoute
     | PersonalityRoute
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
-    | VideoRoute
     | NewHomeRoute
     | FindingAHomeRoute
+
+
+type alias Image =
+    { contents : String
+    , filename : String
+    }
 
 
 type Msg
     = NoOp
     | UrlChange Navigation.Location
     | MakeNextClickable
+    | PreparePhoto
+    | TakePhoto
+    | StopPhoto
     | UpdateCatsSlider String
     | UpdateChildrenSlider String
     | UpdatePeopleSlider String
@@ -60,9 +74,14 @@ type Msg
     | RecordStart String
     | RecordStop String
     | RecordError String
-    | RecieveVideo String
+    | ReceiveLiveVideo String
+    | ReceivePhotoUrl (Result String Image)
+    | ReceivePhotoUploadStatus (Result Http.Error Bool)
     | ToggleVideo Stage
     | Increment
     | UpdatePetName String
+    | UploadPhotos
+    | ImageSelected
+    | ImageRead (Result String (List Image))
     | SubmitForm
     | ReceiveFormStatus (Result Http.Error Bool)

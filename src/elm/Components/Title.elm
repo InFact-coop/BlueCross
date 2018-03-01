@@ -34,6 +34,9 @@ getTitle model =
         PersonalityRoute ->
             getPetName model ++ "'s Personality"
 
+        PhotosRoute ->
+            getPetName model ++ "'s Photos"
+
         NewHomeRoute ->
             getPetName model ++ "'s New Home"
 
@@ -42,9 +45,6 @@ getTitle model =
 
         ThankYouRoute ->
             ""
-
-        VideoRoute ->
-            "Photos & Videos"
 
         FindingAHomeRoute ->
             "Finding a new home for " ++ getPetName model

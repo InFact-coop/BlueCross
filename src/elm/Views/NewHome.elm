@@ -21,8 +21,8 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-    style
-        [ ( "backgroundImage", gradient ) ]
+        style
+            [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
@@ -69,6 +69,6 @@ newHome model =
         , div [ class "blue b mb2" ] [ text <| "Is there anything else we should know about " ++ getPetName model ++ "?" ]
         , textBox ( "Please tell us here", "newhome" )
         , div [ class "tc w-100 mt4" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#upload-video" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#photos" ] [ text "Next" ]
             ]
         ]

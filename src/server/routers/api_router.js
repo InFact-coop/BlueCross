@@ -1,6 +1,43 @@
 const router = require('express').Router();
 const path = require('path');
 const sendemail = require('sendemail');
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUDNAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+router.route('/upload-photos').post((req, res, next) => {
+  const images = req.body;
+
+  const imageToPromise = image => {
+    return new Promise((resolve, reject) => {
+      cloudinary.v2.uploader.upload(image.contents, (err, result) => {
+        if (err) {
+          reject({ success: false });
+          console.log('File Error', err);
+        } else {
+          resolve({ success: true });
+          console.log('File Success: ', result);
+        }
+      });
+    });
+  };
+
+  const cloudinaryPromises = images.map(imageToPromise);
+
+  Promise.all(cloudinaryPromises)
+    .then(values => {
+      console.log('Final Values: ', values);
+      return res.json({ success: true });
+    })
+    .catch(err => {
+      console.log('Final Error: ', err);
+      return res.json({ success: false });
+    });
+});
 
 router.route('/send-form').post((req, res, next) => {
   const dir = path.join(__dirname, '..', '..', 'email', 'templates');

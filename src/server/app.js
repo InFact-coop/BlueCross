@@ -22,7 +22,7 @@ var https_redirect = function(req, res, next) {
 
 app.use(https_redirect);
 app.use(express.static(path.join(__dirname, '../../public')));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 app.use('/api/v1/', api_router);
 
