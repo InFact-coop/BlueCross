@@ -55,10 +55,10 @@ photos model =
                 ]
             , div [ class "ba w-40-ns w-80 vh-25 vh-40-ns br2 b--blue ma3" ]
                 [ button [ class "w-100  h-100 pointer bn blue cursor", onClick PreparePhoto ]
-                    [ img [ src "./assets/camera.png", class "w4 h4" ] []
+                    [ img [ src "./assets/camera.png", class "w4 h-auto" ] []
                     , br [] []
-                    , p [] [ text "Take a Photo" ]
                     ]
+                , div [ class "blue tc margin-minus dn db-ns" ] [ text "Take Photo" ]
 
                 -- , button [ class "mh2", onClick TakePhoto ] [ text "2. Lights, Camera, Action!" ]
                 -- , button [ class "mh2", onClick StopPhoto ] [ text "3. I'm Done Taking Photos!" ]
