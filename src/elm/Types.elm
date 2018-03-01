@@ -7,53 +7,110 @@ import Navigation
 type alias Model =
     { route : Route
     , nextClickable : Bool
-    , cats : String
-    , children : String
-    , people : String
-    , dogs : String
-    , babies : String
-    , videoMessage : String
-    , liveVideoUrl : String
-    , messageLength : Int
-    , videoStage : Stage
-    , paused : Bool
-    , petName : String
-    , image : Maybe (List Image)
-    , imageId : String
     , formStatus : RemoteData
     , photoStatus : RemoteData
+    , liveVideoUrl : String
+    , imageId : String
+    , urgency : TimeScale
+    , petName : String
+    , crossBreed : Trilean
+    , primaryBreedType : Maybe DogBreed
+    , secondaryBreedType : Maybe DogBreed
+    , reasonForRehoming : String
+    , otherReasonsForRehoming : String
+    , dogGender : Gender
+    , dogAge : AgeRange
+    , medicalDetails : List MedicalCheck
+    , lastVetVisit : VetTimeScale
+    , otherHealthNotes : String
+    , personalityTraits : List PersonalityTraits
+    , otherPersonalityNotes : String
+    , cats : String
+    , dogs : String
+    , babies : String
+    , children : String
     , people : String
+    , otherNotes : String
+    , image : Maybe (List Image)
+    , supportType : List SupportType
+    , ownerName : String
+    , ownerPhone : String
+    , bestTimeToCall : TimeOfDay
+    , email : String
     }
 
 
-type Stage
-    = Stage0
-    | Stage1
-    | Stage2
-    | StageErr
+type Gender
+    = Male
+    | Female
 
 
-type RemoteData
-    = NotAsked
-    | Loading
-    | ResponseFailure
-    | ResponseSuccess
+type TimeOfDay
+    = AM
+    | PM
 
 
-type Route
-    = HomeRoute
-    | BeforeYouBeginRoute
-    | PetInfoRoute
-    | PhotosRoute
-    | PersonalityRoute
-    | OwnerInfoRoute
-    | ThankYouRoute
-    | NotFoundRoute
-    | NewHomeRoute
-    | FindingAHomeRoute
+type SupportType
+    = HomeDirect
+    | RehomingCentre
+    | Unsure
+    | DontMind
 
 
-type DogBreeds
+type PersonalityTraits
+    = Noisy
+    | Sleepy
+    | Friendly
+    | Shy
+    | Playful
+    | Cuddly
+    | Nervous
+    | LaidBack
+    | Obedient
+    | Loving
+    | Energetic
+    | Grumpy
+    | Hungry
+    | Calm
+    | Excitable
+    | Growler
+
+
+type MedicalCheck
+    = Vaccinated
+    | Neutered
+    | Microchipped
+    | Unknown
+
+
+type VetTimeScale
+    = UpTo3Months
+    | Between3To12Months
+    | OverAYear
+    | UnknownSlashNever
+
+
+type Trilean
+    = True
+    | False
+    | Neutral
+
+
+type AgeRange
+    = Between0To1Year
+    | Between2To5Years
+    | Between6To10Years
+    | Over10Years
+
+
+type TimeScale
+    = UpTo1Week
+    | Between2To3Weeks
+    | Between1To2Months
+    | Over2Months
+
+
+type DogBreed
     = Akita
     | AlaskanMalamute
     | AmericanBullDog
@@ -159,6 +216,33 @@ type DogBreeds
     | YorkshireTerrier
 
 
+type Stage
+    = Stage0
+    | Stage1
+    | Stage2
+    | StageErr
+
+
+type RemoteData
+    = NotAsked
+    | Loading
+    | ResponseFailure
+    | ResponseSuccess
+
+
+type Route
+    = HomeRoute
+    | BeforeYouBeginRoute
+    | PetInfoRoute
+    | PhotosRoute
+    | PersonalityRoute
+    | OwnerInfoRoute
+    | ThankYouRoute
+    | NotFoundRoute
+    | NewHomeRoute
+    | FindingAHomeRoute
+
+
 type alias Image =
     { contents : String
     , filename : String
@@ -177,14 +261,9 @@ type Msg
     | UpdatePeopleSlider String
     | UpdateDogsSlider String
     | UpdateBabiesSlider String
-    | RecordStart String
-    | RecordStop String
-    | RecordError String
     | ReceiveLiveVideo String
     | ReceivePhotoUrl (Result String Image)
     | ReceivePhotoUploadStatus (Result Http.Error Bool)
-    | ToggleVideo Stage
-    | Increment
     | UpdatePetName String
     | UploadPhotos
     | ImageSelected
