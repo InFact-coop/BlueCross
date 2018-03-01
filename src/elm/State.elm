@@ -56,7 +56,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! []
+        model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -135,6 +135,9 @@ update msg model =
 
         PreparePhoto ->
             model ! [ preparePhoto () ]
+
+        UpdateUrgency timescale ->
+            { model | urgency = timescale, nextClickable = True } ! []
 
 
 port recordStart : String -> Cmd msg

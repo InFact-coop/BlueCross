@@ -108,6 +108,7 @@ type TimeScale
     | Between2To3Weeks
     | Between1To2Months
     | Over2Months
+    | NoTimeScale
 
 
 type DogBreed
@@ -265,6 +266,7 @@ type Msg
     | ReceivePhotoUrl (Result String Image)
     | ReceivePhotoUploadStatus (Result Http.Error Bool)
     | UpdatePetName String
+    | UpdateUrgency TimeScale
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))

@@ -30,8 +30,8 @@ petInfo model =
         , div [ class "gray f6 fw1" ] [ text "Please enter your pet's name" ]
         , div []
             [ div [ class "blue b mb2 mt4" ] [ text <| "Is " ++ getPetName model ++ " a cross breed?" ]
-            , customBlueButtons ( "Yes", "crossBreed" )
-            , customBlueButtons ( "No", "crossBreed" )
+            , customBlueButton ( "Yes", "crossBreed" )
+            , customBlueButton ( "No", "crossBreed" )
             , div []
                 [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
             , div []
@@ -67,13 +67,13 @@ petInfo model =
         , div [ class "gray f6 fw1" ] [ text "Other:" ]
         , textBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" )
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
-        , customBlueButtons ( "Male", "sex" )
-        , customBlueButtons ( "Female", "sex" )
+        , customBlueButton ( "Male", "sex" )
+        , customBlueButton ( "Female", "sex" )
         , div [ class "blue b mb2 mt4" ] [ text <| "How old is " ++ getPetName model ++ "?" ]
-        , customBlueButtons ( "0-1 year", "age" )
-        , customBlueButtons ( "2-5 years", "age" )
-        , customBlueButtons ( "6-10 years", "age" )
-        , customBlueButtons ( "Over 10 years", "age" )
+        , customBlueButton ( "0-1 year", "age" )
+        , customBlueButton ( "2-5 years", "age" )
+        , customBlueButton ( "6-10 years", "age" )
+        , customBlueButton ( "Over 10 years", "age" )
         , div [ class "tc w-100 mt4" ]
             [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#before-you-begin" ] [ text "Next" ]
             ]

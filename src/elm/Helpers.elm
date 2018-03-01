@@ -17,7 +17,7 @@ ifThenElse conditional trueCase falseCase =
 unionTypeToString : a -> String
 unionTypeToString a =
     Regex.replace All
-        (Regex.regex "[A-Z]")
+        (Regex.regex "[A-Z]|[0-9]")
         (\{ match } -> " " ++ match)
         (toString a)
         |> String.trim
@@ -34,10 +34,10 @@ prettifyNumber number =
         numberString =
             toString number
     in
-    if String.length numberString > 3 then
-        String.dropRight 3 numberString ++ "," ++ String.right 3 numberString
-    else
-        numberString
+        if String.length numberString > 3 then
+            String.dropRight 3 numberString ++ "," ++ String.right 3 numberString
+        else
+            numberString
 
 
 getPetName : Model -> String
