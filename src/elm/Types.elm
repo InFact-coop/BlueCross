@@ -39,13 +39,13 @@ type Route
     = HomeRoute
     | BeforeYouBeginRoute
     | PetInfoRoute
-    | LocationRoute
     | PersonalityRoute
     | OwnerInfoRoute
     | ThankYouRoute
     | NotFoundRoute
     | VideoRoute
     | NewHomeRoute
+    | FindingAHomeRoute
 
 
 type Msg

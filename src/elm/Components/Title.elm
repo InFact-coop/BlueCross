@@ -31,9 +31,6 @@ getTitle model =
         PetInfoRoute ->
             "About " ++ getPetName model
 
-        LocationRoute ->
-            "Who's looking?"
-
         PersonalityRoute ->
             getPetName model ++ "'s Personality"
 
@@ -48,6 +45,9 @@ getTitle model =
 
         VideoRoute ->
             "Photos & Videos"
+
+        FindingAHomeRoute ->
+            "Finding a new home for " ++ getPetName model
 
         NotFoundRoute ->
             "Sorry"
