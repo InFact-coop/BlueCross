@@ -21,8 +21,8 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-        style
-            [ ( "backgroundImage", gradient ) ]
+    style
+        [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
@@ -31,7 +31,7 @@ newHome model =
         [ div [ class "blue b mb3" ] [ text <| "Help us find " ++ getPetName model ++ " a new home they will be happy in. How does " ++ getPetName model ++ " feel about..." ]
         , div [ class "blue b mb2" ] [ text "Cats?" ]
         , div [ class "flex items-center" ]
-            [ img [ src "./assets/cat.png", class "mr3" ]
+            [ img [ src "./assets/catIcon.png", class "mr3" ]
                 []
             , input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
                 []
@@ -39,7 +39,7 @@ newHome model =
         , loveHate model
         , div [ class "blue b mb2" ] [ text "Other dogs?" ]
         , div [ class "flex items-center" ]
-            [ img [ src "./assets/dog.png", class "mr3" ]
+            [ img [ src "./assets/dogIcon.png", class "mr3" ]
                 []
             , input [ id "myRange", type_ "range", value model.dogs, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.dogs, onInputValue UpdateDogsSlider ]
                 []
