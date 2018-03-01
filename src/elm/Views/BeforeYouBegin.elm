@@ -29,10 +29,10 @@ beforeYouBegin model =
             , label [ for "Unknown", class "gray ml2" ] [ text "Unknown" ]
             ]
         , div [ class "blue b mt4 pb3" ] [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?" ]
-        , fourBlueButtons "Up to 3 months"
-        , fourBlueButtons "3 to 12 months"
-        , fourBlueButtons "Over a year"
-        , fourBlueButtons "Unknown/never"
+        , customBlueButtons ( "Up to 3 months", "health" )
+        , customBlueButtons ( "3 to 12 months", "health" )
+        , customBlueButtons ( "Over a year", "health" )
+        , customBlueButtons ( "Unknown/never", "health" )
         , div [ class "blue b mb3 mt4" ] [ text <| "Anything else to note about " ++ getPetName model ++ "'s health?" ]
         , textBox ( "Please tell us here", "Health" )
         , div [ class "mv4 tc w-100" ]
