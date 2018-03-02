@@ -35,6 +35,7 @@ type alias Model =
     , supportType : List String
     , ownerName : String
     , ownerPhone : String
+    , alternativeOwnerPhone : String
     , bestTimeToCall : TimeOfDay
     , email : String
     }
@@ -48,6 +49,7 @@ type Gender
 type TimeOfDay
     = AM
     | PM
+    | NoPreference
 
 
 type SupportType
@@ -277,6 +279,11 @@ type Msg
     | UpdateCrossBreed Trilean
     | UpdateOtherPersonality String
     | UpdateReason String
+    | UpdateOwnerName String
+    | UpdateOwnerPhone String
+    | UpdateAlternativeOwnerPhone String
+    | UpdateBestTimeToCall TimeOfDay
+    | UpdateOwnerEmail String
     | ToggleMedicalDetail String Bool
     | ToggleSupportPreference String Bool
     | UpdateOtherReasons String

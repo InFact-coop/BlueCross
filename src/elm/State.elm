@@ -44,6 +44,7 @@ initModel =
     , supportType = []
     , ownerName = ""
     , ownerPhone = ""
+    , alternativeOwnerPhone = ""
     , bestTimeToCall = AM
     , email = ""
     }
@@ -164,6 +165,21 @@ update msg model =
 
         UpdateOtherHealth string ->
             { model | otherHealthNotes = string } ! []
+
+        UpdateOwnerName string ->
+            { model | ownerName = string } ! []
+
+        UpdateOwnerEmail string ->
+            { model | email = string } ! []
+
+        UpdateOwnerPhone string ->
+            { model | ownerPhone = string } ! []
+
+        UpdateAlternativeOwnerPhone string ->
+            { model | alternativeOwnerPhone = string } ! []
+
+        UpdateBestTimeToCall timeOfDay ->
+            { model | bestTimeToCall = timeOfDay } ! []
 
         UpdateOtherPersonality string ->
             { model | otherPersonalityNotes = string } ! []
