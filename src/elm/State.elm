@@ -120,7 +120,7 @@ update msg model =
             { model | formStatus = Loading } ! [ postForm model ]
 
         UploadPhotos ->
-            { model | photoStatus = Loading } ! [ uploadPhotos model ]
+            { model | photoStatus = Loading } ! [ uploadPhotos model, stopPhoto () ]
 
         ImageSelected ->
             ( model

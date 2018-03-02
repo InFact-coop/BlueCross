@@ -103,6 +103,6 @@ renderImage image =
     img
         [ src image.contents
         , title image.filename
-        , class "dib w-25 h-auto mh4 mv2 br2"
+        , class "dib w-40 h-auto mh4 mv2 br2"
         ]
         []
