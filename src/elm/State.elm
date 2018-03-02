@@ -146,6 +146,9 @@ update msg model =
         UpdateSecondaryBreed breed ->
             { model | secondaryBreedType = Just breed } ! []
 
+        UpdateReason string ->
+            { model | reasonForRehoming = string } ! []
+
 
 port recordStart : String -> Cmd msg
 

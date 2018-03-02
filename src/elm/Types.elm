@@ -270,6 +270,7 @@ type Msg
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
     | UpdateCrossBreed Trilean
+    | UpdateReason String
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))
