@@ -32,7 +32,7 @@ type alias Model =
     , people : String
     , otherNotes : String
     , image : Maybe (List Image)
-    , supportType : List SupportType
+    , supportType : List String
     , ownerName : String
     , ownerPhone : String
     , bestTimeToCall : TimeOfDay
@@ -278,7 +278,9 @@ type Msg
     | UpdateOtherPersonality String
     | UpdateReason String
     | ToggleMedicalDetail String Bool
+    | ToggleSupportPreference String Bool
     | UpdateOtherReasons String
+    | UpdateOtherGeneral String
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))

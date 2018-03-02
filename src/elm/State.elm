@@ -168,6 +168,9 @@ update msg model =
         UpdateOtherPersonality string ->
             { model | otherPersonalityNotes = string } ! []
 
+        UpdateOtherGeneral string ->
+            { model | otherNotes = string } ! []
+
         ToggleMedicalDetail string checked ->
             if checked && isNewListEntry string model.medicalDetails then
                 { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
@@ -179,6 +182,12 @@ update msg model =
                 { model | personalityTraits = model.personalityTraits ++ [ string ] } ! []
             else
                 { model | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
+
+        ToggleSupportPreference string checked ->
+            if checked && isNewListEntry string model.supportType then
+                { model | supportType = model.supportType ++ [ string ] } ! []
+            else
+                { model | supportType = List.filter (\x -> x /= string) model.supportType } ! []
 
 
 port recordStart : String -> Cmd msg
