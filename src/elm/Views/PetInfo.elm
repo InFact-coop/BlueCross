@@ -2,6 +2,7 @@ module Views.PetInfo exposing (..)
 
 import Components.BlueButton exposing (..)
 import Components.DogBreedDropDown exposing (..)
+import Components.StyleHelpers exposing (classes, displayElement)
 import Components.TextBox exposing (..)
 import Data.DogBreeds exposing (..)
 import Helpers exposing (getPetName)
@@ -36,7 +37,7 @@ petInfo model =
             , div []
                 [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
             , div []
-                [ select [ class "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", id "dogBreed" ]
+                [ select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2" ], id "dogBreed" ]
                     (List.map
                         dogBreedDropDown
                         dogBreedsList
@@ -44,7 +45,7 @@ petInfo model =
                 , p
                     [ class "mt0 blue" ]
                     [ text "&" ]
-                , select [ class "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", id "dogBreed" ]
+                , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], id "dogBreed" ]
                     (List.map
                         dogBreedDropDown
                         dogBreedsList
