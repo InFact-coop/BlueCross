@@ -16,8 +16,8 @@ photos model =
             List.map renderImage <| Maybe.withDefault [] model.image
     in
     div [ class "w-60-ns w-90 center ma3 " ]
-        ([ header [ class "b blue" ] [ text "So potential owners can see what Max looks like we would love to see a photo!" ]
-         , section []
+        [ header [ class "b blue" ] [ text "So potential owners can see what Max looks like we would love to see a photo!" ]
+        , section []
             [ p [ class "fw1" ]
                 [ img [ src "./assets/tick.png", class "mr2" ] []
                 , text <| "Please let us see " ++ getPetName model ++ "'s face"
@@ -31,8 +31,8 @@ photos model =
                 , text "Only recent photos please"
                 ]
             ]
-         , h4 [ class "blue fw1" ] [ text " Examples of good and bad photos:" ]
-         , div [ class "flex flex-wrap mb4 justify-center" ]
+        , h4 [ class "blue fw1" ] [ text " Examples of good and bad photos:" ]
+        , div [ class "flex flex-wrap mb4 justify-center" ]
             [ div [ class "w-40 mr4" ]
                 [ img [ src "./assets/good-photo.png", class "w-100 br2" ]
                     []
@@ -43,9 +43,9 @@ photos model =
                 , div [ class "w-100 flex justify-center" ] [ img [ src "./assets/bad-photo-cross.png", class "h3 w-auto margin-minus" ] [] ]
                 ]
             ]
-         , label [ for model.imageId, class "b blue" ] [ text <| ("Please take or upload a photo of " ++ getPetName model) ]
-         , br [ class "pa3" ] []
-         , div [ class "flex flex-wrap justify-center" ]
+        , label [ for model.imageId, class "b blue" ] [ text <| ("Please take or upload a photo of " ++ getPetName model) ]
+        , br [ class "pa3" ] []
+        , div [ class "flex flex-wrap justify-center" ]
             [ div [ class "ba w-40-ns w-80 vh-40-ns br2 b--blue ma3 " ]
                 [ div [ class "h-100" ]
                     [ div [ class " white f4 fw1  v-mid tc center h-100 w-100 upload-background " ]
@@ -72,18 +72,30 @@ photos model =
                     ]
                 , div [ class "blue tc margin-minus dn db-ns" ] [ text "Take Photo" ]
 
-                -- , button [ class "mh2", onClick TakePhoto ] [ text "2. Lights, Camera, Action!" ]
-                -- , button [ class "mh2", onClick StopPhoto ] [ text "3. I'm Done Taking Photos!" ]
                 -- , button [ class "mh2", onClick UploadPhotos ] [ text "4. Upload My Photos To The Cloud!" ]
                 ]
-            , Html.video [ classes [ displayElement <| model.liveVideoUrl /= "" ], autoplay True, src model.liveVideoUrl ] []
+            , div [] imageList
+            , div [ class "mb3" ]
+                [ Html.video [ classes [ displayElement <| model.liveVideoUrl /= "" ], autoplay True, src model.liveVideoUrl ]
+                    []
+                , div [ class "w-100 tc center flex justify-center" ]
+                    [ div []
+                        [ button [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "mh3 bn bg-blue br-100 h3 w3 white hover-bg-navy pa2", onClick TakePhoto ]
+                            [ img [ src "./assets/white-camera.png", class "w2 center" ] [] ]
+                        , p [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "gray fw1 mt1" ] [ text "Take Photo" ]
+                        ]
+                    , div []
+                        [ button [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "mh3 bn bg-blue br-100 h3 w3 white hover-bg-navy pa2", onClick StopPhoto ]
+                            [ img [ src "./assets/white-tick.png", class "w2 center" ] [] ]
+                        , p [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "gray fw1 mt1" ] [ text "Finish" ]
+                        ]
+                    ]
+                ]
             , div [ class "mt4 tc w-100" ]
                 [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", href "#finding-home" ] [ text "Next" ]
                 ]
             ]
-         ]
-            ++ imageList
-        )
+        ]
 
 
 renderImage : Image -> Html Msg
@@ -91,6 +103,6 @@ renderImage image =
     img
         [ src image.contents
         , title image.filename
-        , class "dib w-25 h-auto mh4 mv2"
+        , class "dib w-25 h-auto mh4 mv2 br2"
         ]
         []
