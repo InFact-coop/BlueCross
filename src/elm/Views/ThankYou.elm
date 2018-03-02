@@ -32,7 +32,7 @@ thankYou model =
                     [ div [ class "w-50-ns w-90 center" ]
                         [ header [ class "white f1 o-100 tc pt5 b" ] [ text "Thank You!" ]
                         , p [ class "white f4 tc pt3" ] [ text <| "Thank-you for answering our questions, this will help us find" ++ getPetName model ++ "'s a great new home.  " ]
-                        , p [ class "white f4 tc" ] [ text <| "We will be in touch within 2 days to arrange a time to come and see you and" ++ getPetName model ++ ", when we will plan his rehoming journey and any further support you need." ]
+                        , p [ class "white f4 tc" ] [ text <| "We will be in touch within 2 days to arrange a time to come and see you and" ++ getPetName model ++ ", when we will plan his rehoming journey with you and any further support you need." ]
                         , div [ class "flex justify-center pt4" ]
                             [ a [ href "https://www.bluecross.org.uk/donate" ]
                                 [ button [ class "white ba b--white br2 bg-transparent ph3 pv2 hover-bg-white hover-dark-blue ma2 f4" ] [ text "Donate" ]
