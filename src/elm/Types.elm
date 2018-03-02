@@ -271,6 +271,7 @@ type Msg
     | UpdateUrgency TimeScale
     | UpdateCrossBreed Trilean
     | UpdateReason String
+    | UpdateOtherReasons String
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))

@@ -149,6 +149,9 @@ update msg model =
         UpdateReason string ->
             { model | reasonForRehoming = string } ! []
 
+        UpdateOtherReasons string ->
+            { model | otherReasonsForRehoming = string } ! []
+
 
 port recordStart : String -> Cmd msg
 
