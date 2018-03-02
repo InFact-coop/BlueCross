@@ -275,6 +275,7 @@ type Msg
     | UpdateOtherHealth String
     | UpdateGender Gender
     | UpdateCrossBreed Trilean
+    | UpdateOtherPersonality String
     | UpdateReason String
     | ToggleMedicalDetail String Bool
     | UpdateOtherReasons String

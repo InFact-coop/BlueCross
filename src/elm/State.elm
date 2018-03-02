@@ -165,6 +165,9 @@ update msg model =
         UpdateOtherHealth string ->
             { model | otherHealthNotes = string } ! []
 
+        UpdateOtherPersonality string ->
+            { model | otherPersonalityNotes = string } ! []
+
         ToggleMedicalDetail string checked ->
             if checked && isNewListEntry string model.medicalDetails then
                 { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []

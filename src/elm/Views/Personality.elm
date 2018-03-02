@@ -38,7 +38,7 @@ personality model =
         , div
             [ class "pt4 pb3 dib blue b" ]
             [ text <| "Are there any other personality traits you would like to tell " ++ getPetName model ++ "'s new owner about?" ]
-        , textBox ( "Please tell us here", "personality" )
+        , newTextBox ( "Please tell us here", "personality" ) UpdateOtherPersonality
         , div
             [ class "mt4 tc w-100" ]
             [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib mb4", href "#new-home" ] [ text "Next" ]
