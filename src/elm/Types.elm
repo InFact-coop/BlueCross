@@ -20,7 +20,7 @@ type alias Model =
     , otherReasonsForRehoming : String
     , dogGender : Gender
     , dogAge : AgeRange
-    , medicalDetails : List MedicalCheck
+    , medicalDetails : List String
     , lastVetVisit : VetTimeScale
     , otherHealthNotes : String
     , personalityTraits : List PersonalityTraits
@@ -273,6 +273,7 @@ type Msg
     | UpdateGender Gender
     | UpdateCrossBreed Trilean
     | UpdateReason String
+    | ToggleMedicalDetail String Bool
     | UpdateOtherReasons String
     | UploadPhotos
     | ImageSelected

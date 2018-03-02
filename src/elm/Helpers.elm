@@ -1,6 +1,10 @@
 module Helpers exposing (..)
 
 import Dom.Scroll exposing (..)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (..)
+import Json.Decode as Decode
 import Regex exposing (..)
 import Task
 import Types exposing (..)
@@ -51,3 +55,14 @@ getPetName model =
 stringToInt : String -> Int
 stringToInt stringifiedNumber =
     Result.withDefault 0 <| String.toInt stringifiedNumber
+
+
+isNewListEntry : String -> List String -> Bool
+isNewListEntry string stringList =
+    List.member string stringList
+        |> not
+
+
+onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
+onCheckboxInput tagger =
+    on "change" (Decode.map2 tagger targetValue targetChecked)

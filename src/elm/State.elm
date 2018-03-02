@@ -3,6 +3,7 @@ port module State exposing (..)
 import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
+import Helpers exposing (..)
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
 import Requests.UploadPhotos exposing (uploadPhotos)
@@ -157,6 +158,12 @@ update msg model =
 
         UpdateDogAge ageRange ->
             { model | dogAge = ageRange } ! []
+
+        ToggleMedicalDetail string checked ->
+            if checked && isNewListEntry string model.medicalDetails then
+                { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
+            else
+                { model | medicalDetails = List.filter (\x -> x /= string) model.medicalDetails } ! []
 
 
 port recordStart : String -> Cmd msg
