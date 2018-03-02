@@ -16,7 +16,8 @@ type alias Model =
     , crossBreed : Trilean
     , primaryBreedType : Maybe DogBreed
     , secondaryBreedType : Maybe DogBreed
-    , reasonForRehoming : String
+    , primaryReasonForRehoming : String
+    , secondaryReasonForRehoming : String
     , otherReasonsForRehoming : String
     , dogGender : Gender
     , dogAge : AgeRange
@@ -285,7 +286,8 @@ type Msg
     | UpdateGender Gender
     | UpdateCrossBreed Trilean
     | UpdateOtherPersonality String
-    | UpdateReason String
+    | UpdatePrimaryReason String
+    | UpdateSecondaryReason String
     | UpdateOwnerName String
     | UpdateOwnerPhone String
     | UpdateAlternativeOwnerPhone String

@@ -61,16 +61,24 @@ petInfo model =
                     []
                 ]
             ]
-        , div [ class "blue b mb2 mt4" ] [ text <| "What is your reason for rehoming " ++ getPetName model ++ "?" ]
-        , select [ class "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", id "rehoming", on "change" <| Json.map UpdateReason targetValue ]
+        , div [ class "blue b mb2 mt4" ] [ text <| "What is your main reason for rehoming " ++ getPetName model ++ "?" ]
+        , select [ class "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", id "primaryReasonForRehoming", on "change" <| Json.map UpdatePrimaryReason targetValue ]
             [ option [ selected True, disabled True ] [ text "Please select one" ]
-            , option [ value "Cost" ]
-                [ text "Cost" ]
-            , option [ value "Babies" ]
-                [ text "Babies" ]
+            , option [ value "Behaviour" ]
+                [ text "Behaviour" ]
+            , option [ value "Financial" ]
+                [ text "Financial" ]
             , option [ value "Other" ]
                 [ text "Other" ]
             ]
+        , p
+            [ classes [ "mt0 blue", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ] ]
+            [ text "&" ]
+        , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ], id "secondaryReasonForRehoming", on "change" <| Json.map UpdateSecondaryReason targetValue ]
+            ([ option [ selected True, disabled True ] [ text "Please select one" ]
+             ]
+                ++ secondaryReasons model
+            )
         , div [ class "gray f6 fw1" ] [ text "Other:" ]
         , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
@@ -85,6 +93,35 @@ petInfo model =
             [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#before-you-begin" ] [ text "Next" ]
             ]
         ]
+
+
+secondaryReasons : Model -> List (Html Msg)
+secondaryReasons model =
+    case model.primaryReasonForRehoming of
+        "Behaviour" ->
+            [ reasonDropdown "Aggression towards children"
+            , reasonDropdown "Aggression towards familiar people"
+            , reasonDropdown "Aggression towards own species (living with)"
+            , reasonDropdown "Aggression towards own species "
+            , reasonDropdown "Aggression towards other species (living with)"
+            , reasonDropdown "Aggression towards unfamiliar people"
+            , reasonDropdown "Destructive when left"
+            , reasonDropdown "Food aggression"
+            , reasonDropdown "Inappropriate toileting"
+            , reasonDropdown "Riding problems"
+            , reasonDropdown "Unable to handle"
+            , reasonDropdown "Other"
+            ]
+
+        "Financial" ->
+            [ reasonDropdown "Loss of home"
+            , reasonDropdown "Loss of job"
+            , reasonDropdown "Too expensive to keep"
+            , reasonDropdown "Other"
+            ]
+
+        _ ->
+            []
 
 
 targetValueDecoderBreed : Decoder DogBreed

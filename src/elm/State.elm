@@ -26,7 +26,8 @@ initModel =
     , crossBreed = Neutral
     , primaryBreedType = Nothing
     , secondaryBreedType = Nothing
-    , reasonForRehoming = ""
+    , primaryReasonForRehoming = ""
+    , secondaryReasonForRehoming = ""
     , otherReasonsForRehoming = ""
     , dogGender = Male
     , dogAge = Between0To1Year
@@ -152,8 +153,11 @@ update msg model =
         UpdateSecondaryBreed breed ->
             { model | secondaryBreedType = Just breed } ! []
 
-        UpdateReason string ->
-            { model | reasonForRehoming = string } ! []
+        UpdatePrimaryReason string ->
+            { model | primaryReasonForRehoming = string } ! []
+
+        UpdateSecondaryReason string ->
+            { model | secondaryReasonForRehoming = string } ! []
 
         UpdateOtherReasons string ->
             { model | otherReasonsForRehoming = string } ! []
