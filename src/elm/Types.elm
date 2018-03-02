@@ -266,6 +266,7 @@ type Msg
     | ReceivePhotoUrl (Result String Image)
     | ReceivePhotoUploadStatus (Result Http.Error Bool)
     | UpdatePetName String
+    | UpdateDogAge AgeRange
     | UpdatePrimaryBreed DogBreed
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale

@@ -137,8 +137,8 @@ update msg model =
         UpdateUrgency timescale ->
             { model | urgency = timescale, nextClickable = True } ! []
 
-        UpdateGender timescale ->
-            { model | urgency = timescale, nextClickable = True } ! []
+        UpdateGender gender ->
+            { model | dogGender = gender, nextClickable = True } ! []
 
         UpdateCrossBreed trilean ->
             { model | crossBreed = trilean } ! []
@@ -154,6 +154,9 @@ update msg model =
 
         UpdateOtherReasons string ->
             { model | otherReasonsForRehoming = string } ! []
+
+        UpdateDogAge ageRange ->
+            { model | dogAge = ageRange } ! []
 
 
 port recordStart : String -> Cmd msg

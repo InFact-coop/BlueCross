@@ -76,12 +76,11 @@ petInfo model =
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
         , newBlueButton ( Male, UpdateGender ) "Male"
         , newBlueButton ( Female, UpdateGender ) "Female"
-        , customBlueButton ( "Female", "sex" )
         , div [ class "blue b mb2 mt4" ] [ text <| "How old is " ++ getPetName model ++ "?" ]
-        , customBlueButton ( "0-1 year", "age" )
-        , customBlueButton ( "2-5 years", "age" )
-        , customBlueButton ( "6-10 years", "age" )
-        , customBlueButton ( "Over 10 years", "age" )
+        , newBlueButton ( Between0To1Year, UpdateDogAge ) "0-1 year"
+        , newBlueButton ( Between2To5Years, UpdateDogAge ) "2-5 years"
+        , newBlueButton ( Between6To10Years, UpdateDogAge ) "6-10 years"
+        , newBlueButton ( Over10Years, UpdateDogAge ) "Over 10 years"
         , div [ class "tc w-100 mt4" ]
             [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#before-you-begin" ] [ text "Next" ]
             ]
