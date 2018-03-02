@@ -20,6 +20,7 @@ initModel =
     , photoStatus = NotAsked
     , liveVideoUrl = ""
     , imageId = "imageUpload"
+    , imageUrls = Nothing
     , urgency = UpTo1Week
     , petName = ""
     , crossBreed = Neutral
@@ -66,7 +67,7 @@ update msg model =
             model ! []
 
         StopPhoto ->
-            model ! [ stopPhoto (), uploadPhotos model ]
+            model ! [ stopPhoto () ]
 
         ReceiveLiveVideo string ->
             { model | liveVideoUrl = string } ! []
@@ -110,8 +111,8 @@ update msg model =
         ReceiveFormStatus (Err string) ->
             { model | formStatus = ResponseFailure } ! []
 
-        ReceivePhotoUploadStatus (Ok bool) ->
-            { model | photoStatus = ResponseSuccess } ! []
+        ReceivePhotoUploadStatus (Ok photosResponse) ->
+            { model | photoStatus = ResponseSuccess, imageUrls = addUrlsToList model photosResponse.urls } ! []
 
         ReceivePhotoUploadStatus (Err string) ->
             { model | photoStatus = ResponseFailure } ! []
@@ -120,7 +121,7 @@ update msg model =
             { model | formStatus = Loading } ! [ postForm model ]
 
         UploadPhotos ->
-            { model | photoStatus = Loading } ! [ uploadPhotos model, stopPhoto () ]
+            { model | photoStatus = Loading, image = Nothing } ! [ uploadPhotos model ]
 
         ImageSelected ->
             ( model
@@ -254,6 +255,16 @@ addListToGallery model listImages =
 
         Nothing ->
             Just listImages
+
+
+addUrlsToList : Model -> List String -> Maybe (List String)
+addUrlsToList model newList =
+    case model.imageUrls of
+        Just oldList ->
+            Just <| oldList ++ newList
+
+        Nothing ->
+            Just newList
 
 
 subscriptions : Model -> Sub Msg

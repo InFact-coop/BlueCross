@@ -1,6 +1,5 @@
 module Views.OwnerInfo exposing (..)
 
-import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)

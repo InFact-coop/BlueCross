@@ -32,6 +32,7 @@ type alias Model =
     , people : String
     , otherNotes : String
     , image : Maybe (List Image)
+    , imageUrls : Maybe (List String)
     , supportType : List String
     , ownerName : String
     , ownerPhone : String
@@ -246,6 +247,12 @@ type Route
     | FindingAHomeRoute
 
 
+type alias PhotosResponse =
+    { finalSuccess : Bool
+    , urls : List String
+    }
+
+
 type alias Image =
     { contents : String
     , filename : String
@@ -266,7 +273,7 @@ type Msg
     | UpdateBabiesSlider String
     | ReceiveLiveVideo String
     | ReceivePhotoUrl (Result String Image)
-    | ReceivePhotoUploadStatus (Result Http.Error Bool)
+    | ReceivePhotoUploadStatus (Result Http.Error PhotosResponse)
     | UpdatePetName String
     | UpdateDogAge AgeRange
     | UpdatePrimaryBreed DogBreed

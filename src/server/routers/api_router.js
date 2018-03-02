@@ -16,10 +16,10 @@ router.route('/upload-photos').post((req, res, next) => {
     return new Promise((resolve, reject) => {
       cloudinary.v2.uploader.upload(image.contents, (err, result) => {
         if (err) {
-          reject({ success: false });
+          reject(null);
           console.log('File Error', err);
         } else {
-          resolve({ success: true });
+          resolve(result.secure_url);
           console.log('File Success: ', result);
         }
       });
@@ -31,7 +31,7 @@ router.route('/upload-photos').post((req, res, next) => {
   Promise.all(cloudinaryPromises)
     .then(values => {
       console.log('Final Values: ', values);
-      return res.json({ success: true });
+      return res.json({ success: true, urls: values });
     })
     .catch(err => {
       console.log('Final Error: ', err);
