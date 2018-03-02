@@ -30,8 +30,9 @@ petInfo model =
         , div [ class "gray f6 fw1" ] [ text "Please enter your pet's name" ]
         , div []
             [ div [ class "blue b mb2 mt4" ] [ text <| "Is " ++ getPetName model ++ " a cross breed?" ]
-            , customBlueButton ( "Yes", "crossBreed" )
-            , customBlueButton ( "No", "crossBreed" )
+            , newBlueButton ( Yes, UpdateCrossBreed ) "Yes"
+            , newBlueButton ( No, UpdateCrossBreed ) "No"
+            , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
             , div []
                 [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
             , div []

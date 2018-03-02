@@ -139,6 +139,9 @@ update msg model =
         UpdateUrgency timescale ->
             { model | urgency = timescale, nextClickable = True } ! []
 
+        UpdateCrossBreed trilean ->
+            { model | crossBreed = trilean, nextClickable = True } ! []
+
 
 port recordStart : String -> Cmd msg
 

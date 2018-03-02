@@ -91,8 +91,8 @@ type VetTimeScale
 
 
 type Trilean
-    = True
-    | False
+    = Yes
+    | No
     | Neutral
 
 
@@ -267,6 +267,7 @@ type Msg
     | ReceivePhotoUploadStatus (Result Http.Error Bool)
     | UpdatePetName String
     | UpdateUrgency TimeScale
+    | UpdateCrossBreed Trilean
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))
