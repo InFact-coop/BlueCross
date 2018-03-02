@@ -268,6 +268,7 @@ type Msg
     | UpdatePetName String
     | UpdateDogAge AgeRange
     | UpdatePrimaryBreed DogBreed
+    | UpdateLastVetVisit VetTimeScale
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
     | UpdateGender Gender

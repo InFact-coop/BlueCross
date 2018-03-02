@@ -159,6 +159,9 @@ update msg model =
         UpdateDogAge ageRange ->
             { model | dogAge = ageRange } ! []
 
+        UpdateLastVetVisit timescale ->
+            { model | lastVetVisit = timescale } ! []
+
         ToggleMedicalDetail string checked ->
             if checked && isNewListEntry string model.medicalDetails then
                 { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
