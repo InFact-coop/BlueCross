@@ -2,6 +2,31 @@
 <h2>Someone has requested for Blue Cross to rehome their dog. </h2>
 <p>The dog, {{petName}}, has the following characteristics:</p>
 <ul>
-  <li><b>Likes People: </b> {{people}}/100</li>
-  <li><b>Likes Children: </b> {{children}}/100</li>
-  <li><b>Likes Cats: </b> {{cats}}/100</li>
+  <p>imageUrls: </p>{{#each imageUrls}} <span>{{this}}, </span>{{/each}}
+  <p>urgency: </p>{{urgency}}
+  <p>petName: </p>{{petName}}
+  <p>crossBreed: </p>{{crossBreed}}
+  <p>primaryBreedType: </p>{{primaryBreedType}}
+  <p>secondaryBreedType: </p>{{secondaryBreedType}}
+  <p>primaryReasonForRehoming: </p>{{primaryReasonForRehoming}}
+  <p>secondaryReasonForRehoming: </p>{{secondaryReasonForRehoming}}
+  <p>otherReasonsForRehoming: </p>{{otherReasonsForRehoming}}
+  <p>dogGender: </p>{{dogGender}}
+  <p>dogAge: </p>{{dogAge}}
+  <p>medicalDetails: </p>{{#each medicalDetails}}<span>{{this}}, </span>{{/each}}
+  <p>lastVetVisit: </p>{{lastVetVisit}}
+  <p>otherHealthNotes: </p>{{otherHealthNotes}}
+  <p>personalityTraits: </p>{{#each personalityTraits}}<span>{{this}}, </span>{{/each}}
+  <p>otherPersonalityNotes: </p>{{otherPersonalityNotes}}
+  <p>Likes cats: </p>{{cats}}%
+  <p>Likes children: </p>{{children}}%
+  <p>Likes people: </p>{{people}}%
+  <p>Likes dogs: </p>{{dogs}}%
+  <p>Likes babies: </p>{{babies}}%
+  <p>otherNotes: </p>{{otherNotes}}
+  <p>supportType: </p>{{#each supportType}}<span>{{this}}</span>{{/each}}
+  <p>ownerName: </p>{{ownerName}}
+  <p>ownerPhone: </p>{{ownerPhone}}
+  <p>alternativeOwnerPhone: </p>{{alternativeOwnerPhone}}
+  <p>bestTimeToCall: </p>{{bestTimeToCall}}
+  <p>email: </p>{{email}}
