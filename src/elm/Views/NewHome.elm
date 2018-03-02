@@ -45,14 +45,14 @@ newHome model =
                 []
             ]
         , loveHate model
-        , div [ class "blue b mb2" ] [ text "Babies?" ]
+        , div [ class "blue b mb2" ] [ text "Young Children?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/baby.png", class "mr3" ] []
             , input [ id "myRange", type_ "range", rangeNumberToCss model.babies, value model.babies, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.babies, onInputValue UpdateBabiesSlider ]
                 []
             ]
         , loveHate model
-        , div [ class "blue b mb2" ] [ text "Children?" ]
+        , div [ class "blue b mb2" ] [ text "Older Children?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/child.png", class "mr3" ] []
             , input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.children, onInputValue UpdateChildrenSlider ]
