@@ -1,6 +1,5 @@
 port module State exposing (..)
 
-import Data.DogBreeds exposing (..)
 import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
@@ -9,7 +8,6 @@ import Requests.PostForm exposing (postForm)
 import Requests.UploadPhotos exposing (uploadPhotos)
 import Router exposing (getRoute, viewFromUrl)
 import Task
-import Time exposing (Time, second)
 import Types exposing (..)
 
 
@@ -140,7 +138,13 @@ update msg model =
             { model | urgency = timescale, nextClickable = True } ! []
 
         UpdateCrossBreed trilean ->
-            { model | crossBreed = trilean, nextClickable = True } ! []
+            { model | crossBreed = trilean } ! []
+
+        UpdatePrimaryBreed breed ->
+            { model | primaryBreedType = Just breed } ! []
+
+        UpdateSecondaryBreed breed ->
+            { model | secondaryBreedType = Just breed } ! []
 
 
 port recordStart : String -> Cmd msg

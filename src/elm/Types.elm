@@ -266,6 +266,8 @@ type Msg
     | ReceivePhotoUrl (Result String Image)
     | ReceivePhotoUploadStatus (Result Http.Error Bool)
     | UpdatePetName String
+    | UpdatePrimaryBreed DogBreed
+    | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
     | UpdateCrossBreed Trilean
     | UploadPhotos

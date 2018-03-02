@@ -9,7 +9,7 @@ import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
-import Json.Decode as Json
+import Json.Decode as Json exposing (Decoder, andThen)
 import Types exposing (..)
 
 
@@ -34,22 +34,24 @@ petInfo model =
             , newBlueButton ( Yes, UpdateCrossBreed ) "Yes"
             , newBlueButton ( No, UpdateCrossBreed ) "No"
             , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
-            , div []
-                [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
-            , div []
-                [ select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2" ], id "dogBreed" ]
-                    (List.map
-                        dogBreedDropDown
-                        dogBreedsList
-                    )
-                , p
-                    [ class "mt0 blue" ]
-                    [ text "&" ]
-                , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], id "dogBreed" ]
-                    (List.map
-                        dogBreedDropDown
-                        dogBreedsList
-                    )
+            , div [ classes [ displayElement (model.crossBreed /= Neutral) ] ]
+                [ div []
+                    [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
+                , div []
+                    [ select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
+                        (List.map
+                            dogBreedDropDown
+                            dogBreedsList
+                        )
+                    , p
+                        [ classes [ "mt0 blue", displayElement (model.crossBreed /= No) ] ]
+                        [ text "&" ]
+                    , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
+                        (List.map
+                            dogBreedDropDown
+                            dogBreedsList
+                        )
+                    ]
                 ]
             ]
         , div []
@@ -80,3 +82,9 @@ petInfo model =
             [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#before-you-begin" ] [ text "Next" ]
             ]
         ]
+
+
+targetValueDecoderBreed : Decoder DogBreed
+targetValueDecoderBreed =
+    targetValue
+        |> andThen decoderDogBreed
