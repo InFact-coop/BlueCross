@@ -162,11 +162,20 @@ update msg model =
         UpdateLastVetVisit timescale ->
             { model | lastVetVisit = timescale } ! []
 
+        UpdateOtherHealth string ->
+            { model | otherHealthNotes = string } ! []
+
         ToggleMedicalDetail string checked ->
             if checked && isNewListEntry string model.medicalDetails then
                 { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
             else
                 { model | medicalDetails = List.filter (\x -> x /= string) model.medicalDetails } ! []
+
+        TogglePersonality string checked ->
+            if checked && isNewListEntry string model.personalityTraits then
+                { model | personalityTraits = model.personalityTraits ++ [ string ] } ! []
+            else
+                { model | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
 
 
 port recordStart : String -> Cmd msg

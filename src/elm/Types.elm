@@ -23,7 +23,7 @@ type alias Model =
     , medicalDetails : List String
     , lastVetVisit : VetTimeScale
     , otherHealthNotes : String
-    , personalityTraits : List PersonalityTraits
+    , personalityTraits : List String
     , otherPersonalityNotes : String
     , cats : String
     , dogs : String
@@ -269,8 +269,10 @@ type Msg
     | UpdateDogAge AgeRange
     | UpdatePrimaryBreed DogBreed
     | UpdateLastVetVisit VetTimeScale
+    | TogglePersonality String Bool
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
+    | UpdateOtherHealth String
     | UpdateGender Gender
     | UpdateCrossBreed Trilean
     | UpdateReason String

@@ -34,7 +34,7 @@ beforeYouBegin model =
         , newBlueButton ( OverAYear, UpdateLastVetVisit ) "Over a year"
         , newBlueButton ( UnknownSlashNever, UpdateLastVetVisit ) "Unknown/never"
         , div [ class "blue b mb3 mt4" ] [ text <| "Anything else to note about " ++ getPetName model ++ "'s health?" ]
-        , textBox ( "Please tell us here", "Health" )
+        , newTextBox ( "Please tell us here", "Health" ) UpdateOtherHealth
         , div [ class "mv4 tc w-100" ]
             [ a [ class "link w-100 bg-navy br2 white pa3 br2 f4 dib cursor  w-100 w-25-l w-50-m", href "#personality" ] [ text "Next" ]
             ]
