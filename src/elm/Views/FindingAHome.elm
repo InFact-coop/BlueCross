@@ -17,14 +17,14 @@ findingAHome model =
             [ input [ type_ "checkbox", id "rehomingCentre" ] []
             , label [ for "rehomingCentre", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Rehoming Centre: " ]
-                , text <| "Talk to potential owners directly and rehome " ++ getPetName model ++ " from your home?"
+                , text <| "We will look after" ++ getPetName model ++ " at our Rehoming centre until we find " ++ getPetName model ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "homeDirect" ] []
             , label [ for "homeDirect", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Home Direct: " ]
-                , text <| "Rehome " ++ getPetName model ++ " from home but Blue Cross will help you find owners?"
+                , text <| getPetName model ++ " will stay with you while we find a great new home"
                 ]
             ]
         , div [ class "mb2" ]

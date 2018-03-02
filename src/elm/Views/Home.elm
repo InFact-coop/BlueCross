@@ -17,7 +17,7 @@ home model =
             ]
         , div [ class "w-100 center" ] [ h2 [ class "blue f5 pt4-ns" ] [ text "When do you need to rehome your pet?" ], div [ class "center" ] urgencyButtons ]
         , br [] []
-        , a [ class <| "tc center flex justify-center w-100 w-25-l w-50-m br2 white ph3 pv2 br2 link f4 " ++ toggleNextClasses model, createNextLink model ] [ text "Next" ]
+        , a [ class <| "tc center flex justify-center w-100 w-25-l w-50-m br2 white pa3 br2 link f4 " ++ toggleNextClasses model, createNextLink model ] [ text "Next" ]
         ]
 
 
