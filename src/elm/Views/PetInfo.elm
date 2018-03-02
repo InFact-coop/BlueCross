@@ -74,7 +74,8 @@ petInfo model =
         , div [ class "gray f6 fw1" ] [ text "Other:" ]
         , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
-        , customBlueButton ( "Male", "sex" )
+        , newBlueButton ( Male, UpdateGender ) "Male"
+        , newBlueButton ( Female, UpdateGender ) "Female"
         , customBlueButton ( "Female", "sex" )
         , div [ class "blue b mb2 mt4" ] [ text <| "How old is " ++ getPetName model ++ "?" ]
         , customBlueButton ( "0-1 year", "age" )

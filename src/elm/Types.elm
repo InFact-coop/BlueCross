@@ -269,6 +269,7 @@ type Msg
     | UpdatePrimaryBreed DogBreed
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
+    | UpdateGender Gender
     | UpdateCrossBreed Trilean
     | UpdateReason String
     | UpdateOtherReasons String

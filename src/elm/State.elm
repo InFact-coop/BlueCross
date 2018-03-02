@@ -64,7 +64,7 @@ update msg model =
             model ! []
 
         StopPhoto ->
-            model ! [ stopPhoto () ]
+            model ! [ stopPhoto (), uploadPhotos model ]
 
         ReceiveLiveVideo string ->
             { model | liveVideoUrl = string } ! []
@@ -135,6 +135,9 @@ update msg model =
             model ! [ preparePhoto () ]
 
         UpdateUrgency timescale ->
+            { model | urgency = timescale, nextClickable = True } ! []
+
+        UpdateGender timescale ->
             { model | urgency = timescale, nextClickable = True } ! []
 
         UpdateCrossBreed trilean ->
