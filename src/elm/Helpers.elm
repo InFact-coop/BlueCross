@@ -27,6 +27,18 @@ unionTypeToString a =
         |> String.trim
 
 
+unionTypePayloadToString : a -> (a -> Msg) -> String
+unionTypePayloadToString payload msg =
+    let
+        msgString =
+            unionTypeToString (msg payload)
+
+        payloadLength =
+            unionTypeToString (payload) |> String.length |> (+) 2
+    in
+        String.dropRight payloadLength msgString
+
+
 scrollToTop : Cmd Msg
 scrollToTop =
     Task.attempt (always NoOp) (toTop "container")
