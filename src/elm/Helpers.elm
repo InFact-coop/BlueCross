@@ -2,7 +2,6 @@ module Helpers exposing (..)
 
 import Dom.Scroll exposing (..)
 import Html exposing (..)
-import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Decode
 import Regex exposing (..)
@@ -21,10 +20,11 @@ ifThenElse conditional trueCase falseCase =
 unionTypeToString : a -> String
 unionTypeToString a =
     Regex.replace All
-        (Regex.regex "[A-Z]|[0-9]")
+        (Regex.regex "[A-Z]{1,10}|[0-9]{1,10}")
         (\{ match } -> " " ++ match)
         (toString a)
         |> String.trim
+        |> Debug.log "CHECK IT"
 
 
 unionTypePayloadToString : a -> (a -> Msg) -> String

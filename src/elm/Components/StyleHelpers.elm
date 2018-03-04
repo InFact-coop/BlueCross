@@ -2,6 +2,7 @@ module Components.StyleHelpers exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Types exposing (Msg)
 
 
 headlineFont : String
@@ -73,6 +74,11 @@ classes classList =
 emptyDiv : Html msg
 emptyDiv =
     div [ class "dn" ] []
+
+
+defaultOption : Html msg
+defaultOption =
+    option [ selected True, disabled True ] [ text "Please select one" ]
 
 
 displayElement : Bool -> String

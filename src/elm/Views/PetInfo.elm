@@ -2,7 +2,7 @@ module Views.PetInfo exposing (..)
 
 import Components.BlueButton exposing (..)
 import Components.DogBreedDropDown exposing (..)
-import Components.StyleHelpers exposing (classes, displayElement)
+import Components.StyleHelpers exposing (classes, defaultOption, displayElement)
 import Components.TextBox exposing (..)
 import Data.DogBreeds exposing (..)
 import Helpers exposing (getPetName)
@@ -39,17 +39,19 @@ petInfo model =
                     [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
                 , div []
                     [ select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
-                        (List.map
-                            dogBreedDropDown
-                            dogBreedsList
+                        ([ defaultOption ]
+                            ++ List.map
+                                dogBreedDropDown
+                                dogBreedsList
                         )
                     , p
                         [ classes [ "mt0 blue", displayElement (model.crossBreed /= No) ] ]
                         [ text "&" ]
                     , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
-                        (List.map
-                            dogBreedDropDown
-                            dogBreedsList
+                        ([ defaultOption ]
+                            ++ List.map
+                                dogBreedDropDown
+                                dogBreedsList
                         )
                     ]
                 ]
