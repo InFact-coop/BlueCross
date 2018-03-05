@@ -8,7 +8,7 @@ import Types exposing (..)
 loveHate : Model -> Html Msg
 loveHate model =
     div
-        [ class "flex justify-around mb5" ]
-        [ div [ class "gray fw1 mr5" ] [ text "No thanks!" ]
-        , div [ class "gray fw1 ml5 " ] [ text "Loves!" ]
+        [ class "flex justify-between mb5 w-75 center" ]
+        [ div [ class "gray fw1 " ] [ text "No thanks!" ]
+        , div [ class "gray fw1  " ] [ text "Loves!" ]
         ]
