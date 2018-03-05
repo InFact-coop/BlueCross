@@ -10,3 +10,8 @@ dogBreedDropDown : DogBreed -> Html Msg
 dogBreedDropDown dogBreed =
     option [ value <| unionTypeToString dogBreed ]
         [ text <| unionTypeToString dogBreed ]
+
+
+reasonDropdown : String -> Html Msg
+reasonDropdown string =
+    option [ value string ] [ text string ]

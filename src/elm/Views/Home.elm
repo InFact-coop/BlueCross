@@ -1,6 +1,7 @@
 module Views.Home exposing (..)
 
 import Components.BlueButton exposing (..)
+import Data.Home exposing (timeScaleTypes)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -14,7 +15,7 @@ home model =
             [ h2 [ class "blue tc f5" ] [ text "Thank you for choosing Blue Cross" ]
             , p [ class "gray tc ph4-l" ] [ text "Finding the right home for your pet is never easy, Blue Cross is here to help.  Please answer the following questions about your pet, we will then be in touch within 2 days to get started." ]
             ]
-        , div [ class "w-100 center" ] [ h2 [ class "blue f5 pt4-ns" ] [ text "When do you need to rehome your pet?" ], div [ class "center" ] mapButtons ]
+        , div [ class "w-100 center" ] [ h2 [ class "blue f5 pt4-ns" ] [ text "When do you need to rehome your pet?" ], div [ class "center" ] urgencyButtons ]
         , br [] []
         , p [ class "tc gray fw1 mb1" ] [ text "By continuing you agree to our" ]
         , p [ class "tc mt1" ] [ a [ href "https://www.bluecross.org.uk/terms-and-conditions", class "tc fw1 blue mt1 no-underline link", target "blank" ] [ text "terms of services" ] ]
@@ -38,6 +39,6 @@ toggleNextClasses model =
         "bg-gray white"
 
 
-mapButtons : List (Html Msg)
-mapButtons =
-    List.map blueButton [ "Urgently", "2-3 weeks", "A couple of months", "No rush" ]
+urgencyButtons : List (Html Msg)
+urgencyButtons =
+    List.map blueButton timeScaleTypes

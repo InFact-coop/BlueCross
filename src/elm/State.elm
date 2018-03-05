@@ -1,15 +1,14 @@
 port module State exposing (..)
 
-import Data.DogBreeds exposing (..)
 import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
 import Dom.Scroll exposing (..)
 import Json.Decode
+import Helpers exposing (..)
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
 import Requests.UploadPhotos exposing (uploadPhotos)
 import Router exposing (getRoute, viewFromUrl)
 import Task
-import Time exposing (Time, second)
 import Types exposing (..)
 
 
@@ -21,12 +20,14 @@ initModel =
     , photoStatus = NotAsked
     , liveVideoUrl = ""
     , imageId = "imageUpload"
+    , imageUrls = Nothing
     , urgency = UpTo1Week
     , petName = ""
     , crossBreed = Neutral
     , primaryBreedType = Nothing
     , secondaryBreedType = Nothing
-    , reasonForRehoming = ""
+    , primaryReasonForRehoming = ""
+    , secondaryReasonForRehoming = ""
     , otherReasonsForRehoming = ""
     , dogGender = Male
     , dogAge = Between0To1Year
@@ -45,6 +46,7 @@ initModel =
     , supportType = []
     , ownerName = ""
     , ownerPhone = ""
+    , alternativeOwnerPhone = ""
     , bestTimeToCall = AM
     , email = ""
     }
@@ -56,7 +58,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! []
+        model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -110,8 +112,8 @@ update msg model =
         ReceiveFormStatus (Err string) ->
             { model | formStatus = ResponseFailure } ! []
 
-        ReceivePhotoUploadStatus (Ok bool) ->
-            { model | photoStatus = ResponseSuccess } ! []
+        ReceivePhotoUploadStatus (Ok photosResponse) ->
+            { model | photoStatus = ResponseSuccess, imageUrls = addUrlsToList model photosResponse.urls } ! []
 
         ReceivePhotoUploadStatus (Err string) ->
             { model | photoStatus = ResponseFailure } ! []
@@ -120,7 +122,7 @@ update msg model =
             { model | formStatus = Loading } ! [ postForm model ]
 
         UploadPhotos ->
-            { model | photoStatus = Loading } ! [ uploadPhotos model, stopPhoto () ]
+            { model | photoStatus = Loading, image = Nothing } ! [ uploadPhotos model ]
 
         ImageSelected ->
             ( model
@@ -135,6 +137,78 @@ update msg model =
 
         PreparePhoto ->
             model ! [ preparePhoto () ]
+
+        UpdateUrgency timescale ->
+            { model | urgency = timescale, nextClickable = True } ! []
+
+        UpdateGender gender ->
+            { model | dogGender = gender, nextClickable = True } ! []
+
+        UpdateCrossBreed trilean ->
+            { model | crossBreed = trilean } ! []
+
+        UpdatePrimaryBreed breed ->
+            { model | primaryBreedType = Just breed } ! []
+
+        UpdateSecondaryBreed breed ->
+            { model | secondaryBreedType = Just breed } ! []
+
+        UpdatePrimaryReason string ->
+            { model | primaryReasonForRehoming = string } ! []
+
+        UpdateSecondaryReason string ->
+            { model | secondaryReasonForRehoming = string } ! []
+
+        UpdateOtherReasons string ->
+            { model | otherReasonsForRehoming = string } ! []
+
+        UpdateDogAge ageRange ->
+            { model | dogAge = ageRange } ! []
+
+        UpdateLastVetVisit timescale ->
+            { model | lastVetVisit = timescale } ! []
+
+        UpdateOtherHealth string ->
+            { model | otherHealthNotes = string } ! []
+
+        UpdateOwnerName string ->
+            { model | ownerName = string } ! []
+
+        UpdateOwnerEmail string ->
+            { model | email = string } ! []
+
+        UpdateOwnerPhone string ->
+            { model | ownerPhone = string } ! []
+
+        UpdateAlternativeOwnerPhone string ->
+            { model | alternativeOwnerPhone = string } ! []
+
+        UpdateBestTimeToCall timeOfDay ->
+            { model | bestTimeToCall = timeOfDay } ! []
+
+        UpdateOtherPersonality string ->
+            { model | otherPersonalityNotes = string } ! []
+
+        UpdateOtherGeneral string ->
+            { model | otherNotes = string } ! []
+
+        ToggleMedicalDetail string checked ->
+            if checked && isNewListEntry string model.medicalDetails then
+                { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
+            else
+                { model | medicalDetails = List.filter (\x -> x /= string) model.medicalDetails } ! []
+
+        TogglePersonality string checked ->
+            if checked && isNewListEntry string model.personalityTraits then
+                { model | personalityTraits = model.personalityTraits ++ [ string ] } ! []
+            else
+                { model | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
+
+        ToggleSupportPreference string checked ->
+            if checked && isNewListEntry string model.supportType then
+                { model | supportType = model.supportType ++ [ string ] } ! []
+            else
+                { model | supportType = List.filter (\x -> x /= string) model.supportType } ! []
 
 
 port recordStart : String -> Cmd msg
@@ -185,6 +259,16 @@ addListToGallery model listImages =
 
         Nothing ->
             Just listImages
+
+
+addUrlsToList : Model -> List String -> Maybe (List String)
+addUrlsToList model newList =
+    case model.imageUrls of
+        Just oldList ->
+            Just <| oldList ++ newList
+
+        Nothing ->
+            Just newList
 
 
 subscriptions : Model -> Sub Msg

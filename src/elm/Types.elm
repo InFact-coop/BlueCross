@@ -16,14 +16,15 @@ type alias Model =
     , crossBreed : Trilean
     , primaryBreedType : Maybe DogBreed
     , secondaryBreedType : Maybe DogBreed
-    , reasonForRehoming : String
+    , primaryReasonForRehoming : String
+    , secondaryReasonForRehoming : String
     , otherReasonsForRehoming : String
     , dogGender : Gender
     , dogAge : AgeRange
-    , medicalDetails : List MedicalCheck
+    , medicalDetails : List String
     , lastVetVisit : VetTimeScale
     , otherHealthNotes : String
-    , personalityTraits : List PersonalityTraits
+    , personalityTraits : List String
     , otherPersonalityNotes : String
     , cats : String
     , dogs : String
@@ -32,9 +33,11 @@ type alias Model =
     , people : String
     , otherNotes : String
     , image : Maybe (List Image)
-    , supportType : List SupportType
+    , imageUrls : Maybe (List String)
+    , supportType : List String
     , ownerName : String
     , ownerPhone : String
+    , alternativeOwnerPhone : String
     , bestTimeToCall : TimeOfDay
     , email : String
     }
@@ -48,6 +51,7 @@ type Gender
 type TimeOfDay
     = AM
     | PM
+    | NoPreference
 
 
 type SupportType
@@ -91,8 +95,8 @@ type VetTimeScale
 
 
 type Trilean
-    = True
-    | False
+    = Yes
+    | No
     | Neutral
 
 
@@ -108,6 +112,7 @@ type TimeScale
     | Between2To3Weeks
     | Between1To2Months
     | Over2Months
+    | NoTimeScale
 
 
 type DogBreed
@@ -243,6 +248,12 @@ type Route
     | FindingAHomeRoute
 
 
+type alias PhotosResponse =
+    { finalSuccess : Bool
+    , urls : List String
+    }
+
+
 type alias Image =
     { contents : String
     , filename : String
@@ -263,8 +274,29 @@ type Msg
     | UpdateBabiesSlider String
     | ReceiveLiveVideo String
     | ReceivePhotoUrl (Result String Image)
-    | ReceivePhotoUploadStatus (Result Http.Error Bool)
+    | ReceivePhotoUploadStatus (Result Http.Error PhotosResponse)
     | UpdatePetName String
+    | UpdateDogAge AgeRange
+    | UpdatePrimaryBreed DogBreed
+    | UpdateLastVetVisit VetTimeScale
+    | TogglePersonality String Bool
+    | UpdateSecondaryBreed DogBreed
+    | UpdateUrgency TimeScale
+    | UpdateOtherHealth String
+    | UpdateGender Gender
+    | UpdateCrossBreed Trilean
+    | UpdateOtherPersonality String
+    | UpdatePrimaryReason String
+    | UpdateSecondaryReason String
+    | UpdateOwnerName String
+    | UpdateOwnerPhone String
+    | UpdateAlternativeOwnerPhone String
+    | UpdateBestTimeToCall TimeOfDay
+    | UpdateOwnerEmail String
+    | ToggleMedicalDetail String Bool
+    | ToggleSupportPreference String Bool
+    | UpdateOtherReasons String
+    | UpdateOtherGeneral String
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))
