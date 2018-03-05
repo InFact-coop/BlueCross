@@ -173,3 +173,8 @@ background-position: center;
 .vh-40-ns{
   height: 40vh;
 }
+
+.hover-transition{
+  transition: background-color 0.5s ease;
+  background-color: transparent;
+}
