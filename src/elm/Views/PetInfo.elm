@@ -36,31 +36,24 @@ petInfo model =
             , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
             , div [ classes [ displayElement (model.crossBreed /= Neutral) ] ]
                 [ div []
-                    [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
-                , div []
-                    [ select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
+                    [ div [ class "blue b mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
+                , div [ class "inline-flex items-center h3 w-100" ]
+                    [ select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
                         ([ defaultOption ]
                             ++ List.map
                                 dogBreedDropDown
                                 dogBreedsList
                         )
                     , p
-                        [ classes [ "mt0 blue", displayElement (model.crossBreed /= No) ] ]
+                        [ classes [ " blue mh3", displayElement (model.crossBreed /= No) ] ]
                         [ text "&" ]
-                    , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
+                    , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
                         ([ defaultOption ]
                             ++ List.map
                                 dogBreedDropDown
                                 dogBreedsList
                         )
                     ]
-                ]
-            ]
-        , div []
-            [ div [ class "gray f6 fw1" ] [ text "Other:" ]
-            , div []
-                [ input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn" ]
-                    []
                 ]
             ]
         , div [ class "blue b mb2 mt4" ] [ text <| "What is your main reason for rehoming " ++ getPetName model ++ "?" ]
