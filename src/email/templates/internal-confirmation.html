@@ -24,7 +24,7 @@
   <p><span style="font-weight: bold;">Other health notes: </span>{{otherHealthNotes}}</p>
 
   <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Personality</h3>
-  <p style="width:25%; height:auto; margin: 1rem;"><span style="font-weight: bold;">Personality traits: </span>{{#each personalityTraits}}<span >{{this}}, </span>{{/each}}</p>
+  <p><span style="font-weight: bold;">Personality traits: </span>{{#each personalityTraits}}<span >{{this}}, </span>{{/each}}</p>
   <p><span style="font-weight: bold;">Other personality notes: </span>{{otherPersonalityNotes}}</p>
 
   <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">New Home</h3>
@@ -37,7 +37,7 @@
 
   <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Photos</h3>
   <p><span style="font-weight: bold;">imageUrls: </span>{{#each imageUrls}} <span>{{this}}, </span>{{/each}}</p>
-  <p><span style="font-weight: bold;">images : </span> {{#each imageUrls}} <img src="{{this}}" />{{/each}}</p>
+  <p><span style="font-weight: bold;">images : </span> {{#each imageUrls}} <img  style="width:50%; height:auto; margin: 1rem; border-radius:5px;" src="{{this}}"  />{{/each}}</p>
 
   <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Finding a home</h3>
   <p><span style="font-weight: bold;">Support required: </span>{{#each supportType}}<span>{{this}}</span>{{/each}}</p>
