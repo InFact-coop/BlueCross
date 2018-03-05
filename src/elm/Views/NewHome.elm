@@ -21,8 +21,8 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-        style
-            [ ( "backgroundImage", gradient ) ]
+    style
+        [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
@@ -33,7 +33,7 @@ newHome model =
         , div [ class "flex items-center" ]
             [ img [ src "./assets/catIcon.png", class "mr3" ]
                 []
-            , input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
+            , input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0 outline-0", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
                 []
             ]
         , loveHate model
@@ -41,28 +41,28 @@ newHome model =
         , div [ class "flex items-center" ]
             [ img [ src "./assets/dogIcon.png", class "mr3" ]
                 []
-            , input [ id "myRange", type_ "range", value model.dogs, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.dogs, onInputValue UpdateDogsSlider ]
+            , input [ id "myRange", type_ "range", value model.dogs, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.dogs, onInputValue UpdateDogsSlider ]
                 []
             ]
         , loveHate model
         , div [ class "blue b mb2" ] [ text "Young Children?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/baby.png", class "mr3" ] []
-            , input [ id "myRange", type_ "range", rangeNumberToCss model.babies, value model.babies, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.babies, onInputValue UpdateBabiesSlider ]
+            , input [ id "myRange", type_ "range", rangeNumberToCss model.babies, value model.babies, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.babies, onInputValue UpdateBabiesSlider ]
                 []
             ]
         , loveHate model
         , div [ class "blue b mb2" ] [ text "Older Children?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/child.png", class "mr3" ] []
-            , input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.children, onInputValue UpdateChildrenSlider ]
+            , input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.children, onInputValue UpdateChildrenSlider ]
                 []
             ]
         , loveHate model
         , div [ class "blue b mb2" ] [ text "New People?" ]
         , div [ class " flex items-center" ]
             [ img [ src "./assets/group.png", class "mr3" ] []
-            , input [ id "myRange", type_ "range", value model.people, class "w-75 h-custom bg-blue input-reset br4 slider light-border center", rangeNumberToCss model.people, onInputValue UpdatePeopleSlider ]
+            , input [ id "myRange", type_ "range", value model.people, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.people, onInputValue UpdatePeopleSlider ]
                 []
             ]
         , loveHate model
