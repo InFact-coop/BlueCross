@@ -46,7 +46,7 @@ router.route('/send-form').post((req, res, next) => {
   const internalEmailData = req.body;
   console.log('Internal Email Data: ', req.body);
   internalEmailData.name = 'Kelly';
-  internalEmailData.email = 'mgerber94@gmail.com';
+  internalEmailData.email = 'jennifer.louise.harris@gmail.com';
   internalEmailData.subject = 'Someone is ready to rehome their dog!';
 
   email('internal-confirmation', internalEmailData, (error, result) => {
