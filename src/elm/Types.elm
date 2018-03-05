@@ -109,8 +109,8 @@ type AgeRange
 
 type TimeScale
     = UpTo1Week
-    | Between2To3Weeks
-    | Between1To2Months
+    | UpTo3Weeks
+    | UpTo2Months
     | Over2Months
     | NoTimeScale
 
