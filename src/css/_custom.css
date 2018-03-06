@@ -1,13 +1,12 @@
 /* you can add your own styles in this file */
 
-
 body {
   /* the var(--my-variable) syntax is a css variable
      https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
      they aren't properly supported by all browsers yet so postcss turns them into normal css for you
   */
   /*font-family: var(--sans-serif);*/
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   margin: 0;
 }
 
@@ -15,15 +14,13 @@ button {
   font-family: var(--sans-serif);
 }
 
-
-
-.m0-auto{
+.m0-auto {
   margin: 0 auto;
 }
 
 .headerTitle {
-border-bottom-left-radius: 100%5rem;
-border-bottom-right-radius: 100%5rem;
+  border-bottom-left-radius: 100%5rem;
+  border-bottom-right-radius: 100%5rem;
 }
 
 .burger {
@@ -52,11 +49,10 @@ border-bottom-right-radius: 100%5rem;
   height: 0.5rem;
 }
 
-input:checked +  .personality {
+input:checked + .personality {
   background-color: #003388;
   color: white;
 }
-
 
 input:checked + .health {
   background-color: #003388;
@@ -75,7 +71,7 @@ input:checked + .age {
   height: 8rem;
   background-position: center;
   background-size: 100%;
- }
+}
 
 .videoButton {
   width: 15rem;
@@ -120,9 +116,15 @@ input:checked + .age {
 }
 
 @keyframes tick {
-    0%   {opacity: 0;}
-    50%   {opacity: 1;}
-    100%   {opacity: 0;}
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .light-border {
@@ -131,50 +133,63 @@ input:checked + .age {
   border-color: #6666;
 }
 
-.vh-90{
-  height:90vh;
+.vh-90 {
+  height: 90vh;
 }
 
-
-.background-dog{
-   background-image: url("./assets/doggo.png");
-   background-size: cover !important;
-   width: 100%;
-   height: 90vh;
+.background-dog {
+  background-image: url('./assets/doggo.png');
+  background-size: cover !important;
+  width: 100%;
+  height: 90vh;
 }
 
-.background-overlay{
+.background-overlay {
   background-color: rgba(0, 51, 136, 0.5);
   background-size: cover !important;
   position: absolute;
   z-index: 100;
   height: 90vh;
-  width:100%;
+  width: 100%;
 }
 
 .upload-background {
-  background-image : url("./assets/upload.png");
-background-position: center;
+  background-image: url('./assets/upload.png');
+  background-position: center;
   background-repeat: no-repeat;
-
 }
 
 .take-photo-background {
-  background-image : url("./assets/camera.png");
-background-position: center;
+  background-image: url('./assets/camera.png');
+  background-position: center;
   background-repeat: no-repeat;
-
 }
 
-.margin-minus{
+.margin-minus {
   margin-top: -3rem;
 }
 
-.vh-40-ns{
+.vh-40-ns {
   height: 40vh;
 }
 
-.hover-transition{
+.hover-transition {
   transition: background-color 0.5s ease;
   background-color: transparent;
+}
+
+.w-vw6 {
+  width: calc(0.7rem + 4.5vw);
+}
+
+.w05 {
+  width: calc(0.5rem + 0.5vw);
+}
+
+.h-vw6 {
+  height: calc(0.7rem + 4.5vw);
+}
+
+input:focus {
+  outline: none;
 }
