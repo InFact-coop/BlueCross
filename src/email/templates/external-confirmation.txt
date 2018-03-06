@@ -1,0 +1,5 @@
+Thank you, {{ownerName}}
+We've safely received {{petName}}'s details
+
+Regards,
+The Blue Cross Team

@@ -1,0 +1,10 @@
+<section style="background-color:#E1F4FB; padding: 1rem;">
+  <article style="width:80%; background-color:white; margin: 0 auto; padding: 2rem 3rem;">
+    <h1>Thank you, {{ownerName}}</h1>
+    <h2>We've safely received {{petName}}'s details</h2>
+
+    <p>We'll now work hard to find a new home for {{petName}} and will be in touch within 2 days.</p>
+
+    {{#each imageUrls}}<a href="{{this}}"><p> <img  style="width:40%; height:auto; display:inline-block; margin: 1rem; border-radius:5px;" src="{{this}}"  />{{/each}}</p></a>
+  </article>
+</section>
