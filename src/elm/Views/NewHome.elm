@@ -86,6 +86,6 @@ newHome model =
         , div [ class "blue b mb2" ] [ text <| "Is there anything else we should know about " ++ getPetName model ++ "?" ]
         , newTextBox ( "Please tell us here", "newhome" ) UpdateOtherGeneral
         , div [ class "tc w-100 mt4" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#photos" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m", href "#photos" ] [ text "Next" ]
             ]
         ]

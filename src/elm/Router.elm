@@ -2,6 +2,7 @@ module Router exposing (..)
 
 import Components.Navbar exposing (..)
 import Components.Progress exposing (progressBar)
+import Components.Terms exposing (..)
 import Components.Title exposing (..)
 import Helpers exposing (ifThenElse)
 import Html exposing (..)
@@ -31,6 +32,7 @@ view model =
         , viewTitle model
         , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
         , view
+        , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
         ]
 
 
