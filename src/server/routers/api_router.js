@@ -46,30 +46,16 @@ router.route('/send-form').post((req, res, next) => {
   const internalEmailData = req.body;
   console.log('Internal Email Data: ', req.body);
   internalEmailData.name = 'Kelly';
-  internalEmailData.email = process.env.INTERNAL_RECIPIENT;
+  internalEmailData.email = 'jennifer.louise.harris@gmail.com';
   internalEmailData.subject = 'Someone is ready to rehome their dog!';
-  const externalEmailData = {
-    email: internalEmailData.email,
-    subject: 'Blue Cross confirmation',
-    ownerName: internalEmailData.ownerName,
-    petName: internalEmailData.petName,
-    imageUrls: internalEmailData.imageUrls
-  };
-  email('internal-confirmation', internalEmailData, (intError, intResult) => {
-    if (intError) {
-      console.log('Internal Email Error: ', intError);
+
+  email('internal-confirmation', internalEmailData, (error, result) => {
+    if (error) {
+      console.log('Error: ', error);
       return res.json({ success: false });
     }
-    console.log('Internal Email Sent: ', intResult);
-
-    email('external-confirmation', externalEmailData, (extError, extResult) => {
-      if (extError) {
-        console.log('External Email Error: ', extError);
-        return res.json({ success: false });
-      }
-      console.log('External Email Sent: ', extResult);
-      return res.json({ success: true });
-    });
+    console.log('Email Sent: ', result);
+    return res.json({ success: true });
   });
 });
 

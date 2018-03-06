@@ -7,6 +7,7 @@ import Types exposing (..)
 
 navbar : Model -> Html Msg
 navbar model =
+    -- devNavbarContent
     navbarContent
 
 
