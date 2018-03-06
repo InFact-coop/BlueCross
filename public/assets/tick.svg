@@ -1,0 +1,18 @@
+<svg width="27" height="22" viewBox="0 0 27 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Line</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(3079 1555)">
+<g id="Line">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="matrix(0.76238 0.64713 -0.64713 0.76238 -3076.86 -1544.68)" fill="#19A974"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="matrix(0.768221 0.640184 -0.640184 0.768221 -3055.38 -1555)" fill="#19A974"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 2.28405e-10 2.99908L 12.6283 3.31195L 12.7026 0.31287L 0.074304 2.86484e-08L 2.28405e-10 2.99908Z"/>
+<path id="path1_fill" d="M 0.640208 1.5398e-09L -4.98199e-08 25.0677L 2.99902 25.1443L 3.63923 0.076593L 0.640208 1.5398e-09Z"/>
+</defs>
+</svg>
