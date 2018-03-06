@@ -1,79 +1,63 @@
 module Components.Progress exposing (..)
 
-import Components.StyleHelpers exposing (classes)
-import Helpers exposing (ifThenElse)
 import Html exposing (..)
-import Html.Attributes exposing (..)
+
+
+-- import Html.Attributes exposing (..)
+
+import Components.StyleHelpers exposing (classes)
 import Types exposing (..)
 
 
 progressBar : Model -> Html Msg
 progressBar model =
-    div [ classes [ "flex", "justify-center", "items-center", "w-90", "w-60-ns", "center", "mb3" ] ]
-        (routeToProgressBar routesList model)
+    div [ classes [ "flex", "content-center", "items-center" ] ]
+        [ div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--green", "dib" ] ] []
+        , line "green"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        , line "light-blue"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        , line "light-blue"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        , line "light-blue"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        , line "light-blue"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        , line "light-blue"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        , line "light-blue"
+        , div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
+        ]
 
 
-routeToProgressBar : List ( Int, Route ) -> Model -> List (Html Msg)
-routeToProgressBar list model =
-    let
-        activeRoute =
-            list
-                |> List.filter (\route -> Tuple.second route == model.route)
-                |> List.head
-                |> Maybe.withDefault ( 0, ThankYouRoute )
-
-        activeNodes =
-            ifThenElse (model.route /= HomeRoute) [ line "green", activeNode ] [ activeNode ]
-                ++ (ifThenElse (model.route /= OwnerInfoRoute) [ line "light-blue" ] [])
-
-        doneNodes =
-            list
-                |> List.take (Tuple.first activeRoute - 1)
-                |> List.map (\route -> doneNode)
-                |> List.intersperse (line "green")
-
-        futureNodes =
-            list
-                |> List.drop (Tuple.first activeRoute)
-                |> List.map (\route -> futureNode <| Tuple.first route)
-                |> List.intersperse (line "light-blue")
-    in
-        doneNodes ++ activeNodes ++ futureNodes
-
-
-routesList : List ( Int, Route )
+routesList : List Route
 routesList =
-    [ ( 1, HomeRoute )
-    , ( 2, PetInfoRoute )
-    , ( 3, BeforeYouBeginRoute )
-    , ( 4, PersonalityRoute )
-    , ( 5, NewHomeRoute )
-    , ( 6, PhotosRoute )
-    , ( 7, FindingAHomeRoute )
-    , ( 8, OwnerInfoRoute )
+    [ HomeRoute
+    , PetInfoRoute
+    , BeforeYouBeginRoute
+    , PersonalityRoute
+    , NewHomeRoute
+    , PhotosRoute
+    , FindingAHomeRoute
+    , OwnerInfoRoute
     ]
 
 
 doneNode : Html Msg
 doneNode =
-    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--green", "dib" ], backgroundImage "./assets/tick.svg" ] []
+    div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--green", "dib" ] ] []
 
 
 activeNode : Html Msg
 activeNode =
-    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--blue", "dib" ], backgroundImage "./assets/dog.svg" ] []
+    div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
 
 
-backgroundImage : String -> Attribute Msg
-backgroundImage url =
-    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", "70%" ) ]
-
-
-futureNode : Int -> Html Msg
-futureNode int =
-    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--light-blue", "dib", "light-blue", "f2-l", "f3-m", "f4" ] ] [ text <| toString int ]
+futureNode : Html Msg
+futureNode =
+    div [ classes [ "br-100", "ba", "bw2", "h3", "w3", "b--light-blue", "dib" ] ] []
 
 
 line : String -> Html Msg
 line colour =
-    div [ classes [ "w1-ns", "w05", "bb", "bw1", "bw2-ns", "b--" ++ colour, "dib" ] ] []
+    div [ classes [ "w1", "bb", "bw2", "b--" ++ colour, "dib" ] ] []
