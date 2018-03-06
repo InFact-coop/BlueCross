@@ -2,45 +2,47 @@ module Types exposing (..)
 
 import Http exposing (..)
 import Navigation
+import Transit
 
 
 type alias Model =
-    { route : Route
-    , nextClickable : Bool
-    , formStatus : RemoteData
-    , photoStatus : RemoteData
-    , liveVideoUrl : String
-    , imageId : String
-    , urgency : TimeScale
-    , petName : String
-    , crossBreed : Trilean
-    , primaryBreedType : Maybe DogBreed
-    , secondaryBreedType : Maybe DogBreed
-    , primaryReasonForRehoming : String
-    , secondaryReasonForRehoming : String
-    , otherReasonsForRehoming : String
-    , dogGender : Gender
-    , dogAge : AgeRange
-    , medicalDetails : List String
-    , lastVetVisit : VetTimeScale
-    , otherHealthNotes : String
-    , personalityTraits : List String
-    , otherPersonalityNotes : String
-    , cats : String
-    , dogs : String
-    , babies : String
-    , children : String
-    , people : String
-    , otherNotes : String
-    , image : Maybe (List Image)
-    , imageUrls : Maybe (List String)
-    , supportType : List String
-    , ownerName : String
-    , ownerPhone : String
-    , alternativeOwnerPhone : String
-    , bestTimeToCall : TimeOfDay
-    , email : String
-    }
+    Transit.WithTransition
+        { route : Route
+        , nextClickable : Bool
+        , formStatus : RemoteData
+        , photoStatus : RemoteData
+        , liveVideoUrl : String
+        , imageId : String
+        , urgency : TimeScale
+        , petName : String
+        , crossBreed : Trilean
+        , primaryBreedType : Maybe DogBreed
+        , secondaryBreedType : Maybe DogBreed
+        , primaryReasonForRehoming : String
+        , secondaryReasonForRehoming : String
+        , otherReasonsForRehoming : String
+        , dogGender : Gender
+        , dogAge : AgeRange
+        , medicalDetails : List String
+        , lastVetVisit : VetTimeScale
+        , otherHealthNotes : String
+        , personalityTraits : List String
+        , otherPersonalityNotes : String
+        , cats : String
+        , dogs : String
+        , babies : String
+        , children : String
+        , people : String
+        , otherNotes : String
+        , image : Maybe (List Image)
+        , imageUrls : Maybe (List String)
+        , supportType : List String
+        , ownerName : String
+        , ownerPhone : String
+        , alternativeOwnerPhone : String
+        , bestTimeToCall : TimeOfDay
+        , email : String
+        }
 
 
 type Gender
@@ -295,6 +297,8 @@ type Msg
     | UpdateOwnerEmail String
     | ToggleMedicalDetail String Bool
     | ToggleSupportPreference String Bool
+    | TransitMsg (Transit.Msg Msg)
+    | NavigateTo Navigation.Location
     | UpdateOtherReasons String
     | UpdateOtherGeneral String
     | UploadPhotos

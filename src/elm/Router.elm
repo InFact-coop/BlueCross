@@ -1,5 +1,6 @@
 module Router exposing (..)
 
+import Animations exposing (fadeSlider)
 import Components.Navbar exposing (..)
 import Components.Progress exposing (progressBar)
 import Components.Terms exposing (..)
@@ -27,13 +28,15 @@ view model =
         view =
             getCurrentView model
     in
-    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
-        [ navbar model
-        , viewTitle model
-        , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
-        , view
-        , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
-        ]
+        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
+            [ navbar model
+            , div [ style (fadeSlider 300 model.transition) ]
+                [ viewTitle model
+                , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
+                , view
+                , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
+                ]
+            ]
 
 
 getCurrentView : Model -> Html Msg
@@ -113,4 +116,4 @@ viewFromUrl location model =
         view =
             getRoute location.hash
     in
-    { model | route = view }
+        { model | route = view }
