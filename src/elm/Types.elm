@@ -25,6 +25,7 @@ type alias Model =
     , lastVetVisit : VetTimeScale
     , otherHealthNotes : String
     , personalityTraits : List String
+    , contactMethods : List String
     , otherPersonalityNotes : String
     , cats : String
     , dogs : String
@@ -78,6 +79,11 @@ type PersonalityTraits
     | Calm
     | Excitable
     | Growler
+
+
+type ContactMethods
+    = Phone
+    | Email
 
 
 type MedicalCheck
@@ -280,6 +286,7 @@ type Msg
     | UpdatePrimaryBreed DogBreed
     | UpdateLastVetVisit VetTimeScale
     | TogglePersonality String Bool
+    | ToggleContactMethods String Bool
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
     | UpdateOtherHealth String

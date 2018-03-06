@@ -1,5 +1,6 @@
 module Views.OwnerInfo exposing (..)
 
+import Components.ContactButtons exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -52,6 +53,12 @@ ownerInfo model =
         , div []
             [ input [ type_ "email", class "bg-light-blue w-80 w-50-ns br2 pa3 gray bn", onInput UpdateOwnerEmail ]
                 []
+            ]
+        , div [ class "blue b mb2 mt4" ]
+            [ text "We be in touch within 2 days, how would you prefer to be contacted? Choose all that apply." ]
+        , div [ class "mb4 h3" ]
+            [ contactButton "Email"
+            , contactButton "Phone"
             ]
         , div [ class "mt4 tc w-100 " ]
             [ a [ class "ink w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
