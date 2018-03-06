@@ -1,7 +1,47 @@
-Hi, {{name}}!]
-Someone has requested for Blue Cross to re-home their dog.
+Hi, {{name}}!
+You have received a new rehoming enquiry.
 The dog, {{petName}}, has the following characteristics:
 
-Likes People: {{people}}/100
-Likes Children: {{children}}/100
-Likes Cats: {{cats}}/100
+Time Scale
+Urgency: {{urgency}}
+
+About
+Pet name: {{petName}}
+Cross breed: {{crossBreed}}
+Breed: {{primaryBreedType}}
+Breed: {{secondaryBreedType}}
+Primary reason for rehoming: {{primaryReasonForRehoming}}
+Secondary reason for rehoming: {{secondaryReasonForRehoming}}
+Other reasons for rehoming: {{otherReasonsForRehoming}}
+Gender: {{dogGender}}
+Age: {{dogAge}}
+
+Health
+Medical details: {{#each medicalDetails}}{{this}}, {{/each}}
+Last visit to the vet: {{lastVetVisit}}
+Other health notes: {{otherHealthNotes}}
+
+Personality
+Personality traits: {{#each personalityTraits}} {{this}}, {{/each}}
+Other personality notes: {{otherPersonalityNotes}}
+
+New Home
+Likes cats: {{cats}}% happy with cats
+Likes children: {{children}}% happy with children
+Likes people: {{people}}% happy with people
+Likes dogs: {{dogs}}% happy with dogs
+Likes babies: {{babies}}% happy with babies
+Other notes: {{otherNotes}}
+
+Photos
+ImageUrls: {{#each imageUrls}} {{this}}, {{/each}}
+
+Finding a home
+Support required: {{#each supportType}}{{this}}{{/each}}
+
+Owner Details
+Owner name: {{ownerName}}
+Phone number: {{ownerPhone}}
+Alternative phone number: {{alternativeOwnerPhone}}
+Best time to call: {{bestTimeToCall}}
+Email: {{email}}

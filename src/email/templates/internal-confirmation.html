@@ -1,32 +1,53 @@
+
+<section style="background-color:#E1F4FB; padding: 1rem;">
+  <article style="width:80%; background-color:white; margin: 0 auto; padding: 2rem 3rem;">
 <p>Hi, {{name}}!</p>
-<h2>Someone has requested for Blue Cross to rehome their dog. </h2>
+<p>You have received a new rehoming enquiry.</p>
 <p>The dog, {{petName}}, has the following characteristics:</p>
-  <p><span style="font-weight: bold;">imageUrls: </span>{{#each imageUrls}} <span>{{this}}, </span>{{/each}}</p>
-  <p><span style="font-weight: bold;">images : </span> {{#each imageUrls}} <img src="{{this}}" />{{/each}}</p>
-  <p><span style="font-weight: bold;">urgency: </span>{{urgency}}</p>
-  <p><span style="font-weight: bold;">petName: </span>{{petName}}</p>
-  <p><span style="font-weight: bold;">crossBreed: </span>{{crossBreed}}</p>
-  <p><span style="font-weight: bold;">primaryBreedType: </span>{{primaryBreedType}}</p>
-  <p><span style="font-weight: bold;">secondaryBreedType: </span>{{secondaryBreedType}}</p>
-  <p><span style="font-weight: bold;">primaryReasonForRehoming: </span>{{primaryReasonForRehoming}}</p>
-  <p><span style="font-weight: bold;">secondaryReasonForRehoming: </span>{{secondaryReasonForRehoming}}</p>
-  <p><span style="font-weight: bold;">otherReasonsForRehoming: </span>{{otherReasonsForRehoming}}</p>
-  <p><span style="font-weight: bold;">dogGender: </span>{{dogGender}}</p>
-  <p><span style="font-weight: bold;">dogAge: </span>{{dogAge}}</p>
-  <p><span style="font-weight: bold;">medicalDetails: </span>{{#each medicalDetails}}<span>{{this}}, </span>{{/each}}</p>
-  <p><span style="font-weight: bold;">lastVetVisit: </span>{{lastVetVisit}}</p>
-  <p><span style="font-weight: bold;">otherHealthNotes: </span>{{otherHealthNotes}}</p>
-  <p><span style="font-weight: bold;">personalityTraits: </span>{{#each personalityTraits}}<span>{{this}}, </span>{{/each}}</p>
-  <p><span style="font-weight: bold;">otherPersonalityNotes: </span>{{otherPersonalityNotes}}</p>
-  <p><span style="font-weight: bold;">Likes cats: </span>{{cats}}%</p>
-  <p><span style="font-weight: bold;">Likes children: </span>{{children}}%</p>
-  <p><span style="font-weight: bold;">Likes people: </span>{{people}}%</p>
-  <p><span style="font-weight: bold;">Likes dogs: </span>{{dogs}}%</p>
-  <p><span style="font-weight: bold;">Likes babies: </span>{{babies}}%</p>
-  <p><span style="font-weight: bold;">otherNotes: </span>{{otherNotes}}</p>
-  <p><span style="font-weight: bold;">supportType: </span>{{#each supportType}}<span>{{this}}</span>{{/each}}</p>
-  <p><span style="font-weight: bold;">ownerName: </span>{{ownerName}}</p>
-  <p><span style="font-weight: bold;">ownerPhone: </span>{{ownerPhone}}</p>
-  <p><span style="font-weight: bold;">alternativeOwnerPhone: </span>{{alternativeOwnerPhone}}</p>
-  <p><span style="font-weight: bold;">bestTimeToCall: </span>{{bestTimeToCall}}</p>
-  <p><span style="font-weight: bold;">email: </span>{{email}}</p>
+<h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Time scale</h3>
+  <p><span style="font-weight: bold;">Urgency: </span>{{urgency}}</p>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">About</h3>
+  <p><span style="font-weight: bold;">Pet Name: </span>{{petName}}</p>
+  <p><span style="font-weight: bold;">Cross breed: </span>{{crossBreed}}</p>
+  <p><span style="font-weight: bold;">Breed: </span>{{primaryBreedType}}</p>
+  <p><span style="font-weight: bold;">Breed: </span>{{secondaryBreedType}}</p>
+  <p><span style="font-weight: bold;">Primary reason for rehoming: </span>{{primaryReasonForRehoming}}</p>
+  <p><span style="font-weight: bold;">Secondary reason for rehoming: </span>{{secondaryReasonForRehoming}}</p>
+  <p><span style="font-weight: bold;">Other reasons for rehoming: </span>{{otherReasonsForRehoming}}</p>
+  <p><span style="font-weight: bold;">Gender: </span>{{dogGender}}</p>
+  <p><span style="font-weight: bold;">Age: </span>{{dogAge}}</p>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Health</h3>
+  <p><span style="font-weight: bold;">Medical details: </span>{{#each medicalDetails}}<span>{{this}}, </span>{{/each}}</p>
+  <p><span style="font-weight: bold;">Last visit to the vet: </span>{{lastVetVisit}}</p>
+  <p><span style="font-weight: bold;">Other health notes: </span>{{otherHealthNotes}}</p>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Personality</h3>
+  <p><span style="font-weight: bold;">Personality traits: </span>{{#each personalityTraits}}<span >{{this}}, </span>{{/each}}</p>
+  <p><span style="font-weight: bold;">Other personality notes: </span>{{otherPersonalityNotes}}</p>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">New Home</h3>
+  <p><span style="font-weight: bold;">Likes cats: </span>{{cats}}% happy with cats</p>
+  <p><span style="font-weight: bold;">Likes children: </span>{{children}}% happy with children</p>
+  <p><span style="font-weight: bold;">Likes people: </span>{{people}}% happy with people</p>
+  <p><span style="font-weight: bold;">Likes dogs: </span>{{dogs}}% happy with dogs</p>
+  <p><span style="font-weight: bold;">Likes babies: </span>{{babies}}% happy with babies</p>
+  <p><span style="font-weight: bold;">Other notes: </span>{{otherNotes}}</p>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Photos</h3>
+  <!-- <p><span style="font-weight: bold;">imageUrls: </span>{{#each imageUrls}} <span>{{this}}, </span>{{/each}}</p> -->
+  <p><span style="font-weight: bold;">images :</span> </p>
+  {{#each imageUrls}}<a href="{{this}}"><p> <img  style="width:40%; height:auto; display:inline-block; margin: 1rem; border-radius:5px;" src="{{this}}"  />{{/each}}</p></a>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Finding a home</h3>
+  <p><span style="font-weight: bold;">Support required: </span>{{#each supportType}}<span>{{this}}</span>{{/each}}</p>
+
+  <h3 style="color:#0592D3; font-weight: bold; margin-bottom: 1px;">Owner Details</h3>
+  <p><span style="font-weight: bold;">Owner name: </span>{{ownerName}}</p>
+  <p><span style="font-weight: bold;">Phone number: </span>{{ownerPhone}}</p>
+  <p><span style="font-weight: bold;">Alternative phone number: </span>{{alternativeOwnerPhone}}</p>
+  <p><span style="font-weight: bold;">Best time to call: </span>{{bestTimeToCall}}</p>
+  <p><span style="font-weight: bold;">Email: </span>{{email}}</p>
+  </article>
+</section>

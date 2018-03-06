@@ -173,6 +173,11 @@ input:checked + .age {
   height: 40vh;
 }
 
+.hover-transition {
+  transition: background-color 0.5s ease;
+  background-color: transparent;
+}
+
 .w-vw6 {
   width: calc(0.7rem + 4.5vw);
 }

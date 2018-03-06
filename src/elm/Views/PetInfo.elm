@@ -36,18 +36,18 @@ petInfo model =
             , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
             , div [ classes [ displayElement (model.crossBreed /= Neutral) ] ]
                 [ div []
-                    [ div [ class "blue b mb2 mt4" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
-                , div []
-                    [ select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
+                    [ div [ class "blue b mt4 mb2" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
+                , div [ class "inline-flex items-center  w-100" ]
+                    [ select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
                         ([ defaultOption ]
                             ++ List.map
                                 dogBreedDropDown
                                 dogBreedsList
                         )
                     , p
-                        [ classes [ "mt0 blue", displayElement (model.crossBreed /= No) ] ]
+                        [ classes [ " blue mh3 mv0", displayElement (model.crossBreed /= No) ] ]
                         [ text "&" ]
-                    , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
+                    , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
                         ([ defaultOption ]
                             ++ List.map
                                 dogBreedDropDown
@@ -56,33 +56,30 @@ petInfo model =
                     ]
                 ]
             ]
-        , div []
-            [ div [ class "gray f6 fw1" ] [ text "Other:" ]
-            , div []
-                [ input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn" ]
-                    []
-                ]
-            ]
         , div [ class "blue b mb2 mt4" ] [ text <| "What is your main reason for rehoming " ++ getPetName model ++ "?" ]
-        , select [ class "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", id "primaryReasonForRehoming", on "change" <| Json.map UpdatePrimaryReason targetValue ]
-            [ option [ selected True, disabled True ] [ text "Please select one" ]
-            , option [ value "Behaviour" ]
-                [ text "Behaviour" ]
-            , option [ value "Financial" ]
-                [ text "Financial" ]
-            , option [ value "Other" ]
-                [ text "Other" ]
+        , div [ class "inline-flex items-center w-100" ]
+            [ select [ class "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2", id "primaryReasonForRehoming", on "change" <| Json.map UpdatePrimaryReason targetValue ]
+                [ option [ selected True, disabled True ] [ text "Please select one" ]
+                , option [ value "Behaviour" ]
+                    [ text "Behaviour" ]
+                , option [ value "Financial" ]
+                    [ text "Financial" ]
+                , option [ value "Other" ]
+                    [ text "Other" ]
+                ]
+            , p
+                [ classes [ "blue mh3 mv0 b", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ] ]
+                [ text ":" ]
+            , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ], id "secondaryReasonForRehoming", on "change" <| Json.map UpdateSecondaryReason targetValue ]
+                ([ option [ selected True, disabled True ] [ text "Please select one" ]
+                 ]
+                    ++ secondaryReasons model
+                )
             ]
-        , p
-            [ classes [ "mt0 blue", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ] ]
-            [ text "&" ]
-        , select [ classes [ "bg-light-blue bn w-80 w-50-ns gray tc pa3 mb3 f5 fw1 h2", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ], id "secondaryReasonForRehoming", on "change" <| Json.map UpdateSecondaryReason targetValue ]
-            ([ option [ selected True, disabled True ] [ text "Please select one" ]
-             ]
-                ++ secondaryReasons model
-            )
-        , div [ class "gray f6 fw1" ] [ text "Other:" ]
-        , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
+        , div [ classes [ displayElement (model.primaryReasonForRehoming == "Other") ] ]
+            [ div [ class "gray f6 fw1" ] [ text "Other:" ]
+            , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
+            ]
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
         , newBlueButton ( Male, UpdateGender ) "Male"
         , newBlueButton ( Female, UpdateGender ) "Female"
