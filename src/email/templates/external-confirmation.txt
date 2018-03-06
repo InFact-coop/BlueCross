@@ -1,0 +1,7 @@
+Thank you, {{ownerName}}!
+We've safely received {{petName}}'s details.
+
+We'll now work hard to find a new home for {{petName}} and will be in touch within 2 days.
+
+Regards,
+The Blue Cross Team
