@@ -1,0 +1,30 @@
+<svg width="50" height="50" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Group 3</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-2992 -1382)">
+<g id="Group 3">
+<g id="Ellipse">
+<use xlink:href="#path0_fill" transform="translate(2992 1382)" fill="#FFFFFF"/>
+<mask id="mask0_outline_ins">
+<use xlink:href="#path0_fill" fill="white" transform="translate(2992 1382)"/>
+</mask>
+<g mask="url(#mask0_outline_ins)">
+<use xlink:href="#path1_stroke_2x" transform="translate(2992 1382)" fill="#EB5757"/>
+</g>
+</g>
+<g id="Group 2">
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="matrix(0.768221 0.640184 -0.640184 0.768221 3023.67 1396)" fill="#EB5757"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="matrix(-0.721488 0.692426 -0.692426 -0.721488 3027.04 1414.63)" fill="#EB5757"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 50 25C 50 38.8071 38.8071 50 25 50C 11.1929 50 0 38.8071 0 25C 0 11.1929 11.1929 0 25 0C 38.8071 0 50 11.1929 50 25Z"/>
+<path id="path1_stroke_2x" d="M 47 25C 47 37.1503 37.1503 47 25 47L 25 53C 40.464 53 53 40.464 53 25L 47 25ZM 25 47C 12.8497 47 3 37.1503 3 25L -3 25C -3 40.464 9.53603 53 25 53L 25 47ZM 3 25C 3 12.8497 12.8497 3 25 3L 25 -3C 9.53603 -3 -3 9.53603 -3 25L 3 25ZM 25 3C 37.1503 3 47 12.8497 47 25L 53 25C 53 9.53603 40.464 -3 25 -3L 25 3Z"/>
+<path id="path2_fill" d="M 0.640208 -4.57912e-17L 6.82928e-16 25.0677L 2.99902 25.1443L 3.63923 0.076593L 0.640208 -4.57912e-17Z"/>
+</defs>
+</svg>

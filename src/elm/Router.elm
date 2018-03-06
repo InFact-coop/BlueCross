@@ -26,12 +26,12 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
-            [ navbar model
-            , viewTitle model
-            , ifThenElse (model.route /= HomeRoute || model.route /= ThankYouRoute) (progressBar model) (div [ class "dn" ] [])
-            , view
-            ]
+    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
+        [ navbar model
+        , viewTitle model
+        , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
+        , view
+        ]
 
 
 getCurrentView : Model -> Html Msg
@@ -111,4 +111,4 @@ viewFromUrl location model =
         view =
             getRoute location.hash
     in
-        { model | route = view }
+    { model | route = view }

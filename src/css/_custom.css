@@ -154,16 +154,11 @@ input:checked + .age {
 }
 
 .upload-background {
-  background-image: url('./assets/upload.png');
+  background-image: url('./assets/upload.svg');
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.take-photo-background {
-  background-image: url('./assets/camera.png');
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 .margin-minus {
   margin-top: -3rem;

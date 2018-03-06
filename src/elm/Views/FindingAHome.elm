@@ -10,7 +10,7 @@ findingAHome : Model -> Html Msg
 findingAHome model =
     div [ class "w-60-ns w-90 center" ]
         [ section []
-            [ h2 [ class "blue f5 mv4" ] [ text <| "We can help you find a new home for " ++ getPetName model ++ " in a couple of different ways.  Which would suit you and " ++ getPetName model ++ " best?" ]
+            [ h2 [ class "blue f4 mv4 lh-copy" ] [ text <| "We can help you find a new home for " ++ getPetName model ++ " in a couple of different ways.  Which would suit you and " ++ getPetName model ++ " best?" ]
             ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "rehomingCentre", value "Rehoming Centre", onCheckboxInput ToggleSupportPreference ] []
@@ -26,7 +26,7 @@ findingAHome model =
                 , text <| getPetName model ++ " will stay with you while we find a great new home"
                 ]
             ]
-        , div [ class "mb2" ]
+        , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "none", value "Unsure", onCheckboxInput ToggleSupportPreference ] []
             , label [ for "none", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Unsure: " ]

@@ -11,7 +11,7 @@ import Types exposing (..)
 personality : Model -> Html Msg
 personality model =
     div [ class "w-60-ns w-90 center ma3 ma0-ns" ]
-        [ div [ class "blue b mb4 mt4" ] [ text <| "To help us find a great home for " ++ getPetName model ++ ", please click on the words that best descirbe them" ]
+        [ div [ class "blue b mb4 mt4 f4 lh-copy" ] [ text <| "To help us find a great home for " ++ getPetName model ++ ", please click on the words that best descirbe them" ]
         , div []
             [ personalityButton "Noisy"
             , personalityButton "Sleepy"
