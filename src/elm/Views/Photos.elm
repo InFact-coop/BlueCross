@@ -66,7 +66,7 @@ photos model =
                 , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
                 ]
             , div [ class "ba w-40-ns w-80 vh-25 vh-40-ns br2 b--blue ma3" ]
-                [ button [ class "w-100  h-100 pointer bn blue cursor br2", onClick PreparePhoto ]
+                [ button [ class "w-100  h-100 pointer bn blue cursor br2 bg-white", onClick PreparePhoto ]
                     [ img [ src "./assets/camera.svg", class "w4 h-auto" ] []
                     , br [] []
                     ]
