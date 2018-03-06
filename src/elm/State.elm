@@ -36,6 +36,7 @@ initModel =
     , otherHealthNotes = ""
     , personalityTraits = []
     , contactMethods = []
+    , fundraisingContact = []
     , otherPersonalityNotes = ""
     , cats = "50"
     , children = "50"
@@ -210,6 +211,12 @@ update msg model =
                 { model | contactMethods = model.contactMethods ++ [ string ] } ! []
             else
                 { model | contactMethods = List.filter (\x -> x /= string) model.contactMethods } ! []
+
+        ToggleFundraisingContact string checked ->
+            if checked && isNewListEntry string model.fundraisingContact then
+                { model | fundraisingContact = model.fundraisingContact ++ [ string ] } ! []
+            else
+                { model | fundraisingContact = List.filter (\x -> x /= string) model.fundraisingContact } ! []
 
         ToggleSupportPreference string checked ->
             if checked && isNewListEntry string model.supportType then

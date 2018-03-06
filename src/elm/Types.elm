@@ -26,6 +26,7 @@ type alias Model =
     , otherHealthNotes : String
     , personalityTraits : List String
     , contactMethods : List String
+    , fundraisingContact : List String
     , otherPersonalityNotes : String
     , cats : String
     , dogs : String
@@ -234,6 +235,12 @@ type Stage
     | StageErr
 
 
+type FundraisingContact
+    = PhoneFundraising
+    | EmailFundraising
+    | TextMessage
+
+
 type RemoteData
     = NotAsked
     | Loading
@@ -287,6 +294,7 @@ type Msg
     | UpdateLastVetVisit VetTimeScale
     | TogglePersonality String Bool
     | ToggleContactMethods String Bool
+    | ToggleFundraisingContact String Bool
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale
     | UpdateOtherHealth String
