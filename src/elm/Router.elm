@@ -1,8 +1,9 @@
 module Router exposing (..)
 
 import Components.Navbar exposing (..)
+import Components.Progress exposing (progressBar)
 import Components.Title exposing (..)
-import Data.DogBreeds exposing (..)
+import Helpers exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Navigation exposing (..)
@@ -25,9 +26,10 @@ view model =
         view =
             getCurrentView model
     in
-        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover", id "container" ]
+        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
             [ navbar model
             , viewTitle model
+            , ifThenElse (model.route /= HomeRoute || model.route /= ThankYouRoute) (progressBar model) (div [ class "dn" ] [])
             , view
             ]
 
