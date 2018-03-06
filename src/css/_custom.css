@@ -18,6 +18,10 @@ button {
   margin: 0 auto;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .headerTitle {
   border-bottom-left-radius: 100%5rem;
   border-bottom-right-radius: 100%5rem;
@@ -158,7 +162,6 @@ input:checked + .age {
   background-position: center;
   background-repeat: no-repeat;
 }
-
 
 .margin-minus {
   margin-top: -3rem;
