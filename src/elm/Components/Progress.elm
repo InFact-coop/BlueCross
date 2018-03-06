@@ -9,8 +9,13 @@ import Types exposing (..)
 
 progressBar : Model -> Html Msg
 progressBar model =
-    div [ classes [ "flex", "justify-center", "items-center", "w-90", "w-60-ns", "center", "mb3" ] ]
-        (routeToProgressBar routesList model)
+    section [ class "w-60-ns w-90 center ma3 ma0-ns" ]
+        [ header [ class "b dark-blue f4" ]
+            [ text "Progress" ]
+        , div
+            [ classes [ "flex", "justify-center", "items-center", "center", "mb5", "mt3" ] ]
+            (routeToProgressBar routesList model)
+        ]
 
 
 routeToProgressBar : List ( Int, Route ) -> Model -> List (Html Msg)
@@ -24,7 +29,7 @@ routeToProgressBar list model =
 
         activeNodes =
             ifThenElse (model.route /= HomeRoute) [ line "green", activeNode ] [ activeNode ]
-                ++ (ifThenElse (model.route /= OwnerInfoRoute) [ line "light-blue" ] [])
+                ++ ifThenElse (model.route /= OwnerInfoRoute) [ line "light-blue" ] []
 
         doneNodes =
             list
@@ -38,7 +43,7 @@ routeToProgressBar list model =
                 |> List.map (\route -> futureNode <| Tuple.first route)
                 |> List.intersperse (line "light-blue")
     in
-        doneNodes ++ activeNodes ++ futureNodes
+    doneNodes ++ activeNodes ++ futureNodes
 
 
 routesList : List ( Int, Route )
@@ -66,7 +71,7 @@ activeNode =
 
 backgroundImage : String -> Attribute Msg
 backgroundImage url =
-    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", "70%" ) ]
+    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", "55%" ) ]
 
 
 futureNode : Int -> Html Msg
