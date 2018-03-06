@@ -89,7 +89,7 @@ petInfo model =
         , newBlueButton ( Between6To10Years, UpdateDogAge ) "6-10 years"
         , newBlueButton ( Over10Years, UpdateDogAge ) "Over 10 years"
         , div [ class "tc w-100 mt4" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m mb5", href "#before-you-begin" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#before-you-begin" ] [ text "Next" ]
             ]
         ]
 
