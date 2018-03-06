@@ -9,6 +9,7 @@ import Requests.PostForm exposing (postForm)
 import Requests.UploadPhotos exposing (uploadPhotos)
 import Router exposing (getRoute, viewFromUrl)
 import Task
+import Transit exposing (start, tick, subscriptions, empty)
 import Types exposing (..)
 
 
@@ -51,6 +52,7 @@ initModel =
     , alternativeOwnerPhone = ""
     , bestTimeToCall = AM
     , email = ""
+    , transition = Transit.empty
     }
 
 
@@ -86,6 +88,12 @@ update msg model =
 
         UrlChange location ->
             { model | route = getRoute location.hash, nextClickable = False } ! [ Task.attempt (always NoOp) (toTop "container") ]
+
+        NavigateTo location ->
+            Transit.start TransitMsg (UrlChange location) ( 200, 200 ) model
+
+        TransitMsg a ->
+            Transit.tick TransitMsg a model
 
         MakeNextClickable ->
             { model | nextClickable = True } ! []
@@ -291,4 +299,5 @@ subscriptions model =
         [ liveVideoUrl ReceiveLiveVideo
         , receivePhotoUrl (decodeSingleImage >> ReceivePhotoUrl)
         , fileContentRead (decodeImageList >> ImageRead)
+        , Transit.subscriptions TransitMsg model
         ]

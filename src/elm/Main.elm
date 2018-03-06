@@ -8,7 +8,7 @@ import Types exposing (..)
 
 main : Program Never Model Msg
 main =
-    program UrlChange
+    program NavigateTo
         { init = init
         , view = view
         , update = update
