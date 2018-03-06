@@ -12,8 +12,8 @@ home : Model -> Html Msg
 home model =
     div [ class "w-60-ns w-90 center" ]
         [ section [ class "greeting bg-light-blue pv3 ph4 br2" ]
-            [ h2 [ class "blue tc f5" ] [ text "Thank you for choosing Blue Cross" ]
-            , p [ class "gray tc ph4-l" ] [ text "Finding the right home for your pet is never easy, Blue Cross is here to help.  Please answer the following questions about your pet, we will then be in touch within 2 days to get started." ]
+            [ h2 [ class "blue tc f4" ] [ text "Thank you for choosing Blue Cross" ]
+            , p [ class "gray tc ph4-l lh-copy" ] [ text "Finding the right home for your pet is never easy, Blue Cross is here to help.  Please answer the following questions about your pet, we will then be in touch within 2 days to get started." ]
             ]
         , div [ class "w-100 center" ] [ h2 [ class "blue f5 pt4-ns" ] [ text "When do you need to rehome your pet?" ], div [ class "center" ] urgencyButtons ]
         , br [] []

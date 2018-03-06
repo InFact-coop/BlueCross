@@ -28,7 +28,7 @@ rangeNumberToCss range =
 newHome : Model -> Html Msg
 newHome model =
     div [ class "w-60-ns w-90 center" ]
-        [ div [ class "blue b mb3" ] [ text <| "Help us find " ++ getPetName model ++ " a new home they will be happy in. How does " ++ getPetName model ++ " feel about..." ]
+        [ div [ class "blue b mb3 f4 lh-copy" ] [ text <| "Help us find " ++ getPetName model ++ " a new home they will be happy in. How does " ++ getPetName model ++ " feel about..." ]
         , div [ class "blue b mb2 fw4" ] [ text "Cats?" ]
         , div [ class "flex" ]
             [ div [ class "w2 h2" ]

@@ -13,7 +13,7 @@ progressBar model =
         [ header [ class "b dark-blue f4" ]
             [ text "Progress" ]
         , div
-            [ classes [ "flex", "justify-center", "items-center", "center", "mb5", "mt3" ] ]
+            [ classes [ "flex", "justify-center", "items-center", "center", "mb5-ns", "mb3", "mt3" ] ]
             (routeToProgressBar routesList model)
         ]
 

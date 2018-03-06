@@ -9,7 +9,7 @@ import Types exposing (..)
 ownerInfo : Model -> Html Msg
 ownerInfo model =
     div [ class "w-60-ns center ma3 " ]
-        [ div [ class "blue b mb4 mt4" ] [ text "We just need to collect a few details from you so we can get in touch" ]
+        [ div [ class "blue b mb4 mt4 f4 lh-copy" ] [ text "We just need to collect a few details from you so we can get in touch" ]
         , div [ class "blue b mb2 mt4" ] [ text "What is your name?*" ]
         , div []
             [ input [ type_ "text", class "bg-light-blue w-80 w-50-ns w-50-ns br2 pa3 gray bn", onInput UpdateOwnerName ]
