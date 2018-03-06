@@ -2,8 +2,8 @@ port module State exposing (..)
 
 import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
 import Dom.Scroll exposing (..)
-import Json.Decode
 import Helpers exposing (..)
+import Json.Decode
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
 import Requests.UploadPhotos exposing (uploadPhotos)
@@ -36,6 +36,8 @@ initModel =
     , lastVetVisit = UpTo3Months
     , otherHealthNotes = ""
     , personalityTraits = []
+    , contactMethods = []
+    , fundraisingContact = []
     , otherPersonalityNotes = ""
     , cats = "50"
     , children = "50"
@@ -60,7 +62,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+    model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -211,6 +213,18 @@ update msg model =
                 { model | personalityTraits = model.personalityTraits ++ [ string ] } ! []
             else
                 { model | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
+
+        ToggleContactMethods string checked ->
+            if checked && isNewListEntry string model.contactMethods then
+                { model | contactMethods = model.contactMethods ++ [ string ] } ! []
+            else
+                { model | contactMethods = List.filter (\x -> x /= string) model.contactMethods } ! []
+
+        ToggleFundraisingContact string checked ->
+            if checked && isNewListEntry string model.fundraisingContact then
+                { model | fundraisingContact = model.fundraisingContact ++ [ string ] } ! []
+            else
+                { model | fundraisingContact = List.filter (\x -> x /= string) model.fundraisingContact } ! []
 
         ToggleSupportPreference string checked ->
             if checked && isNewListEntry string model.supportType then
