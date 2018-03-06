@@ -59,7 +59,7 @@ prettifyNumber number =
 getPetName : Model -> String
 getPetName model =
     if model.petName == "" then
-        "Your dog"
+        "your dog"
     else
         model.petName
 
