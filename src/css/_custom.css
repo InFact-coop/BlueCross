@@ -163,15 +163,13 @@ input:checked + .age {
   background-repeat: no-repeat;
 }
 
-@media only screen
-  and (min-device-width : 320px)
-  and (max-device-width : 480px){
-    .upload-background{
-      background-image: url('./assets/camera.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-
-      }}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .upload-background {
+    background-image: url('./assets/camera.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
 
 .margin-minus {
   margin-top: -3rem;
@@ -204,11 +202,12 @@ input:focus {
 
 .disableButton {
   pointer-events: none;
+}
 
 .vh-40-l {
   height: 40vh;
 }
 
-.f-custom{
+.f-custom {
   font-size: 1.5em;
 }
