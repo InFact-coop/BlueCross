@@ -6,7 +6,6 @@ import Data.Home exposing (timeScaleTypes)
 import Helpers exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import TransitStyle exposing (..)
 import Types exposing (..)
 
 
