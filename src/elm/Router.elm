@@ -32,11 +32,9 @@ view model =
         [ navbar model
         , div [ style (fadeSlider 300 model.transition) ]
             [ viewTitle model
-            , div [ class "mw9 center" ]
-                [ ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
-                , view
-                , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
-                ]
+            , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
+            , view
+            , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
             ]
         ]
 

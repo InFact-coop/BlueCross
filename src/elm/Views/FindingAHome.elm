@@ -9,7 +9,7 @@ import Types exposing (..)
 
 findingAHome : Model -> Html Msg
 findingAHome model =
-    div [ class "w-60-ns w-90 center" ]
+    div [ class "w-60-ns w-90 center mw8" ]
         [ section []
             [ h2 [ class "blue f4 mv4 lh-copy" ] [ text <| "We can help you find a new home for " ++ getPetName model ++ " in a couple of different ways.  Which would suit you and " ++ getPetName model ++ " best?" ]
             ]

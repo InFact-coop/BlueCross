@@ -9,7 +9,7 @@ import Types exposing (..)
 
 progressBar : Model -> Html Msg
 progressBar model =
-    section [ class "w-60-ns w-90 center ma3 ma0-ns" ]
+    section [ class "w-60-ns w-90 center ma3 ma0-ns mw8" ]
         [ header [ class "b dark-blue f4" ]
             [ text "Progress" ]
         , div

@@ -21,7 +21,7 @@ onBlurValue tagger =
 
 petInfo : Model -> Html Msg
 petInfo model =
-    div [ class "w-60-ns w-90 center ma3 ma0-ns" ]
+    div [ class "w-60-ns w-90 center ma3 ma0-ns mw8" ]
         [ div
             [ class " blue b mb2" ]
             [ text "What is your pet's name?"
