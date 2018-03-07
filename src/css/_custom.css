@@ -204,6 +204,7 @@ input:focus {
 
 .disableButton {
   pointer-events: none;
+}
 
 .vh-40-l {
   height: 40vh;
