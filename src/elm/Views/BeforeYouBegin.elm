@@ -11,7 +11,7 @@ import Types exposing (..)
 
 beforeYouBegin : Model -> Html Msg
 beforeYouBegin model =
-    div [ class "w-60-ns w-90 center" ]
+    div [ class "w-60-ns w-90 center mw8" ]
         [ div [ class "blue b mb3" ] [ text <| "Is " ++ getPetName model ++ "..." ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", onCheckboxInput ToggleMedicalDetail, id "vaccinated", value "Vaccinated" ] []

@@ -19,7 +19,7 @@ thankYou model =
                 [ div [ class "tc pa2 pt3 b f3" ] [ text "Thank You!" ]
                 , div [ class "tc pl4 pr4 pb3 f5 fw2" ]
                     [ div [ class "mb2" ] [ text <| "Thank you for answering our questions, this will help us find " ++ getPetName model ++ " a great new home.  " ]
-                    , div [ class "" ] [ text <| "We will be in touch within 2 days to arrange a time to come and see you and" ++ getPetName model ++ ", when we will plan his rehoming journey and any further support you need." ]
+                    , div [ class "" ] [ text <| "We will be in touch within 2 days to arrange a time to come and see you and " ++ getPetName model ++ ", when we will plan his rehoming journey and any further support you need." ]
                     , p []
                         [ text "We know saying goodbye to a much loved pet is hard, if you need somebody to talk to, details of our confidential Pet Bereavement Support Service can be found "
                         , a [ href "https://www.bluecross.org.uk/pet-bereavement-and-pet-loss", target "blank", class "b white no-underline" ]
