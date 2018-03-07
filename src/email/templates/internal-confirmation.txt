@@ -45,3 +45,6 @@ Phone number: {{ownerPhone}}
 Alternative phone number: {{alternativeOwnerPhone}}
 Best time to call: {{bestTimeToCall}}
 Email: {{email}}
+
+Contact for fundraising
+{{#each fundraisingContact}} {{this}}, {{/each}}

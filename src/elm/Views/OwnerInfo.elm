@@ -62,9 +62,9 @@ ownerInfo model =
                 [ text "Blue Cross would like to tell you about the great work we do for pets and the different ways in which you could support us, this may include fundraising activities, appeals and merchandise." ]
             , p [ class "mb1" ] [ text "Please tick below if you are happy for us to contact you by:" ]
             , div []
-                [ fundraisingButton ( "Email", "fundraisingEmail" )
-                , fundraisingButton ( "Phone", "fundraisingPhone" )
-                , fundraisingButton ( "Text Message", "fundraisingText" )
+                [ fundraisingButton ( "Email", "Email" )
+                , fundraisingButton ( "Phone", "Phone" )
+                , fundraisingButton ( "Text Message", "Text" )
                 ]
             , p [ class "mid-gray fw1 f6" ]
                 [ text "You can unsubscribe or change your preferences at any time by contacting our Supporter Careteam on 0300 790 9903 or emailing info@bluecross.org.uk"

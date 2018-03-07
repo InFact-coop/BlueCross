@@ -232,9 +232,9 @@ type Stage
 
 
 type FundraisingContact
-    = PhoneFundraising
-    | EmailFundraising
-    | TextMessage
+    = Phone
+    | Email
+    | Text
 
 
 type RemoteData
