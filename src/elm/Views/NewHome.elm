@@ -22,8 +22,8 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-        style
-            [ ( "backgroundImage", gradient ) ]
+    style
+        [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
