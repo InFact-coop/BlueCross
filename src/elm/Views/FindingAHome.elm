@@ -17,7 +17,7 @@ findingAHome model =
             [ input [ type_ "checkbox", id "rehomingCentre", value "Rehoming Centre", onCheckboxInput ToggleSupportPreference ] []
             , label [ for "rehomingCentre", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Rehoming Centre: " ]
-                , text <| "We will look after" ++ getPetName model ++ " at our Rehoming centre until we find " ++ getPetName model ++ " a great new home"
+                , text <| "We will look after " ++ getPetName model ++ " at our Rehoming centre until we find " ++ getPetName model ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]
