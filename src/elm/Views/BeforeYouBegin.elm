@@ -28,7 +28,10 @@ beforeYouBegin model =
             [ input [ type_ "checkbox", onCheckboxInput ToggleMedicalDetail, id "Unknown", value "Unknown" ] []
             , label [ for "Unknown", class "gray ml2" ] [ text "Unknown" ]
             ]
-        , div [ class "blue b mt4 pb3" ] [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?" ]
+        , div [ class "blue b mt4 pb3" ]
+            [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?"
+            , span [ class "fw1 f5" ] [ text " Required" ]
+            ]
         , newBlueButton ( UpTo3Months, UpdateLastVetVisit ) "Up to 3 months"
         , newBlueButton ( Between3To12Months, UpdateLastVetVisit ) "3 to 12 months"
         , newBlueButton ( OverAYear, UpdateLastVetVisit ) "Over a year"
