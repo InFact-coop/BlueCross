@@ -46,7 +46,7 @@ photos model =
         , label [ for model.imageId, class "b blue" ] [ text <| ("Please take or upload a photo of " ++ getPetName model) ]
         , br [ class "pa3" ] []
         , div [ class "flex flex-wrap justify-center" ]
-            [ div [ class "ba w-40-ns w-80 vh-40-ns br2 b--blue ma3 " ]
+            [ div [ class "ba w-40-ns w-80 vh-25 vh-40-l br2 b--blue ma3 " ]
                 [ div [ class "h-100" ]
                     [ div [ class " white f4 fw1 v-mid tc center h-100 w-100 upload-background " ]
                         [ input
@@ -65,7 +65,7 @@ photos model =
                     ]
                 , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
                 ]
-            , div [ class "ba w-40-ns w-80 vh-25 vh-40-ns br2 b--blue ma3" ]
+            , div [ class "ba w-40-ns w-80 vh-25 vh-40-l br2 b--blue ma3 dn db-ns" ]
                 [ button [ class "w-100  h-100 pointer bn blue cursor br2 bg-white", onClick PreparePhoto ]
                     [ img [ src "./assets/camera.svg", class "w4 h-auto" ] []
                     , br [] []
