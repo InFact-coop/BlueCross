@@ -41,6 +41,6 @@ personality model =
         , newTextBox ( "Please tell us here", "personality" ) UpdateOtherPersonality
         , div
             [ class "mt4 tc w-100" ]
-            [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", href "#new-home" ] [ text "Next" ]
+            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#new-home" ] [ text "Next" ]
             ]
         ]

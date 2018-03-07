@@ -10,8 +10,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
 import Json.Decode as Json exposing (Decoder, andThen)
-import Types exposing (..)
 import TransitStyle exposing (..)
+import Types exposing (..)
 
 
 onBlurValue : (String -> msg) -> Attribute msg
@@ -78,7 +78,7 @@ petInfo model =
                 )
             ]
         , div [ classes [ displayElement (model.primaryReasonForRehoming == "Other") ] ]
-            [ div [ class "gray f6 fw1" ] [ text "Other:" ]
+            [ div [ class "gray f6 fw1 mt2" ] [ text "Other:" ]
             , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
             ]
         , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]

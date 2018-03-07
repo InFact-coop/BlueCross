@@ -77,7 +77,7 @@ ownerInfo model =
                 ]
             ]
         , div [ class "mt4 tc w-100 " ]
-            [ a [ class "ink w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
+            [ a [ class "bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
             , p [ class "mt2-ns mt1 gray fw1 " ] [ text "We will send you an email to confirm we have received your enquiry" ]
             ]
         ]

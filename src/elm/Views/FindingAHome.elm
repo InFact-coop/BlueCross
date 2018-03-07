@@ -35,6 +35,6 @@ findingAHome model =
             ]
         , div
             [ class "mt5 tc w-100" ]
-            [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", href "#owner-info" ] [ text "Next" ]
+            [ a [ class "bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#owner-info" ] [ text "Next" ]
             ]
         ]

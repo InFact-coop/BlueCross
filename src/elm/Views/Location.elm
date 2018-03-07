@@ -1,9 +1,9 @@
 module Views.Location exposing (..)
 
+import Helpers exposing (getPetName)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
-import Helpers exposing (getPetName)
 
 
 location : Model -> Html Msg
@@ -22,6 +22,6 @@ location model =
             ]
         , img [ src "./assets/map.svg" ] []
         , div [ class "mt4 tc w-100" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link", href "#owner-info" ] [ text "Next" ]
+            [ a [ class "bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#owner-info" ] [ text "Next" ]
             ]
         ]
