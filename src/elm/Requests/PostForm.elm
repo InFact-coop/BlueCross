@@ -49,4 +49,6 @@ formObject model =
         , ( "alternativeOwnerPhone", string model.alternativeOwnerPhone )
         , ( "bestTimeToCall", string <| unionTypeToString model.bestTimeToCall )
         , ( "email", string model.email )
+        , ( "address", string model.address )
+        , ( "postcode", string model.postcode )
         ]

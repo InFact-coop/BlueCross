@@ -43,6 +43,8 @@ type alias Model =
         , alternativeOwnerPhone : String
         , bestTimeToCall : TimeOfDay
         , email : String
+        , address : String
+        , postcode : String
         }
 
 
@@ -308,6 +310,8 @@ type Msg
     | UpdateAlternativeOwnerPhone String
     | UpdateBestTimeToCall TimeOfDay
     | UpdateOwnerEmail String
+    | UpdateAddress String
+    | UpdatePostcode String
     | ToggleMedicalDetail String Bool
     | ToggleSupportPreference String Bool
     | TransitMsg (Transit.Msg Msg)
