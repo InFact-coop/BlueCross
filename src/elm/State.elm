@@ -9,7 +9,7 @@ import Requests.PostForm exposing (postForm)
 import Requests.UploadPhotos exposing (uploadPhotos)
 import Router exposing (getRoute, viewFromUrl)
 import Task
-import Transit exposing (start, tick, subscriptions, empty)
+import Transit exposing (empty, start, subscriptions, tick)
 import Types exposing (..)
 
 
@@ -36,7 +36,6 @@ initModel =
     , lastVetVisit = VetTimeScaleNotChosen
     , otherHealthNotes = ""
     , personalityTraits = []
-    , contactMethods = []
     , fundraisingContact = []
     , otherPersonalityNotes = ""
     , cats = "-1"
@@ -67,174 +66,212 @@ init location =
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        modelCanProgress =
-            { model | nextClickable = nextClickableToBool model }
-    in
-        case msg of
-            NoOp ->
-                modelCanProgress ! []
+    case msg of
+        NoOp ->
+            model ! []
 
-            StopPhoto ->
-                modelCanProgress ! [ stopPhoto () ]
+        StopPhoto ->
+            model ! [ stopPhoto () ]
 
-            ReceiveLiveVideo string ->
-                { modelCanProgress | liveVideoUrl = string } ! []
+        ReceiveLiveVideo string ->
+            { model | liveVideoUrl = string } ! []
 
-            ReceivePhotoUrl (Ok photo) ->
-                { modelCanProgress | image = addToGallery model photo } ! []
+        ReceivePhotoUrl (Ok photo) ->
+            { model | image = addToGallery model photo } ! []
 
-            ReceivePhotoUrl (Err string) ->
-                modelCanProgress ! []
+        ReceivePhotoUrl (Err string) ->
+            model ! []
 
-            TakePhoto ->
-                modelCanProgress ! [ takePhoto () ]
+        TakePhoto ->
+            model ! [ takePhoto () ]
 
-            UrlChange location ->
-                { modelCanProgress | route = getRoute location.hash, nextClickable = False } ! [ Task.attempt (always NoOp) (toTop "container") ]
+        UrlChange location ->
+            let
+                updatedModel =
+                    { model | route = getRoute location.hash }
+            in
+                nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container") ]
 
-            NavigateTo location ->
-                Transit.start TransitMsg (UrlChange location) ( 200, 200 ) model
+        NavigateTo location ->
+            Transit.start TransitMsg (UrlChange location) ( 200, 200 ) model
 
-            TransitMsg a ->
-                Transit.tick TransitMsg a model
+        TransitMsg a ->
+            Transit.tick TransitMsg a model
 
-            MakeNextClickable ->
-                { modelCanProgress | nextClickable = True } ! []
+        MakeNextClickable ->
+            { model | nextClickable = True } ! []
 
-            UpdateCatsSlider value ->
-                { modelCanProgress | cats = value } ! []
+        UpdateCatsSlider value ->
+            let
+                updatedModel =
+                    { model | cats = value }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateChildrenSlider value ->
-                { modelCanProgress | children = value } ! []
+        UpdateChildrenSlider value ->
+            { model | children = value } ! []
 
-            UpdatePeopleSlider value ->
-                { modelCanProgress | people = value } ! []
+        UpdatePeopleSlider value ->
+            { model | people = value } ! []
 
-            UpdateDogsSlider value ->
-                { modelCanProgress | dogs = value } ! []
+        UpdateDogsSlider value ->
+            let
+                updatedModel =
+                    { model | dogs = value }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateBabiesSlider value ->
-                { modelCanProgress | babies = value } ! []
+        UpdateBabiesSlider value ->
+            { model | babies = value } ! []
 
-            UpdatePetName name ->
-                { modelCanProgress | petName = name } ! []
+        UpdatePetName name ->
+            let
+                updatedModel =
+                    { model | petName = name }
+            in
+                nextClickableToModel updatedModel ! []
 
-            ReceiveFormStatus (Ok bool) ->
-                { modelCanProgress | formStatus = ResponseSuccess } ! []
+        ReceiveFormStatus (Ok bool) ->
+            { model | formStatus = ResponseSuccess } ! []
 
-            ReceiveFormStatus (Err string) ->
-                { modelCanProgress | formStatus = ResponseFailure } ! []
+        ReceiveFormStatus (Err string) ->
+            { model | formStatus = ResponseFailure } ! []
 
-            ReceivePhotoUploadStatus (Ok photosResponse) ->
-                { modelCanProgress | photoStatus = ResponseSuccess, imageUrls = addUrlsToList model photosResponse.urls } ! []
+        ReceivePhotoUploadStatus (Ok photosResponse) ->
+            { model | photoStatus = ResponseSuccess, imageUrls = addUrlsToList model photosResponse.urls } ! []
 
-            ReceivePhotoUploadStatus (Err string) ->
-                { modelCanProgress | photoStatus = ResponseFailure } ! []
+        ReceivePhotoUploadStatus (Err string) ->
+            { model | photoStatus = ResponseFailure } ! []
 
-            SubmitForm ->
-                { modelCanProgress | formStatus = Loading } ! [ postForm model ]
+        SubmitForm ->
+            { model | formStatus = Loading } ! [ postForm model ]
 
-            UploadPhotos ->
-                { modelCanProgress | photoStatus = Loading, image = Nothing } ! [ uploadPhotos model ]
+        UploadPhotos ->
+            { model | photoStatus = Loading, image = Nothing } ! [ uploadPhotos model ]
 
-            ImageSelected ->
-                ( modelCanProgress
-                , fileSelected model.imageId
-                )
+        ImageSelected ->
+            ( model
+            , fileSelected model.imageId
+            )
 
-            ImageRead (Ok listImages) ->
-                { modelCanProgress | image = addListToGallery model listImages } ! []
+        ImageRead (Ok listImages) ->
+            { model | image = addListToGallery model listImages } ! []
 
-            ImageRead (Err error) ->
-                modelCanProgress ! []
+        ImageRead (Err error) ->
+            model ! []
 
-            PreparePhoto ->
-                modelCanProgress ! [ preparePhoto () ]
+        PreparePhoto ->
+            model ! [ preparePhoto () ]
 
-            UpdateUrgency timescale ->
-                { modelCanProgress | urgency = timescale, nextClickable = True } ! []
+        UpdateUrgency timescale ->
+            let
+                updatedModel =
+                    { model | urgency = timescale }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateGender gender ->
-                { modelCanProgress | dogGender = gender, nextClickable = True } ! []
+        UpdateGender gender ->
+            let
+                updatedModel =
+                    { model | dogGender = gender }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateCrossBreed trilean ->
-                { modelCanProgress | crossBreed = trilean } ! []
+        UpdateCrossBreed trilean ->
+            let
+                updatedModel =
+                    { model | crossBreed = trilean }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdatePrimaryBreed breed ->
-                { modelCanProgress | primaryBreedType = Just breed } ! []
+        UpdatePrimaryBreed breed ->
+            let
+                updatedModel =
+                    { model | primaryBreedType = Just breed }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateSecondaryBreed breed ->
-                { modelCanProgress | secondaryBreedType = Just breed } ! []
+        UpdateSecondaryBreed breed ->
+            { model | secondaryBreedType = Just breed } ! []
 
-            UpdatePrimaryReason string ->
-                { modelCanProgress | primaryReasonForRehoming = string } ! []
+        UpdatePrimaryReason string ->
+            { model | primaryReasonForRehoming = string } ! []
 
-            UpdateSecondaryReason string ->
-                { modelCanProgress | secondaryReasonForRehoming = string } ! []
+        UpdateSecondaryReason string ->
+            { model | secondaryReasonForRehoming = string } ! []
 
-            UpdateOtherReasons string ->
-                { modelCanProgress | otherReasonsForRehoming = string } ! []
+        UpdateOtherReasons string ->
+            { model | otherReasonsForRehoming = string } ! []
 
-            UpdateDogAge ageRange ->
-                { modelCanProgress | dogAge = ageRange } ! []
+        UpdateDogAge ageRange ->
+            let
+                updatedModel =
+                    { model | dogAge = ageRange }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateLastVetVisit timescale ->
-                { modelCanProgress | lastVetVisit = timescale } ! []
+        UpdateLastVetVisit timescale ->
+            let
+                updatedModel =
+                    { model | lastVetVisit = timescale }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateOtherHealth string ->
-                { modelCanProgress | otherHealthNotes = string } ! []
+        UpdateOtherHealth string ->
+            { model | otherHealthNotes = string } ! []
 
-            UpdateOwnerName string ->
-                { modelCanProgress | ownerName = string } ! []
+        UpdateOwnerName string ->
+            let
+                updatedModel =
+                    { model | ownerName = string }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateOwnerEmail string ->
-                { modelCanProgress | email = string } ! []
+        UpdateOwnerEmail string ->
+            let
+                updatedModel =
+                    { model | email = string }
+            in
+                nextClickableToModel updatedModel ! []
 
-            UpdateOwnerPhone string ->
-                { modelCanProgress | ownerPhone = string } ! []
+        UpdateOwnerPhone string ->
+            { model | ownerPhone = string } ! []
 
-            UpdateAlternativeOwnerPhone string ->
-                { modelCanProgress | alternativeOwnerPhone = string } ! []
+        UpdateAlternativeOwnerPhone string ->
+            { model | alternativeOwnerPhone = string } ! []
 
-            UpdateBestTimeToCall timeOfDay ->
-                { modelCanProgress | bestTimeToCall = timeOfDay } ! []
+        UpdateBestTimeToCall timeOfDay ->
+            { model | bestTimeToCall = timeOfDay } ! []
 
-            UpdateOtherPersonality string ->
-                { modelCanProgress | otherPersonalityNotes = string } ! []
+        UpdateOtherPersonality string ->
+            { model | otherPersonalityNotes = string } ! []
 
-            UpdateOtherGeneral string ->
-                { modelCanProgress | otherNotes = string } ! []
+        UpdateOtherGeneral string ->
+            { model | otherNotes = string } ! []
 
-            ToggleMedicalDetail string checked ->
-                if checked && isNewListEntry string model.medicalDetails then
-                    { modelCanProgress | medicalDetails = model.medicalDetails ++ [ string ] } ! []
-                else
-                    { modelCanProgress | medicalDetails = List.filter (\x -> x /= string) model.medicalDetails } ! []
+        ToggleMedicalDetail string checked ->
+            if checked && isNewListEntry string model.medicalDetails then
+                { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
+            else
+                { model | medicalDetails = List.filter (\x -> x /= string) model.medicalDetails } ! []
 
-            TogglePersonality string checked ->
-                if checked && isNewListEntry string model.personalityTraits then
-                    { modelCanProgress | personalityTraits = model.personalityTraits ++ [ string ] } ! []
-                else
-                    { modelCanProgress | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
+        TogglePersonality string checked ->
+            if checked && isNewListEntry string model.personalityTraits then
+                { model | personalityTraits = model.personalityTraits ++ [ string ] } ! []
+            else
+                { model | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
 
-            ToggleContactMethods string checked ->
-                if checked && isNewListEntry string model.contactMethods then
-                    { modelCanProgress | contactMethods = model.contactMethods ++ [ string ] } ! []
-                else
-                    { modelCanProgress | contactMethods = List.filter (\x -> x /= string) model.contactMethods } ! []
+        ToggleFundraisingContact string checked ->
+            if checked && isNewListEntry string model.fundraisingContact then
+                { model | fundraisingContact = model.fundraisingContact ++ [ string ] } ! []
+            else
+                { model | fundraisingContact = List.filter (\x -> x /= string) model.fundraisingContact } ! []
 
-            ToggleFundraisingContact string checked ->
-                if checked && isNewListEntry string model.fundraisingContact then
-                    { modelCanProgress | fundraisingContact = model.fundraisingContact ++ [ string ] } ! []
-                else
-                    { modelCanProgress | fundraisingContact = List.filter (\x -> x /= string) model.fundraisingContact } ! []
-
-            ToggleSupportPreference string checked ->
-                if checked && isNewListEntry string model.supportType then
-                    { modelCanProgress | supportType = model.supportType ++ [ string ] } ! []
-                else
-                    { modelCanProgress | supportType = List.filter (\x -> x /= string) model.supportType } ! []
+        ToggleSupportPreference string checked ->
+            if checked && isNewListEntry string model.supportType then
+                { model | supportType = model.supportType ++ [ string ] } ! []
+            else
+                { model | supportType = List.filter (\x -> x /= string) model.supportType } ! []
 
 
 port recordStart : String -> Cmd msg
@@ -297,71 +334,78 @@ addUrlsToList model newList =
             Just newList
 
 
-nextClickableToBool : Model -> Bool
-nextClickableToBool model =
-    case model.route of
-        HomeRoute ->
-            ifThenElse
-                (model.urgency /= TimeScaleNotChosen)
-                True
-                False
+nextClickableToModel : Model -> Model
+nextClickableToModel model =
+    let
+        trueModel =
+            { model | nextClickable = True }
 
-        BeforeYouBeginRoute ->
-            ifThenElse
-                (model.medicalDetails /= [])
-                True
-                False
+        falseModel =
+            { model | nextClickable = False }
+    in
+        case model.route of
+            HomeRoute ->
+                ifThenElse
+                    (model.urgency /= TimeScaleNotChosen)
+                    trueModel
+                    falseModel
 
-        PetInfoRoute ->
-            ifThenElse
-                (model.petName
-                    /= ""
-                    && model.crossBreed
-                    /= TrileanNotChosen
-                    && model.primaryBreedType
-                    /= Nothing
-                    && model.dogGender
-                    /= GenderNotChosen
-                    && model.dogAge
-                    /= AgeNotChosen
-                )
-                True
-                False
+            BeforeYouBeginRoute ->
+                ifThenElse
+                    (model.medicalDetails /= [])
+                    trueModel
+                    falseModel
 
-        PhotosRoute ->
-            True
+            PetInfoRoute ->
+                ifThenElse
+                    (model.petName
+                        /= ""
+                        && model.crossBreed
+                        /= TrileanNotChosen
+                        && model.primaryBreedType
+                        /= Nothing
+                        && model.dogGender
+                        /= GenderNotChosen
+                        && model.dogAge
+                        /= AgeNotChosen
+                    )
+                    trueModel
+                    falseModel
 
-        PersonalityRoute ->
-            True
+            PhotosRoute ->
+                trueModel
 
-        OwnerInfoRoute ->
-            ifThenElse
-                (model.ownerName
-                    /= ""
-                    && model.email
-                    /= ""
-                )
-                True
-                False
+            PersonalityRoute ->
+                trueModel
 
-        ThankYouRoute ->
-            True
+            OwnerInfoRoute ->
+                ifThenElse
+                    (model.ownerName
+                        /= ""
+                        && model.email
+                        /= ""
+                    )
+                    trueModel
+                    falseModel
 
-        NotFoundRoute ->
-            True
+            ThankYouRoute ->
+                trueModel
 
-        NewHomeRoute ->
-            ifThenElse
-                (model.cats
-                    /= "-1"
-                    && model.dogs
-                    /= "-1"
-                )
-                True
-                False
+            NotFoundRoute ->
+                trueModel
 
-        FindingAHomeRoute ->
-            True
+            NewHomeRoute ->
+                ifThenElse
+                    (model.cats
+                        /= "-1"
+                        && model.dogs
+                        /= "-1"
+                    )
+                    trueModel
+                    falseModel
+
+            FindingAHomeRoute ->
+                trueModel
 
 
 subscriptions : Model -> Sub Msg

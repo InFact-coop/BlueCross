@@ -23,7 +23,6 @@ type alias Model =
         , otherReasonsForRehoming : String
         , dogGender : Gender
         , dogAge : AgeRange
-        , contactMethods : List String
         , fundraisingContact : List String
         , medicalDetails : List String
         , lastVetVisit : VetTimeScale
@@ -83,11 +82,6 @@ type PersonalityTraits
     | Calm
     | Excitable
     | Growler
-
-
-type ContactMethods
-    = Phone
-    | Email
 
 
 type MedicalCheck
@@ -243,9 +237,9 @@ type Stage
 
 
 type FundraisingContact
-    = PhoneFundraising
-    | EmailFundraising
-    | TextMessage
+    = Phone
+    | Email
+    | Text
 
 
 type RemoteData
@@ -300,7 +294,6 @@ type Msg
     | UpdatePrimaryBreed DogBreed
     | UpdateLastVetVisit VetTimeScale
     | TogglePersonality String Bool
-    | ToggleContactMethods String Bool
     | ToggleFundraisingContact String Bool
     | UpdateSecondaryBreed DogBreed
     | UpdateUrgency TimeScale

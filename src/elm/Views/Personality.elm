@@ -42,6 +42,6 @@ personality model =
         , newTextBox ( "Please tell us here", "personality" ) UpdateOtherPersonality
         , div
             [ class "mt4 tc w-100" ]
-            [ a [ classes [ "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", ifThenElse (model.nextClickable == True) "" "bg-gray disableButton o-30" ], href "#new-home" ] [ text "Next" ]
+            [ a [ classes [ "link w-25-l w-50-m w-100 br2 white pa3 br2 f4 dib", ifThenElse (model.nextClickable == True) "bg-navy" "bg-gray disableButton o-30" ], href "#new-home" ] [ text "Next" ]
             ]
         ]

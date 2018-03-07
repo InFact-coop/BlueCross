@@ -46,11 +46,11 @@ photos model =
             , label [ for model.imageId, class "b blue" ] [ text <| ("Please take or upload a photo of " ++ getPetName model) ]
             , br [ class "pa3" ] []
             , div [ class "flex flex-wrap justify-center" ]
-                [ div [ class "ba w-40-ns w-80 vh-40-ns br2 b--blue ma3 " ]
+                [ div [ class "ba w-40-ns w-80 vh-25 vh-40-l br2 b--blue ma3 " ]
                     [ div [ class "h-100" ]
                         [ div [ class " white f4 fw1 v-mid tc center h-100 w-100 upload-background " ]
                             [ input
-                                [ class "h-100 bg-pink relative w-100 pointer bg-pink dib o-0"
+                                [ class "h-100 bg-pink relative w-100 pointer dib o-0"
                                 , type_ "file"
                                 , id model.imageId
                                 , multiple True
@@ -60,10 +60,14 @@ photos model =
                                 ]
                                 []
                             ]
-
-                        -- , div [ class "h-75 flex items-center" ] [ img [ src "./assets/upload.png", class " tc center flex v-mid w3 w4-ns" ] [ text "hello" ] ]
                         ]
-                    , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
+                    ]
+                , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
+                ]
+            , div [ class "ba w-40-ns w-80 vh-25 vh-40-l br2 b--blue ma3 dn db-ns" ]
+                [ button [ class "w-100  h-100 pointer bn blue cursor br2 bg-white", onClick PreparePhoto ]
+                    [ img [ src "./assets/camera.svg", class "w4 h-auto" ] []
+                    , br [] []
                     ]
                 , div [ class "ba w-40-ns w-80 vh-25 vh-40-ns br2 b--blue ma3" ]
                     [ button [ class "w-100  h-100 pointer bn blue cursor br2 bg-white", onClick PreparePhoto ]

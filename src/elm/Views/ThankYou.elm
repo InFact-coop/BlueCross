@@ -11,7 +11,7 @@ thankYou model =
     div [ class "" ]
         [ section [ class "dn-ns" ]
             [ div [ class "" ]
-                [ img [ src "./assets/doggo.png", class " w-100 db" ]
+                [ img [ src "./assets/doggo.jpeg", class " w-100 db" ]
                     []
                 ]
             , div

@@ -36,6 +36,6 @@ findingAHome model =
             ]
         , div
             [ class "mt5 tc w-100" ]
-            [ a [ classes [ "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", ifThenElse (model.nextClickable == True) "" "bg-gray disableButton o-30" ], href "#owner-info" ] [ text "Next" ]
+            [ a [ classes [ "link w-25-ns w-100 w-25-l w-50-m br2 white pa3 br2 f4 dib", ifThenElse (model.nextClickable == True) "bg-navy" "bg-gray disableButton o-30" ], href "#owner-info" ] [ text "Next" ]
             ]
         ]

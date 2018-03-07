@@ -17,12 +17,12 @@ Gender: {{dogGender}}
 Age: {{dogAge}}
 
 Health
-Medical details: {{#each medicalDetails}}{{this}}, {{/each}}
+Medical details: {{#each medicalDetails}}{{this}}{{/each}}
 Last visit to the vet: {{lastVetVisit}}
 Other health notes: {{otherHealthNotes}}
 
 Personality
-Personality traits: {{#each personalityTraits}} {{this}}, {{/each}}
+Personality traits: {{#each personalityTraits}} {{this}}{{/each}}
 Other personality notes: {{otherPersonalityNotes}}
 
 New Home
@@ -34,7 +34,7 @@ Likes babies: {{babies}}% happy with babies
 Other notes: {{otherNotes}}
 
 Photos
-ImageUrls: {{#each imageUrls}} {{this}}, {{/each}}
+ImageUrls: {{#each imageUrls}} {{this}}{{/each}}
 
 Finding a home
 Support required: {{#each supportType}}{{this}}{{/each}}
@@ -45,3 +45,6 @@ Phone number: {{ownerPhone}}
 Alternative phone number: {{alternativeOwnerPhone}}
 Best time to call: {{bestTimeToCall}}
 Email: {{email}}
+
+Contact for fundraising
+{{#each fundraisingContact}} {{this}}{{/each}}
