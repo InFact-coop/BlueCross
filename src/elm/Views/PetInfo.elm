@@ -24,20 +24,29 @@ petInfo model =
     div [ class "w-60-ns w-90 center ma3 ma0-ns" ]
         [ div
             [ class " blue b mb2" ]
-            [ text "What is your pet's name?" ]
+            [ text "What is your pet's name?"
+            , span [ class "fw1 f5" ] [ text " Required" ]
+            ]
         , div []
             [ input [ type_ "text", class "bg-light-blue w-80 br2 pa3 gray bn", onBlurValue UpdatePetName ]
                 [ text "" ]
             ]
         , div [ class "gray f6 fw1" ] [ text "Please enter your pet's name" ]
         , div []
-            [ div [ class "blue b mb2 mt4" ] [ text <| "Is " ++ getPetName model ++ " a cross breed?" ]
+            [ div [ class "blue b mb2 mt4" ]
+                [ text <| "Is " ++ getPetName model ++ " a cross breed?"
+                , span [ class "fw1 f5" ] [ text " Required" ]
+                ]
             , newBlueButton ( Yes, UpdateCrossBreed ) "Yes"
             , newBlueButton ( No, UpdateCrossBreed ) "No"
             , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
             , div [ classes [ displayElement (model.crossBreed /= Neutral) ] ]
                 [ div []
-                    [ div [ class "blue b mt4 mb2" ] [ text <| "What breed is " ++ getPetName model ++ "?" ] ]
+                    [ div [ class "blue b mt4 mb2" ]
+                        [ text <| "What breed is " ++ getPetName model ++ "?"
+                        , span [ class "fw1 f5" ] [ text " Required" ]
+                        ]
+                    ]
                 , div [ class "inline-flex items-center  w-100" ]
                     [ select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
                         ([ defaultOption ]
@@ -81,10 +90,16 @@ petInfo model =
             [ div [ class "gray f6 fw1 mt2" ] [ text "Other:" ]
             , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
             ]
-        , div [ class "blue b mb2 mt4" ] [ text <| "What sex is " ++ getPetName model ++ "?" ]
+        , div [ class "blue b mb2 mt4" ]
+            [ text <| "What sex is " ++ getPetName model ++ "?"
+            , span [ class "fw1 f5" ] [ text " Required" ]
+            ]
         , newBlueButton ( Male, UpdateGender ) "Male"
         , newBlueButton ( Female, UpdateGender ) "Female"
-        , div [ class "blue b mb2 mt4" ] [ text <| "How old is " ++ getPetName model ++ "?" ]
+        , div [ class "blue b mb2 mt4" ]
+            [ text <| "How old is " ++ getPetName model ++ "?"
+            , span [ class "fw1 f5" ] [ text " Required" ]
+            ]
         , newBlueButton ( Between0To1Year, UpdateDogAge ) "0-1 year"
         , newBlueButton ( Between2To5Years, UpdateDogAge ) "2-5 years"
         , newBlueButton ( Between6To10Years, UpdateDogAge ) "6-10 years"

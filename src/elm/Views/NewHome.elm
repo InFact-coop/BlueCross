@@ -29,7 +29,10 @@ newHome : Model -> Html Msg
 newHome model =
     div [ class "w-60-ns w-90 center" ]
         [ div [ class "blue b mb3 f4 lh-copy" ] [ text <| "Help us find " ++ getPetName model ++ " a new home they will be happy in. How does " ++ getPetName model ++ " feel about..." ]
-        , div [ class "blue b mb2 fw4" ] [ text "Cats?" ]
+        , div [ class "blue b mb2 " ]
+            [ text "Cats?"
+            , span [ class "fw1 f5" ] [ text " Required" ]
+            ]
         , div [ class "flex" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/catIcon.svg", class "mr3 h2 " ]
@@ -41,7 +44,10 @@ newHome model =
                 , loveHate model
                 ]
             ]
-        , div [ class "blue b mb2 fw4" ] [ text "Other dogs?" ]
+        , div [ class "blue b mb2 " ]
+            [ text "Other dogs?"
+            , span [ class "fw1 f5" ] [ text " Required" ]
+            ]
         , div [ class "flex" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/dogIcon.svg", class "mr3 h2 " ]
@@ -53,7 +59,7 @@ newHome model =
                 , loveHate model
                 ]
             ]
-        , div [ class "blue b mb2 fw4" ] [ text "Young Children?" ]
+        , div [ class "blue b mb2 " ] [ text "Young Children?" ]
         , div [ class " flex" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/baby.svg", class "mr3 h2 " ] [] ]
@@ -63,7 +69,7 @@ newHome model =
                 , loveHate model
                 ]
             ]
-        , div [ class "blue b mb2 fw4" ] [ text "Older Children?" ]
+        , div [ class "blue b mb2 " ] [ text "Older Children?" ]
         , div [ class " flex " ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/child.svg", class "mr3 h2 " ] [] ]
@@ -73,7 +79,7 @@ newHome model =
                 , loveHate model
                 ]
             ]
-        , div [ class "blue b mb2 fw4" ] [ text "New People?" ]
+        , div [ class "blue b mb2 " ] [ text "New People?" ]
         , div [ class " flex" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/group.svg", class "mr3 h2 " ] [] ]

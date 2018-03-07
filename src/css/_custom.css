@@ -142,7 +142,7 @@ input:checked + .age {
 }
 
 .background-dog {
-  background-image: url('./assets/doggo.png');
+  background-image: url('./assets/doggo.jpeg');
   background-size: cover !important;
   width: 100%;
   height: 90vh;
