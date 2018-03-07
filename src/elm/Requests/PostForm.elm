@@ -35,7 +35,6 @@ formObject model =
         , ( "lastVetVisit", string <| unionTypeToString model.lastVetVisit )
         , ( "otherHealthNotes", string model.otherHealthNotes )
         , ( "personalityTraits", list (List.map string model.personalityTraits) )
-        , ( "contactMethods", list (List.map string model.contactMethods) )
         , ( "otherPersonalityNotes", string model.otherPersonalityNotes )
         , ( "cats", string model.cats )
         , ( "children", string model.children )
