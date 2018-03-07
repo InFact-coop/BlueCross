@@ -1,8 +1,9 @@
 module Views.NewHome exposing (..)
 
 import Components.LovesHates exposing (..)
+import Components.StyleHelpers exposing (classes)
 import Components.TextBox exposing (..)
-import Helpers exposing (getPetName)
+import Helpers exposing (getPetName, ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
@@ -21,8 +22,8 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-    style
-        [ ( "backgroundImage", gradient ) ]
+        style
+            [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
@@ -92,6 +93,6 @@ newHome model =
         , div [ class "blue b mb2" ] [ text <| "Is there anything else we should know about " ++ getPetName model ++ "?" ]
         , newTextBox ( "Please tell us here", "newhome" ) UpdateOtherGeneral
         , div [ class "tc w-100 mt4" ]
-            [ a [ class "bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#photos" ] [ text "Next" ]
+            [ a [ classes [ "w-100 br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m", ifThenElse (model.nextClickable == True) "bg-navy" "bg-gray disableButton o-30" ], href "#photos" ] [ text "Next" ]
             ]
         ]

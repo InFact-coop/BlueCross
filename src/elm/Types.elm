@@ -49,6 +49,7 @@ type alias Model =
 type Gender
     = Male
     | Female
+    | GenderNotChosen
 
 
 type TimeOfDay
@@ -88,6 +89,7 @@ type MedicalCheck
     | Neutered
     | Microchipped
     | Unknown
+    | MedicalCheckNotChosen
 
 
 type VetTimeScale
@@ -95,12 +97,14 @@ type VetTimeScale
     | Between3To12Months
     | OverAYear
     | UnknownSlashNever
+    | VetTimeScaleNotChosen
 
 
 type Trilean
     = Yes
     | No
     | Neutral
+    | TrileanNotChosen
 
 
 type AgeRange
@@ -108,6 +112,7 @@ type AgeRange
     | Between2To5Years
     | Between6To10Years
     | Over10Years
+    | AgeNotChosen
 
 
 type TimeScale
@@ -115,7 +120,7 @@ type TimeScale
     | UpTo3Weeks
     | UpTo2Months
     | Over2Months
-    | NoTimeScale
+    | TimeScaleNotChosen
 
 
 type DogBreed
@@ -191,7 +196,7 @@ type DogBreed
     | MongrelSmall
     | NorfolkTerrier
     | NovaScotiaDuckTollingRetriever
-    | NULL
+    | BreedNotChosen
     | OldEnglishSheepdog
     | Papillon
     | ParsonsJackRussellTerrier

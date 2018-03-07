@@ -202,7 +202,10 @@ input:focus {
   outline: none;
 }
 
-.vh-40-l{
+.disableButton {
+  pointer-events: none;
+
+.vh-40-l {
   height: 40vh;
 }
 
