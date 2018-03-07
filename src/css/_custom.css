@@ -191,3 +191,7 @@ input:checked + .age {
 input:focus {
   outline: none;
 }
+
+.disableButton {
+  pointer-events: none;
+}

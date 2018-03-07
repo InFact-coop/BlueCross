@@ -5,13 +5,13 @@ import Components.DogBreedDropDown exposing (..)
 import Components.StyleHelpers exposing (classes, defaultOption, displayElement)
 import Components.TextBox exposing (..)
 import Data.DogBreeds exposing (..)
-import Helpers exposing (getPetName)
+import Helpers exposing (getPetName, ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
 import Json.Decode as Json exposing (Decoder, andThen)
-import Types exposing (..)
 import TransitStyle exposing (..)
+import Types exposing (..)
 
 
 onBlurValue : (String -> msg) -> Attribute msg
@@ -90,7 +90,7 @@ petInfo model =
         , newBlueButton ( Between6To10Years, UpdateDogAge ) "6-10 years"
         , newBlueButton ( Over10Years, UpdateDogAge ) "Over 10 years"
         , div [ class "tc w-100 mt4" ]
-            [ a [ class "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", href "#before-you-begin" ] [ text "Next" ]
+            [ a [ classes [ "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", ifThenElse (model.nextClickable == True) "" "bg-gray disableButton o-30" ], href "#before-you-begin" ] [ text "Next" ]
             ]
         ]
 

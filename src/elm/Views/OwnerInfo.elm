@@ -2,6 +2,8 @@ module Views.OwnerInfo exposing (..)
 
 import Components.ContactButtons exposing (..)
 import Components.FundraisingContact exposing (..)
+import Components.StyleHelpers exposing (classes)
+import Helpers exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -77,7 +79,7 @@ ownerInfo model =
                 ]
             ]
         , div [ class "mt4 tc w-100 " ]
-            [ a [ class "ink w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
+            [ a [ classes [ "ink w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib no-underline", ifThenElse (model.nextClickable == True) "" "bg-gray disableButton o-30" ], href "#thank-you", onClick SubmitForm ] [ text "Submit" ]
             , p [ class "mt2-ns mt1 gray fw1 " ] [ text "We will send you an email to confirm we have received your enquiry" ]
             ]
         ]

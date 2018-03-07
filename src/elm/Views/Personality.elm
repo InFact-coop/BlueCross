@@ -1,8 +1,9 @@
 module Views.Personality exposing (..)
 
 import Components.PersonalityButtons exposing (..)
+import Components.StyleHelpers exposing (classes)
 import Components.TextBox exposing (..)
-import Helpers exposing (getPetName)
+import Helpers exposing (getPetName, ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
@@ -41,6 +42,6 @@ personality model =
         , newTextBox ( "Please tell us here", "personality" ) UpdateOtherPersonality
         , div
             [ class "mt4 tc w-100" ]
-            [ a [ class "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", href "#new-home" ] [ text "Next" ]
+            [ a [ classes [ "link w-25-ns w-100 bg-navy br2 white pa3 br2 f4 dib", ifThenElse (model.nextClickable == True) "" "bg-gray disableButton o-30" ], href "#new-home" ] [ text "Next" ]
             ]
         ]
