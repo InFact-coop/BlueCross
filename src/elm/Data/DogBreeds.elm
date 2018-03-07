@@ -314,7 +314,7 @@ decoderDogBreed val =
             Json.Decode.succeed YorkshireTerrier
 
         _ ->
-            Json.Decode.succeed NULL
+            Json.Decode.succeed BreedNotChosen
 
 
 dogBreedsList : List DogBreed

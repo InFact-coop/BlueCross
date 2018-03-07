@@ -22,28 +22,28 @@ initModel =
     , liveVideoUrl = ""
     , imageId = "imageUpload"
     , imageUrls = Nothing
-    , urgency = UpTo1Week
+    , urgency = TimeScaleNotChosen
     , petName = ""
-    , crossBreed = Neutral
+    , crossBreed = TrileanNotChosen
     , primaryBreedType = Nothing
     , secondaryBreedType = Nothing
     , primaryReasonForRehoming = ""
     , secondaryReasonForRehoming = ""
     , otherReasonsForRehoming = ""
     , dogGender = Male
-    , dogAge = Between0To1Year
+    , dogAge = AgeNotChosen
     , medicalDetails = []
-    , lastVetVisit = UpTo3Months
+    , lastVetVisit = VetTimeScaleNotChosen
     , otherHealthNotes = ""
     , personalityTraits = []
     , contactMethods = []
     , fundraisingContact = []
     , otherPersonalityNotes = ""
-    , cats = "50"
-    , children = "50"
-    , people = "50"
-    , dogs = "50"
-    , babies = "50"
+    , cats = "-1"
+    , children = "-1"
+    , people = "-1"
+    , dogs = "-1"
+    , babies = "-1"
     , otherNotes = ""
     , image = Nothing
     , supportType = []
@@ -62,7 +62,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! []
+        model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -291,6 +291,80 @@ addUrlsToList model newList =
 
         Nothing ->
             Just newList
+
+
+nextClickableToModel : Model -> Model
+nextClickableToModel model =
+    let
+        trueModel =
+            { model | nextClickable = True }
+
+        falseModel =
+            { model | nextClickable = False }
+    in
+        case model.route of
+            HomeRoute ->
+                ifThenElse
+                    (model.urgency /= TimeScaleNotChosen)
+                    trueModel
+                    falseModel
+
+            BeforeYouBeginRoute ->
+                ifThenElse
+                    (model.medicalDetails /= [])
+                    trueModel
+                    falseModel
+
+            PetInfoRoute ->
+                ifThenElse
+                    (model.petName
+                        /= ""
+                        && model.crossBreed
+                        /= TrileanNotChosen
+                        && model.primaryBreedType
+                        /= Nothing
+                        && model.dogGender
+                        /= GenderNotChosen
+                        && model.dogAge
+                        /= AgeNotChosen
+                    )
+                    trueModel
+                    falseModel
+
+            PhotosRoute ->
+                trueModel
+
+            PersonalityRoute ->
+                trueModel
+
+            OwnerInfoRoute ->
+                ifThenElse
+                    (model.ownerName
+                        /= ""
+                        && model.email
+                        /= ""
+                    )
+                    trueModel
+                    falseModel
+
+            ThankYouRoute ->
+                trueModel
+
+            NotFoundRoute ->
+                trueModel
+
+            NewHomeRoute ->
+                ifThenElse
+                    (model.cats
+                        /= "-1"
+                        && model.dogs
+                        /= "-1"
+                    )
+                    trueModel
+                    falseModel
+
+            FindingAHomeRoute ->
+                trueModel
 
 
 subscriptions : Model -> Sub Msg
