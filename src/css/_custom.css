@@ -73,17 +73,7 @@ button {
   }
 }
 
-input:checked + .personality {
-  background-color: #003388;
-  color: white;
-}
-
-input:checked + .health {
-  background-color: #003388;
-  color: white;
-}
-
-input:checked + .age {
+input[type='radio']:checked + label {
   background-color: #003388;
   color: white;
 }

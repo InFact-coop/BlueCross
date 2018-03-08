@@ -46,6 +46,7 @@ type alias Model =
         , emailIsValid : Bool
         , address : String
         , postcode : String
+        , postCodeIsValid : Bool
         }
 
 
