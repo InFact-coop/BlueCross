@@ -40,7 +40,7 @@ petInfo model =
             , newBlueButton ( Yes, UpdateCrossBreed ) "Yes"
             , newBlueButton ( No, UpdateCrossBreed ) "No"
             , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
-            , div [ classes [ displayElement (model.crossBreed /= Neutral) ] ]
+            , div []
                 [ div []
                     [ div [ class "blue b mt4 mb2" ]
                         [ text <| "What breed is " ++ getPetName model ++ "?"
@@ -55,9 +55,9 @@ petInfo model =
                                 dogBreedsList
                         )
                     , p
-                        [ classes [ " blue mh3 mv0", displayElement (model.crossBreed /= No) ] ]
+                        [ classes [ " blue mh3 mv0", displayElement ((model.crossBreed /= No) && (model.crossBreed /= Neutral)) ] ]
                         [ text "&" ]
-                    , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", displayElement (model.crossBreed /= No) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
+                    , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", displayElement ((model.crossBreed /= No) && (model.crossBreed /= Neutral)) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
                         ([ defaultOption ]
                             ++ List.map
                                 dogBreedDropDown
