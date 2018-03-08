@@ -95,6 +95,44 @@ isNewListEntry string stringList =
         |> not
 
 
+checkEmail : String -> Bool
+checkEmail email =
+    let
+        match =
+            Regex.find (AtMost 1) (Regex.regex "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$") email |> List.head
+    in
+        case match of
+            Just x ->
+                x.match == email
+
+            Nothing ->
+                False
+
+
+checkPostCode : String -> Bool
+checkPostCode postcode =
+    let
+        match =
+            Regex.find (AtMost 1) (Regex.regex "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\\s?[0-9][A-Za-z]{2})") postcode |> List.head
+    in
+        case match of
+            Just x ->
+                x.match == postcode
+
+            Nothing ->
+                False
+
+
+sanitisePhoneNumber : String -> String
+sanitisePhoneNumber string =
+    replace All (regex "[^\\d ()+]") (\_ -> "") string
+
+
+sanitisePostCode : String -> String
+sanitisePostCode string =
+    replace All (regex "[^\\d a-zA-Z]") (\_ -> "") string
+
+
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
 onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)

@@ -43,8 +43,10 @@ type alias Model =
         , alternativeOwnerPhone : String
         , bestTimeToCall : TimeOfDay
         , email : String
+        , emailIsValid : Bool
         , address : String
         , postcode : String
+        , postCodeIsValid : Bool
         }
 
 

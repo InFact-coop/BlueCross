@@ -51,7 +51,9 @@ initModel =
     , alternativeOwnerPhone = ""
     , bestTimeToCall = AM
     , email = ""
+    , emailIsValid = Bool
     , postcode = ""
+    , postCodeIsValid = False
     , address = ""
     , transition = Transit.empty
     }
@@ -240,13 +242,25 @@ update msg model =
             { model | address = string } ! []
 
         UpdatePostcode string ->
-            { model | postcode = string } ! []
+            let
+                updatedModel =
+                    { model | postcode = sanitisePostCode string, postCodeIsValid = checkPostCode string }
+            in
+                nextClickableToModel updatedModel ! []
 
         UpdateOwnerPhone string ->
-            { model | ownerPhone = string } ! []
+            let
+                updatedModel =
+                    { model | ownerPhone = sanitisePhoneNumber string }
+            in
+                nextClickableToModel updatedModel ! []
 
         UpdateAlternativeOwnerPhone string ->
-            { model | alternativeOwnerPhone = string } ! []
+            let
+                updatedModel =
+                    { model | alternativeOwnerPhone = sanitisePhoneNumber string }
+            in
+                nextClickableToModel updatedModel ! []
 
         UpdateBestTimeToCall timeOfDay ->
             { model | bestTimeToCall = timeOfDay } ! []
@@ -392,6 +406,10 @@ nextClickableToModel model =
                         /= ""
                         && model.email
                         /= ""
+                        && model.emailIsValid
+                        == True
+                        && model.postCodeIsValid
+                        == True
                     )
                     trueModel
                     falseModel
