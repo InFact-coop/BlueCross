@@ -282,6 +282,7 @@ type Msg
     | UrlChange Navigation.Location
     | MakeNextClickable
     | PreparePhoto
+    | DeleteImage Image
     | TakePhoto
     | StopPhoto
     | UpdateCatsSlider String

@@ -60,8 +60,6 @@ photos model =
                                 ]
                                 []
                             ]
-
-                        -- , div [ class "h-75 flex items-center" ] [ img [ src "./assets/upload.png", class " tc center flex v-mid w3 w4-ns" ] [ text "hello" ] ]
                         ]
                     , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
                     ]
@@ -78,12 +76,12 @@ photos model =
                         []
                     , div [ class "w-100 tc center flex justify-center" ]
                         [ div []
-                            [ button [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "mh3 bn bg-blue br-100 h3 w3 white dim  pa2", onClick TakePhoto ]
+                            [ button [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "mh3 bn bg-blue br-100 h3 w3 white dim pointer pa2", onClick TakePhoto ]
                                 [ img [ src "./assets/white-camera.png", class "w2 center" ] [] ]
                             , p [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "gray fw1 mt1" ] [ text "Take Photo" ]
                             ]
                         , div []
-                            [ button [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "mh3 bn bg-green br-100 h3 w3 white dim  pa2", onClick StopPhoto ]
+                            [ button [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "mh3 bn bg-green br-100 h3 w3 white dim pointer pa2", onClick StopPhoto ]
                                 [ img [ src "./assets/white-tick.png", class "w2 center" ] [] ]
                             , p [ classes [ displayElement <| model.liveVideoUrl /= "" ], class "gray fw1 mt1" ] [ text "Finish" ]
                             ]
@@ -99,16 +97,10 @@ photos model =
 renderImage : Image -> Html Msg
 renderImage image =
     div [ class "dib w-40-ns w-80 h-auto mh4 mv2 br2" ]
-        [ span [] [ text "X" ]
+        [ span [ class "white dib diagonally-se b pointer grow", onClick <| DeleteImage image ] [ text "X" ]
         , img
             [ src image.contents
             , title image.filename
             ]
             []
         ]
-
-
-
---         transform: translate(1rem, 2rem);
--- display: inline-block;
--- color: white;

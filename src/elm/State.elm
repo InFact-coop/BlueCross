@@ -243,6 +243,14 @@ update msg model =
         UpdatePostcode string ->
             { model | postcode = string } ! []
 
+        DeleteImage im ->
+            case model.image of
+                Nothing ->
+                    model ! []
+
+                Just listImages ->
+                    { model | image = Just <| List.filter (\current -> current /= im) listImages } ! []
+
         UpdateOwnerPhone string ->
             { model | ownerPhone = string } ! []
 
