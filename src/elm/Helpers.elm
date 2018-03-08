@@ -24,7 +24,6 @@ unionTypeToString a =
         (\{ match } -> " " ++ match)
         (toString a)
         |> String.trim
-        |> Debug.log "CHECK IT"
 
 
 unionTypePayloadToString : a -> (a -> Msg) -> String
@@ -37,6 +36,27 @@ unionTypePayloadToString payload msg =
             unionTypeToString (payload) |> String.length |> (+) 2
     in
         String.dropRight payloadLength msgString
+
+
+unionTypePayloadToClass : a -> (a -> Msg) -> String
+unionTypePayloadToClass payload msg =
+    let
+        msgString =
+            toString (msg payload)
+
+        payloadLength =
+            toString (payload) |> String.length |> (+) 1
+    in
+        String.dropRight payloadLength msgString |> String.toLower |> Debug.log "Check it"
+
+
+removeSpaces : String -> String
+removeSpaces string =
+    string
+        |> String.toLower
+        |> String.words
+        |> String.join ""
+        |> Debug.log "RemoveSpaces"
 
 
 scrollToTop : Cmd Msg
