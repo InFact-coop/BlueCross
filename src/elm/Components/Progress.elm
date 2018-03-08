@@ -1,6 +1,6 @@
 module Components.Progress exposing (..)
 
-import Components.StyleHelpers exposing (classes)
+import Components.StyleHelpers exposing (backgroundImageStyle, classes)
 import Helpers exposing (ifThenElse)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -43,7 +43,7 @@ routeToProgressBar list model =
                 |> List.map (\route -> futureNode <| Tuple.first route)
                 |> List.intersperse (line "light-blue")
     in
-    doneNodes ++ activeNodes ++ futureNodes
+        doneNodes ++ activeNodes ++ futureNodes
 
 
 routesList : List ( Int, Route )
@@ -61,17 +61,12 @@ routesList =
 
 doneNode : Html Msg
 doneNode =
-    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--green", "dib" ], backgroundImage "./assets/tick.svg" ] []
+    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--green", "dib" ], backgroundImageStyle "./assets/tick.svg" 55 ] []
 
 
 activeNode : Html Msg
 activeNode =
-    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--blue", "dib" ], backgroundImage "./assets/dog.svg" ] []
-
-
-backgroundImage : String -> Attribute Msg
-backgroundImage url =
-    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", "55%" ) ]
+    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--blue", "dib" ], backgroundImageStyle "./assets/dog.svg" 55 ] []
 
 
 futureNode : Int -> Html Msg

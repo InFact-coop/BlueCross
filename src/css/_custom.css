@@ -53,6 +53,26 @@ button {
   height: 0.5rem;
 }
 
+.light-border {
+  border-width: 0.8px;
+  border-style: solid;
+  border-color: #6666;
+}
+
+@media only screen and (min-width: 1300px) {
+  .slider::-webkit-slider-thumb {
+    width: 35px;
+    height: 35px;
+    background-size: 20px;
+  }
+  .h-custom {
+    height: 0.7rem;
+  }
+  .light-border {
+    border-width: 1px;
+  }
+}
+
 input[type='radio']:checked + label {
   background-color: #003388;
   color: white;
@@ -236,6 +256,7 @@ input:focus {
   transition-timing-function: ease-in-out, ease-in-out;
   transition-delay: 0s, 0s;
 }
+
 .input-lg {
   height: 45px;
   padding-top: 10px;
@@ -248,4 +269,11 @@ input:focus {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
+}
+
+.diagonally-se {
+  transform: translate(1rem, 2rem);
+}
+.diagonally-se:hover {
+  transform: translate(1rem, 2rem);
 }

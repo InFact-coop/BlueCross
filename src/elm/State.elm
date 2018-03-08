@@ -248,6 +248,14 @@ update msg model =
             in
                 nextClickableToModel updatedModel ! []
 
+        DeleteImage im ->
+            case model.image of
+                Nothing ->
+                    model ! []
+
+                Just listImages ->
+                    { model | image = Just <| List.filter (\current -> current /= im) listImages } ! []
+
         UpdateOwnerPhone string ->
             let
                 updatedModel =

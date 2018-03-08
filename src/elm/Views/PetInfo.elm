@@ -10,7 +10,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
 import Json.Decode as Json exposing (Decoder, andThen)
-import TransitStyle exposing (..)
 import Types exposing (..)
 
 
