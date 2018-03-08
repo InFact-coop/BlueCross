@@ -87,3 +87,8 @@ displayElement bool =
         ""
     else
         "dn"
+
+
+backgroundImageStyle : String -> Int -> Attribute Msg
+backgroundImageStyle url sizePercent =
+    style [ ( "background-image", "url(" ++ url ++ ")" ), ( "background-repeat", "no-repeat" ), ( "background-position", "center center" ), ( "background-size", toString sizePercent ++ "%" ) ]
