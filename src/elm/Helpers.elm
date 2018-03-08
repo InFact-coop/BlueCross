@@ -1,6 +1,7 @@
 module Helpers exposing (..)
 
 import Dom.Scroll exposing (..)
+import Regex exposing (..)
 import Html exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Decode

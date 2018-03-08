@@ -234,7 +234,7 @@ update msg model =
         UpdateOwnerEmail string ->
             let
                 updatedModel =
-                    { model | email = string }
+                    { model | email = string, emailIsValid = checkEmail string }
             in
                 nextClickableToModel updatedModel ! []
 
