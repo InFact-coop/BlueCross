@@ -1,6 +1,7 @@
 module Helpers exposing (..)
 
 import Dom.Scroll exposing (..)
+import Regex exposing (..)
 import Html exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Decode
@@ -73,6 +74,20 @@ isNewListEntry : String -> List String -> Bool
 isNewListEntry string stringList =
     List.member string stringList
         |> not
+
+
+checkEmail : String -> Bool
+checkEmail email =
+    let
+        match =
+            Regex.find (AtMost 1) (Regex.regex "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$") email |> List.head
+    in
+        case match of
+            Just x ->
+                x.match == email
+
+            Nothing ->
+                False
 
 
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
