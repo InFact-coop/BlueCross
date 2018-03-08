@@ -30,7 +30,7 @@ initModel =
     , primaryReasonForRehoming = ""
     , secondaryReasonForRehoming = ""
     , otherReasonsForRehoming = ""
-    , dogGender = Male
+    , dogGender = GenderNotChosen
     , dogAge = AgeNotChosen
     , medicalDetails = []
     , lastVetVisit = VetTimeScaleNotChosen
@@ -53,6 +53,7 @@ initModel =
     , email = ""
     , emailIsValid = False
     , postcode = ""
+    , postCodeIsValid = False
     , address = ""
     , transition = Transit.empty
     }
@@ -241,13 +242,25 @@ update msg model =
             { model | address = string } ! []
 
         UpdatePostcode string ->
-            { model | postcode = string } ! []
+            let
+                updatedModel =
+                    { model | postcode = sanitisePostCode string, postCodeIsValid = checkPostCode string }
+            in
+                nextClickableToModel updatedModel ! []
 
         UpdateOwnerPhone string ->
-            { model | ownerPhone = string } ! []
+            let
+                updatedModel =
+                    { model | ownerPhone = sanitisePhoneNumber string }
+            in
+                nextClickableToModel updatedModel ! []
 
         UpdateAlternativeOwnerPhone string ->
-            { model | alternativeOwnerPhone = string } ! []
+            let
+                updatedModel =
+                    { model | alternativeOwnerPhone = sanitisePhoneNumber string }
+            in
+                nextClickableToModel updatedModel ! []
 
         UpdateBestTimeToCall timeOfDay ->
             { model | bestTimeToCall = timeOfDay } ! []
@@ -361,7 +374,7 @@ nextClickableToModel model =
 
             BeforeYouBeginRoute ->
                 ifThenElse
-                    (model.medicalDetails /= [])
+                    (model.lastVetVisit /= VetTimeScaleNotChosen)
                     trueModel
                     falseModel
 
@@ -394,6 +407,8 @@ nextClickableToModel model =
                         && model.email
                         /= ""
                         && model.emailIsValid
+                        == True
+                        && model.postCodeIsValid
                         == True
                     )
                     trueModel

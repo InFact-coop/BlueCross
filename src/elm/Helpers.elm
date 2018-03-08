@@ -25,7 +25,6 @@ unionTypeToString a =
         (\{ match } -> " " ++ match)
         (toString a)
         |> String.trim
-        |> Debug.log "CHECK IT"
 
 
 unionTypePayloadToString : a -> (a -> Msg) -> String
@@ -38,6 +37,27 @@ unionTypePayloadToString payload msg =
             unionTypeToString (payload) |> String.length |> (+) 2
     in
         String.dropRight payloadLength msgString
+
+
+unionTypePayloadToClass : a -> (a -> Msg) -> String
+unionTypePayloadToClass payload msg =
+    let
+        msgString =
+            toString (msg payload)
+
+        payloadLength =
+            toString (payload) |> String.length |> (+) 1
+    in
+        String.dropRight payloadLength msgString |> String.toLower |> Debug.log "Check it"
+
+
+removeSpaces : String -> String
+removeSpaces string =
+    string
+        |> String.toLower
+        |> String.words
+        |> String.join ""
+        |> Debug.log "RemoveSpaces"
 
 
 scrollToTop : Cmd Msg
@@ -88,6 +108,30 @@ checkEmail email =
 
             Nothing ->
                 False
+
+
+checkPostCode : String -> Bool
+checkPostCode postcode =
+    let
+        match =
+            Regex.find (AtMost 1) (Regex.regex "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\\s?[0-9][A-Za-z]{2})") postcode |> List.head
+    in
+        case match of
+            Just x ->
+                x.match == postcode
+
+            Nothing ->
+                False
+
+
+sanitisePhoneNumber : String -> String
+sanitisePhoneNumber string =
+    replace All (regex "[^\\d ()+]") (\_ -> "") string
+
+
+sanitisePostCode : String -> String
+sanitisePostCode string =
+    replace All (regex "[^\\d a-zA-Z]") (\_ -> "") string
 
 
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
