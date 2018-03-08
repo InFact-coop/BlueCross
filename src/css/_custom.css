@@ -53,6 +53,27 @@ button {
   height: 0.5rem;
 }
 
+.light-border {
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: #6666;
+}
+
+@media only screen and (min-width:1300px){
+  .slider::-webkit-slider-thumb {
+    width: 35px;
+    height: 35px;
+    background-size: 20px;
+  }
+  .h-custom{
+    height: 0.7rem;
+  }
+  .light-border{
+    border-width:1px;
+  }
+}
+
+
 input:checked + .personality {
   background-color: #003388;
   color: white;
@@ -131,11 +152,7 @@ input:checked + .age {
   }
 }
 
-.light-border {
-  border-width: 0.5px;
-  border-style: solid;
-  border-color: #6666;
-}
+
 
 .vh-90 {
   height: 90vh;
