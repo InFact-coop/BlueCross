@@ -94,13 +94,8 @@ petInfo model =
             [ text <| "What sex is " ++ getPetName model ++ "?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
-        , newBlueButton ( Male, UpdateGender ) "Male"
-        , newBlueButton ( Female, UpdateGender ) "Female"
-
-        -- , newBlueButton ( UpTo3Months, UpdateLastVetVisit ) "Up to 3 months"
-        -- , newBlueButton ( Between3To12Months, UpdateLastVetVisit ) "3 to 12 months"
-        -- , newBlueButton ( OverAYear, UpdateLastVetVisit ) "Over a year"
-        -- , newBlueButton ( UnknownSlashNever, UpdateLastVetVisit ) "Unknown/never"
+        , controlledBlueButton ( Male, UpdateGender ) "Male" (model.dogGender == Male)
+        , controlledBlueButton ( Female, UpdateGender ) "Female" (model.dogGender == Female)
         , div [ class "blue b mb2 mt4" ]
             [ text <| "How old is " ++ getPetName model ++ "?"
             , span [ class "fw1 f5" ] [ text " Required" ]

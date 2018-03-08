@@ -33,10 +33,10 @@ beforeYouBegin model =
             [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
-        , newBlueButton ( UpTo3Months, UpdateLastVetVisit ) "Up to 3 months"
-        , newBlueButton ( Between3To12Months, UpdateLastVetVisit ) "3 to 12 months"
-        , newBlueButton ( OverAYear, UpdateLastVetVisit ) "Over a year"
-        , newBlueButton ( UnknownSlashNever, UpdateLastVetVisit ) "Unknown/never"
+        , controlledBlueButton ( UpTo3Months, UpdateLastVetVisit ) "Up to 3 months" (model.lastVetVisit == UpTo3Months)
+        , controlledBlueButton ( Between3To12Months, UpdateLastVetVisit ) "3 to 12 months" (model.lastVetVisit == Between3To12Months)
+        , controlledBlueButton ( OverAYear, UpdateLastVetVisit ) "Over a year" (model.lastVetVisit == OverAYear)
+        , controlledBlueButton ( UnknownSlashNever, UpdateLastVetVisit ) "Unknown/never" (model.lastVetVisit == UnknownSlashNever)
         , div [ class "blue b mb3 mt4" ] [ text <| "Anything else to note about " ++ getPetName model ++ "'s health?" ]
         , newTextBox ( "Please tell us here", "Health" ) UpdateOtherHealth
         , div [ class "mv4 tc w-100" ]
