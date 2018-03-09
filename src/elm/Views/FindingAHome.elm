@@ -1,7 +1,7 @@
 module Views.FindingAHome exposing (..)
 
 import Components.StyleHelpers exposing (classes)
-import Helpers exposing (getPetName, ifThenElse, onCheckboxInput)
+import Helpers exposing (getPetName, ifThenElse, onCheckboxInput, pronounConverter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
@@ -17,14 +17,14 @@ findingAHome model =
             [ input [ type_ "checkbox", id "rehomingCentre", value "Rehoming Centre", onCheckboxInput ToggleSupportPreference ] []
             , label [ for "rehomingCentre", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Rehoming Centre: " ]
-                , text <| "We will look after " ++ getPetName model ++ " at our Rehoming centre until we find " ++ getPetName model ++ " a great new home"
+                , text <| "We will look after " ++ getPetName model ++ " at our Rehoming centre until we find " ++ pronounConverter "them" model.dogGender ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]
             [ input [ type_ "checkbox", id "homeDirect", value "Home Direct", onCheckboxInput ToggleSupportPreference ] []
             , label [ for "homeDirect", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Home Direct: " ]
-                , text <| getPetName model ++ " will stay with you while we find " ++ getPetName model ++ " great new home"
+                , text <| getPetName model ++ " will stay with you while we find " ++ pronounConverter "them" model.dogGender ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]

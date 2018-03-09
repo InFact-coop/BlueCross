@@ -52,9 +52,9 @@ initModel =
     , alternativeOwnerPhone = ""
     , bestTimeToCall = AM
     , email = ""
-    , emailIsValid = False
+    , emailIsValid = Nothing
     , postcode = ""
-    , postCodeIsValid = False
+    , postCodeIsValid = Nothing
     , address = ""
     , transition = Transit.empty
     }
@@ -66,7 +66,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-    model ! []
+        model ! []
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -95,7 +95,7 @@ update msg model =
                 updatedModel =
                     { model | route = getRoute location.hash }
             in
-            nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container") ]
+                nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container") ]
 
         NavigateTo location ->
             Transit.start TransitMsg (UrlChange location) ( 200, 200 ) model
@@ -111,7 +111,7 @@ update msg model =
                 updatedModel =
                     { model | cats = value }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateChildrenSlider value ->
             { model | children = value } ! []
@@ -124,7 +124,7 @@ update msg model =
                 updatedModel =
                     { model | dogs = value }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateBabiesSlider value ->
             { model | babies = value } ! []
@@ -134,7 +134,7 @@ update msg model =
                 updatedModel =
                     { model | petName = name }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         ReceiveFormStatus (Ok bool) ->
             { model | formStatus = ResponseSuccess } ! []
@@ -173,28 +173,28 @@ update msg model =
                 updatedModel =
                     { model | urgency = timescale }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateGender gender ->
             let
                 updatedModel =
                     { model | dogGender = gender }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateCrossBreed trilean ->
             let
                 updatedModel =
                     { model | crossBreed = trilean }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdatePrimaryBreed breed ->
             let
                 updatedModel =
                     { model | primaryBreedType = Just breed }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateSecondaryBreed breed ->
             { model | secondaryBreedType = Just breed } ! []
@@ -216,14 +216,14 @@ update msg model =
                 updatedModel =
                     { model | dogAge = ageRange }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateLastVetVisit timescale ->
             let
                 updatedModel =
                     { model | lastVetVisit = timescale }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateOtherHealth string ->
             { model | otherHealthNotes = string } ! []
@@ -233,14 +233,14 @@ update msg model =
                 updatedModel =
                     { model | ownerName = string }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateOwnerEmail string ->
             let
                 updatedModel =
                     { model | email = string, emailIsValid = checkEmail string }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateAddress string ->
             { model | address = string } ! []
@@ -250,7 +250,7 @@ update msg model =
                 updatedModel =
                     { model | postcode = sanitisePostCode string, postCodeIsValid = checkPostCode string }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         DeleteImage im ->
             case model.image of
@@ -265,14 +265,14 @@ update msg model =
                 updatedModel =
                     { model | ownerPhone = sanitisePhoneNumber string }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateAlternativeOwnerPhone string ->
             let
                 updatedModel =
                     { model | alternativeOwnerPhone = sanitisePhoneNumber string }
             in
-            nextClickableToModel updatedModel ! []
+                nextClickableToModel updatedModel ! []
 
         UpdateBestTimeToCall timeOfDay ->
             { model | bestTimeToCall = timeOfDay } ! []
@@ -377,73 +377,81 @@ nextClickableToModel model =
         falseModel =
             { model | nextClickable = False }
     in
-    case model.route of
-        HomeRoute ->
-            ifThenElse
-                (model.urgency /= TimeScaleNotChosen)
+        case model.route of
+            HomeRoute ->
+                ifThenElse
+                    (model.urgency /= TimeScaleNotChosen)
+                    trueModel
+                    falseModel
+
+            BeforeYouBeginRoute ->
+                ifThenElse
+                    (model.lastVetVisit /= VetTimeScaleNotChosen)
+                    trueModel
+                    falseModel
+
+            PetInfoRoute ->
+                ifThenElse
+                    (model.petName
+                        /= ""
+                        && model.crossBreed
+                        /= TrileanNotChosen
+                        && ifThenElse
+                            (model.crossBreed
+                                == Neutral
+                            )
+                            True
+                            (model.primaryBreedType
+                                /= Nothing
+                            )
+                        && model.dogGender
+                        /= GenderNotChosen
+                        && model.dogAge
+                        /= AgeNotChosen
+                    )
+                    trueModel
+                    falseModel
+
+            PhotosRoute ->
                 trueModel
-                falseModel
 
-        BeforeYouBeginRoute ->
-            ifThenElse
-                (model.lastVetVisit /= VetTimeScaleNotChosen)
+            PersonalityRoute ->
                 trueModel
-                falseModel
 
-        PetInfoRoute ->
-            ifThenElse
-                (model.petName
-                    /= ""
-                    && model.crossBreed
-                    /= TrileanNotChosen
-                    && model.primaryBreedType
-                    /= Nothing
-                    && model.dogGender
-                    /= GenderNotChosen
-                    && model.dogAge
-                    /= AgeNotChosen
-                )
+            OwnerInfoRoute ->
+                ifThenElse
+                    (model.ownerName
+                        /= ""
+                        && model.email
+                        /= ""
+                        && model.ownerPhone
+                        /= ""
+                        && model.emailIsValid
+                        == Just True
+                        && model.postCodeIsValid
+                        == Just True
+                    )
+                    trueModel
+                    falseModel
+
+            ThankYouRoute ->
                 trueModel
-                falseModel
 
-        PhotosRoute ->
-            trueModel
-
-        PersonalityRoute ->
-            trueModel
-
-        OwnerInfoRoute ->
-            ifThenElse
-                (model.ownerName
-                    /= ""
-                    && model.email
-                    /= ""
-                    && model.emailIsValid
-                    == True
-                    && model.postCodeIsValid
-                    == True
-                )
+            NotFoundRoute ->
                 trueModel
-                falseModel
 
-        ThankYouRoute ->
-            trueModel
+            NewHomeRoute ->
+                ifThenElse
+                    (model.cats
+                        /= "-1"
+                        && model.dogs
+                        /= "-1"
+                    )
+                    trueModel
+                    falseModel
 
-        NotFoundRoute ->
-            trueModel
-
-        NewHomeRoute ->
-            ifThenElse
-                (model.cats
-                    /= "-1"
-                    && model.dogs
-                    /= "-1"
-                )
+            FindingAHomeRoute ->
                 trueModel
-                falseModel
-
-        FindingAHomeRoute ->
-            trueModel
 
 
 subscriptions : Model -> Sub Msg
