@@ -3,7 +3,7 @@ module Views.NewHome exposing (..)
 import Components.LovesHates exposing (..)
 import Components.StyleHelpers exposing (classes)
 import Components.TextBox exposing (..)
-import Helpers exposing (getPetName, ifThenElse)
+import Helpers exposing (getPetName, ifThenElse, pronounConverter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
@@ -22,14 +22,14 @@ rangeNumberToCss range =
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
     in
-    style
-        [ ( "backgroundImage", gradient ) ]
+        style
+            [ ( "backgroundImage", gradient ) ]
 
 
 newHome : Model -> Html Msg
 newHome model =
     div [ class "w-60-ns w-90 center mw8" ]
-        [ div [ class "blue b mb3 f4 lh-copy" ] [ text <| "Help us find " ++ getPetName model ++ " a new home they will be happy in. Please use the sliders to show us how " ++ getPetName model ++ " feels about..." ]
+        [ div [ class "blue b mb3 f4 lh-copy" ] [ text <| "Help us find " ++ getPetName model ++ " a new home " ++ pronounConverter "they" model.dogGender ++ " will be happy in. Please use the sliders to show us how " ++ getPetName model ++ " feels about..." ]
         , div [ class "blue b mb2 " ]
             [ text "Cats?"
             , span [ class "fw1 f5" ] [ text " Required" ]
