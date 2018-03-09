@@ -40,11 +40,11 @@ button {
   border-width: 0.75px;
   border-style: solid;
   border-color: #aaa;
-  width: 25px;
-  height: 25px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background-image: url('./assets/dog-paw.png');
-  background-size: 15px;
+  background-size: 20px;
   background-repeat: no-repeat;
   background-position: center;
 }

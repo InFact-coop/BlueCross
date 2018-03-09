@@ -30,6 +30,7 @@ initModel =
     , primaryReasonForRehoming = ""
     , secondaryReasonForRehoming = ""
     , otherReasonsForRehoming = ""
+    , unknownBreed = ""
     , dogGender = GenderNotChosen
     , dogAge = AgeNotChosen
     , medicalDetails = []
@@ -197,6 +198,9 @@ update msg model =
 
         UpdateSecondaryBreed breed ->
             { model | secondaryBreedType = Just breed } ! []
+
+        UpdateUnknownBreed string ->
+            { model | unknownBreed = string } ! []
 
         UpdatePrimaryReason string ->
             { model | primaryReasonForRehoming = string } ! []
@@ -392,8 +396,14 @@ nextClickableToModel model =
                         /= ""
                         && model.crossBreed
                         /= TrileanNotChosen
-                        && model.primaryBreedType
-                        /= Nothing
+                        && ifThenElse
+                            (model.crossBreed
+                                == Neutral
+                            )
+                            True
+                            (model.primaryBreedType
+                                /= Nothing
+                            )
                         && model.dogGender
                         /= GenderNotChosen
                         && model.dogAge

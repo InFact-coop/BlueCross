@@ -9,7 +9,8 @@ About
 Pet name: {{petName}}
 Cross breed: {{crossBreed}}
 Breed: {{primaryBreedType}}
-Breed: {{secondaryBreedType}}
+Second breed: {{secondaryBreedType}}
+Unknown breed information: {{unknownBreed}}
 Primary reason for rehoming: {{primaryReasonForRehoming}}
 Secondary reason for rehoming: {{secondaryReasonForRehoming}}
 Other reasons for rehoming: {{otherReasonsForRehoming}}
