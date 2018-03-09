@@ -414,6 +414,8 @@ nextClickableToModel model =
                         /= ""
                         && model.email
                         /= ""
+                        && model.ownerPhone
+                        /= ""
                         && model.emailIsValid
                         == Just True
                         && model.postCodeIsValid
