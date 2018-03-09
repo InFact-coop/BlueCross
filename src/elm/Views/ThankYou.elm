@@ -28,6 +28,7 @@ thankYou model =
                                 [ text "here" ]
                             ]
                         ]
+                    , a [ class "no-underline b white", href "https://www.bluecross.org.uk/donate" ] [ text "Donate to Blue Cross" ]
                     ]
                 ]
             , div
