@@ -51,9 +51,9 @@ initModel =
     , alternativeOwnerPhone = ""
     , bestTimeToCall = AM
     , email = ""
-    , emailIsValid = False
+    , emailIsValid = Nothing
     , postcode = ""
-    , postCodeIsValid = False
+    , postCodeIsValid = Nothing
     , address = ""
     , transition = Transit.empty
     }
@@ -415,9 +415,9 @@ nextClickableToModel model =
                         && model.email
                         /= ""
                         && model.emailIsValid
-                        == True
+                        == Just True
                         && model.postCodeIsValid
-                        == True
+                        == Just True
                     )
                     trueModel
                     falseModel

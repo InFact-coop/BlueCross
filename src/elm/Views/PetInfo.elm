@@ -5,17 +5,12 @@ import Components.DogBreedDropDown exposing (..)
 import Components.StyleHelpers exposing (classes, defaultOption, displayElement)
 import Components.TextBox exposing (..)
 import Data.DogBreeds exposing (..)
-import Helpers exposing (getPetName, ifThenElse)
+import Helpers exposing (getPetName, ifThenElse, onBlurValue)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
 import Json.Decode as Json exposing (Decoder, andThen)
 import Types exposing (..)
-
-
-onBlurValue : (String -> msg) -> Attribute msg
-onBlurValue tagger =
-    on "blur" (Json.map tagger targetValue)
 
 
 petInfo : Model -> Html Msg

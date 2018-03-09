@@ -96,7 +96,7 @@ isNewListEntry string stringList =
         |> not
 
 
-checkEmail : String -> Bool
+checkEmail : String -> Maybe Bool
 checkEmail email =
     let
         match =
@@ -104,13 +104,13 @@ checkEmail email =
     in
         case match of
             Just x ->
-                x.match == email
+                Just <| x.match == email
 
             Nothing ->
-                False
+                Just False
 
 
-checkPostCode : String -> Bool
+checkPostCode : String -> Maybe Bool
 checkPostCode postcode =
     let
         match =
@@ -118,10 +118,10 @@ checkPostCode postcode =
     in
         case match of
             Just x ->
-                x.match == postcode
+                Just <| x.match == postcode
 
             Nothing ->
-                False
+                Just False
 
 
 sanitisePhoneNumber : String -> String
@@ -137,3 +137,8 @@ sanitisePostCode string =
 onCheckboxInput : (String -> Bool -> msg) -> Html.Attribute msg
 onCheckboxInput tagger =
     on "change" (Decode.map2 tagger targetValue targetChecked)
+
+
+onBlurValue : (String -> msg) -> Attribute msg
+onBlurValue tagger =
+    on "blur" (Decode.map tagger targetValue)
