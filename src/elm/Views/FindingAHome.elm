@@ -24,7 +24,7 @@ findingAHome model =
             [ input [ type_ "checkbox", id "homeDirect", value "Home Direct", onCheckboxInput ToggleSupportPreference ] []
             , label [ for "homeDirect", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Home Direct: " ]
-                , text <| getPetName model ++ " will stay with you while we find a great new home"
+                , text <| getPetName model ++ " will stay with you while we find " ++ getPetName model ++ " great new home"
                 ]
             ]
         , div [ class "mb3" ]

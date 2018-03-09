@@ -12,7 +12,7 @@ import Types exposing (..)
 ownerInfo : Model -> Html Msg
 ownerInfo model =
     div [ class "w-60-ns w-90 center ma3 ma0-ns mw8" ]
-        [ div [ class "blue b mb4 mt4 f4 lh-copy" ] [ text "We just need to collect a few details from you so we can get in touch" ]
+        [ div [ class "blue b mb4 mt4 f4 lh-copy" ] [ text <| "We just need to collect a few details from you so we can get in touch about " ++ getPetName model ]
         , div [ class "blue b mb2 mt4" ]
             [ text "What is your name?"
             , span [ class "fw1 f5" ] [ text " Required" ]
