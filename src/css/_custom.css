@@ -177,7 +177,7 @@ input:checked + .checkedLabel {
 }
 
 .margin-minus {
-  margin-top: -3rem;
+  margin-top: -2.5rem;
 }
 
 .vh-40-ns {
@@ -211,6 +211,10 @@ input:focus {
 
 .vh-40-l {
   height: 40vh;
+}
+
+.vh-30{
+  height:30vh;
 }
 
 .f-custom {
