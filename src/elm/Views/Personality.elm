@@ -3,7 +3,7 @@ module Views.Personality exposing (..)
 import Components.PersonalityButtons exposing (..)
 import Components.StyleHelpers exposing (classes)
 import Components.TextBox exposing (..)
-import Helpers exposing (getPetName, ifThenElse)
+import Helpers exposing (getPetName, ifThenElse, pronounConverter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
@@ -12,7 +12,7 @@ import Types exposing (..)
 personality : Model -> Html Msg
 personality model =
     div [ class "w-60-ns w-90 center ma3 ma0-ns mw8" ]
-        [ div [ class "blue b mb4 mt4 f4 lh-copy" ] [ text <| "To help us find a great home for " ++ getPetName model ++ ", please click on the words that best descirbe them" ]
+        [ div [ class "blue b mb4 mt4 f4 lh-copy" ] [ text <| "To help us find a great home for " ++ getPetName model ++ ", please click on the words that best describe " ++ pronounConverter "them" model.dogGender ]
         , div []
             [ personalityButton "Noisy"
             , personalityButton "Sleepy"
