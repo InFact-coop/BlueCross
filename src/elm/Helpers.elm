@@ -124,6 +124,35 @@ checkPostCode postcode =
                 Just False
 
 
+pronounConverter : String -> Gender -> String
+pronounConverter neutralForm gender =
+    case neutralForm of
+        "they" ->
+            case gender of
+                Male ->
+                    "he"
+
+                Female ->
+                    "she"
+
+                GenderNotChosen ->
+                    "they"
+
+        "them" ->
+            case gender of
+                Male ->
+                    "him"
+
+                Female ->
+                    "her"
+
+                GenderNotChosen ->
+                    "them"
+
+        _ ->
+            neutralForm
+
+
 sanitisePhoneNumber : String -> String
 sanitisePhoneNumber string =
     replace All (regex "[^\\d ()+]") (\_ -> "") string
