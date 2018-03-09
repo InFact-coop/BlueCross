@@ -21,7 +21,7 @@ ownerInfo model =
             [ input [ type_ "text", class "bg-light-blue w-80 w-50-ns w-50-ns br2 pa3 gray bn", onInput UpdateOwnerName ]
                 []
             ]
-        , div [ class "blue b mb2 mt4" ] [ text "What is your daytime telephone number?" ]
+        , div [ class "blue b mb2 mt4" ] [ text "What is your daytime telephone number?", span [ class "fw1 f5" ] [ text " Required" ] ]
         , div []
             [ input [ id "ownerPhone", type_ "text", class "bg-light-blue w-80 w-50-ns br2 pa3 gray bn", value model.ownerPhone, onInput UpdateOwnerPhone ]
                 []
