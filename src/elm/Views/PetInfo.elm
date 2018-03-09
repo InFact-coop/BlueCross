@@ -66,7 +66,7 @@ petInfo model =
                 ]
             ]
         , div [ classes [ displayElement (model.crossBreed == Neutral) ] ]
-            [ div [ class "mt3 b blue" ] [ text <| "What breed is your " ++ getPetName model ++ "?" ]
+            [ div [ class "mt3 b blue mb2" ] [ text <| "What do you know about " ++ getPetName model ++ "'s breed?" ]
             , newTextBox ( "Please tell us what you know about " ++ getPetName model ++ "'s breed", "dogBreedOther" ) UpdateUnknownBreed
             ]
         , div [ class "blue b mb2 mt4" ] [ text <| "What is your main reason for rehoming " ++ getPetName model ++ "?" ]
