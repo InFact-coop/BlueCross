@@ -21,6 +21,7 @@ type alias Model =
         , primaryReasonForRehoming : String
         , secondaryReasonForRehoming : String
         , otherReasonsForRehoming : String
+        , unknownBreed : String
         , dogGender : Gender
         , dogAge : AgeRange
         , fundraisingContact : List String
@@ -321,6 +322,7 @@ type Msg
     | NavigateTo Navigation.Location
     | UpdateOtherReasons String
     | UpdateOtherGeneral String
+    | UpdateUnknownBreed String
     | UploadPhotos
     | ImageSelected
     | ImageRead (Result String (List Image))

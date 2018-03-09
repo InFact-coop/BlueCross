@@ -29,6 +29,7 @@ formObject model =
         , ( "primaryReasonForRehoming", string model.primaryReasonForRehoming )
         , ( "secondaryReasonForRehoming", string model.secondaryReasonForRehoming )
         , ( "otherReasonsForRehoming", string model.otherReasonsForRehoming )
+        , ( "unknownBreed", string model.unknownBreed )
         , ( "dogGender", string <| unionTypeToString model.dogGender )
         , ( "dogAge", string <| unionTypeToString model.dogAge )
         , ( "medicalDetails", list (List.map string model.medicalDetails |> List.intersperse (string ", ")) )

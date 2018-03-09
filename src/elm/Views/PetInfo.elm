@@ -39,7 +39,7 @@ petInfo model =
             , newBlueButton ( Yes, UpdateCrossBreed ) "Yes"
             , newBlueButton ( No, UpdateCrossBreed ) "No"
             , newBlueButton ( Neutral, UpdateCrossBreed ) "Not sure"
-            , div []
+            , div [ classes [ displayElement (model.crossBreed /= Neutral) ] ]
                 [ div []
                     [ div [ class "blue b mt4 mb2" ]
                         [ text <| "What breed is " ++ getPetName model ++ "?"
@@ -65,6 +65,10 @@ petInfo model =
                     ]
                 ]
             ]
+        , div [ classes [ displayElement (model.crossBreed == Neutral) ] ]
+            [ div [ class "mt3 b blue" ] [ text <| "What breed is your " ++ getPetName model ++ "?" ]
+            , newTextBox ( "Please tell us what you know about " ++ getPetName model ++ "'s breed", "dogBreedOther" ) UpdateUnknownBreed
+            ]
         , div [ class "blue b mb2 mt4" ] [ text <| "What is your main reason for rehoming " ++ getPetName model ++ "?" ]
         , div [ class "inline-flex items-center w-100" ]
             [ select [ class "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", id "primaryReasonForRehoming", on "change" <| Json.map UpdatePrimaryReason targetValue ]
@@ -86,7 +90,7 @@ petInfo model =
                 )
             ]
         , div [ classes [ displayElement (model.primaryReasonForRehoming == "Other") ] ]
-            [ div [ class "gray f6 fw1 mt2" ] [ text "Other:" ]
+            [ div [ class "gray f6 fw1 mt2 mb1" ] [ text "Other:" ]
             , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
             ]
         , div [ class "blue b mb2 mt4" ]
