@@ -46,12 +46,12 @@ router.route('/send-form').post((req, res, next) => {
 
   sendemail.set_template_directory(dir);
 
-  const internalEmailData = Object.create(
-    Object.getPrototypeOf(body),
-    Object.getOwnPropertyDescriptors(body)
-  );
-
-  console.log('Internal Email Data: ', internalEmailData);
+  const internalEmailData = {
+    ...body,
+    name: 'Blue Cross',
+    subject: 'Someone is ready to rehome their dog!',
+    email: process.env.INTERNAL_RECIPIENT
+  };
   const externalEmailData = {
     email: body.email,
     subject: 'Blue Cross confirmation',
@@ -59,15 +59,14 @@ router.route('/send-form').post((req, res, next) => {
     petName: body.petName,
     imageUrls: body.imageUrls
   };
-  internalEmailData.name = 'Blue Cross';
-  internalEmailData.email = process.env.INTERNAL_RECIPIENT;
-  internalEmailData.subject = 'Someone is ready to rehome their dog!';
+
   email('internal-confirmation', internalEmailData, (intError, intResult) => {
     if (intError) {
       console.log('Internal Email Error: ', intError);
       return res.json({ success: false });
     }
     console.log('Internal Email Sent: ', intResult);
+    console.log('internalEmailData', internalEmailData);
 
     email('external-confirmation', externalEmailData, (extError, extResult) => {
       if (extError) {
@@ -75,6 +74,7 @@ router.route('/send-form').post((req, res, next) => {
         return res.json({ success: false });
       }
       console.log('External Email Sent: ', extResult);
+      console.log('externalEmailData', externalEmailData);
       return res.json({ success: true });
     });
   });

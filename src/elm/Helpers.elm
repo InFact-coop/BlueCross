@@ -48,7 +48,7 @@ unionTypePayloadToClass payload msg =
         payloadLength =
             toString (payload) |> String.length |> (+) 1
     in
-        String.dropRight payloadLength msgString |> String.toLower |> Debug.log "Check it"
+        String.dropRight payloadLength msgString |> String.toLower
 
 
 removeSpaces : String -> String
@@ -57,7 +57,6 @@ removeSpaces string =
         |> String.toLower
         |> String.words
         |> String.join ""
-        |> Debug.log "RemoveSpaces"
 
 
 scrollToTop : Cmd Msg
