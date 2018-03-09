@@ -42,19 +42,26 @@ router.route('/upload-photos').post((req, res, next) => {
 router.route('/send-form').post((req, res, next) => {
   const dir = path.join(__dirname, '..', '..', 'email', 'templates');
   const email = sendemail.email;
+  const body = Object.freeze(req.body);
+
   sendemail.set_template_directory(dir);
-  const internalEmailData = req.body;
-  console.log('Internal Email Data: ', req.body);
-  internalEmailData.name = 'Kelly';
+
+  const internalEmailData = Object.create(
+    Object.getPrototypeOf(body),
+    Object.getOwnPropertyDescriptors(body)
+  );
+
+  console.log('Internal Email Data: ', internalEmailData);
+  const externalEmailData = {
+    email: body.email,
+    subject: 'Blue Cross confirmation',
+    ownerName: body.ownerName,
+    petName: body.petName,
+    imageUrls: body.imageUrls
+  };
+  internalEmailData.name = 'Blue Cross';
   internalEmailData.email = process.env.INTERNAL_RECIPIENT;
   internalEmailData.subject = 'Someone is ready to rehome their dog!';
-  const externalEmailData = {
-    email: internalEmailData.email,
-    subject: 'Blue Cross confirmation',
-    ownerName: internalEmailData.ownerName,
-    petName: internalEmailData.petName,
-    imageUrls: internalEmailData.imageUrls
-  };
   email('internal-confirmation', internalEmailData, (intError, intResult) => {
     if (intError) {
       console.log('Internal Email Error: ', intError);
