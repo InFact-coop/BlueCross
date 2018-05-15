@@ -44,7 +44,7 @@ formObject model =
         , ( "dogs", string model.dogs )
         , ( "babies", string model.babies )
         , ( "otherNotes", string model.otherNotes )
-        , ( "supportType", list (List.map string model.supportType) )
+        , ( "supportType", string model.supportType )
         , ( "ownerName", string model.ownerName )
         , ( "ownerPhone", string model.ownerPhone )
         , ( "alternativeOwnerPhone", string model.alternativeOwnerPhone )
