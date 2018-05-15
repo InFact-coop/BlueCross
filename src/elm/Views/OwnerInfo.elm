@@ -38,14 +38,14 @@ ownerInfo model =
             [ input [ class "dn ", id "am", name "time", type_ "radio", value "am", onClick <| UpdateBestTimeToCall AM ]
                 []
             , label [ class "health bg-white items-center justify-center bg-blue pointer mw4 br1 mr2 h1 br2 white tc pa3 checkedLabel", for "am" ]
-                [ text "am" ]
+                [ text "morning" ]
             ]
         , div
             [ class "w-25-l w-50 tc mb2 flex flex-column inline-flex flex-wrap center" ]
             [ input [ class "dn ", id "pm", name "time", type_ "radio", value "pm", onClick <| UpdateBestTimeToCall PM ]
                 []
             , label [ class "health bg-white items-center justify-center bg-blue pointer mw4 br1 mr2 h1 br2 white tc pa3 checkedLabel", for "pm" ]
-                [ text "pm" ]
+                [ text "afternoon" ]
             ]
         , div
             [ class "w-25-l w-50 tc mb2 flex flex-column inline-flex flex-wrap center" ]
