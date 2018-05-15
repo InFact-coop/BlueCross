@@ -23,7 +23,7 @@ getTitle : Model -> String
 getTitle model =
     case model.route of
         HomeRoute ->
-            "Find a new home for your pet"
+            "Find a new home for your dog"
 
         BeforeYouBeginRoute ->
             getPetName model ++ "'s Health"
