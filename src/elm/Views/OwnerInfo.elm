@@ -78,7 +78,7 @@ ownerInfo model =
                 []
             ]
         , div [ class "blue b mb2 mt4 f4" ]
-            [ text <| "We be in touch within 2 days to help you find a new home for " ++ getPetName model ++ "." ]
+            [ text <| "We will be in touch within 2 days to talk with you about how we could help you to find a new home for " ++ getPetName model ++ "." ]
         , div [ class "lh-copy gray fw1 f5" ]
             [ p []
                 [ text "Blue Cross would like to tell you about the great work we do for pets and the different ways in which you could support us, this may include fundraising activities, appeals and merchandise." ]
