@@ -1,4 +1,4 @@
-module Views.BeforeYouBegin exposing (..)
+module Views.Health exposing (..)
 
 import Components.BlueButton exposing (..)
 import Components.StyleHelpers exposing (classes)
@@ -9,8 +9,8 @@ import Html.Attributes exposing (..)
 import Types exposing (..)
 
 
-beforeYouBegin : Model -> Html Msg
-beforeYouBegin model =
+health : Model -> Html Msg
+health model =
     div [ class "w-60-ns w-90 center mw8" ]
         [ div [ class "blue b mb3" ] [ text <| "Is " ++ getPetName model ++ "..." ]
         , div [ class "mb3" ]

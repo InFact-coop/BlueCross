@@ -10,7 +10,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Navigation exposing (..)
 import Types exposing (..)
-import Views.BeforeYouBegin exposing (..)
+import Views.Health exposing (..)
 import Views.FindingAHome exposing (..)
 import Views.Home exposing (..)
 import Views.NewHome exposing (..)
@@ -28,15 +28,15 @@ view model =
         view =
             getCurrentView model
     in
-    div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
-        [ navbar model
-        , div [ style (fadeSlider 300 model.transition) ]
-            [ viewTitle model
-            , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
-            , view
-            , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
+        div [ class "w-100 fixed overflow-y-scroll top-0 bottom-0 m0-auto cover center", id "container" ]
+            [ navbar model
+            , div [ style (fadeSlider 300 model.transition) ]
+                [ viewTitle model
+                , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (progressBar model) (div [ class "dn" ] [])
+                , view
+                , ifThenElse ((model.route /= HomeRoute) && (model.route /= ThankYouRoute)) (terms model) (div [ class "dn" ] [])
+                ]
             ]
-        ]
 
 
 getCurrentView : Model -> Html Msg
@@ -45,8 +45,8 @@ getCurrentView model =
         HomeRoute ->
             Views.Home.home model
 
-        BeforeYouBeginRoute ->
-            beforeYouBegin model
+        HealthRoute ->
+            health model
 
         PetInfoRoute ->
             petInfo model
@@ -83,7 +83,7 @@ getRoute hash =
             HomeRoute
 
         "#before-you-begin" ->
-            BeforeYouBeginRoute
+            HealthRoute
 
         "#pet-info" ->
             PetInfoRoute
@@ -116,4 +116,4 @@ viewFromUrl location model =
         view =
             getRoute location.hash
     in
-    { model | route = view }
+        { model | route = view }

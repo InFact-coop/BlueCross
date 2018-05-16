@@ -25,7 +25,7 @@ getTitle model =
         HomeRoute ->
             "Find a new home for your pet"
 
-        BeforeYouBeginRoute ->
+        HealthRoute ->
             getPetName model ++ "'s Health"
 
         PetInfoRoute ->
