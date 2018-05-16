@@ -4,6 +4,7 @@ import Components.StyleHelpers exposing (classes)
 import Helpers exposing (getPetName, ifThenElse, onCheckboxInput, pronounConverter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Types exposing (..)
 
 
@@ -14,21 +15,21 @@ findingAHome model =
             [ h2 [ class "blue f4 mv4 lh-copy" ] [ text <| "We can help you find a new home for " ++ getPetName model ++ " in a couple of different ways.  Which would suit you and " ++ getPetName model ++ " best?" ]
             ]
         , div [ class "mb3" ]
-            [ input [ type_ "checkbox", id "rehomingCentre", value "Rehoming Centre", onCheckboxInput ToggleSupportPreference ] []
+            [ input [ type_ "radio", name "supportType", id "rehomingCentre", value "Rehoming Centre", onClick ToggleRehomingCentreSupport ] []
             , label [ for "rehomingCentre", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Rehoming Centre: " ]
                 , text <| "We will look after " ++ getPetName model ++ " at our Rehoming centre until we find " ++ pronounConverter "them" model.dogGender ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]
-            [ input [ type_ "checkbox", id "homeDirect", value "Home Direct", onCheckboxInput ToggleSupportPreference ] []
+            [ input [ type_ "radio", name "supportType", id "homeDirect", value "Home Direct", onClick ToggleHomeDirectSupport ] []
             , label [ for "homeDirect", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Home Direct: " ]
                 , text <| getPetName model ++ " will stay with you while we find " ++ pronounConverter "them" model.dogGender ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]
-            [ input [ type_ "checkbox", id "none", value "Unsure", onCheckboxInput ToggleSupportPreference ] []
+            [ input [ type_ "radio", name "supportType", id "none", value "Unsure", onClick ToggleUnsureSupport ] []
             , label [ for "none", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Unsure: " ]
                 , text "We can talk through the options with you and you can decide what works best for you."

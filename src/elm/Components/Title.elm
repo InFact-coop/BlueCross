@@ -21,33 +21,37 @@ getClasses route =
 
 getTitle : Model -> String
 getTitle model =
-    case model.route of
-        HomeRoute ->
-            "Find a new home for your pet"
+    let
+        petName =
+            getPetName model
+    in
+        case model.route of
+            HomeRoute ->
+                "Find a new home for your dog"
 
-        BeforeYouBeginRoute ->
-            getPetName model ++ "'s Health"
+            BeforeYouBeginRoute ->
+                petName ++ "'s Health"
 
-        PetInfoRoute ->
-            "About " ++ getPetName model
+            PetInfoRoute ->
+                "About " ++ petName
 
-        PersonalityRoute ->
-            getPetName model ++ "'s Personality"
+            PersonalityRoute ->
+                petName ++ "'s Personality"
 
-        PhotosRoute ->
-            "Photos of " ++ getPetName model
+            PhotosRoute ->
+                "Photos of " ++ petName
 
-        NewHomeRoute ->
-            getPetName model ++ "'s New Home"
+            NewHomeRoute ->
+                petName ++ "'s New Home"
 
-        OwnerInfoRoute ->
-            "Your details"
+            OwnerInfoRoute ->
+                "Your details"
 
-        ThankYouRoute ->
-            ""
+            ThankYouRoute ->
+                ""
 
-        FindingAHomeRoute ->
-            "Finding a new home for " ++ getPetName model
+            FindingAHomeRoute ->
+                "Finding a new home for " ++ petName
 
-        NotFoundRoute ->
-            "Sorry"
+            NotFoundRoute ->
+                "Sorry"

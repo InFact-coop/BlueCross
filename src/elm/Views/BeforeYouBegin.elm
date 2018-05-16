@@ -25,10 +25,6 @@ beforeYouBegin model =
             [ input [ type_ "checkbox", onCheckboxInput ToggleMedicalDetail, id "microchipped", value "Microchipped" ] []
             , label [ for "microchipped", class "gray ml2" ] [ text "Microchipped?" ]
             ]
-        , div [ class "mb3" ]
-            [ input [ type_ "checkbox", onCheckboxInput ToggleMedicalDetail, id "Unknown", value "Unknown" ] []
-            , label [ for "Unknown", class "gray ml2" ] [ text "Unknown" ]
-            ]
         , div [ class "blue b mt4 pb3" ]
             [ text <| "When was " ++ getPetName model ++ "'s last visit to the vets?"
             , span [ class "fw1 f5" ] [ text " Required" ]

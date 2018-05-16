@@ -34,22 +34,22 @@
     "dotenv": "^4.0.0",
     "elm-live": "^2.7.5",
     "mocha": "^4.1.0",
-    "nodemon": "^1.14.11",
-    "supertest": "^3.0.0"
+    "nodemon": "^1.17.4",
+    "supertest": "^3.1.0"
   },
   "dependencies": {
-    "airtable": "^0.5.2",
-    "autoprefixer": "^7.1.6",
-    "body-parser": "^1.18.2",
-    "cloudinary": "^1.10.0",
+    "airtable": "^0.5.4",
+    "autoprefixer": "^7.2.6",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.11.0",
     "elm": "^0.18.0",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "postcss-clean": "^1.1.0",
     "postcss-cli": "^4.1.1",
     "postcss-custom-media": "^6.0.0",
-    "postcss-custom-properties": "^6.2.0",
-    "postcss-import": "^11.0.0",
-    "sendemail": "^3.3.0",
-    "tachyons-custom": "^4.9.0"
+    "postcss-custom-properties": "^6.3.1",
+    "postcss-import": "^11.1.0",
+    "sendemail": "^3.4.0",
+    "tachyons-custom": "^4.9.4"
   }
 }
