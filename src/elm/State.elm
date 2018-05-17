@@ -57,6 +57,7 @@ initModel =
     , postCodeIsValid = Nothing
     , address = ""
     , transition = Transit.empty
+    , isIE = False
     }
 
 
@@ -66,7 +67,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! []
+        model ! [ checkIE () ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -310,11 +311,20 @@ update msg model =
         ToggleUnsureSupport ->
             { model | supportType = "Unsure" } ! []
 
+        ReceiveIsIE bool ->
+            { model | isIE = bool } ! []
+
 
 port recordStart : String -> Cmd msg
 
 
 port preparePhoto : () -> Cmd msg
+
+
+port checkIE : () -> Cmd msg
+
+
+port isIE : (Bool -> msg) -> Sub msg
 
 
 port takePhoto : () -> Cmd msg
@@ -464,4 +474,5 @@ subscriptions model =
         , receivePhotoUrl (decodeSingleImage >> ReceivePhotoUrl)
         , fileContentRead (decodeImageList >> ImageRead)
         , Transit.subscriptions TransitMsg model
+        , isIE ReceiveIsIE
         ]
