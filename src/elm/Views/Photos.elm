@@ -16,7 +16,7 @@ photos model =
             List.map renderImage <| Maybe.withDefault [] model.image
     in
         div [ class "w-60-ns w-90 center ma3 mw8 " ]
-            [ header [ class "b blue f4 lh-copy" ] [ text <| "Potential owners will want to see what " ++ getPetName model ++ " looks like. Please " ++ ifThenElse model.isIE "upload" "take or upload" ++ " a great photo of " ++ pronounConverter "them" model.dogGender ++ "!" ]
+            [ header [ class "b blue f4 lh-copy" ] [ text <| "Potential owners will want to see what " ++ getPetName model ++ " looks like. Please " ++ ifThenElse model.cameraSupported "take or upload" "upload" ++ " a great photo of " ++ pronounConverter "them" model.dogGender ++ "!" ]
             , section []
                 [ p [ class "fw1" ]
                     [ img [ src "./assets/tick.svg", class "mr2 h1" ] []
@@ -43,10 +43,10 @@ photos model =
                     , div [ class "w-100 flex justify-center" ] [ img [ src "./assets/bad-photo-cross.svg", class "h3 w-auto margin-minus" ] [] ]
                     ]
                 ]
-            , label [ for model.imageId, class "b blue" ] [ text <| ("Please " ++ ifThenElse model.isIE "upload" "take or upload" ++ " a photo of " ++ getPetName model) ]
+            , label [ for model.imageId, class "b blue" ] [ text <| ("Please " ++ ifThenElse model.cameraSupported "take or upload" "upload" ++ " a photo of " ++ getPetName model) ]
             , br [ class "pa3" ] []
             , div [ class "flex flex-wrap justify-center" ]
-                [ div [ classes [ "ba w-80 vh-30 br2 b--blue ma3 mw5 grow", ifThenElse model.isIE "w-70-ns" "w-40-ns" ] ]
+                [ div [ classes [ "ba w-80 vh-30 br2 b--blue ma3 mw5 grow", ifThenElse model.cameraSupported "w-40-ns" "w-70-ns" ] ]
                     [ div [ class "h-100" ]
                         [ div [ class " white f4 fw1 v-mid tc center h-100 w-100 upload-background " ]
                             [ input
@@ -63,7 +63,7 @@ photos model =
                         ]
                     , div [ class "blue tc margin-minus dn db-ns" ] [ text "Upload Image" ]
                     ]
-                , div [ classes [ "ba w-40-ns w-80 vh-30 br2 b--blue ma3 dn mw5 grow", ifThenElse model.isIE "" "db-ns" ] ]
+                , div [ classes [ "ba w-40-ns w-80 vh-30 br2 b--blue ma3 dn mw5 grow", ifThenElse model.cameraSupported "db-ns" "" ] ]
                     [ button [ class "w-100 h-100 pointer bn blue cursor br2 bg-white", onClick PreparePhoto ]
                         [ img [ src "./assets/camera.svg", class "w4 h-auto" ] []
                         , br [] []
