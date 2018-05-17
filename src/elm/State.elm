@@ -1,6 +1,7 @@
 port module State exposing (..)
 
 import Data.Photos exposing (decodeImageList, decodeSingleImage, imageDecoder)
+import Dom exposing (focus)
 import Dom.Scroll exposing (..)
 import Helpers exposing (..)
 import Json.Decode
@@ -67,7 +68,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ checkIE () ]
+        model ! [ checkIE (), Task.attempt (always NoOp) (focus "container") ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -96,7 +97,7 @@ update msg model =
                 updatedModel =
                     { model | route = getRoute location.hash }
             in
-                nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container") ]
+                nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container"), Task.attempt (always NoOp) (focus "container") ]
 
         NavigateTo location ->
             Transit.start TransitMsg (UrlChange location) ( 200, 200 ) model
