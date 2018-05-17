@@ -1,3 +1,5 @@
+// Check if browser is Internet Explorer
+
 app.ports.checkIE.subscribe(function() {
   var userAgent = navigator.userAgent;
   var isIE =
