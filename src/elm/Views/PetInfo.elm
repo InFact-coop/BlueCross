@@ -68,25 +68,25 @@ petInfo model =
         , div [ class "inline-flex items-center w-100" ]
             [ select [ class "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", id "primaryReasonForRehoming", on "change" <| Json.map UpdatePrimaryReason targetValue ]
                 [ option [ selected True, disabled True ] [ text "Please select one" ]
+                , option [ value "Change of circumstance" ]
+                    [ text "Change of circumstance" ]
+                , option [ value "Health" ]
+                    [ text <| getPetName model ++ "'s health" ]
                 , option [ value "Behaviour" ]
-                    [ text "Behaviour" ]
-                , option [ value "Financial" ]
-                    [ text "Financial" ]
-                , option [ value "Other" ]
-                    [ text "Other" ]
+                    [ text <| getPetName model ++ "'s behaviour" ]
                 ]
             , p
-                [ classes [ "blue mh3 mv0 b", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ] ]
+                [ classes [ "blue mh3 mv0 b" ] ]
                 [ text ":" ]
-            , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", displayElement (model.primaryReasonForRehoming == "Behaviour" || model.primaryReasonForRehoming == "Financial") ], id "secondaryReasonForRehoming", on "change" <| Json.map UpdateSecondaryReason targetValue ]
+            , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg" ], id "secondaryReasonForRehoming", on "change" <| Json.map UpdateSecondaryReason targetValue ]
                 ([ option [ selected True, disabled True ] [ text "Please select one" ]
                  ]
                     ++ secondaryReasons model
                 )
             ]
-        , div [ classes [ displayElement (model.primaryReasonForRehoming == "Other") ] ]
+        , div [ classes [ displayElement (model.secondaryReasonForRehoming == "Other") ] ]
             [ div [ class "gray f6 fw1 mt2 mb1" ] [ text "Other:" ]
-            , newTextBox ( "Please tell us why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
+            , newTextBox ( "Please give us a little more detail on why you are rehoming " ++ getPetName model, "rehoming" ) UpdateOtherReasons
             ]
         , div [ class "blue b mb2 mt4" ]
             [ text <| "What sex is " ++ getPetName model ++ "?"
@@ -111,25 +111,27 @@ petInfo model =
 secondaryReasons : Model -> List (Html Msg)
 secondaryReasons model =
     case model.primaryReasonForRehoming of
-        "Behaviour" ->
-            [ reasonDropdown "Aggression towards children"
-            , reasonDropdown "Aggression towards familiar people"
-            , reasonDropdown "Aggression towards own species (living with)"
-            , reasonDropdown "Aggression towards own species "
-            , reasonDropdown "Aggression towards other species (living with)"
-            , reasonDropdown "Aggression towards unfamiliar people"
-            , reasonDropdown "Destructive when left"
-            , reasonDropdown "Food aggression"
-            , reasonDropdown "Inappropriate toileting"
-            , reasonDropdown "Riding problems"
-            , reasonDropdown "Unable to handle"
+        "Change of circumstance" ->
+            [ reasonDropdown "Home"
+            , reasonDropdown "Job"
+            , reasonDropdown "Family"
             , reasonDropdown "Other"
             ]
 
-        "Financial" ->
-            [ reasonDropdown "Loss of home"
-            , reasonDropdown "Loss of job"
-            , reasonDropdown "Too expensive to keep"
+        "Behaviour" ->
+            [ reasonDropdown "Anxious when left"
+            , reasonDropdown "Difficult to handle"
+            , reasonDropdown "Overprotective of food or toys"
+            , reasonDropdown "Not house-trained"
+            , reasonDropdown "Unsafe with children"
+            , reasonDropdown "Unsafe with strangers"
+            , reasonDropdown "Unsafe with other dogs"
+            , reasonDropdown "Other"
+            ]
+
+        "Health" ->
+            [ reasonDropdown "Treatment"
+            , reasonDropdown "Special care"
             , reasonDropdown "Other"
             ]
 

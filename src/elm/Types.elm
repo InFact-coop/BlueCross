@@ -256,7 +256,7 @@ type RemoteData
 
 type Route
     = HomeRoute
-    | BeforeYouBeginRoute
+    | HealthRoute
     | PetInfoRoute
     | PhotosRoute
     | PersonalityRoute

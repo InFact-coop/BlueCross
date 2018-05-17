@@ -50,7 +50,7 @@ routesList : List ( Int, Route )
 routesList =
     [ ( 1, HomeRoute )
     , ( 2, PetInfoRoute )
-    , ( 3, BeforeYouBeginRoute )
+    , ( 3, HealthRoute )
     , ( 4, PersonalityRoute )
     , ( 5, NewHomeRoute )
     , ( 6, PhotosRoute )

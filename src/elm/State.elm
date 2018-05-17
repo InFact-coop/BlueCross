@@ -387,7 +387,7 @@ nextClickableToModel model =
                     trueModel
                     falseModel
 
-            BeforeYouBeginRoute ->
+            HealthRoute ->
                 ifThenElse
                     (model.lastVetVisit /= VetTimeScaleNotChosen)
                     trueModel
