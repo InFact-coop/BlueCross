@@ -38,7 +38,7 @@ type alias Model =
         , otherNotes : String
         , image : Maybe (List Image)
         , imageUrls : Maybe (List String)
-        , supportType : List String
+        , supportType : String
         , ownerName : String
         , ownerPhone : String
         , alternativeOwnerPhone : String
@@ -317,7 +317,9 @@ type Msg
     | UpdateAddress String
     | UpdatePostcode String
     | ToggleMedicalDetail String Bool
-    | ToggleSupportPreference String Bool
+    | ToggleRehomingCentreSupport
+    | ToggleHomeDirectSupport
+    | ToggleUnsureSupport
     | TransitMsg (Transit.Msg Msg)
     | NavigateTo Navigation.Location
     | UpdateOtherReasons String

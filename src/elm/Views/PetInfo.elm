@@ -18,7 +18,7 @@ petInfo model =
     div [ class "w-60-ns w-90 center ma3 ma0-ns mw8" ]
         [ div
             [ class " blue b mb2" ]
-            [ text "What is your pet's name?"
+            [ text "What is your dog's name?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
         , div []

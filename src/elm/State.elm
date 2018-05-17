@@ -46,7 +46,7 @@ initModel =
     , babies = "-1"
     , otherNotes = ""
     , image = Nothing
-    , supportType = []
+    , supportType = ""
     , ownerName = ""
     , ownerPhone = ""
     , alternativeOwnerPhone = ""
@@ -301,11 +301,14 @@ update msg model =
             else
                 { model | fundraisingContact = List.filter (\x -> x /= string) model.fundraisingContact } ! []
 
-        ToggleSupportPreference string checked ->
-            if checked && isNewListEntry string model.supportType then
-                { model | supportType = model.supportType ++ [ string ] } ! []
-            else
-                { model | supportType = List.filter (\x -> x /= string) model.supportType } ! []
+        ToggleRehomingCentreSupport ->
+            { model | supportType = "Rehoming Centre" } ! []
+
+        ToggleHomeDirectSupport ->
+            { model | supportType = "Home Direct" } ! []
+
+        ToggleUnsureSupport ->
+            { model | supportType = "Unsure" } ! []
 
 
 port recordStart : String -> Cmd msg

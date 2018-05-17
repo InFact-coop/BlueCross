@@ -6,6 +6,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Types exposing (..)
+import Regex exposing (..)
 
 
 blueButton : TimeScale -> Html Msg
@@ -19,7 +20,7 @@ blueButton ts =
                 (UpdateUrgency ts)
             , for <| unionTypeToString ts
             ]
-            [ text <| unionTypeToString ts ]
+            [ text <| Regex.replace All (regex "To") (\_ -> "to") <| unionTypeToString ts ]
         ]
 
 
