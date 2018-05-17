@@ -34,29 +34,18 @@ button {
   background-position: center;
 }
 
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: white;
-  border-width: 0.75px;
-  border-style: solid;
-  border-color: #aaa;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-image: url('./assets/dog-paw.png');
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 .h-custom {
   height: 0.5rem;
+}
+
+.ms-h-custom {
+  height: 2rem;
 }
 
 .light-border {
   border-width: 0.8px;
   border-style: solid;
-  border-color: #6666;
+  border-color: var(--moon-gray);
 }
 
 @media only screen and (min-width: 1300px) {
@@ -213,8 +202,8 @@ input:focus {
   height: 40vh;
 }
 
-.vh-30{
-  height:30vh;
+.vh-30 {
+  height: 30vh;
 }
 
 .f-custom {
@@ -241,3 +230,62 @@ input:focus {
 .diagonally-se:hover {
   transform: translate(1rem, 2rem);
 }
+
+/* Slider Styles */
+
+.slider::-ms-track {
+  cursor: pointer;
+  height: 3rem;
+  padding: 0;
+  background: transparent;
+  border-width: 1px;
+  border-color: var(--moon-gray);
+  color: transparent;
+}
+
+.slider::-ms-thumb {
+  background-color: white;
+  border-width: 0.8px;
+  border-style: solid;
+  border-color: #aaa;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-image: url('./assets/dog-paw.png');
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.slider::-ms-fill-lower {
+  background: #069fdd;
+}
+
+.slider::-ms-fill-upper {
+  background: #ffffff;
+}
+
+.slider:focus::-ms-fill-lower {
+  background: #069fdd;
+}
+
+.slider:focus::-ms-fill-upper {
+  background: #ffffff;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: white;
+  border-width: 0.75px;
+  border-style: solid;
+  border-color: #aaa;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-image: url('./assets/dog-paw.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* End of Slider Styles */

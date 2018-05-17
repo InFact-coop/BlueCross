@@ -8,6 +8,12 @@ import Json.Decode as Decode
 import Regex exposing (..)
 import Task
 import Types exposing (..)
+import Json.Decode as Json
+
+
+onEventValue : String -> (String -> msg) -> Attribute msg
+onEventValue event tagger =
+    on event (Json.map tagger targetValue)
 
 
 ifThenElse : Bool -> a -> a -> a

@@ -48,6 +48,7 @@ type alias Model =
         , address : String
         , postcode : String
         , postCodeIsValid : Maybe Bool
+        , isIE : Bool
         }
 
 
@@ -328,3 +329,4 @@ type Msg
     | ImageRead (Result String (List Image))
     | SubmitForm
     | ReceiveFormStatus (Result Http.Error Bool)
+    | ReceiveIsIE Bool

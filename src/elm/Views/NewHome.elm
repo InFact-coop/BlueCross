@@ -3,27 +3,39 @@ module Views.NewHome exposing (..)
 import Components.LovesHates exposing (..)
 import Components.StyleHelpers exposing (classes)
 import Components.TextBox exposing (..)
-import Helpers exposing (getPetName, ifThenElse, pronounConverter)
+import Helpers exposing (getPetName, ifThenElse, pronounConverter, onEventValue)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
-import Json.Decode as Json
 import Types exposing (..)
 
 
-onInputValue : (String -> msg) -> Attribute msg
-onInputValue tagger =
-    on "input" (Json.map tagger targetValue)
-
-
-rangeNumberToCss : String -> Attribute msg
-rangeNumberToCss range =
+rangeNumberToCss : Bool -> String -> Attribute msg
+rangeNumberToCss isIE range =
     let
         gradient =
             "linear-gradient(to right, #069FDD, #069FDD " ++ range ++ "%, #FFF 1%, #FFF 100%)"
-    in
-        style
+
+        ieStyle =
+            [ ( "", "" ) ]
+
+        normalStyle =
             [ ( "backgroundImage", gradient ) ]
+    in
+        style <| ifThenElse isIE ieStyle normalStyle
+
+
+slider : Model -> String -> (String -> Msg) -> Html Msg
+slider model stringifiedVal msg =
+    let
+        sliderEvent =
+            onEventValue <| ifThenElse model.isIE "change" "input"
+    in
+        div [ class "w-100 items-center center tc" ]
+            [ input [ type_ "range", value stringifiedVal, classes [ "b--gray w-75 pa0 input-reset br4 slider light-border center outline-0", ifThenElse model.isIE "ms-h-custom" "h-custom light-border" ], rangeNumberToCss model.isIE stringifiedVal, sliderEvent msg ]
+                []
+            , loveHate model
+            ]
 
 
 newHome : Model -> Html Msg
@@ -39,11 +51,7 @@ newHome model =
                 [ img [ src "./assets/catIcon.svg", class "mr3 h2 " ]
                     []
                 ]
-            , div [ class "w-100 items-center center tc" ]
-                [ input [ id "myRange", type_ "range", value model.cats, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0 outline-0", rangeNumberToCss model.cats, onInputValue UpdateCatsSlider ]
-                    []
-                , loveHate model
-                ]
+            , slider model model.cats UpdateCatsSlider
             ]
         , div [ class "blue b mb2 " ]
             [ text "Other dogs?"
@@ -54,41 +62,25 @@ newHome model =
                 [ img [ src "./assets/dogIcon.svg", class "mr3 h2 " ]
                     []
                 ]
-            , div [ class "w-100 items-center center tc" ]
-                [ input [ id "myRange", type_ "range", value model.dogs, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.dogs, onInputValue UpdateDogsSlider ]
-                    []
-                , loveHate model
-                ]
+            , slider model model.dogs UpdateDogsSlider
             ]
         , div [ class "blue b mb2 " ] [ text "Young Children?" ]
         , div [ class " flex" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/baby.svg", class "mr3 h2 " ] [] ]
-            , div [ class "w-100 items-center center tc" ]
-                [ input [ id "myRange", type_ "range", rangeNumberToCss model.babies, value model.babies, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.babies, onInputValue UpdateBabiesSlider ]
-                    []
-                , loveHate model
-                ]
+            , slider model model.babies UpdateBabiesSlider
             ]
         , div [ class "blue b mb2 " ] [ text "Older Children?" ]
         , div [ class " flex " ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/child.svg", class "mr3 h2 " ] [] ]
-            , div [ class "w-100 items-center center tc" ]
-                [ input [ id "myRange", type_ "range", rangeNumberToCss model.children, value model.children, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.children, onInputValue UpdateChildrenSlider ]
-                    []
-                , loveHate model
-                ]
+            , slider model model.children UpdateChildrenSlider
             ]
         , div [ class "blue b mb2 " ] [ text "New People?" ]
         , div [ class " flex" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/group.svg", class "mr3 h2 " ] [] ]
-            , div [ class "w-100 items-center center tc" ]
-                [ input [ id "myRange", type_ "range", value model.people, class "w-75 h-custom bg-blue input-reset br4 slider light-border center outline-0", rangeNumberToCss model.people, onInputValue UpdatePeopleSlider ]
-                    []
-                , loveHate model
-                ]
+            , slider model model.people UpdatePeopleSlider
             ]
         , div [ class "blue b mb2" ] [ text <| "Is there anything else we should know about " ++ getPetName model ++ "?" ]
         , newTextBox ( "Please tell us here", "newhome" ) UpdateOtherGeneral
