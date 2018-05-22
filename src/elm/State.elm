@@ -12,6 +12,7 @@ import Router exposing (getRoute, viewFromUrl)
 import Task
 import Transit exposing (empty, start, subscriptions, tick)
 import Types exposing (..)
+import Requests.Postcode exposing (validatePostcode)
 
 
 initModel : Model
@@ -249,10 +250,10 @@ update msg model =
 
         UpdatePostcode string ->
             let
-                updatedModel =
-                    { model | postcode = sanitisePostCode string, postCodeIsValid = checkPostCode string }
+                sanitisedPostcode =
+                    sanitisePostCode string
             in
-                nextClickableToModel updatedModel ! []
+                { model | postcode = sanitisedPostcode } ! [ validatePostcode <| ifThenElse (sanitisedPostcode /= "") sanitisedPostcode " " ]
 
         DeleteImage im ->
             case model.image of
@@ -314,6 +315,16 @@ update msg model =
 
         ReceiveIsIE bool ->
             { model | isIE = bool } ! []
+
+        ReceivePostcodeValidity (Ok bool) ->
+            let
+                updatedModel =
+                    { model | postCodeIsValid = Just bool }
+            in
+                nextClickableToModel updatedModel ! []
+
+        ReceivePostcodeValidity (Err string) ->
+            model ! []
 
 
 port recordStart : String -> Cmd msg
