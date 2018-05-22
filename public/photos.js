@@ -1,4 +1,7 @@
 // Upload Photos Port
+app.ports.checkCameraSupported.subscribe(function() {
+  app.ports.cameraSupported.send(!!navigator.mediaDevices);
+});
 
 app.ports.fileSelected.subscribe(function(id) {
   var node = document.getElementById(id);

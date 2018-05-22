@@ -59,6 +59,7 @@ initModel =
     , address = ""
     , transition = Transit.empty
     , isIE = False
+    , cameraSupported = False
     }
 
 
@@ -68,7 +69,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ checkIE (), Task.attempt (always NoOp) (focus "container") ]
+        model ! [ checkIE (), checkCameraSupported (), Task.attempt (always NoOp) (focus "container") ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -315,6 +316,9 @@ update msg model =
         ReceiveIsIE bool ->
             { model | isIE = bool } ! []
 
+        ReceiveCameraSupported bool ->
+            { model | cameraSupported = bool } ! []
+
 
 port recordStart : String -> Cmd msg
 
@@ -325,7 +329,13 @@ port preparePhoto : () -> Cmd msg
 port checkIE : () -> Cmd msg
 
 
+port checkCameraSupported : () -> Cmd msg
+
+
 port isIE : (Bool -> msg) -> Sub msg
+
+
+port cameraSupported : (Bool -> msg) -> Sub msg
 
 
 port takePhoto : () -> Cmd msg
@@ -476,4 +486,5 @@ subscriptions model =
         , fileContentRead (decodeImageList >> ImageRead)
         , Transit.subscriptions TransitMsg model
         , isIE ReceiveIsIE
+        , cameraSupported ReceiveCameraSupported
         ]
