@@ -20,23 +20,23 @@ personality model =
                     ++ pronounConverter "their" model.dogGender
                     ++ " personality."
             ]
-        , div []
-            [ personalityButton "Noisy"
-            , personalityButton "Sleepy"
-            , personalityButton "Friendly"
-            , personalityButton "Shy"
-            , personalityButton "Playful"
-            , personalityButton "Cuddly"
-            , personalityButton "Nervous"
-            , personalityButton "Laid-Back"
-            , personalityButton "Obedient"
-            , personalityButton "Loving"
-            , personalityButton "Energetic"
-            , personalityButton "Grumpy"
-            , personalityButton "Hungry"
-            , personalityButton "Calm"
-            , personalityButton "Exciteable"
-            , personalityButton "Snappy"
+        , div [ class "overflow-auto" ]
+            [ personalityButton "Noisy" False
+            , personalityButton "Sleepy" False
+            , personalityButton "Friendly" False
+            , personalityButton "Shy" False
+            , personalityButton "Playful" False
+            , personalityButton "Cuddly" False
+            , personalityButton "Nervous" False
+            , personalityButton "Laid-Back" False
+            , personalityButton "Obedient" False
+            , personalityButton "Loving" False
+            , personalityButton "Energetic" False
+            , personalityButton "Grumpy" False
+            , personalityButton "Hungry" False
+            , personalityButton "Calm" False
+            , personalityButton "Exciteable" False
+            , personalityButton "Snappy" True
             ]
         , div
             [ class "pt4 pb3 dib blue b" ]

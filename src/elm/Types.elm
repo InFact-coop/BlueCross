@@ -49,6 +49,7 @@ type alias Model =
         , postcode : String
         , postCodeIsValid : Maybe Bool
         , isIE : Bool
+        , cameraSupported : Bool
         }
 
 
@@ -333,3 +334,4 @@ type Msg
     | ReceiveFormStatus (Result Http.Error Bool)
     | ReceivePostcodeValidity (Result Http.Error Bool)
     | ReceiveIsIE Bool
+    | ReceiveCameraSupported Bool
