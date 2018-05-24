@@ -332,5 +332,6 @@ type Msg
     | ImageRead (Result String (List Image))
     | SubmitForm
     | ReceiveFormStatus (Result Http.Error Bool)
+    | ReceivePostcodeValidity (Result Http.Error Bool)
     | ReceiveIsIE Bool
     | ReceiveCameraSupported Bool
