@@ -45,17 +45,22 @@ router.route('/send-form').post((req, res, next) => {
   const externalEmail = sendemail.email;
   const body = Object.freeze(req.body);
 
+  const internalCcAddresses =
+    process.env.INTERNAL_RECIPIENTS_CC.split(';') || [];
+  const internalBccAddresses =
+    process.env.INTERNAL_RECIPIENTS_BCC.split(';') || [];
+
   sendemail.set_template_directory(dir);
 
   const internalEmailData = {
     templateName: 'internal-confirmation',
     subject: 'Someone is ready to rehome their dog!',
     toAddresses: [process.env.INTERNAL_RECIPIENT],
-    ccAddresses: [],
-    bccAddresses: [],
+    ccAddresses: internalCcAddresses,
+    bccAddresses: internalBccAddresses,
     context: {
       ...body,
-      name: 'Blue Cross'
+      name: INTERNAL_RECIPIENT_NAME || 'Blue Cross'
     }
   };
   const externalEmailData = {
