@@ -41,16 +41,27 @@ router.route('/upload-photos').post((req, res, next) => {
 
 router.route('/send-form').post((req, res, next) => {
   const dir = path.join(__dirname, '..', '..', 'email', 'templates');
-  const email = sendemail.email;
+  const internalEmail = sendemail.sendMany;
+  const externalEmail = sendemail.email;
   const body = Object.freeze(req.body);
+
+  const internalCcAddresses =
+    process.env.INTERNAL_RECIPIENTS_CC.split(';') || [];
+  const internalBccAddresses =
+    process.env.INTERNAL_RECIPIENTS_BCC.split(';') || [];
 
   sendemail.set_template_directory(dir);
 
   const internalEmailData = {
-    ...body,
-    name: 'Blue Cross',
+    templateName: 'internal-confirmation',
     subject: 'Someone is ready to rehome their dog!',
-    email: process.env.INTERNAL_RECIPIENT
+    toAddresses: [process.env.INTERNAL_RECIPIENT],
+    ccAddresses: internalCcAddresses,
+    bccAddresses: internalBccAddresses,
+    context: {
+      ...body,
+      name: INTERNAL_RECIPIENT_NAME || 'Blue Cross'
+    }
   };
   const externalEmailData = {
     email: body.email,
@@ -60,7 +71,7 @@ router.route('/send-form').post((req, res, next) => {
     imageUrls: body.imageUrls
   };
 
-  email('internal-confirmation', internalEmailData, (intError, intResult) => {
+  internalEmail(internalEmailData, (intError, intResult) => {
     if (intError) {
       console.log('Internal Email Error: ', intError);
       return res.json({ success: false });
@@ -68,15 +79,19 @@ router.route('/send-form').post((req, res, next) => {
     console.log('Internal Email Sent: ', intResult);
     console.log('internalEmailData', internalEmailData);
 
-    email('external-confirmation', externalEmailData, (extError, extResult) => {
-      if (extError) {
-        console.log('External Email Error: ', extError);
-        return res.json({ success: false });
+    externalEmail(
+      'external-confirmation',
+      externalEmailData,
+      (extError, extResult) => {
+        if (extError) {
+          console.log('External Email Error: ', extError);
+          return res.json({ success: false });
+        }
+        console.log('External Email Sent: ', extResult);
+        console.log('externalEmailData', externalEmailData);
+        return res.json({ success: true });
       }
-      console.log('External Email Sent: ', extResult);
-      console.log('externalEmailData', externalEmailData);
-      return res.json({ success: true });
-    });
+    );
   });
 });
 
