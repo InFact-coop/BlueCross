@@ -79,20 +79,20 @@ ownerInfo model =
                     []
                 ]
             , div [ class "blue b mb2 mt4 f4" ]
-                [ text <| "We will be in touch within 2 days to talk with you about how we could help you to find a new home for " ++ getPetName model ++ "." ]
+                [ text "Blue Cross will contact you, using the details provided, to respond to your rehoming enquiry." ]
             , div [ class "lh-copy gray fw1 f5" ]
                 [ p []
-                    [ text "Blue Cross would like to tell you about the great work we do for pets and the different ways in which you could support us, this may include fundraising activities, appeals and merchandise." ]
+                    [ text "Blue Cross would also like to tell you about the great work we do for pets and the different ways in which you could support us, this may include fundraising activities, appeals and merchandise." ]
                 , p [ class "mb1" ] [ text "Please tick below if you are happy for us to contact you by:" ]
                 , div []
                     [ fundraisingButton ( "Email", "Email" )
                     , fundraisingButton ( "Phone", "Phone" )
-                    , fundraisingButton ( "Text Message", "Text" )
+                    , fundraisingButton ( "Post", "Post" )
                     ]
                 , p [ class "mid-gray fw1 f6" ]
-                    [ text "You can unsubscribe or change your preferences at any time by contacting our Supporter Careteam on 0300 790 9903 or emailing info@bluecross.org.uk"
+                    [ text "You can unsubscribe or change your preferences at any time by contacting our Supporter Care team on 0300 790 9903 or emailing preferences@bluecross.org.uk"
                     , br [] []
-                    , text "Blue Cross respects your privacy and will keep your information safe and secure and will only use them in accordance with our Privacy Policy. We will not sell, rent or share your personal data with other organisations for their marketing purposes. We may use your data for profiling purposes to make future communications more relevant to you. To see more about how we will use your information visit bluecross.org.uk/privacy"
+                    , text "Blue Cross respects your privacy and will keep your information safe and secure and will only use it in accordance with our Privacy Policy. We will not sell, rent or share your personal data with other organisations for their marketing purposes. We may use your data for profiling purposes to make future communications more relevant to you. To see more about how we will use your information visit bluecross.org.uk/privacy"
                     ]
                 ]
             ]
