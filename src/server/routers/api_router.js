@@ -60,7 +60,7 @@ router.route('/send-form').post((req, res, next) => {
     bccAddresses: internalBccAddresses,
     context: {
       ...body,
-      name: INTERNAL_RECIPIENT_NAME || 'Blue Cross'
+      name: process.env.INTERNAL_RECIPIENT_NAME || 'Blue Cross'
     }
   };
   const externalEmailData = {
