@@ -143,3 +143,10 @@ _*This is a non-exhaustive list*_
 ### Product Feedback ... :arrows_counterclockwise:
 
 ...
+
+## Running the app
+
+- [ ] `yarn install` or `npm i` 
+- [ ] make sure you have your env file set up, see [here](https://www.npmjs.com/package/sendemail) for info about the variables you need (but you don't need to export them). You can get the config from the heroku app by running `heroku config -a bluecross` if you have the heroku cli tools installed.
+- [ ] run `elm-watch` (because this contains the elm-make command)
+- [ ] run frontend/backend scripts as required
