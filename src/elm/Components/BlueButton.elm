@@ -44,6 +44,16 @@ newBlueButton ( payload, msg ) content =
         ]
 
 
+preferenceButton : ( a, a -> Msg ) -> String -> String -> Html Msg
+preferenceButton ( payload, msg ) content relevantCreature =
+    div [ class "w-25-l w-50 tc mb2 flex flex-column inline-flex flex-wrap center" ]
+        [ input [ class "dn", id <| removeSpaces <| String.concat [ content, relevantCreature ], name <| unionTypePayloadToClass payload msg, type_ "radio", onClick <| msg payload ]
+            []
+        , label [ classes [ "bg-white items-center inline-flex justify-center bg-blue pointer mw4 br1 mr2 h1 br2 white tc pa3 checkedLabel", unionTypePayloadToClass payload msg ], for <| removeSpaces <| String.concat [ content, relevantCreature ] ]
+            [ text content ]
+        ]
+
+
 controlledBlueButton : ( a, a -> Msg ) -> String -> Bool -> Html Msg
 controlledBlueButton ( payload, msg ) content bool =
     div [ class "w-25-l w-50 tc mb2 flex flex-column inline-flex flex-wrap center" ]
