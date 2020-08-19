@@ -1,11 +1,13 @@
 module Views.PetInfo exposing (..)
 
 import Components.BlueButton exposing (..)
-import Components.DogBreedDropDown exposing (..)
+import Components.BreedDropDown exposing (..)
 import Components.StyleHelpers exposing (classes, defaultOption, displayElement)
 import Components.TextBox exposing (..)
+import Data.CatBreeds exposing (..)
 import Data.DogBreeds exposing (..)
-import Helpers exposing (getPetName, ifThenElse, onBlurValue)
+import Debug exposing (log)
+import Helpers exposing (getPetName, ifThenElse, onBlurValue, unionTypeToString)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (on, targetValue)
@@ -18,7 +20,7 @@ petInfo model =
     div [ class "w-60-ns w-90 center ma3 ma0-ns mw8" ]
         [ div
             [ class " blue b mb2" ]
-            [ text "What is your dog's name?"
+            [ text "What is your pet's name?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
         , div []
@@ -42,20 +44,52 @@ petInfo model =
                         ]
                     ]
                 , div [ class "inline-flex items-center  w-100" ]
-                    [ select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg" ], id "primaryDogBreed", on "change" <| Json.map UpdatePrimaryBreed targetValueDecoderBreed ]
+                    [ select
+                        [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg" ]
+                        , id "primaryBreed"
+                        , on "change" <|
+                            ifThenElse (model.petType == Cat) (Json.map UpdatePrimaryCatBreed targetValueDecoderCatBreed) (Json.map UpdatePrimaryDogBreed targetValueDecoderDogBreed)
+                        ]
                         ([ defaultOption ]
-                            ++ List.map
-                                dogBreedDropDown
-                                dogBreedsList
+                            ++ (case model.petType of
+                                    Cat ->
+                                        List.map
+                                            catBreedDropDown
+                                            catBreedsList
+
+                                    Dog ->
+                                        List.map
+                                            dogBreedDropDown
+                                            dogBreedsList
+
+                                    PetTypeNotChosen ->
+                                        []
+                               )
                         )
                     , p
                         [ classes [ "blue mh3 mv0", displayElement ((model.crossBreed /= No) && (model.crossBreed /= Neutral)) ] ]
                         [ text "&" ]
-                    , select [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", displayElement ((model.crossBreed /= No) && (model.crossBreed /= Neutral)) ], on "change" <| Json.map UpdateSecondaryBreed targetValueDecoderBreed, id "secondaryDogBreed" ]
+                    , select
+                        [ classes [ "bg-light-blue bn w-80 w-33-ns gray tc pa3 f5 fw1 h2 form-control input-lg", displayElement ((model.crossBreed /= No) && (model.crossBreed /= Neutral)) ]
+                        , on "change" <|
+                            ifThenElse (model.petType == Cat) (Json.map UpdateSecondaryCatBreed targetValueDecoderCatBreed) (Json.map UpdateSecondaryDogBreed targetValueDecoderDogBreed)
+                        , id "secondaryBreed"
+                        ]
                         ([ defaultOption ]
-                            ++ List.map
-                                dogBreedDropDown
-                                dogBreedsList
+                            ++ (case model.petType of
+                                    Cat ->
+                                        List.map
+                                            catBreedDropDown
+                                            catBreedsList
+
+                                    Dog ->
+                                        List.map
+                                            dogBreedDropDown
+                                            dogBreedsList
+
+                                    PetTypeNotChosen ->
+                                        []
+                               )
                         )
                     ]
                 ]
@@ -92,16 +126,16 @@ petInfo model =
             [ text <| "What sex is " ++ getPetName model ++ "?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
-        , controlledBlueButton ( Male, UpdateGender ) "Male" (model.dogGender == Male)
-        , controlledBlueButton ( Female, UpdateGender ) "Female" (model.dogGender == Female)
+        , controlledBlueButton ( Male, UpdateGender ) "Male" (model.gender == Male)
+        , controlledBlueButton ( Female, UpdateGender ) "Female" (model.gender == Female)
         , div [ class "blue b mb2 mt4" ]
             [ text <| "How old is " ++ getPetName model ++ "?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
-        , newBlueButton ( Between0To1Year, UpdateDogAge ) "0-1 year"
-        , newBlueButton ( Between2To5Years, UpdateDogAge ) "2-5 years"
-        , newBlueButton ( Between6To10Years, UpdateDogAge ) "6-10 years"
-        , newBlueButton ( Over10Years, UpdateDogAge ) "Over 10 years"
+        , newBlueButton ( Between0To1Year, UpdateAge ) "0-1 year"
+        , newBlueButton ( Between2To5Years, UpdateAge ) "2-5 years"
+        , newBlueButton ( Between6To10Years, UpdateAge ) "6-10 years"
+        , newBlueButton ( Over10Years, UpdateAge ) "Over 10 years"
         , div [ class "tc w-100 mt4" ]
             [ a [ classes [ "w-100 bg-navy br2 white pa3 br2 f4 dib link w-100 w-25-l w-50-m ", ifThenElse (model.nextClickable == True) "" "bg-gray disableButton o-30" ], href "#before-you-begin" ] [ text "Next" ]
             ]
@@ -125,7 +159,7 @@ secondaryReasons model =
             , reasonDropdown "Not house-trained"
             , reasonDropdown "Unsafe with children"
             , reasonDropdown "Unsafe with strangers"
-            , reasonDropdown "Unsafe with other dogs"
+            , reasonDropdown ("Unsafe with other " ++ unionTypeToString model.petType ++ "s")
             , reasonDropdown "Other"
             ]
 
@@ -139,7 +173,13 @@ secondaryReasons model =
             []
 
 
-targetValueDecoderBreed : Decoder DogBreed
-targetValueDecoderBreed =
+targetValueDecoderDogBreed : Decoder DogBreed
+targetValueDecoderDogBreed =
     targetValue
         |> andThen decoderDogBreed
+
+
+targetValueDecoderCatBreed : Decoder CatBreed
+targetValueDecoderCatBreed =
+    targetValue
+        |> andThen decoderCatBreed

@@ -1,7 +1,7 @@
 {
   "name": "BlueCross",
   "version": "1.0.0",
-  "description": "Rehome your doggo",
+  "description": "Rehome your pet",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server/start",

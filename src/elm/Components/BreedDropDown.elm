@@ -1,4 +1,4 @@
-module Components.DogBreedDropDown exposing (..)
+module Components.BreedDropDown exposing (..)
 
 import Helpers exposing (..)
 import Html exposing (..)
@@ -10,6 +10,12 @@ dogBreedDropDown : DogBreed -> Html Msg
 dogBreedDropDown dogBreed =
     option [ value <| unionTypeToString dogBreed ]
         [ text <| unionTypeToString dogBreed ]
+
+
+catBreedDropDown : CatBreed -> Html Msg
+catBreedDropDown catBreed =
+    option [ value <| unionTypeToString catBreed ]
+        [ text <| unionTypeToString catBreed ]
 
 
 reasonDropdown : String -> Html Msg

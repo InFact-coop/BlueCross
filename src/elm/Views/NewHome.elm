@@ -51,9 +51,9 @@ preferencesButtons msg relevantCreature =
 newHome : Model -> Html Msg
 newHome model =
     div [ class "w-60-ns w-90 center mw8" ]
-        [ div [ class "blue b mb3 f4 lh-copy" ] [ text <| "Help us find " ++ getPetName model ++ " a new home " ++ pronounConverter "they" model.dogGender ++ " will be happy in. Please use the buttons to show us how " ++ getPetName model ++ " feels about..." ]
+        [ div [ class "blue b mb3 f4 lh-copy" ] [ text <| "Help us find " ++ getPetName model ++ " a new home " ++ pronounConverter "they" model.gender ++ " will be happy in. Please use the buttons to show us how " ++ getPetName model ++ " feels about..." ]
         , div [ class "blue b mb2 " ]
-            [ text "Cats?"
+            [ text <| ifThenElse (model.petType == Cat) "Other cats?" "Cats?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
         , div [ class "flex mt3" ]
@@ -64,7 +64,7 @@ newHome model =
             , preferencesButtons UpdateCats "cats"
             ]
         , div [ class "blue b mb2 " ]
-            [ text "Other dogs?"
+            [ text <| ifThenElse (model.petType == Dog) "Other dogs?" "Dogs?"
             , span [ class "fw1 f5" ] [ text " Required" ]
             ]
         , div [ class "flex mt3" ]
@@ -74,24 +74,30 @@ newHome model =
                 ]
             , preferencesButtons UpdateDogs "dogs"
             ]
-        , div [ class "blue b mb2 " ] [ text "Young Children?" ]
-        , div [ class " flex mt3" ]
-            [ div [ class "w2 h2" ]
-                [ img [ src "./assets/baby.svg", class "mr3 h2 " ] [] ]
-            , preferencesButtons UpdateBabies "babies"
-            ]
-        , div [ class "blue b mb2 " ] [ text "Older Children?" ]
+        , ifThenElse (model.petType == Dog) (div [ class "blue b mb2 " ] [ text "Young Children?" ]) (div [] [])
+        , ifThenElse (model.petType == Dog)
+            (div [ class " flex mt3" ]
+                [ div [ class "w2 h2" ]
+                    [ img [ src "./assets/baby.svg", class "mr3 h2 " ] [] ]
+                , preferencesButtons UpdateBabies "babies"
+                ]
+            )
+            (div [] [])
+        , div [ class "blue b mb2 " ] [ text "Children?" ]
         , div [ class " flex mt3" ]
             [ div [ class "w2 h2" ]
                 [ img [ src "./assets/child.svg", class "mr3 h2 " ] [] ]
             , preferencesButtons UpdateChildren "children"
             ]
-        , div [ class "blue b mb2 " ] [ text "New People?" ]
-        , div [ class " flex mt3" ]
-            [ div [ class "w2 h2" ]
-                [ img [ src "./assets/group.svg", class "mr3 h2 " ] [] ]
-            , preferencesButtons UpdatePeople "people"
-            ]
+        , ifThenElse (model.petType == Dog) (div [ class "blue b mb2 " ] [ text "New People?" ]) (div [] [])
+        , ifThenElse (model.petType == Dog)
+            (div [ class " flex mt3" ]
+                [ div [ class "w2 h2" ]
+                    [ img [ src "./assets/group.svg", class "mr3 h2 " ] [] ]
+                , preferencesButtons UpdatePeople "people"
+                ]
+            )
+            (div [] [])
         , div [ class "blue b mb2" ] [ text <| "Is there anything else we should know about " ++ getPetName model ++ "?" ]
         , newTextBox ( "Please tell us here", "newhome" ) UpdateOtherGeneral
         , div [ class "tc w-100 mt4" ]

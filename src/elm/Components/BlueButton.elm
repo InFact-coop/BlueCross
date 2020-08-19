@@ -5,12 +5,12 @@ import Helpers exposing (removeSpaces, unionTypePayloadToClass, unionTypePayload
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Types exposing (..)
 import Regex exposing (..)
+import Types exposing (..)
 
 
-blueButton : TimeScale -> Html Msg
-blueButton ts =
+timeScaleButton : TimeScale -> Html Msg
+timeScaleButton ts =
     div [ class "w-25-l w-50 tc mb2 flex flex-column inline-flex flex-wrap center" ]
         [ input [ class "dn ", id <| unionTypeToString ts, name "urgency", type_ "radio", value <| unionTypeToString ts ]
             []
@@ -21,6 +21,21 @@ blueButton ts =
             , for <| unionTypeToString ts
             ]
             [ text <| Regex.replace All (regex "To") (\_ -> "to") <| unionTypeToString ts ]
+        ]
+
+
+petTypeButton : PetType -> Html Msg
+petTypeButton petType =
+    div [ class "w-25-l w-50 tc mb2 flex flex-column inline-flex flex-wrap center" ]
+        [ input [ class "dn ", id <| unionTypeToString petType, name "pet type", type_ "radio", value <| unionTypeToString petType ]
+            []
+        , label
+            [ class "health bg-white justify-center items-center inline-flex bg-blue pointer mw4 br1 mr2 h2 br2 white tc pa2 checkedLabel"
+            , onClick
+                (UpdatePetType petType)
+            , for <| unionTypeToString petType
+            ]
+            [ text <| Regex.replace All (regex "To") (\_ -> "to") <| unionTypeToString petType ]
         ]
 
 

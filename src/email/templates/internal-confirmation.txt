@@ -8,14 +8,17 @@ Urgency: {{urgency}}
 About
 Pet name: {{petName}}
 Cross breed: {{crossBreed}}
-Breed: {{primaryBreedType}}
-Second breed: {{secondaryBreedType}}
+Breed (if dog): {{primaryBreedType}}
+Second breed (if dog): {{secondaryBreedType}}
+Breed (if cat): {{primaryBreedType}}
+Second breed (if cat): {{secondaryBreedType}}
 Unknown breed information: {{unknownBreed}}
+
 Primary reason for rehoming: {{primaryReasonForRehoming}}
 Secondary reason for rehoming: {{secondaryReasonForRehoming}}
 Other reasons for rehoming: {{otherReasonsForRehoming}}
-Gender: {{dogGender}}
-Age: {{dogAge}}
+Gender: {{gender}}
+Age: {{age}}
 
 Health
 Medical details: {{#each medicalDetails}}{{this}}{{/each}}

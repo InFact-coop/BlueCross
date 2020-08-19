@@ -15,6 +15,7 @@ getClasses : Route -> String
 getClasses route =
     if route == ThankYouRoute then
         "dn"
+
     else
         "flex justify-center items-center dark-blue h4 mb2 tc"
 
@@ -25,33 +26,33 @@ getTitle model =
         petName =
             getPetName model
     in
-        case model.route of
-            HomeRoute ->
-                "Find a new home for your dog"
+    case model.route of
+        HomeRoute ->
+            "Find a new home for your pet"
 
-            HealthRoute ->
-                petName ++ "'s Health"
+        HealthRoute ->
+            petName ++ "'s Health"
 
-            PetInfoRoute ->
-                "About " ++ petName
+        PetInfoRoute ->
+            "About " ++ petName
 
-            PersonalityRoute ->
-                petName ++ "'s Personality"
+        PersonalityRoute ->
+            petName ++ "'s Personality"
 
-            PhotosRoute ->
-                "Photos of " ++ petName
+        PhotosRoute ->
+            "Photos of " ++ petName
 
-            NewHomeRoute ->
-                petName ++ "'s New Home"
+        NewHomeRoute ->
+            petName ++ "'s New Home"
 
-            OwnerInfoRoute ->
-                "Your details"
+        OwnerInfoRoute ->
+            "Your details"
 
-            ThankYouRoute ->
-                ""
+        ThankYouRoute ->
+            ""
 
-            FindingAHomeRoute ->
-                "Finding a new home for " ++ petName
+        FindingAHomeRoute ->
+            "Finding a new home for " ++ petName
 
-            NotFoundRoute ->
-                "Sorry"
+        NotFoundRoute ->
+            "Sorry"
