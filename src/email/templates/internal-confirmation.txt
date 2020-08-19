@@ -27,11 +27,11 @@ Personality traits: {{#each personalityTraits}} {{this}}{{/each}}
 Other personality notes: {{otherPersonalityNotes}}
 
 New Home
-Likes cats: {{cats}}% happy with cats
-Likes children: {{children}}% happy with children
-Likes people: {{people}}% happy with people
-Likes dogs: {{dogs}}% happy with dogs
-Likes babies: {{babies}}% happy with babies
+Likes cats? {{cats}}
+Likes children? {{children}}
+Likes people? {{people}}
+Likes dogs? {{dogs}}
+Likes babies? {{babies}}
 Other notes: {{otherNotes}}
 
 Photos

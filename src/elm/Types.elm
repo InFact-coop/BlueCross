@@ -289,11 +289,11 @@ type Msg
     | DeleteImage Image
     | TakePhoto
     | StopPhoto
-    | UpdateCatsSlider String
-    | UpdateChildrenSlider String
-    | UpdatePeopleSlider String
-    | UpdateDogsSlider String
-    | UpdateBabiesSlider String
+    | UpdatePeople String
+    | UpdateCats String
+    | UpdateChildren String
+    | UpdateDogs String
+    | UpdateBabies String
     | ReceiveLiveVideo String
     | ReceivePhotoUrl (Result String Image)
     | ReceivePhotoUploadStatus (Result Http.Error PhotosResponse)

@@ -6,12 +6,12 @@ See our design for Blue Cross' **Giving a pet** **[here](https://bluecross.surge
 
 We came into Blue Cross excited by the idea of some kind of pet-to-owner matchmaking service. What we weren't prepared for coming in was the complexity of the challenges facing animal welfare charities today. We heard stories of:
 
-* a charity **overwhelmed by demand** for pets that they simply didn't have the capacity to fill
-* an **unregulated marketplaces** thriving on a
-* **convenience-seeking public**
-* the complex emotions of **stigma** and **fear of judgement** brought on when giving up your pet
-* **Unscrupulous breeders** misselling animals, and even
-* **trafficking** and organised crime
+- a charity **overwhelmed by demand** for pets that they simply didn't have the capacity to fill
+- an **unregulated marketplaces** thriving on a
+- **convenience-seeking public**
+- the complex emotions of **stigma** and **fear of judgement** brought on when giving up your pet
+- **Unscrupulous breeders** misselling animals, and even
+- **trafficking** and organised crime
 
 We were welcomed and well introduced to the problems at hand to by our Product Owner Kelly, who gave us our problem statement to think on:
 
@@ -23,17 +23,17 @@ We spent the latter half of the day creating app ideas catering to different fac
 
 ## Our Solution :circus_tent:
 
-**Blue Cross : Giving a Pet**
+**Blue Cross : Giving a pet**
 
 > A companion app for conscientious owners to find a loving new home for their pets
 
 **The aims of the solution**
 
-* To give rehomers a **viable alternative** to marketplaces like Gumtree
-* To reassure them through **positive language** that Blue Cross has the best interests of the animal at heart
-* To assess the rehousing application in terms of need, and **triage** them appropriately
-* To covertly **flag up** for signs of wrongdoing through questionnaires
-* To make the app **sensitive**, **warm**, and **easy to use** for what could be an emotional, transitionary stage in our users' lives
+- To give rehomers a **viable alternative** to marketplaces like Gumtree
+- To reassure them through **positive language** that Blue Cross has the best interests of the animal at heart
+- To assess the rehousing application in terms of need, and **triage** them appropriately
+- To covertly **flag up** for signs of wrongdoing through questionnaires
+- To make the app **sensitive**, **warm**, and **easy to use** for what could be an emotional, transitionary stage in our users' lives
 
 ### Process :clipboard:
 
@@ -85,24 +85,24 @@ User testing allows you to get feedback from your primary users to check that th
 
 **The three key points for testing are:**
 
-* Have a script which has tasks for them to complete. **[here](https://github.com/InFact-coop/BlueCross/blob/master/usertest.md)** is an example of a script which you can use and modify
-* Ask for people to give you a commentary of what they are doing, but don't respond to them
-* Document their response
+- Have a script which has tasks for them to complete. **[here](https://github.com/InFact-coop/BlueCross/blob/master/usertest.md)** is an example of a script which you can use and modify
+- Ask for people to give you a commentary of what they are doing, but don't respond to them
+- Document their response
 
 **Additional recommendations for _*your*_ user testing:**
 
-* Ask user to complete the flow and explain what they are thinking throughout the process
-  * Make **_lots_** of notes. It is good to have someone guiding the user and someone note taking so nothing is missed!
-  * Try and gather if the user understands the purpose of the app and if the interactions are intuitive
-  * Try to understand further if the types, quantity and copy of the questions is appropriate for the audience.
-  * Does the user feel like this can help make a difference?
-* Users may comment on aesthetics **but** unless the same comments are brought up several times these comments are **_usually_** not important. The focus should be on the users interactions and understanding of the product.
+- Ask user to complete the flow and explain what they are thinking throughout the process
+  - Make **_lots_** of notes. It is good to have someone guiding the user and someone note taking so nothing is missed!
+  - Try and gather if the user understands the purpose of the app and if the interactions are intuitive
+  - Try to understand further if the types, quantity and copy of the questions is appropriate for the audience.
+  - Does the user feel like this can help make a difference?
+- Users may comment on aesthetics **but** unless the same comments are brought up several times these comments are **_usually_** not important. The focus should be on the users interactions and understanding of the product.
 
 Here are some **useful resources** to look at when completing your user testing sessions:
 
-* [Googles Gurilla Testing Advice](https://www.youtube.com/watch?v=0YL0xoSmyZI&feature=youtu.be)
-* [Script Guidance and Template](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/weeks-10-12/user-testing.md#1-planning)
-* [Steve Krug user testing script](https://sensible.com/downloads/test-script.pdf)
+- [Googles Gurilla Testing Advice](https://www.youtube.com/watch?v=0YL0xoSmyZI&feature=youtu.be)
+- [Script Guidance and Template](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/weeks-10-12/user-testing.md#1-planning)
+- [Steve Krug user testing script](https://sensible.com/downloads/test-script.pdf)
 
 ### Next Sprints :runner:
 
@@ -110,15 +110,15 @@ If this design is move forward for a build sprint it is important to concentrate
 
 Our current recommendations for an initial sprints would be:
 
-* Implement feedback from user testing
-* To make the product useable on larger screen sizes
-* Improve accessibility - Product is currently not useable for people with hearing or visual impairments
-* Back end!
-* Live video stream and ability to re-take the video
-  * Error handling for people with incompatible browsers (currently only works with Chrome)
-* Map!
-* Email function. Confirmation of application, Blue Cross and to potential re-homers
-* Improve speed!
+- Implement feedback from user testing
+- To make the product useable on larger screen sizes
+- Improve accessibility - Product is currently not useable for people with hearing or visual impairments
+- Back end!
+- Live video stream and ability to re-take the video
+  - Error handling for people with incompatible browsers (currently only works with Chrome)
+- Map!
+- Email function. Confirmation of application, Blue Cross and to potential re-homers
+- Improve speed!
 
 > This would be formally decided following the user testing and during a sprint planning meeting :+1:
 
@@ -128,13 +128,13 @@ Following the presentation it seems that the most appropriate form of _*"MVP"*_ 
 Therefore leaving the communication with potential new owners to a later stage in the development.
 In order to get the MVP functional we would need to:
 
-* Have a backend! To collect the data and pass this on the BX in a useful and readable way
-* Make the product able to function on all screen sizes and types
-* Incorporate accessibility protocols
-* Introduce error handling for when things go wrong or users don't input the correct data
-* Live video stream and ability to re-take the video/photos
-* A page for the current owner to review their profile and recieve confirmation of their application
-* Any feedback that comes up in user testing!
+- Have a backend! To collect the data and pass this on the BX in a useful and readable way
+- Make the product able to function on all screen sizes and types
+- Incorporate accessibility protocols
+- Introduce error handling for when things go wrong or users don't input the correct data
+- Live video stream and ability to re-take the video/photos
+- A page for the current owner to review their profile and recieve confirmation of their application
+- Any feedback that comes up in user testing!
 
 _*This is a non-exhaustive list*_
 
@@ -146,7 +146,7 @@ _*This is a non-exhaustive list*_
 
 ## Running the app
 
-- [ ] `yarn install` or `npm i` 
+- [ ] `yarn install` or `npm i`
 - [ ] make sure you have your env file set up, see [here](https://www.npmjs.com/package/sendemail) for info about the variables you need (but you don't need to export them). You can get the config from the heroku app by running `heroku config -a bluecross` if you have the heroku cli tools installed.
 - [ ] run `elm-watch` (because this contains the elm-make command)
-- [ ] run frontend/backend scripts as required
+- [ ] run frontend/backend scripts as **required**

@@ -41,11 +41,11 @@ initModel =
     , personalityTraits = []
     , fundraisingContact = []
     , otherPersonalityNotes = ""
-    , cats = "-1"
-    , children = "-1"
-    , people = "-1"
-    , dogs = "-1"
-    , babies = "-1"
+    , cats = ""
+    , children = ""
+    , people = ""
+    , dogs = ""
+    , babies = ""
     , otherNotes = ""
     , image = Nothing
     , supportType = ""
@@ -110,35 +110,35 @@ update msg model =
         MakeNextClickable ->
             { model | nextClickable = True } ! []
 
-        UpdateCatsSlider value ->
+        UpdateCats string ->
             let
                 updatedModel =
-                    { model | cats = value }
+                    { model | cats = string }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
-        UpdateChildrenSlider value ->
-            { model | children = value } ! []
+        UpdateChildren string ->
+            { model | children = string } ! []
 
-        UpdatePeopleSlider value ->
-            { model | people = value } ! []
+        UpdatePeople string ->
+            { model | people = string } ! []
 
-        UpdateDogsSlider value ->
+        UpdateDogs string ->
             let
                 updatedModel =
-                    { model | dogs = value }
+                    { model | dogs = string }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
-        UpdateBabiesSlider value ->
-            { model | babies = value } ! []
+        UpdateBabies string ->
+            { model | babies = string } ! []
 
         UpdatePetName name ->
             let
                 updatedModel =
                     { model | petName = name }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         ReceiveFormStatus (Ok bool) ->
             { model | formStatus = ResponseSuccess } ! []
@@ -412,81 +412,81 @@ nextClickableToModel model =
         falseModel =
             { model | nextClickable = False }
     in
-        case model.route of
-            HomeRoute ->
-                ifThenElse
-                    (model.urgency /= TimeScaleNotChosen)
-                    trueModel
-                    falseModel
-
-            HealthRoute ->
-                ifThenElse
-                    (model.lastVetVisit /= VetTimeScaleNotChosen)
-                    trueModel
-                    falseModel
-
-            PetInfoRoute ->
-                ifThenElse
-                    (model.petName
-                        /= ""
-                        && model.crossBreed
-                        /= TrileanNotChosen
-                        && ifThenElse
-                            (model.crossBreed
-                                == Neutral
-                            )
-                            True
-                            (model.primaryBreedType
-                                /= Nothing
-                            )
-                        && model.dogGender
-                        /= GenderNotChosen
-                        && model.dogAge
-                        /= AgeNotChosen
-                    )
-                    trueModel
-                    falseModel
-
-            PhotosRoute ->
+    case model.route of
+        HomeRoute ->
+            ifThenElse
+                (model.urgency /= TimeScaleNotChosen)
                 trueModel
+                falseModel
 
-            PersonalityRoute ->
+        HealthRoute ->
+            ifThenElse
+                (model.lastVetVisit /= VetTimeScaleNotChosen)
                 trueModel
+                falseModel
 
-            OwnerInfoRoute ->
-                ifThenElse
-                    (model.ownerName
-                        /= ""
-                        && model.email
-                        /= ""
-                        && model.ownerPhone
-                        /= ""
-                        && model.emailIsValid
-                        == Just True
-                        && model.postCodeIsValid
-                        == Just True
-                    )
-                    trueModel
-                    falseModel
-
-            ThankYouRoute ->
+        PetInfoRoute ->
+            ifThenElse
+                (model.petName
+                    /= ""
+                    && model.crossBreed
+                    /= TrileanNotChosen
+                    && ifThenElse
+                        (model.crossBreed
+                            == Neutral
+                        )
+                        True
+                        (model.primaryBreedType
+                            /= Nothing
+                        )
+                    && model.dogGender
+                    /= GenderNotChosen
+                    && model.dogAge
+                    /= AgeNotChosen
+                )
                 trueModel
+                falseModel
 
-            NotFoundRoute ->
+        PhotosRoute ->
+            trueModel
+
+        PersonalityRoute ->
+            trueModel
+
+        OwnerInfoRoute ->
+            ifThenElse
+                (model.ownerName
+                    /= ""
+                    && model.email
+                    /= ""
+                    && model.ownerPhone
+                    /= ""
+                    && model.emailIsValid
+                    == Just True
+                    && model.postCodeIsValid
+                    == Just True
+                )
                 trueModel
+                falseModel
 
-            NewHomeRoute ->
-                ifThenElse
-                    (model.cats
-                        /= "-1"
-                        && model.dogs
-                        /= "-1"
-                    )
-                    trueModel
-                    falseModel
+        ThankYouRoute ->
+            trueModel
 
-            FindingAHomeRoute ->
+        NotFoundRoute ->
+            trueModel
+
+        NewHomeRoute ->
+            ifThenElse
+                (model.cats
+                    /= ""
+                    && model.dogs
+                    /= ""
+                )
                 trueModel
+                falseModel
+
+        FindingAHomeRoute ->
+            trueModel
 
 
 subscriptions : Model -> Sub Msg
