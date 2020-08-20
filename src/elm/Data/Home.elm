@@ -10,3 +10,10 @@ timeScaleTypes =
     , UpTo2Months
     , Over2Months
     ]
+
+
+petTypes : List PetType
+petTypes =
+    [ Dog
+    , Cat
+    ]

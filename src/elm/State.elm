@@ -7,12 +7,12 @@ import Helpers exposing (..)
 import Json.Decode
 import Navigation exposing (..)
 import Requests.PostForm exposing (postForm)
+import Requests.Postcode exposing (validatePostcode)
 import Requests.UploadPhotos exposing (uploadPhotos)
 import Router exposing (getRoute, viewFromUrl)
 import Task
 import Transit exposing (empty, start, subscriptions, tick)
 import Types exposing (..)
-import Requests.Postcode exposing (validatePostcode)
 
 
 initModel : Model
@@ -26,15 +26,18 @@ initModel =
     , imageUrls = Nothing
     , urgency = TimeScaleNotChosen
     , petName = ""
+    , petType = PetTypeNotChosen
     , crossBreed = TrileanNotChosen
-    , primaryBreedType = Nothing
-    , secondaryBreedType = Nothing
+    , primaryDogBreedType = Nothing
+    , secondaryDogBreedType = Nothing
+    , primaryCatBreedType = Nothing
+    , secondaryCatBreedType = Nothing
     , primaryReasonForRehoming = ""
     , secondaryReasonForRehoming = ""
     , otherReasonsForRehoming = ""
     , unknownBreed = ""
-    , dogGender = GenderNotChosen
-    , dogAge = AgeNotChosen
+    , gender = GenderNotChosen
+    , age = AgeNotChosen
     , medicalDetails = []
     , lastVetVisit = VetTimeScaleNotChosen
     , otherHealthNotes = ""
@@ -70,7 +73,7 @@ init location =
         model =
             viewFromUrl location initModel
     in
-        model ! [ checkIE (), checkCameraSupported (), Task.attempt (always NoOp) (focus "container") ]
+    model ! [ checkIE (), checkCameraSupported (), Task.attempt (always NoOp) (focus "container") ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -99,7 +102,7 @@ update msg model =
                 updatedModel =
                     { model | route = getRoute location.hash }
             in
-                nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container"), Task.attempt (always NoOp) (focus "container") ]
+            nextClickableToModel updatedModel ! [ Task.attempt (always NoOp) (toTop "container"), Task.attempt (always NoOp) (focus "container") ]
 
         NavigateTo location ->
             Transit.start TransitMsg (UrlChange location) ( 200, 200 ) model
@@ -132,6 +135,9 @@ update msg model =
 
         UpdateBabies string ->
             { model | babies = string } ! []
+
+        UpdatePetType petType ->
+            { model | petType = petType } ! []
 
         UpdatePetName name ->
             let
@@ -177,31 +183,41 @@ update msg model =
                 updatedModel =
                     { model | urgency = timescale }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateGender gender ->
             let
                 updatedModel =
-                    { model | dogGender = gender }
+                    { model | gender = gender }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateCrossBreed trilean ->
             let
                 updatedModel =
                     { model | crossBreed = trilean }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
-        UpdatePrimaryBreed breed ->
+        UpdatePrimaryDogBreed breed ->
             let
                 updatedModel =
-                    { model | primaryBreedType = Just breed }
+                    { model | primaryDogBreedType = Just breed }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
-        UpdateSecondaryBreed breed ->
-            { model | secondaryBreedType = Just breed } ! []
+        UpdateSecondaryDogBreed breed ->
+            { model | secondaryDogBreedType = Just breed } ! []
+
+        UpdatePrimaryCatBreed breed ->
+            let
+                updatedModel =
+                    { model | primaryCatBreedType = Just breed }
+            in
+            nextClickableToModel updatedModel ! []
+
+        UpdateSecondaryCatBreed breed ->
+            { model | secondaryCatBreedType = Just breed } ! []
 
         UpdateUnknownBreed string ->
             { model | unknownBreed = string } ! []
@@ -215,19 +231,19 @@ update msg model =
         UpdateOtherReasons string ->
             { model | otherReasonsForRehoming = string } ! []
 
-        UpdateDogAge ageRange ->
+        UpdateAge ageRange ->
             let
                 updatedModel =
-                    { model | dogAge = ageRange }
+                    { model | age = ageRange }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateLastVetVisit timescale ->
             let
                 updatedModel =
                     { model | lastVetVisit = timescale }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateOtherHealth string ->
             { model | otherHealthNotes = string } ! []
@@ -237,14 +253,14 @@ update msg model =
                 updatedModel =
                     { model | ownerName = string }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateOwnerEmail string ->
             let
                 updatedModel =
                     { model | email = string, emailIsValid = checkEmail string }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateAddress string ->
             { model | address = string } ! []
@@ -254,7 +270,7 @@ update msg model =
                 sanitisedPostcode =
                     sanitisePostCode string
             in
-                { model | postcode = sanitisedPostcode } ! [ validatePostcode <| ifThenElse (sanitisedPostcode /= "") sanitisedPostcode " " ]
+            { model | postcode = sanitisedPostcode } ! [ validatePostcode <| ifThenElse (sanitisedPostcode /= "") sanitisedPostcode " " ]
 
         DeleteImage im ->
             case model.image of
@@ -269,14 +285,14 @@ update msg model =
                 updatedModel =
                     { model | ownerPhone = sanitisePhoneNumber string }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateAlternativeOwnerPhone string ->
             let
                 updatedModel =
                     { model | alternativeOwnerPhone = sanitisePhoneNumber string }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         UpdateBestTimeToCall timeOfDay ->
             { model | bestTimeToCall = timeOfDay } ! []
@@ -290,18 +306,21 @@ update msg model =
         ToggleMedicalDetail string checked ->
             if checked && isNewListEntry string model.medicalDetails then
                 { model | medicalDetails = model.medicalDetails ++ [ string ] } ! []
+
             else
                 { model | medicalDetails = List.filter (\x -> x /= string) model.medicalDetails } ! []
 
         TogglePersonality string checked ->
             if checked && isNewListEntry string model.personalityTraits then
                 { model | personalityTraits = model.personalityTraits ++ [ string ] } ! []
+
             else
                 { model | personalityTraits = List.filter (\x -> x /= string) model.personalityTraits } ! []
 
         ToggleFundraisingContact string checked ->
             if checked && isNewListEntry string model.fundraisingContact then
                 { model | fundraisingContact = model.fundraisingContact ++ [ string ] } ! []
+
             else
                 { model | fundraisingContact = List.filter (\x -> x /= string) model.fundraisingContact } ! []
 
@@ -322,7 +341,7 @@ update msg model =
                 updatedModel =
                     { model | postCodeIsValid = Just bool }
             in
-                nextClickableToModel updatedModel ! []
+            nextClickableToModel updatedModel ! []
 
         ReceivePostcodeValidity (Err string) ->
             model ! []
@@ -415,7 +434,11 @@ nextClickableToModel model =
     case model.route of
         HomeRoute ->
             ifThenElse
-                (model.urgency /= TimeScaleNotChosen)
+                (model.urgency
+                    /= TimeScaleNotChosen
+                    && model.petType
+                    /= PetTypeNotChosen
+                )
                 trueModel
                 falseModel
 
@@ -436,12 +459,18 @@ nextClickableToModel model =
                             == Neutral
                         )
                         True
-                        (model.primaryBreedType
+                        (model.petType
+                            == Dog
+                            && model.primaryDogBreedType
+                            /= Nothing
+                            || model.petType
+                            == Cat
+                            && model.primaryCatBreedType
                             /= Nothing
                         )
-                    && model.dogGender
+                    && model.gender
                     /= GenderNotChosen
-                    && model.dogAge
+                    && model.age
                     /= AgeNotChosen
                 )
                 trueModel

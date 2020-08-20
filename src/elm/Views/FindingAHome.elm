@@ -18,14 +18,14 @@ findingAHome model =
             [ input [ type_ "radio", name "supportType", id "rehomingCentre", value "Rehoming Centre", onClick ToggleRehomingCentreSupport ] []
             , label [ for "rehomingCentre", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Rehoming Centre: " ]
-                , text <| "We will look after " ++ getPetName model ++ " at our Rehoming centre until we find " ++ pronounConverter "them" model.dogGender ++ " a great new home"
+                , text <| "We will look after " ++ getPetName model ++ " at our Rehoming centre until we find " ++ pronounConverter "them" model.gender ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]
             [ input [ type_ "radio", name "supportType", id "homeDirect", value "Home Direct", onClick ToggleHomeDirectSupport ] []
             , label [ for "homeDirect", class "gray ml2" ]
                 [ span [ class "b" ] [ text "Home Direct: " ]
-                , text <| getPetName model ++ " will stay with you while we find " ++ pronounConverter "them" model.dogGender ++ " a great new home"
+                , text <| getPetName model ++ " will stay with you while we find " ++ pronounConverter "them" model.gender ++ " a great new home"
                 ]
             ]
         , div [ class "mb3" ]

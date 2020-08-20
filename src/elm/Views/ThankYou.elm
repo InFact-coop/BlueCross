@@ -18,7 +18,7 @@ thankYou model =
                 [ class "w-100 bg-blue white " ]
                 [ div [ class "tc pa2 pt3 b f3" ] [ text "Thank You!" ]
                 , div [ class "tc pl4 pr4 pb3 f5 fw2" ]
-                    [ div [ class "mb2" ] [ text <| "Thank you for answering our questions. We will be in touch within 2 days to follow up on your enquiry. Then if you do decide you would like us to help you dinf a new home for " ++ getPetName model ++ ", we will arrange a time to come and see you both." ]
+                    [ div [ class "mb2" ] [ text <| "Thank you for answering our questions. We will be in touch within 2 days to follow up on your enquiry. Then if you do decide you would like us to help you find a new home for " ++ getPetName model ++ ", we will arrange a time to come and see you both." ]
                     , p []
                         [ text "We know saying goodbye to a much loved pet is hard, if you need somebody to talk to, details of our confidential Pet Bereavement Support Service can be found "
                         , a [ href "https://www.bluecross.org.uk/pet-bereavement-and-pet-loss", target "blank", class "b white no-underline" ]

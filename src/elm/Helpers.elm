@@ -85,7 +85,8 @@ prettifyNumber number =
 getPetName : Model -> String
 getPetName model =
     if model.petName == "" then
-        "your dog"
+        "your pet"
+
     else
         model.petName
 

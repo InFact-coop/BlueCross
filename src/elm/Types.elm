@@ -14,16 +14,19 @@ type alias Model =
         , liveVideoUrl : String
         , imageId : String
         , urgency : TimeScale
+        , petType : PetType
         , petName : String
         , crossBreed : Trilean
-        , primaryBreedType : Maybe DogBreed
-        , secondaryBreedType : Maybe DogBreed
+        , primaryDogBreedType : Maybe DogBreed
+        , secondaryDogBreedType : Maybe DogBreed
+        , primaryCatBreedType : Maybe CatBreed
+        , secondaryCatBreedType : Maybe CatBreed
         , primaryReasonForRehoming : String
         , secondaryReasonForRehoming : String
         , otherReasonsForRehoming : String
         , unknownBreed : String
-        , dogGender : Gender
-        , dogAge : AgeRange
+        , gender : Gender
+        , age : AgeRange
         , fundraisingContact : List String
         , medicalDetails : List String
         , lastVetVisit : VetTimeScale
@@ -53,6 +56,12 @@ type alias Model =
         }
 
 
+type PetType
+    = Dog
+    | Cat
+    | PetTypeNotChosen
+
+
 type Gender
     = Male
     | Female
@@ -73,22 +82,30 @@ type SupportType
 
 
 type PersonalityTraits
+    = Playful
+    | Cuddly
+    | Nervous
+    | LaidBack
+    | Loving
+    | Energetic
+
+
+type DogPersonalityTraits
     = Noisy
     | Sleepy
     | Friendly
     | Shy
-    | Playful
-    | Cuddly
-    | Nervous
-    | LaidBack
     | Obedient
-    | Loving
-    | Energetic
     | Grumpy
     | Hungry
     | Calm
     | Excitable
     | Growler
+
+
+type CatPersonalityTraits
+    = LapCat
+    | Skittish
 
 
 type MedicalCheck
@@ -203,7 +220,7 @@ type DogBreed
     | MongrelSmall
     | NorfolkTerrier
     | NovaScotiaDuckTollingRetriever
-    | BreedNotChosen
+    | DogBreedNotChosen
     | OldEnglishSheepdog
     | Papillon
     | ParsonsJackRussellTerrier
@@ -234,6 +251,56 @@ type DogBreed
     | WestHighlandWhiteTerrier
     | Whippet
     | YorkshireTerrier
+
+
+type CatBreed
+    = Abyssinian
+    | AmericanCurl
+    | Angora
+    | Balinese
+    | Bengal
+    | Birman
+    | Bombay
+    | BritishBlue
+    | BritishLonghair
+    | BritishShorthair
+    | BritishTip
+    | Burmese
+    | Burmilla
+    | CatBreedNotChosen
+    | Chinchilla
+    | Colourpoint
+    | CornishRex
+    | Crossbreed
+    | DevonRex
+    | DomesticLonghair
+    | DomesticSemiLonghair
+    | DomesticShorthair
+    | EgyptianMau
+    | Exotic
+    | ExoticShortHair
+    | Havana
+    | Korat
+    | MaineCoon
+    | Manx
+    | NorwegianForestCat
+    | Ocicat
+    | Oriental
+    | OrientalShortHair
+    | Persian
+    | Ragdoll
+    | RussianBlue
+    | Savannah
+    | ScottishFold
+    | SelkirkRex
+    | Siamese
+    | Singapura
+    | Snowshoe
+    | Somali
+    | Sphynx
+    | Tonkinese
+    | TurkishAngora
+    | TurkishVan
 
 
 type Stage
@@ -297,13 +364,16 @@ type Msg
     | ReceiveLiveVideo String
     | ReceivePhotoUrl (Result String Image)
     | ReceivePhotoUploadStatus (Result Http.Error PhotosResponse)
+    | UpdatePetType PetType
     | UpdatePetName String
-    | UpdateDogAge AgeRange
-    | UpdatePrimaryBreed DogBreed
+    | UpdateAge AgeRange
+    | UpdatePrimaryDogBreed DogBreed
+    | UpdatePrimaryCatBreed CatBreed
     | UpdateLastVetVisit VetTimeScale
     | TogglePersonality String Bool
     | ToggleFundraisingContact String Bool
-    | UpdateSecondaryBreed DogBreed
+    | UpdateSecondaryDogBreed DogBreed
+    | UpdateSecondaryCatBreed CatBreed
     | UpdateUrgency TimeScale
     | UpdateOtherHealth String
     | UpdateGender Gender
