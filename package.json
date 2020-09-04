@@ -38,7 +38,7 @@
     "supertest": "^3.1.0"
   },
   "dependencies": {
-    "airtable": "^0.5.4",
+    "airtable": "^0.7.2",
     "autoprefixer": "^7.2.6",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.11.0",
