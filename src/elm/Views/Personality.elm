@@ -59,7 +59,7 @@ personality model =
                 dogPersonalityButtons
         , div
             [ class "pt4 pb3 dib blue b" ]
-            [ text <| "Are there any other personality traits you would like us to tell " ++ getPetName model ++ "'s new owner about?" ]
+            [ text <| "Please tell us a bit more about " ++ getPetName model ++ "'s personality so that we can find the best home for " ++ pronounConverter "them" model.gender ]
         , newTextBox ( "Please tell us here", "personality" ) UpdateOtherPersonality
         , div
             [ class "mt4 tc w-100" ]
