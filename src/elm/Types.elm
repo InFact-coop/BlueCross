@@ -91,16 +91,11 @@ type PersonalityTraits
 
 
 type DogPersonalityTraits
-    = Noisy
-    | Sleepy
+    = Sociable
     | Friendly
-    | Shy
-    | Obedient
-    | Grumpy
-    | Hungry
     | Calm
     | Excitable
-    | Growler
+    | Boisterous
 
 
 type CatPersonalityTraits
