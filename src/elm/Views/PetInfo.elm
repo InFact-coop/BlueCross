@@ -153,15 +153,22 @@ secondaryReasons model =
             ]
 
         "Behaviour" ->
-            [ reasonDropdown "Anxious when left"
-            , reasonDropdown "Difficult to handle"
-            , reasonDropdown "Overprotective of food or toys"
-            , reasonDropdown "Not house-trained"
-            , reasonDropdown "Unsafe with children"
-            , reasonDropdown "Unsafe with strangers"
-            , reasonDropdown ("Unsafe with other " ++ unionTypeToString model.petType ++ "s")
-            , reasonDropdown "Other"
-            ]
+            ifThenElse (model.petType == Dog)
+                [ reasonDropdown "Anxious when left"
+                , reasonDropdown "Difficult to handle"
+                , reasonDropdown "Overprotective of food or toys"
+                , reasonDropdown "Not house-trained"
+                , reasonDropdown "Unsafe with children"
+                , reasonDropdown "Unsafe with strangers"
+                , reasonDropdown ("Unsafe with other " ++ unionTypeToString model.petType ++ "s")
+                , reasonDropdown "Other"
+                ]
+                [ reasonDropdown "Too nervous"
+                , reasonDropdown "Not getting on with children"
+                , reasonDropdown "Toileting inappropriately"
+                , reasonDropdown "Over-playful"
+                , reasonDropdown "Not getting on with another pet"
+                ]
 
         "Health" ->
             [ reasonDropdown "Treatment"
