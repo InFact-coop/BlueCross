@@ -28,7 +28,7 @@ routeToProgressBar list model =
                 |> Maybe.withDefault ( 0, ThankYouRoute )
 
         activeNodes =
-            ifThenElse (model.route /= HomeRoute) [ line "green", activeNode ] [ activeNode ]
+            ifThenElse (model.route /= HomeRoute) [ line "green", activeNode model ] [ activeNode model ]
                 ++ ifThenElse (model.route /= OwnerInfoRoute) [ line "light-blue" ] []
 
         doneNodes =
@@ -43,7 +43,7 @@ routeToProgressBar list model =
                 |> List.map (\route -> futureNode <| Tuple.first route)
                 |> List.intersperse (line "light-blue")
     in
-        doneNodes ++ activeNodes ++ futureNodes
+    doneNodes ++ activeNodes ++ futureNodes
 
 
 routesList : List ( Int, Route )
@@ -64,9 +64,13 @@ doneNode =
     div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--green", "dib" ], backgroundImageStyle "./assets/tick.svg" 55 ] []
 
 
-activeNode : Html Msg
-activeNode =
-    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--blue", "dib" ], backgroundImageStyle "./assets/dog.svg" 55 ] []
+activeNode : Model -> Html Msg
+activeNode model =
+    let
+        image =
+            ifThenElse (model.petType == Dog) "./assets/dog.svg" "./assets/cat.svg"
+    in
+    div [ classes [ "br-100", "ba", "bw1", "bw2-ns", "h-vw6", "w-vw6", "flex", "items-center", "justify-center", "b--blue", "dib" ], backgroundImageStyle image 55 ] []
 
 
 futureNode : Int -> Html Msg

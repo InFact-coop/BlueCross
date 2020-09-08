@@ -1,6 +1,6 @@
 module Views.ThankYou exposing (..)
 
-import Helpers exposing (getPetName)
+import Helpers exposing (getPetName, ifThenElse, pronounConverter)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Types exposing (..)
@@ -11,7 +11,7 @@ thankYou model =
     div [ class "" ]
         [ section [ class "dn-ns" ]
             [ div [ class "" ]
-                [ img [ src "./assets/doggo.jpeg", class " w-100 db" ]
+                [ img [ src <| ifThenElse (model.petType == Dog) "./assets/doggo.jpeg" "./assets/cat.png", class " w-100 db" ]
                     []
                 ]
             , div
@@ -39,8 +39,8 @@ thankYou model =
                 [ div [ class "background-overlay aspect-ratio--object flex items-center" ]
                     [ div [ class "w-50-ns w-90 center" ]
                         [ header [ class "white f1 o-100 tc b" ] [ text "Thank You!" ]
-                        , p [ class "white f-custom  fw1 tc pt3 lh-copy " ] [ text <| "Thank-you for answering our questions, this will help us find " ++ getPetName model ++ " a great new home.  " ]
-                        , p [ class "white f-custom fw1 tc lh-copy " ] [ text <| "We will be in touch within 2 days to arrange a time to come and see you and" ++ getPetName model ++ ", when we will plan his rehoming journey with you and any further support you need." ]
+                        , p [ class "white f-custom  fw1 tc pt3 lh-copy " ] [ text <| "Thank-you for answering our questions" ]
+                        , p [ class "white f-custom fw1 tc lh-copy " ] [ text <| "We will be in touch within 2 days to arrange a time to plan " ++ pronounConverter "their" model.gender ++ " rehoming journey with you and any further support you need." ]
                         , p [ class "white f-custom fw1 tc lh-copy " ]
                             [ text "We know saying goodbye to a much loved pet is hard, if you need somebody to talk to, details of our confidential Pet Bereavement Support Service can be found "
                             , a [ href "https://www.bluecross.org.uk/pet-bereavement-and-pet-loss", target "blank", class "b white no-underline" ]

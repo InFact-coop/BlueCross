@@ -91,16 +91,11 @@ type PersonalityTraits
 
 
 type DogPersonalityTraits
-    = Noisy
-    | Sleepy
+    = Sociable
     | Friendly
-    | Shy
-    | Obedient
-    | Grumpy
-    | Hungry
     | Calm
     | Excitable
-    | Growler
+    | Boisterous
 
 
 type CatPersonalityTraits
@@ -148,32 +143,68 @@ type TimeScale
 
 
 type DogBreed
-    = Akita
+    = Affenpinscher
+    | AfghanHound
+    | AiredaleTerrier
+    | Akita
     | AlaskanMalamute
     | AmericanBullDog
+    | AmericanCockerSpaniel
+    | AmericanWaterSpaniel
+    | AnatolianShepherdDog
+    | AustralianCattleDog
     | AustralianKelpie
+    | AustralianShepherd
+    | AustralianSilkyTerrier
+    | AustralianTerrier
+    | Basenji
+    | BassetBleudeGascogne
+    | BassetFauvedeBretagne
+    | BassetGriffonVendeenGrand
+    | BassetGriffonVendeenPetit
     | BassetHound
+    | BavarianMountainHound
     | Beagle
     | BeardedCollie
+    | Beauceron
     | BedlingtonTerrier
-    | BelgianShepherdMalinois
+    | BelgianShepherd
+    | BelgianShepherdDog
     | BelgianShepherdDogGroenendael
+    | BelgianShepherdMalinois
+    | Bergamasco
     | BerneseMountainDog
     | BichonFrise
+    | Bloodhound
+    | Bolognese
     | BorderCollie
     | BorderTerrier
+    | Borzoi
     | BostonTerrier
+    | BouvierDesFlandres
     | Boxer
+    | BraccoItaliano
+    | Briard
+    | Brittany
     | BullMastiff
     | Bulldog
     | CairnTerrier
+    | CanaanDog
+    | CanadianEskimoDog
     | CavalierKingCharlesSpaniel
+    | CeskyTerrier
+    | ChesapeakeBayRetriever
+    | Chihuahua
     | ChihuahuaLongCoat
     | ChihuahuaSmoothCoat
     | ChineseCrested
     | ChowChow
+    | ClumberSpaniel
     | CockerSpaniel
     | Corgi
+    | Cotondetulear
+    | CurlyCoatedRetriever
+    | Dachshund
     | DachshundLongHaired
     | DachshundMiniatureLongHaired
     | DachshundMiniatureSmoothHaired
@@ -181,73 +212,150 @@ type DogBreed
     | DachshundSmoothHaired
     | DachshundWireHaired
     | Dalmatian
+    | DandieDinmontTerrier
+    | DeerHound
     | Doberman
+    | DogBreedNotChosen
     | DoguedeBordeaux
     | EnglishBullTerrier
+    | EnglishBullTerrierMiniature
     | EnglishSetter
     | EnglishSpringerSpaniel
     | EnglishToyTerrier
+    | EstreleaMountainDog
+    | FellTerrier
+    | FieldSpaniel
+    | FinnishLapphund
+    | FinnishSpitz
     | FlatCoatedRetriever
     | FoxTerrier
     | Foxhound
     | FrenchBulldog
     | GermanLonghairedPointer
+    | GermanPinscher
     | GermanShepherdDog
     | GermanShortHairedPointer
+    | GermanSpitz
+    | GermanWirehairedPointer
+    | GiantSchnauzer
+    | GlenofImaalTerrier
     | GoldenRetriever
+    | GordonSetter
+    | GrandBleuDeGascoigne
     | GreatDane
     | Greyhound
     | GriffonBruxellois
+    | Hamiltonstovare
     | Harrier
     | Havanese
+    | Hovawart
+    | HungarianKuvasz
+    | HungarianPuli
+    | HungarianVizsla
+    | IbizanHound
+    | IrishRedAndWhiteSetter
     | IrishSetter
+    | IrishTerrier
+    | IrishWaterSpaniel
+    | IrishWolfhound
     | ItalianGreyhound
+    | ItalianSpinone
     | JackRussellTerrier
+    | JapaneseChin
     | JapaneseSpitz
+    | Keeshound
+    | KerryBlueTerrier
     | KingCharlesSpaniel
+    | Komondor
+    | Kooikerhondje
     | LabradorRetriever
     | LakelandTerrier
+    | LancashireHeeler
+    | LargeMunsterlander
     | Leonberger
     | LhasaApso
+    | LongCoat
+    | Lowchen
     | Lurcher
+    | Malinois
     | Maltese
+    | ManchesterTerrier
+    | MaremmaSheepdog
     | Mastiff
+    | MexicanHairless
+    | MiniatureBullTerrier
+    | MiniatureLongHaired
     | MiniaturePinscher
     | MiniaturePoodle
     | MiniatureSchnauzer
+    | MiniatureSmoothHaired
+    | MiniatureWireHaired
     | MongrelLarge
     | MongrelMedium
     | MongrelSmall
+    | NeapolitanMastiff
+    | NewZealandHuntaway
+    | Newfoundland
     | NorfolkTerrier
+    | NorthernInuit
+    | NorwegianBuhund
+    | NorwegianElkhound
+    | NorwichTerrier
     | NovaScotiaDuckTollingRetriever
-    | DogBreedNotChosen
     | OldEnglishSheepdog
+    | Otterhound
     | Papillon
     | ParsonsJackRussellTerrier
     | PatterdaleTerrier
+    | Pekingese
+    | PharaohHound
     | Pointer
+    | PolishLowlandSheepdog
     | Pomeranian
     | PortuguesePodengo
+    | PortugueseWaterDog
     | Pug
     | PyreneanMountainDog
+    | PyreneanSheepdog
     | RhodesianRidgeback
     | Rottweiler
+    | RoughCollie
     | RussianBlackTerrier
     | SaintBernard
     | Saluki
+    | Samoyed
+    | Schipperke
     | ScottishTerrier
+    | SealyhamTerrier
+    | SegugioItaliano
     | SharPei
+    | Sheltie
+    | ShetlandSheepdog
     | ShetlandSheepdogSheltie
+    | ShibaInu
     | ShihTzu
     | SiberianHusky
+    | SkyeTerrier
+    | Sloughi
+    | SmallMunsterlander
+    | SmoothCollie
+    | SoftCoatedWheatenTerrier
+    | SpanishWaterHound
     | StaffordshireBullTerrier
     | StandardPoodle
     | StandardSchnauzer
+    | SussexSpaniel
+    | SwedishLapphund
+    | SwedishVallhund
+    | TibetanMastiff
+    | TibetanSpaniel
     | TibetanTerrier
     | ToyPoodle
     | TreeWalkerCoonhound
+    | Utonagon
     | Weimaraner
     | WelshSpringerSpaniel
+    | WelshTerrier
     | WestHighlandWhiteTerrier
     | Whippet
     | YorkshireTerrier
