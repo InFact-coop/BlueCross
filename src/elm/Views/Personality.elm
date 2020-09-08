@@ -10,22 +10,16 @@ import Types exposing (..)
 
 
 dogPersonalityButtons =
-    [ personalityButton "Noisy" False
-    , personalityButton "Sleepy" False
-    , personalityButton "Friendly" False
-    , personalityButton "Shy" False
+    [ personalityButton "Friendly" False
     , personalityButton "Playful" False
     , personalityButton "Cuddly" False
     , personalityButton "Nervous" False
     , personalityButton "Laid-Back" False
-    , personalityButton "Obedient" False
-    , personalityButton "Loving" False
     , personalityButton "Energetic" False
-    , personalityButton "Grumpy" False
-    , personalityButton "Hungry" False
     , personalityButton "Calm" False
-    , personalityButton "Exciteable" False
-    , personalityButton "Snappy" True
+    , personalityButton "Excitable" False
+    , personalityButton "Sociable" False
+    , personalityButton "Boisterous" False
     ]
 
 
