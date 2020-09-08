@@ -34,7 +34,7 @@ decoderDogBreed val =
         "Belgian Shepherd Malinois" ->
             Json.Decode.succeed BelgianShepherdMalinois
 
-        "Belgian Shepherd Dog Groenendael" ->
+        "Belgian Shepherd Dog (Groenendael)" ->
             Json.Decode.succeed BelgianShepherdDogGroenendael
 
         "Bernese Mountain Dog" ->
@@ -265,6 +265,345 @@ decoderDogBreed val =
         "Saluki" ->
             Json.Decode.succeed Saluki
 
+        "Affenpinscher" ->
+            Json.Decode.succeed Affenpinscher
+
+        "Afghan Hound" ->
+            Json.Decode.succeed AfghanHound
+
+        "Airedale Terrier" ->
+            Json.Decode.succeed AiredaleTerrier
+
+        "American Cocker Spaniel" ->
+            Json.Decode.succeed AmericanCockerSpaniel
+
+        "American Water Spaniel" ->
+            Json.Decode.succeed AmericanWaterSpaniel
+
+        "Anatolian Shepherd Dog" ->
+            Json.Decode.succeed AnatolianShepherdDog
+
+        "Australian Cattle Dog" ->
+            Json.Decode.succeed AustralianCattleDog
+
+        "Australian Shepherd" ->
+            Json.Decode.succeed AustralianShepherd
+
+        "Australian Silky Terrier" ->
+            Json.Decode.succeed AustralianSilkyTerrier
+
+        "Australian Terrier" ->
+            Json.Decode.succeed AustralianTerrier
+
+        "Basenji" ->
+            Json.Decode.succeed Basenji
+
+        "Basset Bleu de Gascogne" ->
+            Json.Decode.succeed BassetBleudeGascogne
+
+        "Basset Fauve de Bretagne" ->
+            Json.Decode.succeed BassetFauvedeBretagne
+
+        "Basset Griffon Vendeen (Grand)" ->
+            Json.Decode.succeed BassetGriffonVendeenGrand
+
+        "Basset Griffon Vendeen (Petit)" ->
+            Json.Decode.succeed BassetGriffonVendeenPetit
+
+        "Bavarian Mountain Hound" ->
+            Json.Decode.succeed BavarianMountainHound
+
+        "Beauceron" ->
+            Json.Decode.succeed Beauceron
+
+        "Bergamasco" ->
+            Json.Decode.succeed Bergamasco
+
+        "Bloodhound" ->
+            Json.Decode.succeed Bloodhound
+
+        "Bolognese" ->
+            Json.Decode.succeed Bolognese
+
+        "Borzoi" ->
+            Json.Decode.succeed Borzoi
+
+        "Bouvier Des Flandres" ->
+            Json.Decode.succeed BouvierDesFlandres
+
+        "Bracco Italiano" ->
+            Json.Decode.succeed BraccoItaliano
+
+        "Briard" ->
+            Json.Decode.succeed Briard
+
+        "Brittany" ->
+            Json.Decode.succeed Brittany
+
+        "German Spitz" ->
+            Json.Decode.succeed GermanSpitz
+
+        "German Wirehaired Pointer" ->
+            Json.Decode.succeed GermanWirehairedPointer
+
+        "Giant Schnauzer" ->
+            Json.Decode.succeed GiantSchnauzer
+
+        "Glen of Imaal Terrier" ->
+            Json.Decode.succeed GlenofImaalTerrier
+
+        "Gordon Setter" ->
+            Json.Decode.succeed GordonSetter
+
+        "Grand Bleu De Gascoigne" ->
+            Json.Decode.succeed GrandBleuDeGascoigne
+
+        "Hamiltonstovare" ->
+            Json.Decode.succeed Hamiltonstovare
+
+        "Hovawart" ->
+            Json.Decode.succeed Hovawart
+
+        "Hungarian Kuvasz" ->
+            Json.Decode.succeed HungarianKuvasz
+
+        "Hungarian Puli" ->
+            Json.Decode.succeed HungarianPuli
+
+        "Hungarian Vizsla" ->
+            Json.Decode.succeed HungarianVizsla
+
+        "Ibizan Hound" ->
+            Json.Decode.succeed IbizanHound
+
+        "Irish Red & White Setter" ->
+            Json.Decode.succeed IrishRedAndWhiteSetter
+
+        "Irish Terrier" ->
+            Json.Decode.succeed IrishTerrier
+
+        "Irish Water Spaniel" ->
+            Json.Decode.succeed IrishWaterSpaniel
+
+        "Irish Wolfhound" ->
+            Json.Decode.succeed IrishWolfhound
+
+        "Italian Spinone" ->
+            Json.Decode.succeed ItalianSpinone
+
+        "Japanese Chin" ->
+            Json.Decode.succeed JapaneseChin
+
+        "Keeshound" ->
+            Json.Decode.succeed Keeshound
+
+        "Kerry Blue Terrier" ->
+            Json.Decode.succeed KerryBlueTerrier
+
+        "Komondor" ->
+            Json.Decode.succeed Komondor
+
+        "Kooikerhondje" ->
+            Json.Decode.succeed Kooikerhondje
+
+        "Lancashire Heeler" ->
+            Json.Decode.succeed LancashireHeeler
+
+        "Large Munsterlander" ->
+            Json.Decode.succeed LargeMunsterlander
+
+        "Lowchen" ->
+            Json.Decode.succeed Lowchen
+
+        "Manchester Terrier" ->
+            Json.Decode.succeed ManchesterTerrier
+
+        "Maremma Sheepdog" ->
+            Json.Decode.succeed MaremmaSheepdog
+
+        "Shiba Inu" ->
+            Json.Decode.succeed ShibaInu
+
+        "Skye Terrier" ->
+            Json.Decode.succeed SkyeTerrier
+
+        "Sloughi" ->
+            Json.Decode.succeed Sloughi
+
+        "Small Munsterlander" ->
+            Json.Decode.succeed SmallMunsterlander
+
+        "Smooth Collie" ->
+            Json.Decode.succeed SmoothCollie
+
+        "Soft Coated Wheaten Terrier" ->
+            Json.Decode.succeed SoftCoatedWheatenTerrier
+
+        "Spanish Water Hound" ->
+            Json.Decode.succeed SpanishWaterHound
+
+        "Sussex Spaniel" ->
+            Json.Decode.succeed SussexSpaniel
+
+        "Swedish Lapphund" ->
+            Json.Decode.succeed SwedishLapphund
+
+        "Swedish Vallhund" ->
+            Json.Decode.succeed SwedishVallhund
+
+        "Tibetan Mastiff" ->
+            Json.Decode.succeed TibetanMastiff
+
+        "Tibetan Spaniel" ->
+            Json.Decode.succeed TibetanSpaniel
+
+        "Utonagon" ->
+            Json.Decode.succeed Utonagon
+
+        "Welsh Terrier" ->
+            Json.Decode.succeed WelshTerrier
+
+        "Canaan Dog" ->
+            Json.Decode.succeed CanaanDog
+
+        "Canadian Eskimo Dog" ->
+            Json.Decode.succeed CanadianEskimoDog
+
+        "Cesky Terrier" ->
+            Json.Decode.succeed CeskyTerrier
+
+        "Chesapeake Bay Retriever" ->
+            Json.Decode.succeed ChesapeakeBayRetriever
+
+        "Chihuahua (Long Coat)" ->
+            Json.Decode.succeed ChihuahuaLongCoat
+
+        "Chihuahua (Smooth Coat)" ->
+            Json.Decode.succeed ChihuahuaSmoothCoat
+
+        "Clumber Spaniel" ->
+            Json.Decode.succeed ClumberSpaniel
+
+        "Coton de tulear" ->
+            Json.Decode.succeed Cotondetulear
+
+        "Curly Coated Retriever" ->
+            Json.Decode.succeed CurlyCoatedRetriever
+
+        "Dachshund (Miniature Long-Haired)" ->
+            Json.Decode.succeed DachshundMiniatureLongHaired
+
+        "Dachshund (Miniature Smooth-Haired)" ->
+            Json.Decode.succeed DachshundMiniatureSmoothHaired
+
+        "Dachshund (Miniature Wire-Haired)" ->
+            Json.Decode.succeed DachshundMiniatureWireHaired
+
+        "Dachshund (Smooth-Haired)" ->
+            Json.Decode.succeed DachshundSmoothHaired
+
+        "Dachshund (Wire-Haired)" ->
+            Json.Decode.succeed DachshundWireHaired
+
+        "Dandie Dinmont Terrier" ->
+            Json.Decode.succeed DandieDinmontTerrier
+
+        "Deer Hound" ->
+            Json.Decode.succeed DeerHound
+
+        "English Bull Terrier (Miniature)" ->
+            Json.Decode.succeed EnglishBullTerrierMiniature
+
+        "Estrelea Mountain Dog" ->
+            Json.Decode.succeed EstreleaMountainDog
+
+        "Fell Terrier" ->
+            Json.Decode.succeed FellTerrier
+
+        "Field Spaniel" ->
+            Json.Decode.succeed FieldSpaniel
+
+        "Finnish Lapphund" ->
+            Json.Decode.succeed FinnishLapphund
+
+        "Finnish Spitz" ->
+            Json.Decode.succeed FinnishSpitz
+
+        "German Pinscher" ->
+            Json.Decode.succeed GermanPinscher
+
+        "Mexican Hairless" ->
+            Json.Decode.succeed MexicanHairless
+
+        "Miniature Bull Terrier" ->
+            Json.Decode.succeed MiniatureBullTerrier
+
+        "Mongrel – Large" ->
+            Json.Decode.succeed MongrelLarge
+
+        "Mongrel – Medium" ->
+            Json.Decode.succeed MongrelMedium
+
+        "Mongrel – Small" ->
+            Json.Decode.succeed MongrelSmall
+
+        "Neapolitan Mastiff" ->
+            Json.Decode.succeed NeapolitanMastiff
+
+        "New Zealand Huntaway" ->
+            Json.Decode.succeed NewZealandHuntaway
+
+        "Newfoundland" ->
+            Json.Decode.succeed Newfoundland
+
+        "Northern Inuit" ->
+            Json.Decode.succeed NorthernInuit
+
+        "Norwegian Buhund" ->
+            Json.Decode.succeed NorwegianBuhund
+
+        "Norwegian Elkhound" ->
+            Json.Decode.succeed NorwegianElkhound
+
+        "Norwich Terrier" ->
+            Json.Decode.succeed NorwichTerrier
+
+        "Otterhound" ->
+            Json.Decode.succeed Otterhound
+
+        "Pekingese" ->
+            Json.Decode.succeed Pekingese
+
+        "Pharaoh Hound" ->
+            Json.Decode.succeed PharaohHound
+
+        "Polish Lowland Sheepdog" ->
+            Json.Decode.succeed PolishLowlandSheepdog
+
+        "Portuguese Water Dog" ->
+            Json.Decode.succeed PortugueseWaterDog
+
+        "Pyrenean Sheepdog" ->
+            Json.Decode.succeed PyreneanSheepdog
+
+        "Rough Collie" ->
+            Json.Decode.succeed RoughCollie
+
+        "Samoyed" ->
+            Json.Decode.succeed Samoyed
+
+        "Schipperke" ->
+            Json.Decode.succeed Schipperke
+
+        "Sealyham Terrier" ->
+            Json.Decode.succeed SealyhamTerrier
+
+        "Segugio Italiano" ->
+            Json.Decode.succeed SegugioItaliano
+
+        "Shetland Sheepdog (Sheltie)" ->
+            Json.Decode.succeed ShetlandSheepdogSheltie
+
         "Scottish Terrier" ->
             Json.Decode.succeed ScottishTerrier
 
@@ -319,32 +658,68 @@ decoderDogBreed val =
 
 dogBreedsList : List DogBreed
 dogBreedsList =
-    [ Akita
+    [ Affenpinscher
+    , AfghanHound
+    , AiredaleTerrier
+    , Akita
     , AlaskanMalamute
     , AmericanBullDog
+    , AmericanCockerSpaniel
+    , AmericanWaterSpaniel
+    , AnatolianShepherdDog
+    , AustralianCattleDog
     , AustralianKelpie
+    , AustralianShepherd
+    , AustralianSilkyTerrier
+    , AustralianTerrier
+    , Basenji
+    , BassetBleudeGascogne
+    , BassetFauvedeBretagne
+    , BassetGriffonVendeenGrand
+    , BassetGriffonVendeenPetit
     , BassetHound
+    , BavarianMountainHound
     , Beagle
     , BeardedCollie
+    , Beauceron
     , BedlingtonTerrier
-    , BelgianShepherdMalinois
+    , BelgianShepherd
+    , BelgianShepherdDog
     , BelgianShepherdDogGroenendael
+    , BelgianShepherdMalinois
+    , Bergamasco
     , BerneseMountainDog
     , BichonFrise
+    , Bloodhound
+    , Bolognese
     , BorderCollie
     , BorderTerrier
+    , Borzoi
     , BostonTerrier
+    , BouvierDesFlandres
     , Boxer
+    , BraccoItaliano
+    , Briard
+    , Brittany
     , BullMastiff
     , Bulldog
     , CairnTerrier
+    , CanaanDog
+    , CanadianEskimoDog
     , CavalierKingCharlesSpaniel
+    , CeskyTerrier
+    , ChesapeakeBayRetriever
+    , Chihuahua
     , ChihuahuaLongCoat
     , ChihuahuaSmoothCoat
     , ChineseCrested
     , ChowChow
+    , ClumberSpaniel
     , CockerSpaniel
     , Corgi
+    , Cotondetulear
+    , CurlyCoatedRetriever
+    , Dachshund
     , DachshundLongHaired
     , DachshundMiniatureLongHaired
     , DachshundMiniatureSmoothHaired
@@ -352,72 +727,147 @@ dogBreedsList =
     , DachshundSmoothHaired
     , DachshundWireHaired
     , Dalmatian
+    , DandieDinmontTerrier
+    , DeerHound
     , Doberman
     , DoguedeBordeaux
     , EnglishBullTerrier
+    , EnglishBullTerrierMiniature
     , EnglishSetter
     , EnglishSpringerSpaniel
     , EnglishToyTerrier
+    , EstreleaMountainDog
+    , FellTerrier
+    , FieldSpaniel
+    , FinnishLapphund
+    , FinnishSpitz
     , FlatCoatedRetriever
     , FoxTerrier
     , Foxhound
     , FrenchBulldog
     , GermanLonghairedPointer
+    , GermanPinscher
     , GermanShepherdDog
     , GermanShortHairedPointer
+    , GermanSpitz
+    , GermanWirehairedPointer
+    , GiantSchnauzer
+    , GlenofImaalTerrier
     , GoldenRetriever
+    , GordonSetter
+    , GrandBleuDeGascoigne
     , GreatDane
     , Greyhound
     , GriffonBruxellois
+    , Hamiltonstovare
     , Harrier
     , Havanese
+    , Hovawart
+    , HungarianKuvasz
+    , HungarianPuli
+    , HungarianVizsla
+    , IbizanHound
+    , IrishRedAndWhiteSetter
     , IrishSetter
+    , IrishTerrier
+    , IrishWaterSpaniel
+    , IrishWolfhound
     , ItalianGreyhound
+    , ItalianSpinone
     , JackRussellTerrier
+    , JapaneseChin
     , JapaneseSpitz
+    , Keeshound
+    , KerryBlueTerrier
     , KingCharlesSpaniel
+    , Komondor
+    , Kooikerhondje
     , LabradorRetriever
     , LakelandTerrier
+    , LancashireHeeler
+    , LargeMunsterlander
     , Leonberger
     , LhasaApso
+    , LongCoat
+    , Lowchen
     , Lurcher
+    , Malinois
     , Maltese
+    , ManchesterTerrier
+    , MaremmaSheepdog
     , Mastiff
+    , MexicanHairless
+    , MiniatureBullTerrier
+    , MiniatureLongHaired
     , MiniaturePinscher
     , MiniaturePoodle
     , MiniatureSchnauzer
     , MongrelLarge
     , MongrelMedium
     , MongrelSmall
+    , NeapolitanMastiff
+    , NewZealandHuntaway
+    , Newfoundland
     , NorfolkTerrier
+    , NorthernInuit
+    , NorwegianBuhund
+    , NorwegianElkhound
+    , NorwichTerrier
     , NovaScotiaDuckTollingRetriever
     , OldEnglishSheepdog
+    , Otterhound
     , Papillon
     , ParsonsJackRussellTerrier
     , PatterdaleTerrier
+    , Pekingese
+    , PharaohHound
     , Pointer
+    , PolishLowlandSheepdog
     , Pomeranian
     , PortuguesePodengo
+    , PortugueseWaterDog
     , Pug
     , PyreneanMountainDog
+    , PyreneanSheepdog
     , RhodesianRidgeback
     , Rottweiler
+    , RoughCollie
     , RussianBlackTerrier
     , SaintBernard
     , Saluki
+    , Samoyed
+    , Schipperke
     , ScottishTerrier
+    , SealyhamTerrier
+    , SegugioItaliano
     , SharPei
+    , Sheltie
+    , ShetlandSheepdog
     , ShetlandSheepdogSheltie
+    , ShibaInu
     , ShihTzu
     , SiberianHusky
+    , SkyeTerrier
+    , Sloughi
+    , SmallMunsterlander
+    , SmoothCollie
+    , SoftCoatedWheatenTerrier
+    , SpanishWaterHound
     , StaffordshireBullTerrier
     , StandardPoodle
     , StandardSchnauzer
+    , SussexSpaniel
+    , SwedishLapphund
+    , SwedishVallhund
+    , TibetanMastiff
+    , TibetanSpaniel
     , TibetanTerrier
     , ToyPoodle
     , TreeWalkerCoonhound
+    , Utonagon
     , Weimaraner
     , WelshSpringerSpaniel
+    , WelshTerrier
     , WestHighlandWhiteTerrier
     , Whippet
     , YorkshireTerrier
