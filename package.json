@@ -32,7 +32,7 @@
     "chai-as-promised": "^7.1.1",
     "chokidar-cli": "^1.2.0",
     "dotenv": "^4.0.0",
-    "elm-live": "^2.7.5",
+    "elm-live": "^4.0.2",
     "mocha": "^4.1.0",
     "nodemon": "^1.17.4",
     "supertest": "^3.1.0"
@@ -40,11 +40,11 @@
   "dependencies": {
     "airtable": "^0.5.4",
     "autoprefixer": "^7.2.6",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "cloudinary": "^1.11.0",
     "elm": "^0.18.0",
     "elm-format": "^0.8.3",
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "postcss-clean": "^1.1.0",
     "postcss-cli": "^4.1.1",
     "postcss-custom-media": "^6.0.0",
